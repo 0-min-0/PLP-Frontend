@@ -28,7 +28,7 @@ El Front-end del aplicativo PLP se divide en varias carpetas que guarda de maner
 ### SRC - Carpeta que guarda el Front-end en general.
 Dentro de SRC se encuentran las siguientes carpetas:
 
-###Pages - Guarda todas las paginas del aplicativo.
+### Pages - Guarda todas las paginas del aplicativo.
 - AboutUs (Página que muestra informacion sobre el aplicativo PLP)
 - Jobs (Página que muestra las categorias de trabajo)
 - Login (Muestra el inicio de sesion)
