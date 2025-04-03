@@ -7,7 +7,7 @@ import { MainMenu } from '../MainMenu/MainMenu'
 
 export const Header = () => {
     return (
-        <header className='w-full flex items-center'>
+        <header className='w-full flex justify-evenly items-center'>
             <InteractiveLogo />
             <SearchBar />
             <NavLink to='/acceder'>
