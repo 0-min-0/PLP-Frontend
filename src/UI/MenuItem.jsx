@@ -1,63 +1,26 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useMenu } from '../Context/MenuContext'
 
-export const MenuItem = () => {
+export const MenuItem = ({ to, children }) => {
 
-    const itemStyle = ''
+    const { setIsOpen } = useMenu();
+    const baseStyle = 'block px-4 py-3 text-sm rounded-md'
+
+    const getLinkStyle = ({ isActive }) =>
+        `${baseStyle} ${isActive ? 'bg-gray-100 text-gray-900' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'}`
 
     return (
-        <div className='py-1'>
-            <li><NavLink
-                to='/categorias'
-                className={({ isActive }) =>
-                    `block px-4 py-2 m-2 text-sm ${isActive
-                        ? 'bg-gray-100 text-gray-900'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                    }`
-                }
-                onClick={() => setIsOpen(false)}
-            >
-                Categorias de trabajo
-            </NavLink>
-            </li>
-
+        <li className='list-none'>
             <NavLink
-                to='/contacto'
-                className={({ isActive }) =>
-                    `block px-4 py-2 text-sm ${isActive
-                        ? 'bg-gray-100 text-gray-900'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                    }`
-                }
+                to={to}
+                className={getLinkStyle}
                 onClick={() => setIsOpen(false)}
             >
-                Contacto
+                {children}
             </NavLink>
-            <NavLink
-                to='/tema'
-                className={({ isActive }) =>
-                    `block px-4 py-2 text-sm ${isActive
-                        ? 'bg-gray-100 text-gray-900'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                    }`
-                }
-                onClick={() => setIsOpen(false)}
-            >
-                Tema (Predeterminado)
-            </NavLink>
-            <NavLink
-                to='/ayuda'
-                className={({ isActive }) =>
-                    `block px-4 py-2 text-sm ${isActive
-                        ? 'bg-gray-100 text-gray-900'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                    }`
-                }
-                onClick={() => setIsOpen(false)}
-            >
-                Ayuda
-            </NavLink>
-        </div>
+        </li>
     )
 }
+
 

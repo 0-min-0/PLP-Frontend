@@ -4,6 +4,7 @@ import { InteractiveLogo } from '../../UI/InteractiveLogo'
 import { SearchBar } from '../../UI/SearchBar'
 import { Button } from '../../UI/button'
 import { MainMenu } from '../MainMenu/MainMenu'
+import { MenuProvider } from '../../Context/MenuContext'
 
 export const Header = () => {
     return (
@@ -26,7 +27,9 @@ export const Header = () => {
                     btnName='Crear cuenta'
                 />
             </NavLink>
-            <MainMenu />
+            <MenuProvider>
+                <MainMenu />
+            </MenuProvider>
         </header>
     )
 }
