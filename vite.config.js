@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import tailwindForms from '@tailwindcss/forms';
+import tailwindForms from '@tailwindcss/forms'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -28,6 +28,6 @@ export default defineConfig({
       },
     })],
     css: {
-      transformer: 'postcss' // Cambia de lightningcss a postcss
+      transformer: 'postcss'
     }
 })

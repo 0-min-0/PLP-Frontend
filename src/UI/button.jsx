@@ -1,6 +1,8 @@
 import React from 'react'
+import { FcGoogle } from 'react-icons/fc'
+import { HiOutlineMail } from 'react-icons/hi'
 
-export const Button = ({ btnType, btnStyle, btnId = 'btnAny', btnName}) => {
+export const Button = ({ btnType, btnStyle, btnId = 'btnAny', btnName, btnIcon = null }) => {
 
   const btnBaseStyle = `
     font-bold px-4 py-2 rounded-full cursor-pointer
@@ -10,6 +12,10 @@ export const Button = ({ btnType, btnStyle, btnId = 'btnAny', btnName}) => {
   `
 
   return (
-    <button type={ btnType } className={ `${btnStyle} ${btnBaseStyle}` } id={ btnId }>{ btnName }</button>
+    <button type={ btnType } className={ `${btnStyle} ${btnBaseStyle}` } id={ btnId }>
+      { btnIcon === 'google' && <FcGoogle className='w-6 h-6 text-lg mr-2' /> }
+      { btnIcon === 'email' && <HiOutlineMail className='w-6 h-6 text-lg mr-2' /> }
+      { btnName }
+    </button>
   )
 }
