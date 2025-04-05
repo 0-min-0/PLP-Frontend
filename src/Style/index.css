@@ -1,10 +1,15 @@
 @import 'tailwindcss';
 
 @font-face {
-    font-family: 'bodyText'; 
-    src: url('../assets/fonts/body-text-fit.ttf') format('truetype');
-  }
-  
+  font-family: 'bodyText';
+  src: url('../assets/fonts/body-text-fit.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'bodyBold';
+  src: url('../assets/fonts/body-text-bold.ttf');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
