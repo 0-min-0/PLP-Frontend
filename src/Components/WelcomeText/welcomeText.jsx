@@ -31,7 +31,7 @@ export const WelcomeText = () => {
                     </div>
                 </div>
                 <div>
-                    <img src={mainIlustration} alt='Ilustracion Principal' />
+                    <img className='w-115 h-115 m-0 p-0' src={mainIlustration} alt='Ilustracion Principal' />
                 </div>
             </div>
             <InfoContainer />
