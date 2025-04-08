@@ -15,7 +15,7 @@ export const WelcomeText = () => {
                         La plataforma que te brinda numerosas oportunidades de trabajo
                         <br /> sin necesidad de un titulo profesional
                     </p>
-                    <div className='flex gap-6 mt-4'>
+                    <div className='flex gap-6 mt-4 z-1'>
                         <Button
                             btnType='button'
                             btnName='Continuar con Google'

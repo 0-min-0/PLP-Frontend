@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const Link = () => {
+export const WelcomeTextLog = () => {
   return (
     <div>
-        <a href="http://"></a>
+      
     </div>
   )
 }

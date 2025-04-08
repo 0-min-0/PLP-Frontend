@@ -41,12 +41,12 @@ export const MainMenu = () => {
         className='p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400'
         aria-label='Toggle menu'
       >
-        {isOpen ? <HiOutlineX className='h-6 w-6 cursor-pointer' /> : <HiMenu className='h-6 w-6 cursor-pointer' />}
+        {isOpen ? <HiOutlineX className='h-7 w-7 cursor-pointer' /> : <HiMenu className='h-7 w-7 cursor-pointer' />}
       </button>
       {isOpen && (
-        <div className='fixed inset-0 bg-gray-800/20' onClick={() => setIsOpen(false)} />
+        <div className='fixed inset-0 bg-gray-800/30' onClick={() => setIsOpen(false)} />
       )}
-      {/* Menú desplegable */}
+
       <div
         className={`absolute right-0 mt-2 w-56 origin-top-right bg-white rounded-lg shadow-lg focus:outline-none transition-all duration-300 ease-in-out transform ${isOpen
           ? 'opacity-100 scale-100 translate-y-0'
@@ -56,7 +56,7 @@ export const MainMenu = () => {
       >
         <ul className='p-2'>
           <div className='flex text-left p-3 text-4 font-medium text-gray-700'>
-            <h3>Menú</h3>
+            <h3 className='font-bold'>Menú</h3>
           </div>
             <MenuItem to='/categorias'>Categorias de trabajo</MenuItem>
             <MenuItem to='/contacto'>Contacto</MenuItem>
