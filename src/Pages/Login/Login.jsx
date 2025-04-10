@@ -2,6 +2,7 @@ import React from 'react'
 import { Header } from '../../Components/Header/Header'
 import { MainMenu } from '../../Components/MainMenu/MainMenu'
 import { LoginForm } from '../../Components/LoginForm/LoginForm'
+import { FocusProvider } from '../../Context/FocusContext'
 
 export const Login = () => {
     return (
@@ -15,7 +16,9 @@ export const Login = () => {
                 }
                 menu={<MainMenu />}
             />
-            <LoginForm />
+            <FocusProvider>
+                <LoginForm />
+            </FocusProvider>
         </div>
     )
 }
