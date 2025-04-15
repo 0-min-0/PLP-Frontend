@@ -4,19 +4,20 @@ import { MainLayout } from '../../Layouts/MainLayout/MainLayout'
 import { SearchBar } from '../../UI/SearchBar'
 import { MainMenu } from '../../Components/MainMenu/MainMenu'
 import { AccountButtons } from '../../Components/AccountButtons/AccountButtons'
-import { FocusProvider } from '../../Context/FocusContext'
+import { Footer } from '../../Components/Footer/Footer'
 
 export const MainPage = () => {
   return (
     <div>
-      <FocusProvider>
-        <Header
-          middleObject={<SearchBar />}
-          buttons={<AccountButtons />}
-          menu={<MainMenu />}
-        />
-      </FocusProvider>
+      <Header
+        middleObject={<SearchBar />}
+        buttons={<AccountButtons />}
+        menu={<MainMenu />}
+      />
       <MainLayout />
+      <div className='pb-12'>
+        <Footer />
+      </div>
     </div>
   )
 }

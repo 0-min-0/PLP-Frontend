@@ -11,9 +11,9 @@ export const MainMenu = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
-    };
+    }
 
     document.addEventListener('mousedown', handleClickOutside)
     return () => {
@@ -35,7 +35,7 @@ export const MainMenu = () => {
   }, [])
 
   return (
-    <div className='relative' ref={menuRef} >
+    <div className='relative' ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className='p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400'

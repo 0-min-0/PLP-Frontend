@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@font-face {
+/* @font-face {
   font-family: 'bodyText';
   src: url('../assets/fonts/body-text-fit.ttf') format('truetype');
 }
@@ -8,6 +8,16 @@
 @font-face {
   font-family: 'bodyBold';
   src: url('../assets/fonts/body-text-bold.ttf');
+} */
+
+@font-face {
+  font-family: 'arialRounded';
+  src: url('../assets/fonts/rounded-regular.ttf');
+}
+
+@font-face {
+  font-family: 'arialBold';
+  src: url('../assets/fonts/rounded-bold.ttf');
 }
 
 @tailwind base;

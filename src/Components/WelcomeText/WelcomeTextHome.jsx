@@ -2,13 +2,14 @@ import React from 'react'
 import { Button } from '../../UI/button'
 import mainIlustration from '../../assets/images/home-ilustration.png'
 import { InfoContainer } from '../InfoContainer/InfoContainer'
+import { NavLink } from 'react-router-dom'
 
-export const WelcomeText = () => {
+export const WelcomeTextHome = () => {
     return (
         <div className='flex flex-col items-center'>
             <div className='flex gap-40'>
                 <div className=' flex flex-col text-center justify-center items-center'>
-                    <h1 className='text-6xl font-[bodyBold] font-extrabold text-[#254160] mb-8'>Solo necesitas de tus <br />
+                    <h1 className='text-6xl font-[arialBold] font-extrabold text-[#254160] mb-8'>Solo necesitas de tus <br />
                         habilidades y tu experiencia</h1>
                     <p
                         className='text-[#405e7f] text-xl mb-4'>
@@ -22,12 +23,14 @@ export const WelcomeText = () => {
                             btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]'
                             btnIcon='google'
                         />
-                        <Button
-                            btnType='button'
-                            btnName='Iniciar Sesion con Correo'
-                            btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]'
-                            btnIcon='email'
-                        />
+                        <NavLink to='/acceder'>
+                            <Button
+                                btnType='button'
+                                btnName='Iniciar Sesion con Correo'
+                                btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]'
+                                btnIcon='email'
+                            />
+                        </NavLink>
                     </div>
                 </div>
                 <div>
