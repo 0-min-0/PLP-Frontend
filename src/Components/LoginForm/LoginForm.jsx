@@ -62,7 +62,7 @@ export const LoginForm = () => {
                         <HiOutlineMail className='w-6 h-6' />
                     </div>
                     <input
-                        type='text'
+                        type='email'
                         name='email'
                         placeholder='Ingresa tu correo o número de teléfono'
                         className={`w-full bg-white py-2 pl-12 pr-4 text-[#405e7f]/90 rounded-full border border-[#7c92ab] focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all duration-300 

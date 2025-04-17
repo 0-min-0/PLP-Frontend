@@ -43,7 +43,7 @@ export const RegisterRolType = () => {
                 title='Soy una persona en busca de nuevas oportunidades laborales'
                 userType='Contratista'
                 rolIcon={jobSeekerIcon}
-                iconDesc='Contratista'
+                iconDesc='Contratista Logo'
                 onChange={setUserType}
                 error={error}
                 setError={setError}
@@ -56,7 +56,7 @@ export const RegisterRolType = () => {
                 title='Somos una empresa en busca de talento y experiencia'
                 userType='Contratante'
                 rolIcon={employerIcon}
-                iconDesc='Empresa'
+                iconDesc='Empresa/Emprendimiento Logo'
                 onChange={setUserType}
                 error={error}
                 setError={setError}
