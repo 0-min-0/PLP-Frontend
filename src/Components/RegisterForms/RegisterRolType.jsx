@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
-import { Button } from '../../UI/button'
+import { Button } from '../../UI/Button'
 import { CardUserType } from '../../UI/CardUserType'
 import jobSeekerIcon from '../../assets/images/hombre-empleado.png'
 import employerIcon from '../../assets/images/corporativo.png'

@@ -1,4 +1,4 @@
-export const optionsM = [
+export const optionTown = [  //Opciones de municipios
     { value: '', label: 'No seleccionado' },
     { value: 'armenia', label: 'Armenia' },
     { value: 'buenaVista', label: 'Buenavista' },
@@ -14,7 +14,7 @@ export const optionsM = [
     { value: 'salento', label: 'Salento' },
 ]
 
-export const optionsG = [
+export const optionGenre = [  //Opciones de generos
     { value: '', label: 'No seleccionado' },
     { value: 'masculino', label: 'Masculino' },
     { value: 'femenino', label: 'Femenino' },

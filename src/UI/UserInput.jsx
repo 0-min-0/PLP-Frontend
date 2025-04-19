@@ -12,13 +12,15 @@ export const UserInput = ({
 
     const [focused, setFocused] = useState(false)
 
-    const iStyle = `w-full bg-white py-2 px-4 text-lg text-[#405e7f]/90 rounded-xl border border-[#7c92ab] focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all duration-300 
+    const iStyle = `w-full bg-white py-2 px-4 text-lg text-[#405e7f]/90 rounded-xl mt-4 border border-[#405e7f]/50 
+                    focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all 
+                    duration-300 
                     ${focused ? 'ring-2 ring-[#60efdb] border-transparent' : ''}`
-    const lStyle = 'text-[#405e7f] text-lg font-semibold mb-6'
+    const lStyle = 'text-[#405e7f] text-lg font-semibold'
 
     return (
 
-        <form action='' className='w-full text-[#405e7f]'>
+        <div className='w-full text-[#405e7f]'>
             <label
                 htmlFor={isFor}
                 className={lStyle}
@@ -36,6 +38,6 @@ export const UserInput = ({
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}
             />
-        </form>
+        </div>
     )
 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { HiOutlineLockClosed } from 'react-icons/hi'
-import { Button } from '../../UI/button'
+import { Button } from '../../UI/Button'
 
 export const LoginForm = () => {
     const navigate = useNavigate()
@@ -49,7 +49,7 @@ export const LoginForm = () => {
                 errorPassword: 'ⓘ La contraseña es requerida'
             })
         } else {
-            navigate('/Inicio')
+            navigate('/inicio')
         }
     }
 
