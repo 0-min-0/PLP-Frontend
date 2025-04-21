@@ -4,7 +4,7 @@ import { Button } from '../../UI/Button'
 import { CardUserType } from '../../UI/CardUserType'
 import jobSeekerIcon from '../../assets/images/hombre-empleado.png'
 import employerIcon from '../../assets/images/corporativo.png'
-import { RegisterContainer } from '../../UI/RegisterContainer'
+import { FormsContainer } from '../../UI/FormsContainer'
 
 export const RegisterRolType = () => {
   const [userType, setUserType] = useState(null)
@@ -32,8 +32,18 @@ export const RegisterRolType = () => {
 
   return (
     <div>
-      <RegisterContainer
+      <FormsContainer
         width='w-full'
+        bgColor='#dcfff6'
+        textColor='#405e7f'
+        title='Registrarse'
+        changeForm={
+        <p className='text-[#405e7f] pt-4'>
+          ¿Ya estás registrado en nuestra plataforma?{' '}
+          <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
+            Iniciar sesión
+          </NavLink>
+        </p>}
         form={
           <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6'>
             <div className='w-full'>
@@ -64,7 +74,7 @@ export const RegisterRolType = () => {
               />
             </div>
 
-            {error && <p className='text-red-400 text-lg w-full text-center'>{error}</p>}
+            {error && <p className='text-red-400 font-semibold w-full text-center'>{error}</p>}
 
             <div className='w-[30%]'>
               <Button

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../../UI/button'
+import { Button } from '../../UI/Button'
 import mainIlustration from '../../assets/images/home-ilustration.png'
 import { InfoContainer } from '../InfoContainer/InfoContainer'
 import { NavLink } from 'react-router-dom'

@@ -23,8 +23,8 @@ export const CardUserType = ({
         setError('')
       }}
 
-      className={`w-full p-6 bg-white rounded-xl border-4 cursor-pointer transition-all duration-200 mb-4
-        ${isSelected ? 'border-[#60efdb] ring-2 ring-[#60efdb]/30' : 'border-none hover:bg-gray-50'}`}
+      className={`w-full p-5 bg-white rounded-xl border-1 cursor-pointer transition-all duration-200 mb-4
+        ${isSelected ? 'border-[#60efdb] ring-2 ring-[#60efdb]/30' : 'border-none hover:bg-gray-100'}`}
     >
       <div className='flex items-center justify-between' title={ desc }>
         <div className='flex items-center'>
@@ -35,15 +35,15 @@ export const CardUserType = ({
             onChange={() => {}}
             className='hidden'
           />
-          <div className='ml-2'>
-            <h3 className='text-lg font-semibold text-[#405e7f]'>{ title }</h3>
-            <p className='text-gray-500'>{ userType }</p>
+          <div className=''>
+            <h3 className='text- font-semibold text-[#405e7f]'>{ title }</h3>
+            <p className='text-gray-500 text-sm'>{ userType }</p>
           </div>
         </div>
         <img
           src={ rolIcon }
           alt={ iconDesc }
-          className='w-14 h-14'
+          className='w-11 h-11 ml-6'
         />
       </div>
     </div>

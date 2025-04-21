@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { RegisterContainer } from '../../../UI/RegisterContainer'
+import { useNavigate, NavLink } from 'react-router-dom'
+import { FormsContainer } from '../../../UI/FormsContainer'
 import { Header } from '../../Header/Header'
 import { MainMenu } from '../../MainMenu/MainMenu'
 import { Footer } from '../../Footer/Footer'
@@ -59,7 +59,7 @@ export const DataJobSeeker = () => {
         const hasErrors = Object.values(newErrors).some(error => error !== '')
 
         if (!hasErrors) {
-            navigate('/inicio')
+            navigate('/crear-cuenta/contratista/crear-contraseña')
         }
     }
 
@@ -75,10 +75,20 @@ export const DataJobSeeker = () => {
                 menu={<MainMenu />}
             />
             <div className='flex justify-center items-start pt-26 gap-20'>
-                <RegisterContainer
+                <FormsContainer
                     width='w-[35%]'
+                    bgColor='#dcfff6'
+                    textColor='#405e7f'
+                    title='Acceder'
+                    changeForm={
+                        <p className='text-[#405e7f] pt-4'>
+                            ¿Ya estás registrado en nuestra plataforma?{' '}
+                            <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
+                                Iniciar sesión
+                            </NavLink>
+                        </p>}
                     form={
-                        <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 mt-4'>
+                        <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6'>
                             <div className='flex w-full gap-6'>
                                 <div className='w-full'>
                                     <UserInput
@@ -159,11 +169,11 @@ export const DataJobSeeker = () => {
                         <br /> sea agradable en PLP. </p>}
                     ilustration={registerIlustration}
                     imgDesc='Ilustración de inicio de sesión'
-                    imgStyle='w-[500px] h-[500px]'
+                    imgStyle='w-[400px] h-[400px]'
                 />
             </div>
             <div className='py-8'>
-            <Footer />
+                <Footer />
             </div>
         </div>
     )

@@ -12,11 +12,11 @@ export const UserInput = ({
 
     const [focused, setFocused] = useState(false)
 
-    const iStyle = `w-full bg-white py-2 px-4 text-lg text-[#405e7f]/90 rounded-xl mt-4 border border-[#405e7f]/50 
+    const iStyle = `w-full bg-white py-1 px-4 text-lg text-[#405e7f]/90 rounded-xl mt-3 border border-[#405e7f]/50 
                     focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all 
                     duration-300 
                     ${focused ? 'ring-2 ring-[#60efdb] border-transparent' : ''}`
-    const lStyle = 'text-[#405e7f] text-lg font-semibold'
+    const lStyle = 'text-[#405e7f] font-semibold'
 
     return (
 
