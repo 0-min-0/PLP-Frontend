@@ -8,6 +8,7 @@ export const LoginForm = () => {
     const navigate = useNavigate()
     const [emailFocused, setEmailFocused] = useState(false)
     const [passwordFocused, setPasswordFocused] = useState(false)
+    const [showPassword, setShowPassword] = useState(false)
 
     // Estados para el formulario y errores
     const [form, setForm] = useState({
@@ -56,7 +57,7 @@ export const LoginForm = () => {
     return (
         <div className='w-[35%] flex flex-col justify-center items-center p-10 text-white bg-[#405e7f] rounded-xl'>
             <h2 className='text-center text-4xl font-bold pb-6 font-[arialBold]'>Acceder</h2>
-            <form onSubmit={ handleSubmit } className='w-[100%] relative flex flex-col items-center gap-6 '>
+            <form onSubmit={handleSubmit} className='w-[100%] relative flex flex-col items-center gap-6 '>
                 <div className='w-full relative'>
                     <div className='absolute left-3 top-2 text-[#7c92ab]'>
                         <HiOutlineMail className='w-6 h-6' />
@@ -82,7 +83,7 @@ export const LoginForm = () => {
                         <HiOutlineLockClosed className='w-6 h-7' />
                     </div>
                     <input
-                        type='password'
+                        type={showPassword ? 'text' : 'password'}
                         name='password'
                         placeholder='Ingresa tu contraseña'
                         className={`w-full bg-white py-2 pl-12 pr-4 text-[#405e7f]/90 rounded-full border border-[#7c92ab] focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all duration-300 
@@ -92,6 +93,13 @@ export const LoginForm = () => {
                         onChange={handleChange}
                         value={form.password}
                     />
+                    <button
+                        type='button'
+                        onClick={() => setShowPassword(prev => !prev)}
+                        className='absolute right-4 top-3 text-sm underline text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none'
+                    >
+                        {showPassword ? 'Ocultar' : 'Mostrar'}
+                    </button>
                     {errorForm.errorPassword && (
                         <p className='text-red-400 text-6 mt-1 ml-4'>{errorForm.errorPassword}</p>
                     )}

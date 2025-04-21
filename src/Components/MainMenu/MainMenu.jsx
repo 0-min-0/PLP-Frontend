@@ -44,11 +44,11 @@ export const MainMenu = () => {
         {isOpen ? <HiOutlineX className='h-7 w-7 cursor-pointer' /> : <HiMenu className='h-7 w-7 cursor-pointer' />}
       </button>
       {isOpen && (
-        <div className='fixed inset-0 bg-gray-800/30' onClick={() => setIsOpen(false)} />
+        <div className='fixed inset-0 bg-gray-800/30 z-40' onClick={() => setIsOpen(false)} />
       )}
 
       <div
-        className={`absolute right-0 mt-2 w-56 origin-top-right bg-white rounded-lg shadow-lg focus:outline-none transition-all duration-300 ease-in-out transform ${isOpen
+        className={`absolute z-50 right-0 mt-2 w-56 origin-top-right bg-white rounded-lg shadow-lg focus:outline-none transition-all duration-300 ease-in-out transform ${isOpen
           ? 'opacity-100 scale-100 translate-y-0'
           : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
           }`}

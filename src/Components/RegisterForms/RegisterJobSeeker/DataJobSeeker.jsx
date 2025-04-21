@@ -59,7 +59,7 @@ export const DataJobSeeker = () => {
         const hasErrors = Object.values(newErrors).some(error => error !== '')
 
         if (!hasErrors) {
-            navigate('/Inicio')
+            navigate('/inicio')
         }
     }
 
