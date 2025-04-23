@@ -2,6 +2,7 @@ import React from 'react'
 import { Header } from '../../Components/Header/Header'
 import { Button } from '../../UI/Button'
 import { MainMenu } from '../../Components/MainMenu/MainMenu'
+import { FormData } from './FormData'
 
 export const Resume = () => {
     return (
@@ -21,6 +22,10 @@ export const Resume = () => {
                 }
                 menu={ <MainMenu /> }
             />
+            <div className='bg-[#f7fffd]'>
+                
+                <FormData />
+            </div>
         </div>
     )
 }
