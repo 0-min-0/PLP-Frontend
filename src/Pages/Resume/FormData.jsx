@@ -6,6 +6,7 @@ import { HiOutlineMail } from 'react-icons/hi'
 export const FormData = () => {
 
     const [focused, setFocused] = useState(false)
+
     const maxLength = 500
     const [text, setText] = useState('')
 
@@ -16,13 +17,6 @@ export const FormData = () => {
         }
     }
 
-    //  const [formData, setFormData] = useState({
-    //     completeName: '',
-    //     email: '',
-    //     phone: '',
-    //     address: '',
-    //     birthDate
-    //  })
     return (
         <div>
             <h2 className='text-lg text-[#405e7f] font-semibold'>Información personal</h2>
@@ -34,7 +28,7 @@ export const FormData = () => {
                     iType='text'
                     iValue=''
                 />
-                <form action=''>
+                <div>
                     <h3 className='text-[#405e7f] font-semibold'>Contacto</h3>
                     <div className='relative'>
                         <Input
@@ -69,7 +63,7 @@ export const FormData = () => {
                         />
                         <HiOutlineMail className='w-6 h-6 absolute left-3 bottom-2 text-[#405e7f]/70' />
                     </div>
-                </form>
+                </div>
                 <div className=''>
                     <label className='text-[#405e7f] font-semibold'>
                         Descripción personal
@@ -93,7 +87,7 @@ export const FormData = () => {
                         </span>
                     </div>
                     {text.length === maxLength && (
-                        <p className='text-red-500 text-xs mt-1'>Límite alcanzado</p>
+                        <p className='text-red-500 text-xs mt-1'>ⓘ Límite alcanzado</p>
                     )}
                 </div>
             </form>
