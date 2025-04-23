@@ -1,18 +1,19 @@
 import { useState } from 'react'
 
-export const UserInput = ({
+export const Input = ({
     iType,
     iValue,
     isFor,
     iName,
     iChange,
-    labelTitle,
+    labelTitle = '',
+    iHolder = '',
+    padding = 'px-4 py-1',
 }) => {
-
 
     const [focused, setFocused] = useState(false)
 
-    const iStyle = `w-full bg-white py-1 px-4 text-lg text-[#405e7f]/90 rounded-xl mt-3 border border-[#405e7f]/50 
+    const iStyle = `w-full bg-white ${padding} text-lg text-[#405e7f]/90 rounded-xl mt- border border-[#405e7f]/50 
                     focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all 
                     duration-300 
                     ${focused ? 'ring-2 ring-[#60efdb] border-transparent' : ''}`
@@ -34,6 +35,7 @@ export const UserInput = ({
                 name={iName}
                 value={iValue}
                 className={iStyle}
+                placeholder={iHolder}
                 onChange={iChange}
                 onFocus={() => setFocused(true)}
                 onBlur={() => setFocused(false)}

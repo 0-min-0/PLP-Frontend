@@ -45,7 +45,7 @@ export const RegisterRolType = () => {
           </NavLink>
         </p>}
         form={
-          <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6'>
+          <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 mt-6'>
             <div className='w-full'>
               <CardUserType
                 value='jobSeeker'
@@ -80,6 +80,7 @@ export const RegisterRolType = () => {
               <Button
                 btnType='submit'
                 btnStyle='bg-[#405e7f] text-white w-full'
+                btnId='btnRegister'
                 btnName='Continuar'
               />
             </div>

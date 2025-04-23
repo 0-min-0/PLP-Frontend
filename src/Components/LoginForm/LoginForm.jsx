@@ -4,12 +4,14 @@ import { HiOutlineMail } from 'react-icons/hi'
 import { HiOutlineLockClosed } from 'react-icons/hi'
 import { Button } from '../../UI/Button'
 import { FormsContainer } from '../../UI/FormsContainer'
+import { Input } from '../../UI/Input'
+import { usePassword } from '../../Context/PasswordContext'
 
 export const LoginForm = () => {
     const navigate = useNavigate()
     const [emailFocused, setEmailFocused] = useState(false)
     const [passwordFocused, setPasswordFocused] = useState(false)
-    const [showPassword, setShowPassword] = useState(false)
+    const { visibility, toggleVisibility } = usePassword()
 
     // Estados para el formulario y errores
     const [form, setForm] = useState({
@@ -62,72 +64,69 @@ export const LoginForm = () => {
                 bgColor='#405e7f'
                 title='Acceder'
                 changeForm={
-                <div className='flex flex-col items-center w-full'>
-                    <hr className='w-full border-t-2 border-white/9' />
-                    <Button
-                        btnType='button'
-                        btnName='Continuar con Google'
-                        btnStyle='w-60 flex items-center bg-white text-[#254160] rounded-full px-4 py-2 my-4'
-                        btnIcon='google'
-                    />
-                    <div className='flex items-center text-center'>
-                        <p>¿Aún no tienes una cuenta?</p>
-                        <NavLink
-                            to='/crear-cuenta'
-                            className='text-white hover:text-[#60efdb] hover:underline ml-2' >
-                            Únete ahora
-                        </NavLink>
-                    </div>
-                </div>}
+                    <div className='flex flex-col items-center w-full'>
+                        <hr className='w-full border-t-2 border-white/9' />
+                        <Button
+                            btnType='button'
+                            btnName='Continuar con Google'
+                            btnStyle='w-60 flex items-center bg-white text-[#254160] rounded-full px-4 py-2 my-4'
+                            btnIcon='google'
+                        />
+                        <div className='flex items-center text-center'>
+                            <p>¿Aún no tienes una cuenta?</p>
+                            <NavLink
+                                to='/crear-cuenta'
+                                className='text-white hover:text-[#60efdb] hover:underline ml-2' >
+                                Únete ahora
+                            </NavLink>
+                        </div>
+                    </div>}
                 form={
-                    <form onSubmit={handleSubmit} className='w-[100%] relative flex flex-col items-center gap-6 '>
-                        <div className='w-full relative'>
-                            <div className='absolute left-3 top-2 text-[#7c92ab]'>
-                                <HiOutlineMail className='w-6 h-6' />
+                    <form onSubmit={handleSubmit} className='w-[100%] relative flex flex-col items-center gap- '>
+                        <div className='w-full'>
+                            <div className='w-full relative'>
+                                <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
+                                    <HiOutlineMail className='w-6 h-6' />
+                                </div>
+                                <Input
+                                    iType='email'
+                                    iName='email'
+                                    iValue={form.email}
+                                    iChange={handleChange}
+                                    iHolder='Ingresa tu correo o número de teléfono'
+                                    padding='pl-12 pr-4 py-2'
+                                />
                             </div>
-                            <input
-                                type='email'
-                                name='email'
-                                placeholder='Ingresa tu correo o número de teléfono'
-                                className={`w-full bg-white py-2 pl-12 pr-4 text-[#405e7f]/90 rounded-full border border-[#7c92ab] focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all duration-300 
-                                ${emailFocused ? 'ring-2 ring-[#60efdb] border-transparent' : ''}`}
-                                onFocus={() => setEmailFocused(true)}
-                                onBlur={() => setEmailFocused(false)}
-                                onChange={handleChange}
-                                value={form.email}
-                            />
                             {errorForm.errorEmail && (
                                 <p className='text-red-400 text-6 mt-1 ml-4'>{errorForm.errorEmail}</p>
                             )}
                         </div>
-
-                        <div className='w-full relative'>
-                            <div className='absolute left-3 top-2 text-[#7c92ab]'>
-                                <HiOutlineLockClosed className='w-6 h-7' />
+                        <div className='w-full'>
+                            <div className='w-full relative'>
+                                <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
+                                    <HiOutlineLockClosed className='w-6 h-7' />
+                                </div>
+                                <Input
+                                    iType={visibility.loginPassword ? 'text' : 'password'}
+                                    iName='password'
+                                    iValue={form.password}
+                                    iChange={handleChange}
+                                    iHolder='Ingresa tu contraseña'
+                                    padding='pl-12 pr-4 py-2'
+                                />
+                                <button
+                                    type='button'
+                                    onClick={() => toggleVisibility('loginPassword')}
+                                    className='absolute right-4 bottom-3 text-sm underline text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                                >
+                                    {visibility.loginPassword ? 'Ocultar' : 'Mostrar'}
+                                </button>
                             </div>
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                name='password'
-                                placeholder='Ingresa tu contraseña'
-                                className={`w-full bg-white py-2 pl-12 pr-4 text-[#405e7f]/90 rounded-full border border-[#7c92ab] focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all duration-300 
-                                ${passwordFocused ? 'ring-2 ring-[#60efdb] border-transparent' : ''}`}
-                                onFocus={() => setPasswordFocused(true)}
-                                onBlur={() => setPasswordFocused(false)}
-                                onChange={handleChange}
-                                value={form.password}
-                            />
-                            <button
-                                type='button'
-                                onClick={() => setShowPassword(prev => !prev)}
-                                className='absolute right-4 top-3 text-sm underline text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none'
-                            >
-                                {showPassword ? 'Ocultar' : 'Mostrar'}
-                            </button>
                             {errorForm.errorPassword && (
                                 <p className='text-red-400 text-6 mt-1 ml-4'>{errorForm.errorPassword}</p>
                             )}
                         </div>
-                        <div className='flex flex-col items-center gap-4'>
+                        <div className='flex flex-col items-center gap-4 mt-6'>
                             <NavLink
                                 to='/recuperar-contraseña'
                                 className='hover:text-[#60efdb] hover:underline'

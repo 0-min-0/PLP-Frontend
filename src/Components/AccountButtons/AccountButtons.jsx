@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { Button } from '../../UI/button'
+import { Button } from '../../UI/Button'
 
 export const AccountButtons = () => {
     return (

@@ -4,7 +4,7 @@ import { FormsContainer } from '../../../UI/FormsContainer'
 import { Header } from '../../Header/Header'
 import { MainMenu } from '../../MainMenu/MainMenu'
 import { Footer } from '../../Footer/Footer'
-import { UserInput } from '../../../UI/UserInput'
+import { Input } from '../../../UI/Input'
 import { Select } from '../../../UI/Select'
 import { optionTown, optionGenre } from './options'
 import { Button } from '../../../UI/Button'
@@ -36,7 +36,6 @@ export const DataJobSeeker = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        // Actualiza userForm con el municipio y género seleccionados
         const updatedForm = {
             ...userForm,
             userMunicipio: selectedTown,
@@ -45,7 +44,6 @@ export const DataJobSeeker = () => {
 
         setUserForm(updatedForm)
 
-        // Validaciones simples
         const newErrors = {
             errorName: updatedForm.userName ? '' : 'ⓘ El nombre es requerido',
             errorLastname: updatedForm.userLastname ? '' : 'ⓘ El apellido es requerido',
@@ -79,7 +77,7 @@ export const DataJobSeeker = () => {
                     width='w-[35%]'
                     bgColor='#dcfff6'
                     textColor='#405e7f'
-                    title='Acceder'
+                    title='Registrarse'
                     changeForm={
                         <p className='text-[#405e7f] pt-4'>
                             ¿Ya estás registrado en nuestra plataforma?{' '}
@@ -88,10 +86,10 @@ export const DataJobSeeker = () => {
                             </NavLink>
                         </p>}
                     form={
-                        <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6'>
+                        <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 mt-6'>
                             <div className='flex w-full gap-6'>
                                 <div className='w-full'>
-                                    <UserInput
+                                    <Input
                                         labelTitle='Nombre'
                                         isFor='userName'
                                         iType='text'
@@ -104,7 +102,7 @@ export const DataJobSeeker = () => {
                                     )}
                                 </div>
                                 <div className='w-full'>
-                                    <UserInput
+                                    <Input
                                         labelTitle='Apellido'
                                         isFor='userLastname'
                                         iType='text'
@@ -118,7 +116,7 @@ export const DataJobSeeker = () => {
                                 </div>
                             </div>
                             <div className='w-full'>
-                                <UserInput
+                                <Input
                                     labelTitle='Correo electrónico o numero de teléfono'
                                     isFor='userEmail'
                                     iType='text'

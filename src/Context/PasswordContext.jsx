@@ -1,17 +1,32 @@
 import { createContext, useContext, useState } from 'react'
 
-const PasswordContext = createContext()
+export const PasswordContext = createContext()
 
 export const PasswordProvider = ({ children }) => {
-  const [showPassword, setShowPassword] = useState(false)
+  const [visibility, setVisibility] = useState({
+    createPassword: false,
+    confirmPassword: false,
+    loginPassword: false
+  })
+
+  const toggleVisibility = (field) => {
+    setVisibility(prev => ({
+      ...prev,
+      [field]: !prev[field]
+    }))
+  }
 
   return (
-    <PasswordContext.Provider value={{ showPassword, setShowPassword }}>
+    <PasswordContext.Provider value={{ visibility, toggleVisibility }}>
       {children}
     </PasswordContext.Provider>
   )
 }
 
 export const usePassword = () => {
-  return useContext(PasswordContext)
+  const context = useContext(PasswordContext)
+  if (!context) {
+    throw new Error('usePassword debe usarse dentro de un PasswordProvider')
+  }
+  return context
 }
