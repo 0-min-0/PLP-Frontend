@@ -72,9 +72,8 @@ export const RegisterRolType = () => {
                 setError={setError}
                 desc='Haga click en la tarjeta para seleccionar su rol como Contratante'
               />
+               {error && <p className='text-red-400 font-semibold w-full text-left'>{error}</p>}
             </div>
-
-            {error && <p className='text-red-400 font-semibold w-full text-center'>{error}</p>}
 
             <div className='w-[30%]'>
               <Button

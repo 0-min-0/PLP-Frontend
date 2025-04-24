@@ -13,7 +13,7 @@ export const Input = ({
 
     const [focused, setFocused] = useState(false)
 
-    const iStyle = `w-full bg-white ${padding} text-lg text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
+    const iStyle = `w-full bg-white ${padding} text-lg mt-3 text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
                     focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all 
                     duration-300 
                     ${focused ? 'ring-2 ring-[#60efdb] border-transparent' : ''}`
@@ -21,14 +21,13 @@ export const Input = ({
 
     return (
 
-        <div className='w-full text-[#405e7f] gap-2'>
+        <div className='w-full text-[#405e7f]'>
             <label
                 htmlFor={isFor}
                 className={lStyle}
             >
                 {labelTitle}
             </label>
-            <br />
             <input
                 id={isFor}
                 type={iType}

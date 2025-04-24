@@ -24,7 +24,7 @@ export const Resume = () => {
                 }
                 menu={<MainMenu />}
             />
-            <div className='w-full flex justify-center items-start gap-14 py-10 px-12 bg-[#f7fffd] border-1 border-[#60efdb] rounded-xl'>
+            <div className='w-full flex justify-center items-start gap-14 py-10 px-16 my-14 bg-[#f7fffd] border-1 border-[#60efdb] rounded-xl'>
                 <FormData />
                 <FormLaboral />
                 <FormStudies />

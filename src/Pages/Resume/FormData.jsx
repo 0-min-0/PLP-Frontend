@@ -29,10 +29,10 @@ export const FormData = () => {
           iType='text'
           iValue=''
         />
-        <div>
-          <h3 className='text-[#405e7f] font-semibold mt-2'>Contacto</h3>
+        <div className='mt-4'>
           <div className='relative'>
             <Input
+              labelTitle='Contacto'
               isFor='contactNum'
               iHolder='Numero de telefono principal'
               iName='contactNum'
@@ -88,7 +88,7 @@ export const FormData = () => {
             </span>
           </div>
           {text.length === maxLength && (
-            <p className='text-red-500 text-xs mt-1'>ⓘ Límite alcanzado</p>
+            <p className='text-red-400 mt-1'>ⓘ Límite alcanzado</p>
           )}
         </div>
       </form>

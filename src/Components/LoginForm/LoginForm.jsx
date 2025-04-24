@@ -9,8 +9,8 @@ import { usePassword } from '../../Context/PasswordContext'
 
 export const LoginForm = () => {
     const navigate = useNavigate()
-    const [emailFocused, setEmailFocused] = useState(false)
-    const [passwordFocused, setPasswordFocused] = useState(false)
+
+    const pStyle = 'text-[#60efdb] text-sm mt-1 font-semibold'
     const { visibility, toggleVisibility } = usePassword()
 
     // Estados para el formulario y errores
@@ -98,7 +98,7 @@ export const LoginForm = () => {
                                 />
                             </div>
                             {errorForm.errorEmail && (
-                                <p className='text-red-400 text-6 mt-1 ml-4'>{errorForm.errorEmail}</p>
+                                <p className={pStyle}>{errorForm.errorEmail}</p>
                             )}
                         </div>
                         <div className='w-full'>
@@ -123,7 +123,7 @@ export const LoginForm = () => {
                                 </button>
                             </div>
                             {errorForm.errorPassword && (
-                                <p className='text-red-400 text-6 mt-1 ml-4'>{errorForm.errorPassword}</p>
+                                <p className={pStyle}>{errorForm.errorPassword}</p>
                             )}
                         </div>
                         <div className='flex flex-col items-center gap-4 mt-6'>

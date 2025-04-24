@@ -15,6 +15,8 @@ export const DataJobSeeker = () => {
 
     const navigate = useNavigate()
 
+    const pStyle = 'text-red-400 text-sm mt-1 font-semibold' 
+
     const [selectedTown, setSelectedTown] = useState('')
     const [selectedGenre, setSelectedGenre] = useState('')
     const [userForm, setUserForm] = useState({
@@ -98,7 +100,7 @@ export const DataJobSeeker = () => {
                                         iChange={(e) => setUserForm({ ...userForm, userName: e.target.value })}
                                     />
                                     {errorRegister.errorName && (
-                                        <p className='text-red-400 text-6 mt-1 ml-4'>{errorRegister.errorName}</p>
+                                        <p className={pStyle}>{errorRegister.errorName}</p>
                                     )}
                                 </div>
                                 <div className='w-full'>
@@ -111,7 +113,7 @@ export const DataJobSeeker = () => {
                                         iChange={(e) => setUserForm({ ...userForm, userLastname: e.target.value })}
                                     />
                                     {errorRegister.errorLastname && (
-                                        <p className='text-red-400 text-6 mt-1 ml-4'>{errorRegister.errorLastname}</p>
+                                        <p className={pStyle}>{errorRegister.errorLastname}</p>
                                     )}
                                 </div>
                             </div>
@@ -125,7 +127,7 @@ export const DataJobSeeker = () => {
                                     iChange={(e) => setUserForm({ ...userForm, userEmail: e.target.value })}
                                 />
                                 {errorRegister.errorEmail && (
-                                    <p className='text-red-400 text-6 mt-1'>{errorRegister.errorEmail}</p>
+                                    <p className={pStyle}>{errorRegister.errorEmail}</p>
                                 )}
                             </div>
                             <div className='flex w-full gap-6 mb-4'>
@@ -137,7 +139,7 @@ export const DataJobSeeker = () => {
                                         options={optionTown}
                                     />
                                     {errorRegister.errorTown && (
-                                        <p className='text-red-400 text-6 mt-1'>{errorRegister.errorTown}</p>
+                                        <p className={pStyle}>{errorRegister.errorTown}</p>
                                     )}
                                 </div>
                                 <div className='w-1/2'>
@@ -148,7 +150,7 @@ export const DataJobSeeker = () => {
                                         options={optionGenre}
                                     />
                                     {errorRegister.errorGenre && (
-                                        <p className='text-red-400 text-6 mt-1'>{errorRegister.errorGenre}</p>
+                                        <p className={pStyle}>{errorRegister.errorGenre}</p>
                                     )}
                                 </div>
                             </div>

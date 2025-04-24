@@ -17,10 +17,10 @@ export const SubForm = ({ label, namePrefix, maxFields = 4 }) => {
   }
 
   return (
-    <div className='mt-4'>
+    <div className='mt-6'>
       <h3 className='text-[#405e7f] font-semibold'>{label}</h3>
       {fields.map((value, index) => (
-        <div key={index} className='mb-2'>
+        <div key={index} className=''>
           <Input
             isFor={`${namePrefix}-${index}`}
             iName={`${namePrefix}-${index}`}
@@ -32,7 +32,7 @@ export const SubForm = ({ label, namePrefix, maxFields = 4 }) => {
             <button
               type='button'
               onClick={handleAddField}
-              className='text-[#405e7f] font-semibold mt-2 hover:text-[#405e7f]/70 hover:underline cursor-pointer'
+              className='text-[#405e7f]/80 text-sm font-semibold mt-2 hover:text-[#405e7f]/60 hover:underline cursor-pointer'
             >
              + Agregar campo
             </button>

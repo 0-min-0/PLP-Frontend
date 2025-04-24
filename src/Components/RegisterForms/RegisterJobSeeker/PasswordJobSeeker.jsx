@@ -14,6 +14,8 @@ export const PasswordJobSeeker = () => {
     const { visibility, toggleVisibility } = usePassword()
     const navigate = useNavigate()
 
+    const pStyle = 'text-red-400 text-sm mt-2 font-semibold'
+
     const [passwordForm, setPasswordForm] = useState({
         createPassword: '',
         confirmPassword: ''
@@ -113,7 +115,7 @@ export const PasswordJobSeeker = () => {
 
                                 </div>
                                 {errorPassword.errorCreatePassword && (
-                                    <p className='text-red-500 text-sm mt-1'>{errorPassword.errorCreatePassword}</p>
+                                    <p className={pStyle}>{errorPassword.errorCreatePassword}</p>
                                 )}
                             </div>
 
@@ -137,13 +139,12 @@ export const PasswordJobSeeker = () => {
 
                                 </div>
                                 {errorPassword.errorConfirmPassword && (
-                                    <p className='text-red-500 text-sm mt-2'>{errorPassword.errorConfirmPassword}</p>
+                                    <p className={pStyle}>{errorPassword.errorConfirmPassword}</p>
+                                )}
+                                {errorPassword.errorMismatch && (
+                                    <p className={pStyle}>{errorPassword.errorMismatch}</p>
                                 )}
                             </div>
-
-                            {errorPassword.errorMismatch && (
-                                <p className='text-red-500 text-sm -mt-4'>{errorPassword.errorMismatch}</p>
-                            )}
 
                             <div className='w-[35%]'>
                                 <Button
