@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Input } from '../../UI/Input'
+import { Input } from './Input'
 
 export const SubForm = ({ label, namePrefix, maxFields = 4 }) => {
   const [fields, setFields] = useState(['', ''])
