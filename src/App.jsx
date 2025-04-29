@@ -9,25 +9,30 @@ import { PasswordJobSeeker } from './Components/RegisterForms/RegisterJobSeeker/
 import { DynamicTitle } from './Titles'
 import { PasswordProvider } from './Context/PasswordContext'
 import { Resume } from './Pages/Resume/Resume'
+import { ValidProvider } from './Context/ValidFormContext'
 
 function App() {
 
   return (
-      <div className='w-full h-screen p-6 font-[arialRounded]'>
-        <DynamicTitle />
-        <Routes>
-          <Route path='/' element={ <MainPage /> } />
-          <Route path='/acceder' element={ <PasswordProvider>
-            <Login />
-          </PasswordProvider> } />
-          <Route path='/crear-cuenta' element={ <Register /> } />
-          <Route path='/crear-cuenta/contratista' element={ <DataJobSeeker /> } />
-          <Route path='/crear-cuenta/contratista/crear-contraseña' element={ 
+    <div className='w-full h-screen p-6 font-[arialRounded]'>
+      <DynamicTitle />
+      <Routes>
+        <Route path='/' element={<MainPage />} />
+        <Route path='/acceder' element={<PasswordProvider>
+          <Login />
+        </PasswordProvider>} />
+        <Route path='/crear-cuenta' element={<Register />} />
+        <Route path='/crear-cuenta/contratista' element={<DataJobSeeker />} />
+        <Route path='/crear-cuenta/contratista/crear-contraseña' element={
           <PasswordProvider>
             <PasswordJobSeeker />
-          </PasswordProvider> } />
-          <Route path='/crear-cuenta/contratista/hoja-de-vida' element={ <Resume /> }/>
-        </Routes>
+          </PasswordProvider>} />
+        <Route path='/crear-cuenta/contratista/hoja-de-vida' element={
+          <ValidProvider>
+            <Resume />
+          </ValidProvider>
+        } />
+      </Routes>
     </div>
   )
 }

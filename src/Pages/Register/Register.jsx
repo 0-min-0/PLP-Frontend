@@ -8,7 +8,7 @@ import { Footer } from '../../Components/Footer/Footer'
 
 export const Register = () => {
     return (
-        <div className='w-full min-h-screen p-6 border-2 rounded-2xl border-[#405e7f]/70'>
+        <div className='w-full p-6 border-2 rounded-2xl border-[#405e7f]/70'>
             <Header
                 headerClass='w-full flex justify-between items-center'
                 middleObject={
