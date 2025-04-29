@@ -4,7 +4,7 @@ import { useMenu } from '../Context/MenuContext'
 
 export const MenuItem = ({ to, children }) => {
 
-    const { setIsOpen } = useMenu();
+    const { setIsOpen } = useMenu()
     const baseStyle = 'block px-4 py-3 text-sm rounded-md'
 
     const getLinkStyle = ({ isActive }) =>
@@ -13,11 +13,11 @@ export const MenuItem = ({ to, children }) => {
     return (
         <li className='list-none'>
             <NavLink
-                to={to}
-                className={getLinkStyle}
+                to={ to }
+                className={ getLinkStyle }
                 onClick={() => setIsOpen(false)}
             >
-                {children}
+                { children }
             </NavLink>
         </li>
     )
