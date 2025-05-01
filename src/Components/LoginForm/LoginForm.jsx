@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { HiOutlineLockClosed } from 'react-icons/hi'
-import { Button } from '../../UI/Button'
+import { Button } from '../../UI/button'
 import { FormsContainer } from '../../UI/FormsContainer'
 import { Input } from '../../UI/Input'
 import { usePassword } from '../../Context/PasswordContext'
@@ -13,7 +13,6 @@ export const LoginForm = () => {
     const pStyle = 'text-[#60efdb] text-sm mt-1 font-semibold'
     const { visibility, toggleVisibility } = usePassword()
 
-    // Estados para el formulario y errores
     const [form, setForm] = useState({
         email: '',
         password: ''

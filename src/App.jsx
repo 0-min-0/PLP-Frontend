@@ -9,7 +9,8 @@ import { PasswordJobSeeker } from './Components/RegisterForms/RegisterJobSeeker/
 import { DynamicTitle } from './Titles'
 import { PasswordProvider } from './Context/PasswordContext'
 import { Resume } from './Pages/Resume/Resume'
-import { ValidProvider } from './Context/ValidFormContext'
+import { InfoProvider } from './Context/InfoContext'
+import { FocusProvider } from './Context/FocusContext'
 
 function App() {
 
@@ -18,19 +19,36 @@ function App() {
       <DynamicTitle />
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='/acceder' element={<PasswordProvider>
-          <Login />
-        </PasswordProvider>} />
-        <Route path='/crear-cuenta' element={<Register />} />
-        <Route path='/crear-cuenta/contratista' element={<DataJobSeeker />} />
+        <Route path='/acceder' element={
+          <PasswordProvider>
+            <FocusProvider>
+              <Login />
+            </FocusProvider>
+          </PasswordProvider>
+        } />
+        <Route path='/crear-cuenta' element={
+          <FocusProvider>
+            <Register />
+          </FocusProvider>
+        } />
+        <Route path='/crear-cuenta/contratista' element={
+          <FocusProvider>
+            <DataJobSeeker />
+          </FocusProvider>
+        } />
         <Route path='/crear-cuenta/contratista/crear-contraseña' element={
           <PasswordProvider>
-            <PasswordJobSeeker />
-          </PasswordProvider>} />
+            <FocusProvider>
+              <PasswordJobSeeker />
+            </FocusProvider>
+          </PasswordProvider>
+        } />
         <Route path='/crear-cuenta/contratista/hoja-de-vida' element={
-          <ValidProvider>
-            <Resume />
-          </ValidProvider>
+          <InfoProvider>
+            <FocusProvider>
+              <Resume />
+            </FocusProvider>
+          </InfoProvider>
         } />
       </Routes>
     </div>

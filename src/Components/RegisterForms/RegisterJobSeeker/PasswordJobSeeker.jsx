@@ -8,7 +8,7 @@ import registerIlustration from '../../../assets/images/register-ilustration.png
 import { FormsContainer } from '../../../UI/FormsContainer'
 import { Input } from '../../../UI/Input'
 import { usePassword } from '../../../Context/PasswordContext'
-import { Button } from '../../../UI/Button'
+import { Button } from '../../../UI/button'
 
 export const PasswordJobSeeker = () => {
     const { visibility, toggleVisibility } = usePassword()

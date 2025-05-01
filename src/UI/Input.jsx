@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useFocus } from '../Context/FocusContext'
 
 export const Input = ({
     iType,
@@ -8,10 +8,10 @@ export const Input = ({
     iChange,
     labelTitle = '',
     iHolder = '',
-    padding = 'px-4 py-1',
+    padding = 'px-4 py-2',
 }) => {
 
-    const [focused, setFocused] = useState(false)
+    const { focused, setFocused } = useFocus()
 
     const iStyle = `w-full bg-white ${padding} text-lg mt-3 text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
                     focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all 
