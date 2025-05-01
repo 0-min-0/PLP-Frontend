@@ -4,6 +4,7 @@ import { Button } from '../../UI/button'
 import { MainMenu } from '../../Components/MainMenu/MainMenu'
 import { FormData } from './FormData'
 import { FormLaboral } from './FormLaboral'
+import { CompletedProvider } from '../../Context/CompletedContext'
 
 export const Resume = () => {
     return (
@@ -14,11 +15,19 @@ export const Resume = () => {
                         Formato de Hoja de Vida
                     </h1>
                 }
-                menu={ <MainMenu /> }
+                menu={<MainMenu />}
             />
-            <div className='mx-50 my-15'>
-                <FormData />
-                <FormLaboral />
+            <div className='flex flex-col gap-10 mx-50 my-15'>
+                <CompletedProvider>
+                    <FormData />
+                    <FormLaboral />
+                    <Button
+                        btnName='Terminar y completar registro'
+                        btnType='button'
+                        btnId='finishRegister'
+                        btnStyle='w-[20%] bg-[#60efdb] text-[#405e7f]'
+                    />
+                </CompletedProvider>
             </div>
         </div>
     )

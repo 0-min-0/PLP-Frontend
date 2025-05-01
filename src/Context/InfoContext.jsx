@@ -11,23 +11,58 @@ export const InfoProvider = ({ children }) => {
     photo: null,
     desc: '',
     ocupation: '',
-    tSkillOne: '',
-    tSkillTwo: '',
-    sSkillOne: '',
-    sSkillTwo: '',
-    studiesOne: '',
-    studiesTwo: '',
-    experiencia: '',
-    company: ''
+    technicalSkills: {
+      tSkillOne: '',
+      tSkillTwo: '',
+      tSkillThree: '',
+      tSkillFour: ''
+    },
+    softSkills: {
+      sSkillOne: '',
+      sSkillTwo: '',
+      sSkillThree: '',
+      sSkillFour: ''
+    },
+    studies: {
+      studiesOne: '',
+      studiesTwo: '',
+      studiesThree: '',
+      studiesFour: ''
+    },
+    experiencie: '',
+    companyWork: {
+      companyOne: '',
+      companyTwo: '',
+      companyThree: '',
+      companyFour: ''
+    },
   })
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setInfo(prevInfo => ({
-      ...prevInfo,
-      [name]: value
-    }))
+
+    const keys = name.split('.') 
+    if (keys.length === 1) {
+      setInfo(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    } else {
+      setInfo(prev => {
+        const updated = { ...prev }
+        let obj = updated
+
+        for (let i = 0; i < keys.length - 1; i++) {
+          obj[keys[i]] = { ...obj[keys[i]] }
+          obj = obj[keys[i]]
+        }
+
+        obj[keys[keys.length - 1]] = value
+        return updated
+      })
+    }
   }
+
 
   return (
     <InfoContext.Provider value={{ info, setInfo, handleChange }}>

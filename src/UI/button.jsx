@@ -8,7 +8,8 @@ export const Button = ({
   btnId = 'btnAny',
   btnName,
   btnIcon = null,
-  clicked
+  clicked,
+  children
 }) => {
 
   const btnBaseStyle = `
@@ -27,6 +28,7 @@ export const Button = ({
       {btnIcon === 'google' && <FcGoogle className='w-6 h-6 text-lg mr-2' />}
       {btnIcon === 'email' && <HiOutlineMail className='w-6 h-6 text-lg mr-2' />}
       {btnName}
+      {children}
     </button>
   )
 }
