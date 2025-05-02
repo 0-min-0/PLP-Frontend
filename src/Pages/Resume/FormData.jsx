@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Input } from '../../UI/Input'
 import { useInfo } from '../../Context/InfoContext'
 import { HiOutlinePhone } from 'react-icons/hi'
@@ -6,13 +7,12 @@ import { HiCheckCircle } from 'react-icons/hi'
 import { ResumeDesc } from '../../UI/ResumeDesc'
 import { Photo } from '../../UI/Photo'
 import { CardResume } from '../../UI/CardResume'
-import { useCompleted } from '../../Context/CompletedContext'
 import { Button } from '../../UI/button'
 
 export const FormData = () => {
 
     const { info, handleChange } = useInfo()
-    const { completed, handleClick } = useCompleted()
+    const [ completedData, setCompletedData ] = useState('')
 
     return (
         <CardResume

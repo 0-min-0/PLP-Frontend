@@ -15,7 +15,7 @@ import { FocusProvider } from './Context/FocusContext'
 function App() {
 
   return (
-    <div className='w-full h-screen p-6 font-[arialRounded]'>
+    <div className='w-full h-screen p-6 font-[afacad]'>
       <DynamicTitle />
       <Routes>
         <Route path='/' element={<MainPage />} />

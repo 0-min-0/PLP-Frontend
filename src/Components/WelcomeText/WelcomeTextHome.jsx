@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '../../UI/Button'
+import { Button } from '../../UI/button'
 import mainIlustration from '../../assets/images/home-ilustration.png'
 import { InfoContainer } from '../InfoContainer/InfoContainer'
 import { NavLink } from 'react-router-dom'
@@ -9,7 +9,7 @@ export const WelcomeTextHome = () => {
         <div className='flex flex-col items-center'>
             <div className='flex gap-40'>
                 <div className=' flex flex-col text-center justify-center items-center'>
-                    <h1 className='text-6xl font-[arialBold] font-extrabold text-[#254160] mb-8'>Solo necesitas de tus <br />
+                    <h1 className='text-6xl font-[afacadBold] font-extrabold text-[#254160] mb-8'>Solo necesitas de tus <br />
                         habilidades y tu experiencia</h1>
                     <p
                         className='text-[#405e7f] text-xl mb-4'>
