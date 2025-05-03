@@ -14,8 +14,9 @@ export const Button = ({
 
   const btnBaseStyle = `
     font-semibold px-4 py-2 rounded-full cursor-pointer
-    transition-all duration-300 ease-in-out
-    transform hover:scale-105 active:scale-95
+    transition-all duration-500 ease-[cubic-bezier(0.4, 0, 0.2, 1)]
+    transform hover:-translate-y-0.5 hover:shadow-md
+    active:scale-[0.98]
   `
 
   return (

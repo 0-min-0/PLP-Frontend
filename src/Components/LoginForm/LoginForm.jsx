@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { HiOutlineLockClosed } from 'react-icons/hi'
+import { PiEyeClosed } from 'react-icons/pi'
+import { PiEye } from 'react-icons/pi'
 import { Button } from '../../UI/button'
 import { FormsContainer } from '../../UI/FormsContainer'
 import { Input } from '../../UI/Input'
@@ -57,7 +59,7 @@ export const LoginForm = () => {
     }
 
     return (
-        <div className='w-[35%] text-white'>
+        <div className='w-[30%] text-white'>
             <FormsContainer
                 width='w-full'
                 bgColor='#405e7f'
@@ -68,7 +70,7 @@ export const LoginForm = () => {
                         <Button
                             btnType='button'
                             btnName='Continuar con Google'
-                            btnStyle='w-60 flex items-center bg-white text-[#254160] rounded-full px-4 py-2 my-4'
+                            btnStyle='w-60 flex items-center text-center bg-white text-[#254160] rounded-full px-4 py-2 my-4'
                             btnIcon='google'
                         />
                         <div className='flex items-center text-center'>
@@ -81,7 +83,7 @@ export const LoginForm = () => {
                         </div>
                     </div>}
                 form={
-                    <form onSubmit={handleSubmit} className='w-[100%] relative flex flex-col items-center gap- '>
+                    <form onSubmit={handleSubmit} className='w-full relative flex flex-col items-center'>
                         <div className='w-full'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
@@ -100,7 +102,7 @@ export const LoginForm = () => {
                                 <p className={pStyle}>{errorForm.errorEmail}</p>
                             )}
                         </div>
-                        <div className='w-full'>
+                        <div className='w-full mt-4'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
                                     <HiOutlineLockClosed className='w-6 h-7' />
@@ -116,9 +118,9 @@ export const LoginForm = () => {
                                 <button
                                     type='button'
                                     onClick={() => toggleVisibility('loginPassword')}
-                                    className='absolute right-4 bottom-3 text-sm underline text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                                    className='absolute right-4 bottom-2 text-[#405e7f]/70 hover:text-[#405e7f] font-semibold cursor-pointer'
                                 >
-                                    {visibility.loginPassword ? 'Ocultar' : 'Mostrar'}
+                                    {visibility.loginPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' /> }
                                 </button>
                             </div>
                             {errorForm.errorPassword && (
@@ -140,7 +142,8 @@ export const LoginForm = () => {
                                 btnName='Acceder'
                             />
                         </div>
-                    </form>}
+                    </form>
+                }
             />
         </div>
 

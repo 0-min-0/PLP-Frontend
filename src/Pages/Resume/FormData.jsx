@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Input } from '../../UI/Input'
 import { useInfo } from '../../Context/InfoContext'
 import { HiOutlinePhone } from 'react-icons/hi'
@@ -13,6 +13,15 @@ export const FormData = () => {
 
     const { info, handleChange } = useInfo()
     const [ completedData, setCompletedData ] = useState('')
+    const photoRef = useRef()
+
+    const handleClick = () => {
+        const isPhotoValid = photoRef.current?.validatePhoto()
+        if (!isPhotoValid) {
+            return // no marcar como completado si falta la foto
+        }
+        setCompletedData(prev => !prev)
+    }
 
     return (
         <CardResume
@@ -23,12 +32,12 @@ export const FormData = () => {
                     clicked={handleClick}
                     btnStyle='min-w-[10%] flex items-center bg-[#60efdb] text-[#405e7f]'
                 >
-                    {completed.completedData ? 'Completado' : 'Completar'}
-                    {completed.completedData && <HiCheckCircle className='w-6 h-6 ml-2 text-[#2a445e] text-lg' />}
+                    {completedData ? 'Completado' : 'Completar'}
+                    {completedData && <HiCheckCircle className='w-6 h-6 ml-2 text-[#2a445e] text-lg' />}
                 </Button>
             }
             mainForm={
-                <div className='w-full flex gap-20'>
+                <form action='' className='w-full max-h-[50%] flex gap-20'>
                     <div className='w-[60%]'>
                         <Input
                             labelTitle='Nombre completo'
@@ -39,7 +48,7 @@ export const FormData = () => {
                             iValue={info.name}
                             iChange={handleChange}
                         />
-                        <div className='mt-4'>
+                        <div className='mt-8'>
                             <h2 className='text-[#405e7f] font-semibold'>Contacto</h2>
                             <div className='relative'>
                                 <Input
@@ -79,11 +88,11 @@ export const FormData = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='w-[40%]'>
-                        <Photo />
+                    <div className='w-[50%]'>
+                        <Photo ref={photoRef} />
                         <ResumeDesc />
                     </div>
-                </div>
+                </form>
             }
         />
     )

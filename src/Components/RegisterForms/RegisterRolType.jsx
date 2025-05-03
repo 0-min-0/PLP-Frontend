@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { Button } from '../../UI/button'
 import { CardUserType } from '../../UI/CardUserType'
-import jobSeekerIcon from '../../assets/images/hombre-empleado.png'
-import employerIcon from '../../assets/images/corporativo.png'
 import { FormsContainer } from '../../UI/FormsContainer'
+import { HiOutlineUserGroup } from 'react-icons/hi2'
+import { HiOutlineBriefcase } from 'react-icons/hi'
 
 export const RegisterRolType = () => {
   const [userType, setUserType] = useState(null)
@@ -45,14 +45,15 @@ export const RegisterRolType = () => {
           </NavLink>
         </p>}
         form={
-          <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 mt-6'>
+          <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 my-6'>
             <div className='w-full'>
+            <p className='mb-4 font-semibold'>Selecciona el rol con el que utilizarás tu cuenta y luego presiona continuar.</p>
               <CardUserType
                 value='jobSeeker'
                 currentSelection={userType}
                 title='Soy una persona en busca de nuevas oportunidades laborales'
                 userType='Contratista'
-                rolIcon={jobSeekerIcon}
+                rolIcon={<HiOutlineBriefcase className='w-10 h-10' />}
                 iconDesc='Contratista Logo'
                 onChange={setUserType}
                 error={error}
@@ -65,7 +66,7 @@ export const RegisterRolType = () => {
                 currentSelection={userType}
                 title='Somos una empresa en busca de talento y experiencia'
                 userType='Contratante'
-                rolIcon={employerIcon}
+                rolIcon={<HiOutlineUserGroup className='w-12 h-12' />}
                 iconDesc='Empresa/Emprendimiento Logo'
                 onChange={setUserType}
                 error={error}

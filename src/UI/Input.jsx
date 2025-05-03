@@ -11,7 +11,7 @@ export const Input = ({
     padding = 'px-4 py-2',
 }) => {
 
-    const { focused, setFocused } = useFocus()
+    const { focused, setIsFocused } = useFocus()
 
     const iStyle = `w-full bg-white ${padding} text-lg mt-3 text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
                     focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all 
@@ -36,8 +36,8 @@ export const Input = ({
                 className={iStyle}
                 placeholder={iHolder}
                 onChange={iChange}
-                onFocus={() => setFocused(true)}
-                onBlur={() => setFocused(false)}
+                onFocus={() => setIsFocused(true)}
+                onBlur={() => setIsFocused(false)}
             />
         </div>
     )

@@ -1,14 +1,19 @@
+import { useState } from 'react'
 import { CardResume } from '../../UI/CardResume'
 import { Input } from '../../UI/Input'
-import { useInfo } from '../../Context/InfoContext'
 import { HiCheckCircle } from 'react-icons/hi'
 import { Button } from '../../UI/button'
+import { useInfo } from '../../Context/InfoContext'
 import { useCompleted } from '../../Context/CompletedContext'
 
 export const FormLaboral = () => {
 
     const { info, handleChange } = useInfo()
-    const { completed, handleClick } = useCompleted()
+    const [ completedLaboral, setCompletedLaboral ] = useState('')
+
+    const handleClick = () => {
+        setCompletedLaboral(prev => !prev)
+    }
 
     return (
         <CardResume
@@ -19,13 +24,13 @@ export const FormLaboral = () => {
                     clicked={handleClick}
                     btnStyle='min-w-[10%] flex items-center bg-[#60efdb] text-[#405e7f]'
                 >
-                    {completed.completedLaboral ? 'Completado' : 'Completar'}
-                    {completed.completedLaboral && <HiCheckCircle className='w-6 h-6 ml-2 text-[#2a445e] text-lg' />}
+                    {completedLaboral ? 'Completado' : 'Completar'}
+                    {completedLaboral && <HiCheckCircle className='w-6 h-6 ml-2 text-[#2a445e] text-lg' />}
                 </Button>
 
             }
             mainForm={
-                < div className='w-full flex gap-20' >
+                <form action='' className='w-full flex gap-20' >
                     <div className='w-full'>
                         <div>
                             <h2 className='text-[#405e7f] font-semibold'>
@@ -168,7 +173,7 @@ export const FormLaboral = () => {
                             />
                         </div>
                     </div>
-                </div >
+                </form >
             }
         />
     )

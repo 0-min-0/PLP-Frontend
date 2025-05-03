@@ -7,7 +7,7 @@ import { Footer } from '../../Footer/Footer'
 import { Input } from '../../../UI/Input'
 import { Select } from '../../../UI/Select'
 import { optionTown, optionGenre } from './options'
-import { Button } from '../../../UI/Button'
+import { Button } from '../../../UI/button'
 import { WelcomeText } from '../../../UI/WelcomeText'
 import registerIlustration from '../../../assets/images/register-ilustration.png'
 
@@ -15,13 +15,12 @@ export const DataJobSeeker = () => {
 
     const navigate = useNavigate()
 
-    const pStyle = 'text-red-400 text-sm mt-1 font-semibold' 
+    const pStyle = 'text-red-400 text-sm mt-1 font-semibold'
 
     const [selectedTown, setSelectedTown] = useState('')
     const [selectedGenre, setSelectedGenre] = useState('')
     const [userForm, setUserForm] = useState({
         userName: '',
-        userLastname: '',
         userEmail: '',
         userMunicipio: '',
         userGenero: ''
@@ -29,7 +28,6 @@ export const DataJobSeeker = () => {
 
     const [errorRegister, setErrorRegister] = useState({
         errorName: '',
-        errorLastname: '',
         errorEmail: '',
         errorTown: '',
         errorGenre: ''
@@ -47,8 +45,7 @@ export const DataJobSeeker = () => {
         setUserForm(updatedForm)
 
         const newErrors = {
-            errorName: updatedForm.userName ? '' : 'ⓘ El nombre es requerido',
-            errorLastname: updatedForm.userLastname ? '' : 'ⓘ El apellido es requerido',
+            errorName: updatedForm.userName ? '' : 'ⓘ El nombre de usuario es requerido',
             errorEmail: updatedForm.userEmail ? '' : 'ⓘ El correo o número de teléfono es requerido',
             errorTown: updatedForm.userMunicipio ? '' : 'ⓘ El municipio es requerido',
             errorGenre: updatedForm.userGenero ? '' : 'ⓘ El género es requerido'
@@ -68,7 +65,7 @@ export const DataJobSeeker = () => {
             <Header
                 headerClass='w-full flex justify-between items-center'
                 middleObject={
-                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[arialBold] items-end'>
+                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[afacadBold] items-end'>
                         Plataforma Laboral Proactiva
                     </h1>
                 }
@@ -88,40 +85,27 @@ export const DataJobSeeker = () => {
                             </NavLink>
                         </p>}
                     form={
-                        <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 mt-6'>
-                            <div className='flex w-full gap-6'>
-                                <div className='w-full'>
-                                    <Input
-                                        labelTitle='Nombre'
-                                        isFor='userName'
-                                        iType='text'
-                                        iValue={userForm.userName}
-                                        iName='userName'
-                                        iChange={(e) => setUserForm({ ...userForm, userName: e.target.value })}
-                                    />
-                                    {errorRegister.errorName && (
-                                        <p className={pStyle}>{errorRegister.errorName}</p>
-                                    )}
-                                </div>
-                                <div className='w-full'>
-                                    <Input
-                                        labelTitle='Apellido'
-                                        isFor='userLastname'
-                                        iType='text'
-                                        iValue={userForm.userLastname}
-                                        iName='userLastname'
-                                        iChange={(e) => setUserForm({ ...userForm, userLastname: e.target.value })}
-                                    />
-                                    {errorRegister.errorLastname && (
-                                        <p className={pStyle}>{errorRegister.errorLastname}</p>
-                                    )}
-                                </div>
+                        <form onSubmit={handleSubmit} className='w-[90%] flex flex-col items-center gap-4 my-6'>
+                            <div className='w-full'>
+                                <Input
+                                    labelTitle='Nombre de usuario'
+                                    isFor='userName'
+                                    iType='text'
+                                    iHolder='Elije un nombre de usuario (Ej. usuario_123)'
+                                    iValue={userForm.userName}
+                                    iName='userName'
+                                    iChange={(e) => setUserForm({ ...userForm, userName: e.target.value })}
+                                />
+                                {errorRegister.errorName && (
+                                    <p className={pStyle}>{errorRegister.errorName}</p>
+                                )}
                             </div>
                             <div className='w-full'>
                                 <Input
                                     labelTitle='Correo electrónico o numero de teléfono'
                                     isFor='userEmail'
-                                    iType='text'
+                                    iType={'email' || 'tel'}
+                                    iHolder='Ej. usuario01@ejemplo.com o 3001234567'
                                     iValue={userForm.userEmail}
                                     iName='userEmail'
                                     iChange={(e) => setUserForm({ ...userForm, userEmail: e.target.value })}

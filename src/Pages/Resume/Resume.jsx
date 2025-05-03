@@ -11,7 +11,7 @@ export const Resume = () => {
         <div className='w-full min-h-screen p-6 border-2 rounded-2xl border-[#405e7f]/70'>
             <Header
                 middleObject={
-                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[arialBold] items-end'>
+                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[afacadBold] items-end'>
                         Formato de Hoja de Vida
                     </h1>
                 }

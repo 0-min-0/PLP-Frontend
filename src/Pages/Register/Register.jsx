@@ -12,7 +12,7 @@ export const Register = () => {
             <Header
                 headerClass='w-full flex justify-between items-center'
                 middleObject={
-                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[arialBold] items-end'>
+                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[afacadBold] items-end'>
                         Plataforma Laboral Proactiva
                     </h1>
                 }

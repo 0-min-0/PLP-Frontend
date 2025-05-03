@@ -3,7 +3,7 @@ import { Button } from './button'
 
 export const CardResume = ({ formTitle, mainForm, btnCompleted }) => {
     return (
-        <div>
+        <div className='w-full'>
             <div className='flex justify-between bg-[#405e7f] text-white rounded-t-xl pl-16 pr-16 py-4'>
                 <div>
                     <h2 className='text-lg font-semibold'>
@@ -13,9 +13,9 @@ export const CardResume = ({ formTitle, mainForm, btnCompleted }) => {
                 </div>
                 { btnCompleted }
             </div>
-            <form action=''  className='w-full flex items-start gap-20 bg-[#f7fffd] px-16 pt-10 pb-16 border-1 border-[#60efdb] rounded-b-xl'>
+            <div className='w-full max-h-[50%] flex items-start gap-20 bg-[#f7fffd] px-16 pt-10 pb-16 border-1 border-[#60efdb] rounded-b-xl'>
                 { mainForm }
-            </form>
+            </div>
         </div>
     )
 }

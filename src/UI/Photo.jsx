@@ -1,24 +1,65 @@
-import { useState } from 'react'
+import { useState, forwardRef, useImperativeHandle } from 'react'
 
 export const Photo = () => {
 
     const [photoName, setPhotoName] = useState('')
     const [previewUrl, setPreviewUrl] = useState(null)
+    const [error, setError] = useState('')
+
+    const MAX_SIZE = 1 * 1024 * 1024
+    const ASPECT_RATIO = 3 / 4
+    const ALLOWED_MARGIN = 0.1
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0]
-        if (file) {
-            setPhotoName(file.name)
-            const reader = new FileReader()
-            reader.onloadend = () => {
-                setPreviewUrl(reader.result)
-            }
-            reader.readAsDataURL(file)
-        } else {
+        setError('')
+        if (!file) return
+
+        // Validar tamaño
+        if (file.size > MAX_SIZE) {
+            setError('El archivo es muy pesado. Máximo 1MB.')
             setPhotoName('')
             setPreviewUrl(null)
+            return
         }
+
+        const img = new Image()
+        img.onload = () => {
+            const ratio = img.width / img.height
+            if (
+                ratio < ASPECT_RATIO - ALLOWED_MARGIN ||
+                ratio > ASPECT_RATIO + ALLOWED_MARGIN
+            ) {
+                setError('ⓘ La imagen no tiene proporción 3x4. Usa una foto tipo documento.')
+                setPhotoName('')
+                setPreviewUrl(null)
+            } else {
+                setPhotoName(file.name)
+                const reader = new FileReader()
+                reader.onloadend = () => {
+                    setPreviewUrl(reader.result)
+                }
+                reader.readAsDataURL(file)
+            }
+        }
+
+        img.onerror = () => {
+            setError('ⓘ No se pudo leer la imagen. Intenta con otro archivo.')
+        }
+
+        img.src = URL.createObjectURL(file)
+
+        useImperativeHandle(ref, () => ({
+            validatePhoto: () => {
+                if (!previewUrl) {
+                    setError('La foto es requerida')
+                    return false
+                }
+                return true
+            }
+        }))
     }
+
 
     return (
         <div>
@@ -37,8 +78,8 @@ export const Photo = () => {
                 >
                     Subir archivo
                 </label>
-                <span className='text-[#405e7f] font-semibold ml-2 mb-1'>
-                    {photoName || 'Ningún archivo seleccionado'}
+                <span className={`ml-2 mb-1 font-semibold ${error ? 'text-red-400' : 'text-[#405e7f]'}`}>
+                    {error || photoName || 'Ningún archivo seleccionado'}
                 </span>
             </div>
             <input
@@ -48,15 +89,17 @@ export const Photo = () => {
                 onChange={handleFileChange}
                 className='hidden'
             />
-            {previewUrl && (
-                <div className='mt-3'>
+            <div className='mt-3 w-24 h-24 border-2 border-dashed border-[#405e7f]/30 rounded-lg flex items-center justify-center overflow-hidden'>
+                {previewUrl ? (
                     <img
                         src={previewUrl}
                         alt='Vista previa de la foto'
-                        className='w-24 h-24 mt-4 object-cover border-1 border-[#405e7f]/60 rounded-lg shadow'
+                        className='w-full h-full object-cover'
                     />
-                </div>
-            )}
+                ) : (
+                    <span className='text-xs text-[#405e7f]/60'>Sin imagen</span>
+                )}
+            </div>
         </div>
     )
 }

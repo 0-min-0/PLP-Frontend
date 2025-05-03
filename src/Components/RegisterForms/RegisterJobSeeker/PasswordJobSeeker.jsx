@@ -4,6 +4,8 @@ import { Header } from '../../Header/Header'
 import { Footer } from '../../Footer/Footer'
 import { MainMenu } from '../../MainMenu/MainMenu'
 import { WelcomeText } from '../../../UI/WelcomeText'
+import { PiEyeClosed } from 'react-icons/pi'
+import { PiEye } from 'react-icons/pi'
 import registerIlustration from '../../../assets/images/register-ilustration.png'
 import { FormsContainer } from '../../../UI/FormsContainer'
 import { Input } from '../../../UI/Input'
@@ -73,7 +75,7 @@ export const PasswordJobSeeker = () => {
             <Header
                 headerClass='w-full flex justify-between items-center'
                 middleObject={
-                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[arialBold] items-end'>
+                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[afacadBold] items-end'>
                         Plataforma Laboral Proactiva
                     </h1>
                 }
@@ -94,7 +96,7 @@ export const PasswordJobSeeker = () => {
                         </p>
                     }
                     form={
-                        <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 mt-6'>
+                        <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 my-6'>
                             <div className='w-full'>
                                 <div className='w-full relative'>
                                     <Input
@@ -110,7 +112,7 @@ export const PasswordJobSeeker = () => {
                                         onClick={() => toggleVisibility('createPassword')}
                                         className='absolute right-4 bottom-3 text-sm underline text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
                                     >
-                                        {visibility.createPassword ? 'Ocultar' : 'Mostrar'}
+                                        {visibility.createPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' /> }
                                     </button>
 
                                 </div>
@@ -134,7 +136,7 @@ export const PasswordJobSeeker = () => {
                                         onClick={() => toggleVisibility('confirmPassword')}
                                         className='absolute right-4 bottom-3 text-sm underline text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
                                     >
-                                        {visibility.confirmPassword ? 'Ocultar' : 'Mostrar'}
+                                        {visibility.confirmPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
                                     </button>
 
                                 </div>
