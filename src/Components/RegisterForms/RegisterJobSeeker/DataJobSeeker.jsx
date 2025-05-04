@@ -90,7 +90,7 @@ export const DataJobSeeker = () => {
                                 <Input
                                     labelTitle='Nombre de usuario'
                                     isFor='userName'
-                                    iType='text'
+                                    iType=''
                                     iHolder='Elije un nombre de usuario (Ej. usuario_123)'
                                     iValue={userForm.userName}
                                     iName='userName'

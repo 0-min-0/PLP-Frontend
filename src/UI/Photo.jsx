@@ -1,12 +1,11 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 
-export const Photo = () => {
-
+export const Photo = forwardRef((props, ref) => {
     const [photoName, setPhotoName] = useState('')
     const [previewUrl, setPreviewUrl] = useState(null)
     const [error, setError] = useState('')
 
-    const MAX_SIZE = 1 * 1024 * 1024
+    const MAX_SIZE = 1 * 1024 * 1024 // 1 MB
     const ASPECT_RATIO = 3 / 4
     const ALLOWED_MARGIN = 0.1
 
@@ -17,7 +16,7 @@ export const Photo = () => {
 
         // Validar tamaño
         if (file.size > MAX_SIZE) {
-            setError('El archivo es muy pesado. Máximo 1MB.')
+            setError('ⓘ El archivo es muy pesado. Máximo 1MB.')
             setPhotoName('')
             setPreviewUrl(null)
             return
@@ -48,25 +47,22 @@ export const Photo = () => {
         }
 
         img.src = URL.createObjectURL(file)
-
-        useImperativeHandle(ref, () => ({
-            validatePhoto: () => {
-                if (!previewUrl) {
-                    setError('La foto es requerida')
-                    return false
-                }
-                return true
-            }
-        }))
     }
 
+    // Esto permite que el componente padre (FormData) invoque validatePhoto()
+    useImperativeHandle(ref, () => ({
+        validatePhoto: () => {
+            if (!previewUrl) {
+                setError('ⓘ La foto es requerida')
+                return false
+            }
+            return true
+        }
+    }))
 
     return (
         <div>
-            <label
-                htmlFor='photo'
-                className='text-[#405e7f] font-semibold'
-            >
+            <label htmlFor='photo' className='text-[#405e7f] font-semibold'>
                 Foto 3x4
             </label>
             <div className='flex items-center gap-2 mt-2'>
@@ -102,4 +98,4 @@ export const Photo = () => {
             </div>
         </div>
     )
-}
+})

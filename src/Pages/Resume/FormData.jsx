@@ -1,26 +1,40 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { Input } from '../../UI/Input'
-import { useInfo } from '../../Context/InfoContext'
-import { HiOutlinePhone } from 'react-icons/hi'
-import { HiOutlineMail } from 'react-icons/hi'
-import { HiCheckCircle } from 'react-icons/hi'
+import { useData } from '../../Context/DataContext'
+import { HiOutlinePhone, HiOutlineMail, HiCheckCircle } from 'react-icons/hi'
 import { ResumeDesc } from '../../UI/ResumeDesc'
 import { Photo } from '../../UI/Photo'
 import { CardResume } from '../../UI/CardResume'
 import { Button } from '../../UI/button'
 
 export const FormData = () => {
+    const { data, handleChange, photo } = useData()
+    const [completedData, setCompletedData] = useState(false)
+    const [errors, setErrors] = useState({
+        name: false,
+        phone: false,
+        email: false,
+        photo: false,
+    })
 
-    const { info, handleChange } = useInfo()
-    const [ completedData, setCompletedData ] = useState('')
-    const photoRef = useRef()
+    const handleClick = (e) => {
+        e.preventDefault()
 
-    const handleClick = () => {
-        const isPhotoValid = photoRef.current?.validatePhoto()
-        if (!isPhotoValid) {
-            return // no marcar como completado si falta la foto
+        const newErrors = {
+            name: !data.name.trim(),
+            phone: !data.phone.trim(),
+            email: !data.email.trim(),
+            photo: !photo,
         }
-        setCompletedData(prev => !prev)
+
+        setErrors(newErrors)
+
+        const isValid = !Object.values(newErrors).includes(true)
+        if (isValid) {
+            setCompletedData(true)
+        } else {
+            setCompletedData(false)
+        }
     }
 
     return (
@@ -45,8 +59,9 @@ export const FormData = () => {
                             iType='text'
                             isFor='name'
                             iHolder='Ingresa tu nombre(s) y apellidos'
-                            iValue={info.name}
+                            iValue={data.name}
                             iChange={handleChange}
+                            error={errors.name ? 'El nombre de usuario es requerido.' : ''}
                         />
                         <div className='mt-8'>
                             <h2 className='text-[#405e7f] font-semibold'>Contacto</h2>
@@ -56,9 +71,10 @@ export const FormData = () => {
                                     iType='tel'
                                     isFor='phoneOne'
                                     iHolder='Ingresa tu numero de telefono'
-                                    iValue={info.phone}
+                                    iValue={data.phone}
                                     iChange={handleChange}
                                     padding='pl-12 py-2'
+                                    error={errors.phone ? 'El número de teléfono es requerido.' : ''}
                                 />
                                 <HiOutlinePhone className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
                             </div>
@@ -68,7 +84,7 @@ export const FormData = () => {
                                     iType='tel'
                                     isFor='phoneSec'
                                     iHolder='Ingresa tu numero de telefono secundario (Opcional)'
-                                    iValue={info.phoneSec}
+                                    iValue={data.phoneSec}
                                     iChange={handleChange}
                                     padding='pl-12 py-2'
                                 />
@@ -80,16 +96,17 @@ export const FormData = () => {
                                     iType='email'
                                     isFor='emailAdress'
                                     iHolder='Ingresa tu direccion de correo electronico'
-                                    iValue={info.email}
+                                    iValue={data.email}
                                     iChange={handleChange}
                                     padding='pl-12 py-2'
+                                    error={errors.email ? 'El correo electrónico es requerido.' : ''}
                                 />
                                 <HiOutlineMail className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
                             </div>
                         </div>
                     </div>
                     <div className='w-[50%]'>
-                        <Photo ref={photoRef} />
+                        <Photo error={errors.photo} />
                         <ResumeDesc />
                     </div>
                 </form>

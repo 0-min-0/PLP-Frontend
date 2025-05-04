@@ -3,17 +3,11 @@ import { CardResume } from '../../UI/CardResume'
 import { Input } from '../../UI/Input'
 import { HiCheckCircle } from 'react-icons/hi'
 import { Button } from '../../UI/button'
-import { useInfo } from '../../Context/InfoContext'
 import { useCompleted } from '../../Context/CompletedContext'
 
 export const FormLaboral = () => {
 
-    const { info, handleChange } = useInfo()
     const [ completedLaboral, setCompletedLaboral ] = useState('')
-
-    const handleClick = () => {
-        setCompletedLaboral(prev => !prev)
-    }
 
     return (
         <CardResume
@@ -21,7 +15,7 @@ export const FormLaboral = () => {
             btnCompleted={
                 <Button
                     btnType='submit'
-                    clicked={handleClick}
+                    clicked=''
                     btnStyle='min-w-[10%] flex items-center bg-[#60efdb] text-[#405e7f]'
                 >
                     {completedLaboral ? 'Completado' : 'Completar'}
@@ -42,32 +36,32 @@ export const FormLaboral = () => {
                                 isFor='tSkillOne'
                                 iType='text'
                                 iHolder='Habilidad técnica número uno'
-                                iValue={info.technicalSkills.tSkillOne}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='technicalSkills.tSkillTwo'
                                 isFor='tSkillTwo'
                                 iType='text'
                                 iHolder='Habilidad técnica número dos'
-                                iValue={info.technicalSkills.tSkillTwo}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='technicalSkills.tSkillThree'
                                 isFor='tSkillThree'
                                 iType='text'
                                 iHolder='Habilidad técnica número tres (Opcional)'
-                                iValue={info.technicalSkills.tSkillThree}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='technicalSkills.tSkillFour'
                                 isFor='tSkillFour'
                                 iType='text'
                                 iHolder='Habilidad técnica número cuatro (Opcional)'
-                                iValue={info.technicalSkills.tSkillFour}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                         </div>
                         <div className='mt-4'>
@@ -80,32 +74,32 @@ export const FormLaboral = () => {
                                 isFor='sSkillOne'
                                 iType='text'
                                 iHolder='Habilidad social número uno'
-                                iValue={info.softSkills.sSkillOne}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='softSkills.sSkillTwo'
                                 isFor='sSkillTwo'
                                 iType='text'
                                 iHolder='Habilidad social número dos'
-                                iValue={info.softSkills.sSkillTwo}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='softSkills.sSkillThree'
                                 isFor='sSkillThree'
                                 iType='text'
                                 iHolder='Habilidad social número tres (Opcional)'
-                                iValue={info.softSkills.sSkillThree}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='softSkills.sSkillFour'
                                 isFor='sSkillFour'
                                 iType='text'
                                 iHolder='Habilidad técnica número cuatro (Opcional)'
-                                iValue={info.softSkills.sSkillFour}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                         </div>
                     </div>
@@ -120,32 +114,32 @@ export const FormLaboral = () => {
                                 isFor='studiesOne'
                                 iType='text'
                                 iHolder='Ingresa nombre de tu complementario'
-                                iValue={info.studies.studiesOne}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='studies.studiesTwo'
                                 isFor='studiesTwo'
                                 iType='text'
                                 iHolder='Ingresa nombre de tu complementario'
-                                iValue={info.studies.studiesTwo}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='studies.studiesThree'
                                 isFor='studiesThree'
                                 iType='text'
                                 iHolder='Ingresa nombre de tu complementario (Opcional)'
-                                iValue={info.studies.studiesThree}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                             <Input
                                 iName='studies.studiesFour'
                                 isFor='studiesFour'
                                 iType='text'
                                 iHolder='Ingresa nombre de tu complementario (Opcional)'
-                                iValue={info.studies.studiesFour}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                         </div>
                         <Input
@@ -154,8 +148,8 @@ export const FormLaboral = () => {
                             isFor='experiencie'
                             iType='text'
                             iHolder='Ingresa tu tiempo/nivel de experiencia'
-                            iValue={info.experiencie}
-                            iChange={handleChange}
+                            iValue=''
+                            iChange=''
                         />
                         <div className='mt-10'>
                             <h2 className='text-[#405e7f] font-semibold'>
@@ -168,8 +162,8 @@ export const FormLaboral = () => {
                                 isFor='companyOne'
                                 iType='text'
                                 iHolder='Ingresa nombre de la empresa o lugar de experiencia'
-                                iValue={info.companyWork.companyOne}
-                                iChange={handleChange}
+                                iValue=''
+                                iChange=''
                             />
                         </div>
                     </div>

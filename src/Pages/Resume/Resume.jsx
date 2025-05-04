@@ -5,6 +5,7 @@ import { MainMenu } from '../../Components/MainMenu/MainMenu'
 import { FormData } from './FormData'
 import { FormLaboral } from './FormLaboral'
 import { CompletedProvider } from '../../Context/CompletedContext'
+import { DataProvider } from '../../Context/DataContext'
 
 export const Resume = () => {
     return (
@@ -19,7 +20,9 @@ export const Resume = () => {
             />
             <div className='flex flex-col gap-10 mx-50 my-15'>
                 <CompletedProvider>
-                    <FormData />
+                    <DataProvider>
+                        <FormData />
+                    </DataProvider>
                     <FormLaboral />
                     <Button
                         btnName='Terminar y completar registro'

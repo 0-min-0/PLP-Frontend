@@ -9,7 +9,6 @@ import { PasswordJobSeeker } from './Components/RegisterForms/RegisterJobSeeker/
 import { DynamicTitle } from './Titles'
 import { PasswordProvider } from './Context/PasswordContext'
 import { Resume } from './Pages/Resume/Resume'
-import { InfoProvider } from './Context/InfoContext'
 import { FocusProvider } from './Context/FocusContext'
 
 function App() {
@@ -44,11 +43,9 @@ function App() {
           </PasswordProvider>
         } />
         <Route path='/crear-cuenta/contratista/hoja-de-vida' element={
-          <InfoProvider>
             <FocusProvider>
               <Resume />
             </FocusProvider>
-          </InfoProvider>
         } />
       </Routes>
     </div>
