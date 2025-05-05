@@ -1,9 +1,9 @@
 import { useState, forwardRef, useImperativeHandle } from 'react'
 
-export const Photo = forwardRef((props, ref) => {
+export const Photo = forwardRef(({ error, onPhotoValid }, ref) => {
     const [photoName, setPhotoName] = useState('')
     const [previewUrl, setPreviewUrl] = useState(null)
-    const [error, setError] = useState('')
+    const [internalError, setInternalError] = useState('')
 
     const MAX_SIZE = 1 * 1024 * 1024 // 1 MB
     const ASPECT_RATIO = 3 / 4
@@ -11,54 +11,68 @@ export const Photo = forwardRef((props, ref) => {
 
     const handleFileChange = (e) => {
         const file = e.target.files?.[0]
-        setError('')
+        setInternalError('')
         if (!file) return
+
+        // Validar tipo de archivo
+        if (!file.type.match('image.*')) {
+            setInternalError('ⓘ Solo se permiten archivos de imagen.')
+            onPhotoValid(null)
+            return
+        }
 
         // Validar tamaño
         if (file.size > MAX_SIZE) {
-            setError('ⓘ El archivo es muy pesado. Máximo 1MB.')
+            setInternalError('ⓘ El archivo es muy pesado. Máximo 1MB.')
             setPhotoName('')
             setPreviewUrl(null)
+            onPhotoValid(null)
             return
         }
 
         const img = new Image()
         img.onload = () => {
             const ratio = img.width / img.height
-            if (
-                ratio < ASPECT_RATIO - ALLOWED_MARGIN ||
-                ratio > ASPECT_RATIO + ALLOWED_MARGIN
-            ) {
-                setError('ⓘ La imagen no tiene proporción 3x4. Usa una foto tipo documento.')
+            if (Math.abs(ratio - ASPECT_RATIO) > ALLOWED_MARGIN) {
+                setInternalError('ⓘ La imagen no tiene proporción 3x4. Usa una foto tipo documento.')
                 setPhotoName('')
                 setPreviewUrl(null)
+                onPhotoValid(null)
             } else {
                 setPhotoName(file.name)
                 const reader = new FileReader()
                 reader.onloadend = () => {
                     setPreviewUrl(reader.result)
+                    onPhotoValid(file)
                 }
                 reader.readAsDataURL(file)
             }
         }
 
         img.onerror = () => {
-            setError('ⓘ No se pudo leer la imagen. Intenta con otro archivo.')
+            setInternalError('ⓘ No se pudo leer la imagen. Intenta con otro archivo.')
+            onPhotoValid(null)
         }
 
         img.src = URL.createObjectURL(file)
     }
 
-    // Esto permite que el componente padre (FormData) invoque validatePhoto()
     useImperativeHandle(ref, () => ({
         validatePhoto: () => {
             if (!previewUrl) {
-                setError('ⓘ La foto es requerida')
+                setInternalError('ⓘ La foto es requerida')
                 return false
             }
             return true
+        },
+        clearPhoto: () => {
+            setPhotoName('')
+            setPreviewUrl(null)
+            setInternalError('')
         }
     }))
+
+    const errorToShow = error || internalError
 
     return (
         <div>
@@ -74,8 +88,8 @@ export const Photo = forwardRef((props, ref) => {
                 >
                     Subir archivo
                 </label>
-                <span className={`ml-2 mb-1 font-semibold ${error ? 'text-red-400' : 'text-[#405e7f]'}`}>
-                    {error || photoName || 'Ningún archivo seleccionado'}
+                <span className={`ml-2 mb-1 text-sm ${errorToShow ? 'text-red-400' : 'text-[#405e7f]'}`}>
+                    {errorToShow || photoName || 'Ningún archivo seleccionado'}
                 </span>
             </div>
             <input

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Input } from '../../UI/Input'
 import { useData } from '../../Context/DataContext'
 import { HiOutlinePhone, HiOutlineMail, HiCheckCircle } from 'react-icons/hi'
@@ -8,32 +8,21 @@ import { CardResume } from '../../UI/CardResume'
 import { Button } from '../../UI/button'
 
 export const FormData = () => {
-    const { data, handleChange, photo } = useData()
+    const { data, errors, handleChange, photo, setPhoto } = useData()
     const [completedData, setCompletedData] = useState(false)
-    const [errors, setErrors] = useState({
-        name: false,
-        phone: false,
-        email: false,
-        photo: false,
-    })
+   
+    const photoRef = useRef()
+
+    useEffect(() => {
+        setCompletedData(false)
+    }, [data, photo])
 
     const handleClick = (e) => {
         e.preventDefault()
+        const isValid = validateForm()
 
-        const newErrors = {
-            name: !data.name.trim(),
-            phone: !data.phone.trim(),
-            email: !data.email.trim(),
-            photo: !photo,
-        }
-
-        setErrors(newErrors)
-
-        const isValid = !Object.values(newErrors).includes(true)
         if (isValid) {
             setCompletedData(true)
-        } else {
-            setCompletedData(false)
         }
     }
 
@@ -44,14 +33,14 @@ export const FormData = () => {
                 <Button
                     btnType='submit'
                     clicked={handleClick}
-                    btnStyle='min-w-[10%] flex items-center bg-[#60efdb] text-[#405e7f]'
+                    btnStyle={`min-w-[10%] flex items-center bg-[#60efdb] text-[#405e7f] p-2`}
                 >
                     {completedData ? 'Completado' : 'Completar'}
                     {completedData && <HiCheckCircle className='w-6 h-6 ml-2 text-[#2a445e] text-lg' />}
                 </Button>
             }
             mainForm={
-                <form action='' className='w-full max-h-[50%] flex gap-20'>
+                <form onSubmit={handleClick} className='w-full max-h-[50%] flex gap-20'>
                     <div className='w-[60%]'>
                         <Input
                             labelTitle='Nombre completo'
@@ -60,9 +49,14 @@ export const FormData = () => {
                             isFor='name'
                             iHolder='Ingresa tu nombre(s) y apellidos'
                             iValue={data.name}
-                            iChange={handleChange}
-                            error={errors.name ? 'El nombre de usuario es requerido.' : ''}
+                            iChange={(e) => {
+                                handleChange(e)
+                                setCompletedData(false)
+                                setErrors(prev => ({ ...prev, name: '' }))
+                            }}
                         />
+                        {errors.name && <p className='text-red-400 text-sm mt-1'>{errors.name}</p>}
+
                         <div className='mt-8'>
                             <h2 className='text-[#405e7f] font-semibold'>Contacto</h2>
                             <div className='relative'>
@@ -72,12 +66,18 @@ export const FormData = () => {
                                     isFor='phoneOne'
                                     iHolder='Ingresa tu numero de telefono'
                                     iValue={data.phone}
-                                    iChange={handleChange}
+                                    iChange={(e) => {
+                                        handleChange(e)
+                                        setCompletedData(false)
+                                        setErrors(prev => ({ ...prev, phone: '' }))
+                                    }}
                                     padding='pl-12 py-2'
-                                    error={errors.phone ? 'El número de teléfono es requerido.' : ''}
                                 />
                                 <HiOutlinePhone className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
                             </div>
+
+                            {errors.phone && <p className='text-red-400 text-sm mt-1'>{errors.phone}</p>}
+
                             <div className='relative'>
                                 <Input
                                     iName='phoneSec'
@@ -97,16 +97,30 @@ export const FormData = () => {
                                     isFor='emailAdress'
                                     iHolder='Ingresa tu direccion de correo electronico'
                                     iValue={data.email}
-                                    iChange={handleChange}
+                                    iChange={(e) => {
+                                        handleChange(e)
+                                        setCompletedData(false)
+                                        setErrors(prev => ({ ...prev, name: '' }))
+                                    }}
                                     padding='pl-12 py-2'
-                                    error={errors.email ? 'El correo electrónico es requerido.' : ''}
                                 />
                                 <HiOutlineMail className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
                             </div>
+
+                            {errors.email && <p className='text-red-400 text-sm mt-1'>{errors.email}</p>}
+
                         </div>
                     </div>
                     <div className='w-[50%]'>
-                        <Photo error={errors.photo} />
+                        <Photo
+                            ref={photoRef}
+                            error={errors.photo}
+                            onPhotoValid={(file) => {
+                                setPhoto(file)
+                                setCompletedData(false)
+                                setErrors(prev => ({ ...prev, name: '' }))
+                            }}
+                        />
                         <ResumeDesc />
                     </div>
                 </form>

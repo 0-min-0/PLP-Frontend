@@ -1,4 +1,4 @@
-import { useFocus } from '../Context/FocusContext'
+import React from 'react'
 
 export const Input = ({
     iType,
@@ -9,14 +9,14 @@ export const Input = ({
     labelTitle = '',
     iHolder = '',
     padding = 'px-4 py-2',
+    error = ''
 }) => {
-
-    const { focused, setIsFocused } = useFocus()
 
     const iStyle = `w-full bg-white ${padding} text-lg mt-3 text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
                     focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all 
-                    duration-300 
-                    ${focused ? 'ring-2 ring-[#60efdb] border-transparent' : ''}`
+                    duration-300
+                    ${error ? 'border-red-400' : ''}`
+
     const lStyle = 'text-[#405e7f] font-semibold'
 
     return (
@@ -36,9 +36,10 @@ export const Input = ({
                 className={iStyle}
                 placeholder={iHolder}
                 onChange={iChange}
-                onFocus={() => setIsFocused(true)}
-                onBlur={() => setIsFocused(false)}
             />
+            <div>
+                {error && <span className='text-red-400 text-sm mt-1'>{error}</span>}
+            </div>
         </div>
     )
 }
