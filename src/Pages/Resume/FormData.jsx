@@ -8,9 +8,16 @@ import { CardResume } from '../../UI/CardResume'
 import { Button } from '../../UI/button'
 
 export const FormData = () => {
-    const { data, errors, handleChange, photo, setPhoto } = useData()
+    const {
+        data,
+        errors,
+        handleChange,
+        photo,
+        photoError,
+        validateFields
+    } = useData()
+
     const [completedData, setCompletedData] = useState(false)
-   
     const photoRef = useRef()
 
     useEffect(() => {
@@ -19,9 +26,11 @@ export const FormData = () => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        const isValid = validateForm()
 
-        if (isValid) {
+        const areFieldsValid = validateFields()
+        const isPhotoValid = photoRef.current?.validatePhoto() ?? false
+
+        if (areFieldsValid && isPhotoValid) {
             setCompletedData(true)
         }
     }
@@ -43,17 +52,13 @@ export const FormData = () => {
                 <form onSubmit={handleClick} className='w-full max-h-[50%] flex gap-20'>
                     <div className='w-[60%]'>
                         <Input
-                            labelTitle='Nombre completo'
+                            labelTitle='Nombre de usuario'
                             iName='name'
                             iType='text'
                             isFor='name'
-                            iHolder='Ingresa tu nombre(s) y apellidos'
+                            iHolder='Elige un nombre de usuario (Ej. usuario_123)'
                             iValue={data.name}
-                            iChange={(e) => {
-                                handleChange(e)
-                                setCompletedData(false)
-                                setErrors(prev => ({ ...prev, name: '' }))
-                            }}
+                            iChange={handleChange}
                         />
                         {errors.name && <p className='text-red-400 text-sm mt-1'>{errors.name}</p>}
 
@@ -66,11 +71,7 @@ export const FormData = () => {
                                     isFor='phoneOne'
                                     iHolder='Ingresa tu numero de telefono'
                                     iValue={data.phone}
-                                    iChange={(e) => {
-                                        handleChange(e)
-                                        setCompletedData(false)
-                                        setErrors(prev => ({ ...prev, phone: '' }))
-                                    }}
+                                    iChange={handleChange}
                                     padding='pl-12 py-2'
                                 />
                                 <HiOutlinePhone className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
@@ -97,11 +98,7 @@ export const FormData = () => {
                                     isFor='emailAdress'
                                     iHolder='Ingresa tu direccion de correo electronico'
                                     iValue={data.email}
-                                    iChange={(e) => {
-                                        handleChange(e)
-                                        setCompletedData(false)
-                                        setErrors(prev => ({ ...prev, name: '' }))
-                                    }}
+                                    iChange={handleChange}
                                     padding='pl-12 py-2'
                                 />
                                 <HiOutlineMail className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
@@ -114,12 +111,7 @@ export const FormData = () => {
                     <div className='w-[50%]'>
                         <Photo
                             ref={photoRef}
-                            error={errors.photo}
-                            onPhotoValid={(file) => {
-                                setPhoto(file)
-                                setCompletedData(false)
-                                setErrors(prev => ({ ...prev, name: '' }))
-                            }}
+                            error={photoError}
                         />
                         <ResumeDesc />
                     </div>
