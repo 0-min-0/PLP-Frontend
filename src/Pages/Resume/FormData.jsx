@@ -45,11 +45,11 @@ export const FormData = () => {
                     btnStyle={`min-w-[10%] flex items-center bg-[#60efdb] text-[#405e7f] p-2`}
                 >
                     {completedData ? 'Completado' : 'Completar'}
-                    {completedData && <HiCheckCircle className='w-6 h-6 ml-2 text-[#2a445e] text-lg' />}
+                    {completedData && <HiCheckCircle className='w-6 h-6 ml-2 text-[#405e7f] text-lg' />}
                 </Button>
             }
             mainForm={
-                <form onSubmit={handleClick} className='w-full max-h-[50%] flex gap-20'>
+                <form action='' className='w-full max-h-[50%] flex gap-20'>
                     <div className='w-[60%]'>
                         <Input
                             labelTitle='Nombre de usuario'

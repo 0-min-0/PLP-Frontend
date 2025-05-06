@@ -4,8 +4,8 @@ import { Button } from '../../UI/button'
 import { MainMenu } from '../../Components/MainMenu/MainMenu'
 import { FormData } from './FormData'
 import { FormLaboral } from './FormLaboral'
-import { CompletedProvider } from '../../Context/CompletedContext'
 import { DataProvider } from '../../Context/DataContext'
+import { LaboralProvider } from '../../Context/LaboralContext'
 
 export const Resume = () => {
     return (
@@ -19,18 +19,18 @@ export const Resume = () => {
                 menu={<MainMenu />}
             />
             <div className='flex flex-col gap-10 mx-50 my-15'>
-                <CompletedProvider>
-                    <DataProvider>
-                        <FormData />
-                    </DataProvider>
+                <DataProvider>
+                    <FormData />
+                </DataProvider>
+                <LaboralProvider>
                     <FormLaboral />
-                    <Button
-                        btnName='Terminar y completar registro'
-                        btnType='button'
-                        btnId='finishRegister'
-                        btnStyle='w-[20%] bg-[#60efdb] text-[#405e7f]'
-                    />
-                </CompletedProvider>
+                </LaboralProvider>
+                <Button
+                    btnName='Terminar y completar registro'
+                    btnType='button'
+                    btnId='finishRegister'
+                    btnStyle='w-[20%] bg-[#60efdb] text-[#405e7f]'
+                />
             </div>
         </div>
     )
