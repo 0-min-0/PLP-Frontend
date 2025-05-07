@@ -3,7 +3,6 @@ import { createContext, useContext, useState, useCallback } from 'react'
 export const LaboralContext = createContext()
 
 export const LaboralProvider = ({ children }) => {
-
   const [laboralData, setLaboralData] = useState({
     technicalSkills: {
       tSkillOne: '',
@@ -24,7 +23,7 @@ export const LaboralProvider = ({ children }) => {
       studiesFour: ''
     },
     experience: '',
-    companyWork: ''
+    companyWork: '' // Cambiado a string plano
   })
 
   const [errors, setErrors] = useState({
@@ -47,62 +46,76 @@ export const LaboralProvider = ({ children }) => {
       studiesFour: ''
     },
     experience: '',
-    companyWork: ''
+    companyWork: '' // Cambiado a string plano
   })
 
   const handleChange = useCallback((e) => {
     const { name, value } = e.target
     const [parent, child] = name.split('.')
-    
-    setLaboralData(prev => ({
-      ...prev,
-      [parent]: {
-        ...prev[parent],
-        [child]: value
-      }
-    }))
 
-    // Limpiar error cuando se escribe
-    if (errors[parent]?.[child]) {
-      setErrors(prev => ({
-        ...prev,
-        [parent]: {
-          ...prev[parent],
-          [child]: ''
+    // Actualización segura del estado
+    setLaboralData(prev => {
+      if (child) {
+        return {
+          ...prev,
+          [parent]: {
+            ...prev[parent],
+            [child]: value
+          }
         }
-      }));
-    }
-  }, [errors])
+      }
+      return {
+        ...prev,
+        [parent]: value
+      }
+    })
+
+    // Limpiar error al escribir
+    setErrors(prev => {
+      if (child) {
+        return {
+          ...prev,
+          [parent]: {
+            ...prev[parent],
+            [child]: ''
+          }
+        }
+      }
+      return {
+        ...prev,
+        [parent]: ''
+      }
+    })
+  }, [])
 
   const validateFieldsLaboral = useCallback(() => {
     const newErrors = {
       technicalSkills: {
-        tSkillOne: !laboralData.technicalSkills.tSkillOne.trim() ? 'ⓘ Campo requerido' : '',
-        tSkillTwo: !laboralData.technicalSkills.tSkillTwo.trim() ? 'ⓘ Campo requerido' : '',
+        tSkillOne: !laboralData.technicalSkills.tSkillOne.trim() ? 'ⓘ Este campo es requerido, completa almenos dos habilidades técnicas' : '',
+        tSkillTwo: !laboralData.technicalSkills.tSkillTwo.trim() ? 'ⓘ Este campo es requerido, completa almenos dos habilidades técnicas' : '',
         tSkillThree: '',
         tSkillFour: ''
       },
       softSkills: {
-        sSkillOne: !laboralData.softSkills.sSkillOne.trim() ? 'ⓘ Campo requerido' : '',
-        sSkillTwo: !laboralData.softSkills.sSkillTwo.trim() ? 'ⓘ Campo requerido' : '',
+        sSkillOne: !laboralData.softSkills.sSkillOne.trim() ? 'ⓘ Este campo es requerido, completa almenos dos habilidades sociales' : '',
+        sSkillTwo: !laboralData.softSkills.sSkillTwo.trim() ? 'ⓘ Este campo es requerido, completa almenos dos habilidades sociales' : '',
         sSkillThree: '',
         sSkillFour: ''
       },
       studies: {
-        studiesOne: !laboralData.studies.studiesOne.trim() ? 'ⓘ Campo requerido' : '',
-        studiesTwo: !laboralData.studies.studiesTwo.trim() ? 'ⓘ Campo requerido' : '',
+        studiesOne: !laboralData.studies.studiesOne.trim() ? 'ⓘ Este campo es requerido' : '',
+        studiesTwo: !laboralData.studies.studiesTwo.trim() ? 'ⓘ Este campo es requerido' : '',
         studiesThree: '',
         studiesFour: ''
       },
-      experience: !laboralData.experience.trim() ? 'ⓘ Campo requerido' : '',
-      companyWork: {
-        companyOne: !laboralData.companyWork.trim() ? 'ⓘ Campo requerido' : ''
-      }
+      experience: !laboralData.experience.trim() ? 'ⓘ Este campo es requerido' : '',
+      companyWork: !laboralData.companyWork.trim() ? 'ⓘ Este campo es requerido, agrega el lugar (o lugares) donde adquiriste tu experiencia' : ''
     }
 
+    // Actualización forzada de errores
     setErrors(newErrors)
-    
-    // Verificar si hay errores en campos requeridos
+
+    // Verificación profunda de errores
     const hasErrors = (
       newErrors.technicalSkills.tSkillOne ||
       newErrors.technicalSkills.tSkillTwo ||
@@ -113,7 +126,7 @@ export const LaboralProvider = ({ children }) => {
       newErrors.experience ||
       newErrors.companyWork
     )
-    
+
     return !hasErrors
   }, [laboralData])
 
@@ -122,8 +135,8 @@ export const LaboralProvider = ({ children }) => {
       laboralData,
       errors,
       handleChange,
-      validateFieldsLaboral    
-      }}>
+      validateFieldsLaboral
+    }}>
       {children}
     </LaboralContext.Provider>
   )
@@ -132,7 +145,7 @@ export const LaboralProvider = ({ children }) => {
 export const useLaboral = () => {
   const context = useContext(LaboralContext)
   if (!context) {
-    throw new Error('useLaboral debe usarse dentro de InfoProvider')
+    throw new Error('useLaboral debe usarse dentro de LaboralProvider')
   }
   return context
 }

@@ -12,10 +12,7 @@ export const FormLaboral = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const isValid = validateFieldsLaboral()
-
-        if (isValid) {
-            setCompletedLaboral(true)
-        }
+        setCompletedLaboral(isValid)
     }
 
     return (
@@ -24,7 +21,7 @@ export const FormLaboral = () => {
             btnCompleted={
                 <Button
                     btnType='submit'
-                    onClick={handleSubmit}
+                    clicked={handleSubmit}
                     btnStyle={`min-w-[10%] flex items-center bg-[#60efdb] text-[#405e7f]`}
                 >
                     {completedLaboral ? 'Completado' : 'Completar'}
@@ -32,7 +29,7 @@ export const FormLaboral = () => {
                 </Button>
             }
             mainForm={
-                <form action='' className='w-full flex gap-20' >
+                <form onSubmit={handleSubmit} className='w-full flex gap-20' >
                     <div className='w-full'>
                         <div>
                             <h2 className='text-[#405e7f] font-semibold'>
