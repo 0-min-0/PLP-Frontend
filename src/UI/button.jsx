@@ -9,6 +9,7 @@ export const Button = ({
   btnName,
   btnIcon = null,
   clicked,
+  disabled = false,
   children
 }) => {
 
@@ -25,6 +26,7 @@ export const Button = ({
       className={`${btnStyle} ${btnBaseStyle}`}
       id={btnId}
       onClick={clicked}
+      disabled={disabled}
     >
       {btnIcon === 'google' && <FcGoogle className='w-6 h-6 text-lg mr-2' />}
       {btnIcon === 'email' && <HiOutlineMail className='w-6 h-6 text-lg mr-2' />}

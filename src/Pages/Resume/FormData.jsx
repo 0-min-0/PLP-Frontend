@@ -7,7 +7,7 @@ import { Photo } from '../../UI/Photo'
 import { CardResume } from '../../UI/CardResume'
 import { Button } from '../../UI/button'
 
-export const FormData = () => {
+export const FormData = ({ onCompletionChange }) => {
     const {
         data,
         errors,
@@ -24,6 +24,7 @@ export const FormData = () => {
         setCompletedData(false)
     }, [data, photo])
 
+
     const handleClick = (e) => {
         e.preventDefault()
 
@@ -32,6 +33,7 @@ export const FormData = () => {
 
         if (areFieldsValid && isPhotoValid) {
             setCompletedData(true)
+            onCompletionChange(areFieldsValid && isPhotoValid) // Notifica al componente padre
         }
     }
 

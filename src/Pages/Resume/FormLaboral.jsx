@@ -5,7 +5,7 @@ import { HiCheckCircle } from 'react-icons/hi'
 import { Button } from '../../UI/button'
 import { useLaboral } from '../../Context/LaboralContext'
 
-export const FormLaboral = () => {
+export const FormLaboral = ({ onCompletionChange }) => {
     const { laboralData, errors, handleChange, validateFieldsLaboral } = useLaboral()
     const [completedLaboral, setCompletedLaboral] = useState(false)
 
@@ -13,6 +13,7 @@ export const FormLaboral = () => {
         e.preventDefault()
         const isValid = validateFieldsLaboral()
         setCompletedLaboral(isValid)
+        onCompletionChange(isValid) 
     }
 
     return (

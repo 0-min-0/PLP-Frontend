@@ -1,4 +1,5 @@
-import React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
 import { Button } from '../../UI/button'
 import { MainMenu } from '../../Components/MainMenu/MainMenu'
@@ -8,6 +9,17 @@ import { DataProvider } from '../../Context/DataContext'
 import { LaboralProvider } from '../../Context/LaboralContext'
 
 export const Resume = () => {
+
+    const [isDataComplete, setIsDataComplete] = useState(false)
+    const [isLaboralComplete, setIsLaboralComplete] = useState(false)
+    const navigate = useNavigate()
+
+    const handleCompleteRegister = () => {
+        if (isDataComplete && isLaboralComplete) {
+            navigate('/verficar-cuenta') 
+        }
+    }
+
     return (
         <div className='w-full min-h-screen p-6 border-2 rounded-2xl border-[#405e7f]/70'>
             <Header
@@ -20,16 +32,21 @@ export const Resume = () => {
             />
             <div className='flex flex-col gap-10 mx-50 my-15'>
                 <DataProvider>
-                    <FormData />
+                    <FormData onCompletionChange={setIsDataComplete} />
                 </DataProvider>
                 <LaboralProvider>
-                    <FormLaboral />
+                    <FormLaboral onCompletionChange={setIsLaboralComplete} />
                 </LaboralProvider>
                 <Button
                     btnName='Terminar y completar registro'
                     btnType='button'
                     btnId='finishRegister'
-                    btnStyle='w-[20%] bg-[#60efdb] text-[#405e7f]'
+                    clicked={handleCompleteRegister}
+                    disabled={!isDataComplete || !isLaboralComplete}
+                    btnStyle={`w-[18%] text-[#405e7f] ${isDataComplete && isLaboralComplete
+                            ? 'bg-[#60efdb] cursor-pointer'
+                            : 'bg-gray-300 cursor-not-allowed'
+                        }`}
                 />
             </div>
         </div>
