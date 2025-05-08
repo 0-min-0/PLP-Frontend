@@ -29,7 +29,7 @@ export const vacanciesExample = [
         company: 'Data Insights',
         location: 'Sevilla, España',
         type: 'Internship',
-        experience: '0 años',
+        experience: 'No requerida',
     },
     {
         id: 5,
@@ -61,7 +61,7 @@ export const vacanciesExample = [
         company: 'Office Solutions',
         location: 'Alicante, España',
         type: 'Internship',
-        experience: '0 años',
+        experience: 'No requerida',
     },
     {
         id: 9,
@@ -93,6 +93,6 @@ export const vacanciesExample = [
         company: 'Gaming Company',
         location: 'Bilbao, España',
         type: 'Internship',
-        experience: '0 años',
+        experience: 'No requerida',
     }
 ]

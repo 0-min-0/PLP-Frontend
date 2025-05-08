@@ -6,9 +6,9 @@ export const Vacancie = ({ title, company, location, type, experience }) => {
 
   const itemStyle = 'flex gap-2 mb-2'
   return (
-    <div className='bg-white rounded-xl border border-[#60efdb] px-8 py-6 text-[#405e7f] w-75 h-75 flex flex-col'>
-      <div className='flex justify-between '>
-        <h2 className='mb-2 font-semibold text-lg line-clamp-2'>{title}</h2>
+    <div className='bg-white rounded-xl border border-[#60efdb] px-8 py-6 text-[#405e7f] w-70 h-70 flex flex-col'>
+      <div className='flex justify-between items-center'>
+        <h2 className='mb-2 font-semibold text-lg truncate max-w-[220px]'>{title}</h2>
         <IoBriefcaseOutline className='w-5 h-5 flex-shrink-0 ml-2' />
       </div>
       <div className='flex-grow'>
