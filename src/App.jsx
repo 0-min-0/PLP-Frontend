@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import './Style/index.css'
 import { MainPage } from './Pages/MainPage/MainPage'
 import { Login } from './Pages/Login/Login'
@@ -14,26 +14,28 @@ import { MainAfterLogin } from './Pages/MainAfterLogin/MainAfterLogin'
 function App() {
 
   return (
-    <div className='w-full h-screen p-6 font-[afacad]'>
-      <DynamicTitle />
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-        <Route path='/acceder' element={
-          <PasswordProvider>
-            <Login />
-          </PasswordProvider>
-        } />
-        <Route path='/crear-cuenta' element={ <Register /> } />
-        <Route path='/crear-cuenta/contratista' element={ <DataJobSeeker /> } />
-        <Route path='/crear-cuenta/contratista/crear-contraseña' element={
-          <PasswordProvider>
-            <PasswordJobSeeker />
-          </PasswordProvider>
-        } />
-        <Route path='/crear-cuenta/contratista/hoja-de-vida' element={ <Resume /> } />
-        <Route path='/inicio' element={ <MainAfterLogin /> } />
-      </Routes>
-    </div>
+    <Router>
+      <div className='w-full h-screen p-6 font-[afacad]'>
+        <DynamicTitle />
+        <Routes>
+          <Route path='/' element={<MainPage />} />
+          <Route path='/acceder' element={
+            <PasswordProvider>
+              <Login />
+            </PasswordProvider>
+          } />
+          <Route path='/crear-cuenta' element={<Register />} />
+          <Route path='/crear-cuenta/contratista' element={<DataJobSeeker />} />
+          <Route path='/crear-cuenta/contratista/crear-contraseña' element={
+            <PasswordProvider>
+              <PasswordJobSeeker />
+            </PasswordProvider>
+          } />
+          <Route path='/crear-cuenta/contratista/hoja-de-vida' element={<Resume />} />
+          <Route path='/inicio' element={<MainAfterLogin />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

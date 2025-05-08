@@ -1,0 +1,53 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/acceder",
+            "dest": "/index.html"
+        },
+        {
+            "src": "/crear-cuenta",
+            "dest": "/index.html"
+        },
+        {
+            "src": "/crear-cuenta/contratista",
+            "dest": "/index.html"
+        },
+        {
+            "src": "/crear-cuenta/contratista/crear-contraseña",
+            "dest": "/index.html"
+        },
+        {
+            "src": "/crear-cuenta/contratista/hoja-de-vida",
+            "dest": "/index.html"
+        },
+        {
+            "src": "/inicio",
+            "dest": "/index.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
+        }
+    ],
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        }
+    ]
+}
