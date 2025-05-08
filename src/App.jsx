@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import './Style/index.css'
 import { MainPage } from './Pages/MainPage/MainPage'
 import { Login } from './Pages/Login/Login'
@@ -14,7 +14,6 @@ import { MainAfterLogin } from './Pages/MainAfterLogin/MainAfterLogin'
 function App() {
 
   return (
-    <Router>
       <div className='w-full h-screen p-6 font-[afacad]'>
         <DynamicTitle />
         <Routes>
@@ -35,7 +34,6 @@ function App() {
           <Route path='/inicio' element={<MainAfterLogin />} />
         </Routes>
       </div>
-    </Router>
   )
 }
 
