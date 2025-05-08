@@ -9,34 +9,34 @@
             }
         }
     ],
-    "routes": [
+    "rewrites": [
         {
-            "src": "/acceder",
-            "dest": "/index.html"
+            "source": "/acceder",
+            "destination": "/index.html"
         },
         {
-            "src": "/crear-cuenta",
-            "dest": "/index.html"
+            "source": "/crear-cuenta",
+            "destination": "/index.html"
         },
         {
-            "src": "/crear-cuenta/contratista",
-            "dest": "/index.html"
+            "source": "/crear-cuenta/contratista",
+            "destination": "/index.html"
         },
         {
-            "src": "/crear-cuenta/contratista/crear-contraseña",
-            "dest": "/index.html"
+            "source": "/crear-cuenta/contratista/crear-contraseña",
+            "destination": "/index.html"
         },
         {
-            "src": "/crear-cuenta/contratista/hoja-de-vida",
-            "dest": "/index.html"
+            "source": "/crear-cuenta/contratista/hoja-de-vida",
+            "destination": "/index.html"
         },
         {
-            "src": "/inicio",
-            "dest": "/index.html"
+            "source": "/inicio",
+            "destination": "/index.html"
         },
         {
-            "src": "/(.*)",
-            "dest": "/index.html"
+            "source": "/(.*)",
+            "destination": "/index.html"
         }
     ],
     "headers": [
