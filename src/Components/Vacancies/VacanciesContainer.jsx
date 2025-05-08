@@ -5,8 +5,7 @@ import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 export const VacanciesContainer = ({
     title,
     vacancies = [],
-    rounded = 'none',
-    widthContainer
+    rounded = 'none'
 }) => {
 
     const containerRef = useRef(null)
@@ -15,7 +14,7 @@ export const VacanciesContainer = ({
 
     const scroll = (direction) => {
         const container = containerRef.current
-        const scrollAmount = 300;
+        const scrollAmount = 300
         container.scrollLeft += direction === 'left' ? -scrollAmount : scrollAmount
         checkScrollPosition()
     }
@@ -37,7 +36,7 @@ export const VacanciesContainer = ({
     }
 
     return (
-        <div className={`w-[${widthContainer}] mx-10 relative bg-[#dcfff6] ${getRoundedClass()}`}>
+        <div className={`mx-10 relative bg-[#dcfff6] ${getRoundedClass()}`}>
             <h2 className='text-2xl px-12 py-5 font-semibold text-[#405e7f]'>{title}</h2>
             <div className='relative group'>
                 <button

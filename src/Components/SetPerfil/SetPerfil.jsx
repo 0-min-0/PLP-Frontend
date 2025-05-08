@@ -4,7 +4,7 @@ import { Button } from '../../UI/button'
 
 export const SetPerfil = () => {
     return (
-        <div className='w-[30%]'>
+        <div className='w-full'>
             <div className='border border-[#60efdb] py-6 px-8 mr-10 rounded-xl mt-8'>
                 <div className='flex'>
                     <div>

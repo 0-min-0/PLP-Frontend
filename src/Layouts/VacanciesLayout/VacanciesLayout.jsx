@@ -13,14 +13,17 @@ export const VacanciesLayout = () => {
                 <h3 className='text-lg'>Busca ofertas laborales desde las mas recientes (Hoy) hasta las mas pasadas de fecha (Este mes).</h3>
             </div>
             <div className='mb-10'>
-                <div className='flex'>
-                    <VacanciesContainer
-                        title='Hoy'
-                        vacancies={vacanciesExample}
-                        rounded='top'
-                        widthContainer='70%'
-                    />
-                    <SetPerfil />
+                <div className='flex w-full gap-4'>
+                    <div className='w-[70%]'>
+                        <VacanciesContainer
+                            title='Hoy'
+                            vacancies={vacanciesExample}
+                            rounded='top'
+                        />
+                    </div>
+                    <div className='w-[30%]'>
+                        <SetPerfil />
+                    </div>
                 </div>
                 <VacanciesContainer
                     title='Esta semana'
