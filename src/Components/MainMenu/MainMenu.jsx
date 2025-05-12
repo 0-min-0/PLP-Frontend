@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { HiOutlineX, HiMenu } from 'react-icons/hi'
+import { HiOutlineX, HiOutlineMenu } from 'react-icons/hi'
 import { MenuItem } from '../../UI/MenuItem'
 import { useMenu } from '../../Context/MenuContext'
 
@@ -38,17 +38,17 @@ export const MainMenu = () => {
     <div className='relative' ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400'
+        className='p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100'
         aria-label='Toggle menu'
       >
-        {isOpen ? <HiOutlineX className='h-7 w-7 cursor-pointer' /> : <HiMenu className='h-7 w-7 cursor-pointer' />}
+        {isOpen ? <HiOutlineX className='h-7 w-7 cursor-pointer' /> : <HiOutlineMenu className='h-7 w-7 cursor-pointer' />}
       </button>
       {isOpen && (
         <div className='fixed inset-0 bg-gray-800/30 z-40' onClick={() => setIsOpen(false)} />
       )}
 
       <div
-        className={`absolute z-50 right-0 mt-2 w-56 origin-top-right bg-white rounded-lg shadow-lg focus:outline-none transition-all duration-300 ease-in-out transform ${isOpen
+        className={`absolute z-50 right-0 mt-2 w-56 origin-top-right bg-white rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${isOpen
           ? 'opacity-100 scale-100 translate-y-0'
           : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
           }`}
@@ -59,7 +59,7 @@ export const MainMenu = () => {
             <h3 className='font-bold'>Menú</h3>
           </div>
             <MenuItem to='/categorias'>Categorias de trabajo</MenuItem>
-            <MenuItem to='/contacto'>Contacto</MenuItem>
+            <MenuItem to='/contacto'>Sobre PLP</MenuItem>
             <MenuItem to='/tema'>Tema (Predeterminado)</MenuItem>
             <MenuItem to='/ayuda'>Ayuda</MenuItem>
         </ul>
