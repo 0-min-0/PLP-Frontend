@@ -32,7 +32,7 @@ export const LoginForm = () => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         setErrorForm({
@@ -55,6 +55,44 @@ export const LoginForm = () => {
         } else {
             navigate('/inicio')
         }
+
+        try {
+            // login con backend
+            const response = await fetch('http://localhost:5000/Users/login/login_user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: form.email,
+                password: form.password
+            }),
+            credentials: 'include'
+        });
+
+        const data = await response.json()
+
+        if (response.status === 200) {
+            console.log('Login successful', data);
+
+            const {token} = data
+            // Almacenar el token en localStorage
+            localStorage.setItem('token', token);
+
+            navigate('/inicio');
+        } else {
+            console.log('Login failed', data);
+            setErrorForm({
+                errorEmail: 'ⓘ Correo o contraseña incorrectos'
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        setErrorForm({
+            errorEmail: 'Hubo un problema al intentar iniciar sesión.',
+            errorPassword: ''
+        });
+    }
     }
 
     return (
