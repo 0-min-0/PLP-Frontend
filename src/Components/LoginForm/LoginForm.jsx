@@ -53,7 +53,7 @@ export const LoginForm = () => {
                 errorPassword: 'ⓘ La contraseña es requerida'
             })
         } else {
-            navigate('/inicio')
+           
         }
 
         try {
@@ -83,14 +83,13 @@ export const LoginForm = () => {
         } else {
             console.log('Login failed', data);
             setErrorForm({
-                errorEmail: 'ⓘ Correo o contraseña incorrectos'
+                errorPassword: 'ⓘ Correo o contraseña incorrectos'
             });
         }
     } catch (error) {
         console.log(error);
         setErrorForm({
-            errorEmail: 'Hubo un problema al intentar iniciar sesión.',
-            errorPassword: ''
+            errorPassword: 'ⓘ Hubo un problema al intentar iniciar sesión.'
         });
     }
     }
@@ -118,7 +117,8 @@ export const LoginForm = () => {
                                 Únete ahora
                             </NavLink>
                         </div>
-                    </div>}
+                    </div>
+                }
                 form={
                     <form onSubmit={handleSubmit} className='w-full relative flex flex-col items-center'>
                         <div className='w-full'>
