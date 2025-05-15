@@ -6,22 +6,16 @@ import { NavLink } from 'react-router-dom'
 
 export const WelcomeTextHome = () => {
 
-const titleStyle = 'text-6xl font-[afacadBold] font-extrabold text-[#254160] mb-8'
-
     return (
         <div className='flex flex-col items-center'>
-            <div className='flex
-                            2xl:gap-10'>
-                <div className=' flex flex-col text-center justify-center items-center'>
-                    <h1 className={`${titleStyle}
-                                    2xl:text-7xl 2xl:mb-6`}
+            <div className='flex gap-40'>
+                <div className='flex flex-col text-center justify-center items-center'>
+                    <h1 className='text-6xl font-[afacadBold] font-extrabold text-[#254160] mb-8'
                     >
                         Solo necesitas de tus <br />
                         habilidades y tu experiencia
                     </h1>
-                    <p className='text-[#405e7f] text-xl mb-4
-                                  2xl:text-2xl
-                    '>
+                    <p className='text-[#405e7f] text-xl mb-4'>
                         La plataforma que te brinda numerosas oportunidades de trabajo
                         <br /> sin necesidad de un titulo profesional
                     </p>
@@ -29,16 +23,14 @@ const titleStyle = 'text-6xl font-[afacadBold] font-extrabold text-[#254160] mb-
                         <Button
                             btnType='button'
                             btnName='Continuar con Google'
-                            btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]
-                                      2xl:text-xl'
+                            btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]'
                             btnIcon='google'
                         />
                         <NavLink to='/acceder'>
                             <Button
                                 btnType='button'
                                 btnName='Iniciar Sesion con Correo'
-                                btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]
-                                          2xl:text-xl'
+                                btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]'
                                 btnIcon='email'
                             />
                         </NavLink>

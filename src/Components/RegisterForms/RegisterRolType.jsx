@@ -5,6 +5,7 @@ import { CardUserType } from '../../UI/CardUserType'
 import { FormsContainer } from '../../UI/FormsContainer'
 import { HiOutlineUserGroup } from 'react-icons/hi2'
 import { HiOutlineBriefcase } from 'react-icons/hi'
+import { BiBuildings } from 'react-icons/bi'
 
 export const RegisterRolType = () => {
   const [userType, setUserType] = useState(null)
@@ -15,7 +16,7 @@ export const RegisterRolType = () => {
     e.preventDefault()
 
     if (!userType) {
-      setError('ⓘ Seleccione un rol para continuar')
+      setError('ⓘ Selecciona un rol para continuar')
       return
     }
 
@@ -24,6 +25,8 @@ export const RegisterRolType = () => {
     if (userType === 'jobSeeker') {
       navigate('/crear-cuenta/contratista')
     } else if (userType === 'employer') {
+      navigate('/crear-cuenta/contratante')
+    } else if (userType === 'company') {
       navigate('/crear-cuenta/empresa')
     } else {
       setError('ⓘ Ocurrió un error inesperado')
@@ -31,7 +34,7 @@ export const RegisterRolType = () => {
   }
 
   return (
-    <div>
+    <div className='w-[35%]'>
       <FormsContainer
         width='w-full'
         bgColor='#dcfff6'
@@ -64,16 +67,29 @@ export const RegisterRolType = () => {
               <CardUserType
                 value='employer'
                 currentSelection={userType}
-                title='Somos una empresa en busca de talento y experiencia'
+                title='Soy una persona que solicita servicios temporales'
                 userType='Contratante'
                 rolIcon={<HiOutlineUserGroup className='w-12 h-12' />}
-                iconDesc='Empresa/Emprendimiento Logo'
+                iconDesc='Contratante Logo'
                 onChange={setUserType}
                 error={error}
                 setError={setError}
                 desc='Haga click en la tarjeta para seleccionar su rol como Contratante'
               />
-               {error && <p className='text-red-400 font-semibold w-full text-left'>{error}</p>}
+
+              <CardUserType
+                value='company'
+                currentSelection={userType}
+                title='Somos una empresa en busca de talento y experiencia'
+                userType='Empresa/Emprendimiento'
+                rolIcon={<BiBuildings className='w-12 h-12' />}
+                iconDesc='Empresa/Emprendimiento Logo'
+                onChange={setUserType}
+                error={error}
+                setError={setError}
+                desc='Haga click en la tarjeta para seleccionar su rol como Empresa/Emprendimiento'
+              />
+               {error && <p className='text-red-400 w-full text-left'>{error}</p>}
             </div>
 
             <div className='w-[30%]'>

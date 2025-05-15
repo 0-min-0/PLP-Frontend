@@ -6,12 +6,8 @@ import jobOffer from '../../assets/images/oferta-de-trabajo.png'
 
 export const InfoContainer = () => {
 
-const baseStyle = 'flex justify-evenly px-2 py-6 items-center bg-[#405e7f] rounded-2xl'
-
   return (
-    <div className={`${baseStyle}
-                    2xl:w-350`}
-    >
+    <div className='w-360 flex justify-evenly px-6 py-6 items-center gap-6 bg-[#405e7f] rounded-2xl'>
         <CardInfo 
             title='Es totalmente gratis' 
             info='Registrate y postula tu hoja de vida totalmente gratis y encuentra gente que necesite de tu trabajo.'

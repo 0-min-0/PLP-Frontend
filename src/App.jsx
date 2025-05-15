@@ -10,6 +10,7 @@ import { DynamicTitle } from './Titles'
 import { PasswordProvider } from './Context/PasswordContext'
 import { Resume } from './Pages/Resume/Resume'
 import { MainAfterLogin } from './Pages/MainAfterLogin/MainAfterLogin'
+import { RegisterSubrol } from './Components/RegisterForms/RegisterCompany/RegisterSubrol'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             </PasswordProvider>
           } />
           <Route path='/crear-cuenta/contratista/hoja-de-vida' element={<Resume />} />
+          <Route path='/crear-cuenta/contratante' element={<RegisterSubrol />} />
           <Route path='/inicio' element={<MainAfterLogin />} />
         </Routes>
       </div>

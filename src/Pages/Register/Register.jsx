@@ -5,20 +5,15 @@ import { RegisterRolType } from '../../Components/RegisterForms/RegisterRolType'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
 import { Footer } from '../../Components/Footer/Footer'
+import { InteractiveLogo } from '../../UI/InteractiveLogo'
 
 export const Register = () => {
     return (
-        <div className='w-full p-6 border-2 rounded-2xl border-[#405e7f]/70'>
+        <div className='w-full'>
             <Header
-                headerClass='w-full flex justify-between items-center'
-                middleObject={
-                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[afacadBold] items-end'>
-                        Plataforma Laboral Proactiva
-                    </h1>
-                }
-                menu={<MainMenu />}
+                middleObject={<h1>Registrarse</h1>}
             />
-            <div className='flex justify-center items-start pt-26 gap-20'>
+            <div className='flex justify-center items-start gap-20'>
                 <RegisterRolType />
                 <WelcomeText
                     text={<p> Nos alegra tener nuevos usuarios
@@ -31,7 +26,7 @@ export const Register = () => {
                 />
             </div>
             <div className='py-4'>
-            <Footer />
+                <Footer />
             </div>
         </div>
     )

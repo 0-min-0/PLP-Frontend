@@ -8,7 +8,7 @@ export const Input = ({
     iChange,
     labelTitle = '',
     iHolder = '',
-    padding = 'px-4 py-2',
+    padding = 'px-4 py-2 2xl:px-5 2xl:py-3',
     error = ''
 }) => {
 

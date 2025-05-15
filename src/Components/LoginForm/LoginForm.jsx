@@ -86,7 +86,7 @@ export const LoginForm = () => {
                         <div className='w-full'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
-                                    <HiOutlineMail className='w-6 h-6' />
+                                    <HiOutlineMail className='w-6 h-6'/>
                                 </div>
                                 <Input
                                     iType='email'
@@ -104,7 +104,7 @@ export const LoginForm = () => {
                         <div className='w-full mt-4'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
-                                    <HiOutlineLockClosed className='w-6 h-7' />
+                                    <HiOutlineLockClosed className='w-6 h-6'/>
                                 </div>
                                 <Input
                                     iType={visibility.loginPassword ? 'text' : 'password'}
@@ -129,8 +129,7 @@ export const LoginForm = () => {
                         <div className='flex flex-col items-center gap-4 mt-6'>
                             <NavLink
                                 to='/recuperar-contraseña'
-                                className='hover:text-[#60efdb] hover:underline'
-                            >
+                                className='hover:text-[#60efdb] hover:underline'>
                                 ¿Has olvidado tu contraseña?
                             </NavLink>
 

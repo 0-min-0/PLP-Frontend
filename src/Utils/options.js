@@ -19,3 +19,9 @@ export const optionGenre = [  //Opciones de generos
     { value: 'masculino', label: 'Masculino' },
     { value: 'femenino', label: 'Femenino' },
 ]
+
+export const optionSubrol = [  //Opciones de subrol
+    { value: '', label: 'No seleccionado' },
+    { value: 'contratanteI', label: 'Contratante Informal' },
+    { value: 'contratanteF', label: 'Contratante Formal' },
+]

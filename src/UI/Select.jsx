@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { HiChevronDown } from 'react-icons/hi'
 
-export const Select = ({ label, value, onChange, options = [] }) => {
+export const Select = ({ label, value, onChange, desc, options = [] }) => {
 
     const [isOpen, setIsOpen] = useState(false)
     const ref = useRef(null)
@@ -18,8 +18,8 @@ export const Select = ({ label, value, onChange, options = [] }) => {
 
     return (
         <div className='relative w-full' ref={ref}>
-            <h2 className='mb-3 text-[#405e7f] font-semibold'>{label}</h2>
-
+            <h2 className='mb-2 text-[#405e7f] font-semibold text-left'>{label}</h2>
+            <p className='mb-3 text-[#405e7f] text-sm text-left'>{desc}</p>
             <div
                 className='w-full py-2 px-4 text-[#405e7f] bg-white border border-[#405e7f]/50 rounded-xl cursor-pointer flex justify-between items-center'
                 onClick={() => setIsOpen(!isOpen)}
@@ -37,7 +37,7 @@ export const Select = ({ label, value, onChange, options = [] }) => {
                 {options.map((option) => (
                     <div
                         key={option.value}
-                        className='m-2 px-4 py-2 rounded-lg hover:bg-gray-100 text-[#405e7f] cursor-pointer'
+                        className='m-2 px-4 py-2 rounded-lg hover:bg-gray-100 text-[#405e7f] text-left cursor-pointer'
                         onClick={() => {
                             onChange(option.value)
                             setIsOpen(false)

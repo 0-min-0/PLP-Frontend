@@ -85,7 +85,7 @@ export const DataJobSeeker = () => {
                             </NavLink>
                         </p>}
                     form={
-                        <form onSubmit={handleSubmit} className='w-[90%] flex flex-col items-center gap-4 my-6'>
+                        <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-4 my-6'>
                             <div className='w-full'>
                                 <Input
                                     labelTitle='Nombre de usuario'

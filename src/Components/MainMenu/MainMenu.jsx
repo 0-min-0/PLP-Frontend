@@ -54,11 +54,11 @@ export const MainMenu = () => {
           }`}
         role='menu'
       >
-        <ul className='p-2
-                       2xl:p-4
-        '>
-          <div className='flex text-left p-3 text-4 font-medium text-gray-700'>
-            <h3 className='font-bold'>Menú</h3>
+        <ul className='p-2'>
+          <div className='flex text-left p-3 text-4 text-gray-700'>
+            <h3 className='font-bold'>
+              Menú
+            </h3>
           </div>
             <MenuItem to='/categorias'>Categorias de trabajo</MenuItem>
             <MenuItem to='/contacto'>Sobre PLP</MenuItem>
