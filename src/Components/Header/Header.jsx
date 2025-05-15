@@ -7,7 +7,7 @@ export const Header = ({ middleObject, menu, buttons, headerClass = 'w-full px-6
         <header className={headerClass}>
             <div className='flex items-center gap-6'>
                 <InteractiveLogo />
-                <div>{middleObject}</div>
+                <div className='2xl:w-[85%]'>{middleObject}</div>
             </div>
             <div className='flex items-center gap-8'>
                 <div>{buttons}</div>
