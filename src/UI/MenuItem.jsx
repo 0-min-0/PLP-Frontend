@@ -8,7 +8,8 @@ export const MenuItem = ({ to, children }) => {
     const baseStyle = 'block px-4 py-3 text-sm rounded-md'
 
     const getLinkStyle = ({ isActive }) =>
-        `${baseStyle} ${isActive ? 'bg-gray-100 text-gray-900' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'}`
+        `${baseStyle} ${isActive ? 'bg-gray-100 text-gray-900' : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'}
+         2xl:text-lg`
 
     return (
         <li className='list-none'>

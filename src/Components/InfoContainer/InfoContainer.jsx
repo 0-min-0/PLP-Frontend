@@ -5,8 +5,13 @@ import findPeople from '../../assets/images/buscar.png'
 import jobOffer from '../../assets/images/oferta-de-trabajo.png'
 
 export const InfoContainer = () => {
+
+const baseStyle = 'flex justify-evenly px-2 py-6 items-center bg-[#405e7f] rounded-2xl'
+
   return (
-    <div className='w-[86%] flex justify-evenly px-2 py-6 items-center bg-[#405e7f] rounded-2xl'>
+    <div className={`${baseStyle}
+                    2xl:w-350`}
+    >
         <CardInfo 
             title='Es totalmente gratis' 
             info='Registrate y postula tu hoja de vida totalmente gratis y encuentra gente que necesite de tu trabajo.'
