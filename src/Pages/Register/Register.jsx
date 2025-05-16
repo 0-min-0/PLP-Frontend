@@ -1,32 +1,38 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
-import { MainMenu } from '../../Components/MainMenu/MainMenu'
 import { RegisterRolType } from '../../Components/RegisterForms/RegisterRolType'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
-import { Footer } from '../../Components/Footer/Footer'
-import { InteractiveLogo } from '../../UI/InteractiveLogo'
 
 export const Register = () => {
     return (
         <div className='w-full'>
             <Header
-                middleObject={<h1>Registrarse</h1>}
+                middleObject={
+                    <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                        Registrarse
+                    </h1>
+                }
+                buttons={
+                    <div className='flex gap-2 mb-8'>
+                        <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+                        <p>•</p>
+                        <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Terminos y condiciones</NavLink>
+                    </div>
+                }
             />
-            <div className='flex justify-center items-start gap-20'>
+            <div className='flex justify-center items-start mt-6 gap-20'>
                 <RegisterRolType />
                 <WelcomeText
-                    text={<p> Nos alegra tener nuevos usuarios
-                        <br /> como tu en nuestro aplicativo,
-                        <br /> esperamos que tu experiencia
-                        <br /> sea agradable en PLP. </p>}
+                    text={<p> Nos alegra tener nuevos usuarios como tú en
+                          <br /> nuestro aplicativo, esperamos que tu 
+                          <br /> experiencia sea agradable en PLP. </p>
+                    }
                     ilustration={registerIlustration}
                     imgDesc='Ilustración de inicio de sesión'
-                    imgStyle='w-[400px] h-[400px]'
+                    imgStyle='w-[500px] h-[500px]'
                 />
-            </div>
-            <div className='py-4'>
-                <Footer />
             </div>
         </div>
     )

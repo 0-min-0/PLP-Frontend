@@ -7,6 +7,7 @@ export const Input = ({
     iName,
     iChange,
     labelTitle = '',
+    labelColor = '[#405e7f]',
     iHolder = '',
     padding = 'px-4 py-2 2xl:px-5 2xl:py-3',
     error = ''
@@ -17,7 +18,7 @@ export const Input = ({
                     duration-300
                     ${error ? 'border-red-400' : ''}`
 
-    const lStyle = 'text-[#405e7f] font-semibold'
+    const lStyle = `text-${labelColor} font-semibold`
 
     return (
 

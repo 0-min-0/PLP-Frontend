@@ -1,6 +1,6 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
-import { MainMenu } from '../../Components/MainMenu/MainMenu'
 import { LoginForm } from '../../Components/LoginForm/LoginForm'
 import { WelcomeText } from '../../UI/WelcomeText'
 import { Footer } from '../../Components/Footer/Footer'
@@ -8,17 +8,22 @@ import loginIlustration from '../../assets/images/login-ilustration.png'
 
 export const Login = () => {
     return (
-        <div className='w-full h-full p-6 border-2 rounded-2xl border-[#405e7f]/70'>
+        <div className='w-full h-full'>
             <Header
-                headerClass='w-full flex justify-between items-center'
                 middleObject={
-                    <h1 className='text-6xl text-[#405e7f] ml-10 font-[afacadBold] items-end'>
-                        Plataforma Laboral Proactiva
+                    <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                        Iniciar sesión
                     </h1>
                 }
-                menu={<MainMenu />}
+                buttons={
+                    <div className='flex gap-2 mb-8'>
+                        <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+                        <p>•</p>
+                        <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Terminos y condiciones</NavLink>
+                    </div>
+                }
             />
-            <div className='w-[100%] flex justify-center items-start pt-26 gap-20'>
+            <div className='w-[100%] flex justify-center items-start mt-12 gap-20'>
                 <LoginForm />
                 <WelcomeText
                     text={ <p> Nos alegra tenerte denuevo en PLP, <br /> no te pierdas las nuevas ofertas <br /> laborales </p> }
@@ -27,7 +32,6 @@ export const Login = () => {
                     imgStyle='w-[400px] h-[400px]'
                 />
             </div>
-            <Footer />
         </div>
     )
 }

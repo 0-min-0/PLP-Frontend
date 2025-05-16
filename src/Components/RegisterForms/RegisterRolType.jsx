@@ -39,7 +39,6 @@ export const RegisterRolType = () => {
         width='w-full'
         bgColor='#dcfff6'
         textColor='#405e7f'
-        title='Registrarse'
         changeForm={
         <p className='text-[#405e7f] pt-4'>
           ¿Ya estás registrado en nuestra plataforma?{' '}
@@ -50,7 +49,9 @@ export const RegisterRolType = () => {
         form={
           <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 my-6'>
             <div className='w-full'>
-            <p className='mb-4 font-semibold'>Selecciona el rol con el que utilizarás tu cuenta y luego presiona continuar.</p>
+            <p className='mb-4 font-semibold text-lg'>
+              Selecciona el rol con el que utilizarás tu cuenta y luego presiona continuar.
+            </p>
               <CardUserType
                 value='jobSeeker'
                 currentSelection={userType}

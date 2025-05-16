@@ -58,7 +58,7 @@ export const LoginForm = () => {
     }
 
     return (
-        <div className='w-[30%] text-white'>
+        <div className='w-[35%] text-white'>
             <FormsContainer
                 width='w-full'
                 bgColor='#405e7f'
@@ -86,9 +86,11 @@ export const LoginForm = () => {
                         <div className='w-full'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
-                                    <HiOutlineMail className='w-6 h-6'/>
+                                    <HiOutlineMail className='w-6 h-6' />
                                 </div>
                                 <Input
+                                    labelTitle='Correo o numero de teléfono'
+                                    labelColor='white'
                                     iType='email'
                                     iName='email'
                                     iValue={form.email}
@@ -104,9 +106,11 @@ export const LoginForm = () => {
                         <div className='w-full mt-4'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
-                                    <HiOutlineLockClosed className='w-6 h-6'/>
+                                    <HiOutlineLockClosed className='w-6 h-6' />
                                 </div>
                                 <Input
+                                    labelTitle='Contraseña'
+                                    labelColor='white'
                                     iType={visibility.loginPassword ? 'text' : 'password'}
                                     iName='password'
                                     iValue={form.password}
@@ -119,7 +123,7 @@ export const LoginForm = () => {
                                     onClick={() => toggleVisibility('loginPassword')}
                                     className='absolute right-4 bottom-2 text-[#405e7f]/70 hover:text-[#405e7f] font-semibold cursor-pointer'
                                 >
-                                    {visibility.loginPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' /> }
+                                    {visibility.loginPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
                                 </button>
                             </div>
                             {errorForm.errorPassword && (
