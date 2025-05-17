@@ -5,6 +5,7 @@ import { LoginForm } from '../../Components/LoginForm/LoginForm'
 import { WelcomeText } from '../../UI/WelcomeText'
 import { Footer } from '../../Components/Footer/Footer'
 import loginIlustration from '../../assets/images/login-ilustration.png'
+import { LoginProvider } from '../../Context/LoginContext'
 
 export const Login = () => {
     return (
@@ -24,7 +25,9 @@ export const Login = () => {
                 }
             />
             <div className='w-[100%] flex justify-center items-start mt-12 gap-20'>
-                <LoginForm />
+                <LoginProvider>
+                    <LoginForm />
+                </LoginProvider>
                 <WelcomeText
                     text={ <p> Nos alegra tenerte denuevo en PLP, <br /> no te pierdas las nuevas ofertas <br /> laborales </p> }
                     ilustration={ loginIlustration }

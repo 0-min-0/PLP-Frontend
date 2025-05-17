@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useData } from '../Context/DataContext';
+import { useData } from '../Context/DataContext'
 
 export const ResumeDesc = () => {
     const { data, errors, handleChange } = useData()
@@ -10,7 +10,7 @@ export const ResumeDesc = () => {
                    transition-all duration-300`
 
     return (
-        <div className='w-full mt-4'>
+        <div className='w-full'>
             <label className='text-[#405e7f] font-semibold'>
                 Descripción
             </label>

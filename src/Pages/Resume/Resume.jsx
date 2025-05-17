@@ -32,7 +32,7 @@ export const Resume = () => {
             />
             <div className='flex flex-col gap-10 mx-50 my-15'>
                 <DataProvider>
-                    <FormData onCompletionChange={setIsDataComplete} />
+                    <FormData />
                 </DataProvider>
                 <LaboralProvider>
                     <FormLaboral onCompletionChange={setIsLaboralComplete} />

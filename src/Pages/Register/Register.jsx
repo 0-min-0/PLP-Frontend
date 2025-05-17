@@ -1,9 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
-import { RegisterRolType } from '../../Components/RegisterForms/RegisterRolType'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
+import { DataProvider } from '../../Context/DataContext'
+import { RegisterUser } from '../../Components/RegisterForms/RegisterUser'
 
 export const Register = () => {
     return (
@@ -23,7 +24,9 @@ export const Register = () => {
                 }
             />
             <div className='flex justify-center items-start mt-6 gap-20'>
-                <RegisterRolType />
+                <DataProvider>
+                    <RegisterUser />
+                </DataProvider>
                 <WelcomeText
                     text={<p> Nos alegra tener nuevos usuarios como tú en
                           <br /> nuestro aplicativo, esperamos que tu 
@@ -31,7 +34,7 @@ export const Register = () => {
                     }
                     ilustration={registerIlustration}
                     imgDesc='Ilustración de inicio de sesión'
-                    imgStyle='w-[500px] h-[500px]'
+                    imgStyle='w-[450px] h-[450px]'
                 />
             </div>
         </div>

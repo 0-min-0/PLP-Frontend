@@ -4,13 +4,12 @@ import './Style/index.css'
 import { MainPage } from './Pages/MainPage/MainPage'
 import { Login } from './Pages/Login/Login'
 import { Register } from './Pages/Register/Register'
-import { DataJobSeeker } from './Components/RegisterForms/RegisterJobSeeker/DataJobSeeker'
 import { PasswordJobSeeker } from './Components/RegisterForms/RegisterJobSeeker/PasswordJobSeeker'
 import { DynamicTitle } from './Titles'
 import { PasswordProvider } from './Context/PasswordContext'
 import { Resume } from './Pages/Resume/Resume'
 import { MainAfterLogin } from './Pages/MainAfterLogin/MainAfterLogin'
-import { RegisterSubrol } from './Components/RegisterForms/RegisterCompany/RegisterSubrol'
+import { RegisterRolType } from './Components/RegisterForms/RegisterRolType'
 
 function App() {
 
@@ -25,14 +24,13 @@ function App() {
             </PasswordProvider>
           } />
           <Route path='/crear-cuenta' element={<Register />} />
-          <Route path='/crear-cuenta/contratista' element={<DataJobSeeker />} />
+          <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
           <Route path='/crear-cuenta/contratista/crear-contraseña' element={
             <PasswordProvider>
               <PasswordJobSeeker />
             </PasswordProvider>
           } />
           <Route path='/crear-cuenta/contratista/hoja-de-vida' element={<Resume />} />
-          <Route path='/crear-cuenta/contratante' element={<RegisterSubrol />} />
           <Route path='/inicio' element={<MainAfterLogin />} />
         </Routes>
       </div>

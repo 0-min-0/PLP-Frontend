@@ -1,61 +1,26 @@
-import { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
-import { HiOutlineMail } from 'react-icons/hi'
+import { NavLink } from 'react-router-dom'
+import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
 import { HiOutlineLockClosed } from 'react-icons/hi'
 import { PiEye, PiEyeClosed } from 'react-icons/pi'
 import { Button } from '../../UI/button'
 import { FormsContainer } from '../../UI/FormsContainer'
 import { Input } from '../../UI/Input'
 import { usePassword } from '../../Context/PasswordContext'
+import { useLogin } from '../../Context/LoginContext'
 
 export const LoginForm = () => {
-    const navigate = useNavigate()
-
     const pStyle = 'text-[#60efdb] text-sm mt-1 font-semibold'
     const { visibility, toggleVisibility } = usePassword()
+    const {
+        form,
+        errorForm,
+        isSubmitting,
+        handleChange,
+        handleSubmit
+    } = useLogin()
 
-    const [form, setForm] = useState({
-        email: '',
-        password: ''
-    })
-
-    const [errorForm, setErrorForm] = useState({
-        errorEmail: '',
-        errorPassword: ''
-    })
-
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setForm({
-            ...form,
-            [name]: value
-        })
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-        setErrorForm({
-            errorEmail: '',
-            errorPassword: ''
-        })
-
-        if (!form.email && !form.password) {
-            setErrorForm({
-                errorPassword: 'ⓘ Ambos campos son requeridos'
-            })
-        } else if (!form.email) {
-            setErrorForm({
-                errorEmail: 'ⓘ El correo o número de teléfono son requeridos'
-            })
-        } else if (!form.password) {
-            setErrorForm({
-                errorPassword: 'ⓘ La contraseña es requerida'
-            })
-        } else {
-            navigate('/inicio')
-        }
-    }
+    // Determinar qué icono mostrar basado en si es email o teléfono
+    const isEmail = form.emailOrPhone.includes('@')
 
     return (
         <div className='w-[35%] text-white'>
@@ -76,33 +41,51 @@ export const LoginForm = () => {
                             <p>¿Aún no tienes una cuenta?</p>
                             <NavLink
                                 to='/crear-cuenta'
-                                className='text-white hover:text-[#60efdb] hover:underline ml-2' >
+                                className='text-white font-semibold hover:text-[#60efdb] hover:underline ml-2' >
                                 Únete ahora
                             </NavLink>
                         </div>
                     </div>}
                 form={
                     <form onSubmit={handleSubmit} className='w-full relative flex flex-col items-center'>
+                        {/* Mensaje de error general */}
+                        {errorForm.loginError && (
+                            <div className='w-full mb-4 text-center'>
+                                <p className={pStyle}>{errorForm.loginError}</p>
+                                {errorForm.loginError.includes('inexistente') && (
+                                    <NavLink
+                                        to='/crear-cuenta'
+                                        className='text-[#60efdb] font-semibold underline hover:text-white mt-1'
+                                    >
+                                        Regístrate aquí
+                                    </NavLink>
+                                )}
+                            </div>
+                        )}
+
+                        {/* Campo de email/teléfono */}
                         <div className='w-full'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
-                                    <HiOutlineMail className='w-6 h-6' />
+                                    <HiOutlineMail className='w-6 h-6' /> 
                                 </div>
                                 <Input
-                                    labelTitle='Correo o numero de teléfono'
+                                    labelTitle='Correo electrónico o número de teléfono'
                                     labelColor='white'
-                                    iType='email'
-                                    iName='email'
-                                    iValue={form.email}
+                                    iType={isEmail ? 'email' : 'tel'}
+                                    iName='emailOrPhone'
+                                    iValue={form.emailOrPhone}
                                     iChange={handleChange}
-                                    iHolder='Ingresa tu correo o número de teléfono'
+                                    iHolder='Ingresa tu correo electrónico o número de teléfono'
                                     padding='pl-12 pr-4 py-2'
                                 />
                             </div>
-                            {errorForm.errorEmail && (
-                                <p className={pStyle}>{errorForm.errorEmail}</p>
+                            {errorForm.errorEmailOrPhone && (
+                                <p className={pStyle}>{errorForm.errorEmailOrPhone}</p>
                             )}
                         </div>
+
+                        {/* Campo de contraseña */}
                         <div className='w-full mt-4'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
@@ -130,6 +113,8 @@ export const LoginForm = () => {
                                 <p className={pStyle}>{errorForm.errorPassword}</p>
                             )}
                         </div>
+
+                        {/* Botones y enlaces */}
                         <div className='flex flex-col items-center gap-4 mt-6'>
                             <NavLink
                                 to='/recuperar-contraseña'
@@ -139,15 +124,15 @@ export const LoginForm = () => {
 
                             <Button
                                 btnType='submit'
-                                btnStyle=' bg-[#60efdb] text-[#405e7f] font-bold px-4 py-2 rounded-full cursor-pointer w-full'
+                                btnStyle={`bg-[#60efdb] text-[#405e7f] font-bold px-4 py-2 rounded-full cursor-pointer w-full ${isSubmitting ? 'opacity-70' : ''}`}
                                 btnId='btnLogin'
-                                btnName='Acceder'
+                                btnName={isSubmitting ? 'Verificando...' : 'Acceder'}
+                                disabled={isSubmitting}
                             />
                         </div>
                     </form>
                 }
             />
         </div>
-
     )
 }

@@ -9,7 +9,7 @@ export const Input = ({
     labelTitle = '',
     labelColor = '[#405e7f]',
     iHolder = '',
-    padding = 'px-4 py-2 2xl:px-5 2xl:py-3',
+    padding = 'px-4 py-2',
     error = ''
 }) => {
 

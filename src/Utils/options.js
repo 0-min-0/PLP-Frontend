@@ -20,8 +20,9 @@ export const optionGenre = [  //Opciones de generos
     { value: 'femenino', label: 'Femenino' },
 ]
 
-export const optionSubrol = [  //Opciones de subrol
+export const optionId = [  //Opciones de tipo de documento
     { value: '', label: 'No seleccionado' },
-    { value: 'contratanteI', label: 'Contratante Informal' },
-    { value: 'contratanteF', label: 'Contratante Formal' },
+    { value: 'cedula', label: 'C.C (Cédula de Ciudadanía)' },
+    { value: 'cedulaExtranjeria', label: 'C.E (Cédula de Extranjería)' },
+    { value: 'pasaporte', label: 'P.P (Cédula de Extranjería)' },
 ]
