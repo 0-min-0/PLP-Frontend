@@ -7,10 +7,12 @@ export const DynamicTitle = () => {
   const titles = {
     '/': 'PLP - Bienvenido/a',
     '/acceder': 'Iniciar sesión | PLP',
-    '/crear-cuenta': 'Registrate | PLP',
-    '/crear-cuenta/contratista': 'Registrate como contratista | PLP',
-    '/crear-cuenta/contratista/crear-contraseña': 'Registrate como contratista | PLP',
-    '/crear-cuenta/contratista/hoja-de-vida': 'Hoja de vida | PLP',
+    '/crear-cuenta': 'Registrarse | PLP',
+    '/crear-cuenta/rol': 'Selecciona un rol | PLP',
+    '/crear-cuenta/contratante': 'Registrarse como contratante | PLP',
+    '/crear-cuenta/empresa': 'Registrarse como empresa | PLP',
+    '/crear-cuenta/contratista': 'Registrarse como contratista | PLP',
+    '/crear-contraseña': 'Crear contraseña | PLP',
     '/inicio': 'Inicio | PLP'
   }
 

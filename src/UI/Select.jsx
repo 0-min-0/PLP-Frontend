@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { HiChevronDown } from 'react-icons/hi'
 
-export const Select = ({ label, value, onChange, desc, options = [] }) => {
+export const Select = ({ label = '', value, onChange, desc = '', options = [] }) => {
 
     const [isOpen, setIsOpen] = useState(false)
     const ref = useRef(null)
@@ -16,15 +16,18 @@ export const Select = ({ label, value, onChange, desc, options = [] }) => {
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
 
+    const selectedOption = options.find(opt => opt.value === value)
+    const displayText = selectedOption ? selectedOption.label : 'No seleccionado'
+
     return (
         <div className='relative w-full' ref={ref}>
-            <h2 className='mb-2 text-[#405e7f] font-semibold text-left'>{label}</h2>
-            <p className='mb-3 text-[#405e7f] text-sm text-left'>{desc}</p>
+            {label && <h2 className='mb-2 text-[#405e7f] font-semibold text-left'>{label}</h2>}
+            {desc && <p className='mb-3 text-[#405e7f] text-sm text-left'>{desc}</p>}
             <div
                 className='w-full py-2 px-4 text-[#405e7f] bg-white border border-[#405e7f]/50 rounded-xl cursor-pointer flex justify-between items-center'
                 onClick={() => setIsOpen(!isOpen)}
             >
-                {options.find(opt => opt.value === value).label || 'No seleccionado'}
+                {displayText}
                 <HiChevronDown className={`text-[#405e7f] w-5 h-5 transition-transform ${isOpen ? 'transform rotate-180' : ''}`} />
             </div>
 
@@ -50,4 +53,3 @@ export const Select = ({ label, value, onChange, desc, options = [] }) => {
         </div>
     )
 }
-

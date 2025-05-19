@@ -19,14 +19,13 @@ export const LoginForm = () => {
         handleSubmit
     } = useLogin()
 
-    // Determinar qué icono mostrar basado en si es email o teléfono
     const isEmail = form.emailOrPhone.includes('@')
 
     return (
         <div className='w-[35%] text-white'>
             <FormsContainer
                 width='w-full'
-                bgColor='#405e7f'
+                bgColor='bg-[#405e7f]'
                 title='Acceder'
                 changeForm={
                     <div className='flex flex-col items-center w-full'>
@@ -55,7 +54,7 @@ export const LoginForm = () => {
                                 {errorForm.loginError.includes('inexistente') && (
                                     <NavLink
                                         to='/crear-cuenta'
-                                        className='text-[#60efdb] font-semibold underline hover:text-white mt-1'
+                                        className='text-[#60efdb] text-sm font-semibold underline hover:text-white mt-1'
                                     >
                                         Regístrate aquí
                                     </NavLink>

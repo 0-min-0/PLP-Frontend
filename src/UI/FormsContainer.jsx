@@ -11,7 +11,7 @@ export const FormsContainer = ({
 }) => {
 
   return (
-    <div className={`${width} flex flex-col justify-center items-center p-10  text-[${textColor}] bg-[${bgColor}] rounded-xl`}>
+    <div className={`${width} flex flex-col justify-center items-center p-10  text-[${textColor}] ${bgColor} rounded-xl`}>
         { form }
         <div className='w-full text-center'>
         <hr className='border-t border-[#405e7f]/40 mb-4' />

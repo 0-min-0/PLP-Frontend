@@ -1,0 +1,195 @@
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { Header } from '../../Components/Header/Header'
+import { WelcomeText } from '../../UI/WelcomeText'
+import registerIlustration from '../../assets/images/register-ilustration.png'
+import { FormsContainer } from '../../UI/FormsContainer'
+import { Button } from '../../UI/button'
+import { Input } from '../../UI/Input'
+import { Select } from '../../UI/Select'
+import { optionId } from '../../Utils/options'
+import { useRegister } from '../../Context/RegisterContext'
+
+export const JobSeeker = () => {
+    const { 
+        form, 
+        errors, 
+        handleChange, 
+        handleSelectChange, 
+        handleSubmit
+    } = useRegister()
+    
+    const errorStyle = 'text-[#405e7f] text-sm mt-1 font-semibold'
+
+    const localHandleSubmit = (e) => {
+        handleSubmit(e, 'jobSeeker')
+    }
+
+    return (
+        <div className='w-full'>
+            <Header
+                middleObject={
+                    <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                        Registrarse como contratista
+                    </h1>
+                }
+                buttons={
+                    <div className='flex gap-2 mb-8'>
+                        <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+                        <p>•</p>
+                        <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Terminos y condiciones</NavLink>
+                    </div>
+                }
+            />
+            <div className='flex justify-center items-start mt-6 gap-20'>
+                <div className='w-[60%]'>
+                    <FormsContainer
+                        width='w-full'
+                        bgColor='bg-[#96aec9]'
+                        textColor='#405e7f'
+                        changeForm={
+                            <p className='text-white pt-4'>
+                                ¿Ya estás registrado en nuestra plataforma?{' '}
+                                <NavLink to='/acceder' className='text-white font-semibold hover:underline hover:text-gray-200'>
+                                    Iniciar sesión
+                                </NavLink>
+                            </p>
+                        }
+                        form={
+                            <form className='w-full' onSubmit={localHandleSubmit}>
+                                <div>
+                                    <h2 className='text-white font-semibold'>
+                                        Documento de identidad
+                                    </h2>
+                                    <div className='w-full flex mb-2'>
+                                        <div className='w-1/2 pr-5 mt-3'>
+                                            <Select
+                                                name='documentType'
+                                                value={form.documentType}
+                                                onChange={(value) => handleSelectChange('documentType', value)}
+                                                options={optionId}
+                                            />
+                                            {errors.documentType && <p className={errorStyle}>{errors.documentType}</p>}
+                                        </div>
+                                        <div className='w-1/2 pl-5'>
+                                            <Input
+                                                iName='documentNumber'
+                                                isFor='documentNumber'
+                                                iType='text'
+                                                iValue={form.documentNumber}
+                                                iChange={handleChange}
+                                                iHolder='Ingresa tu número de documento'
+                                            />
+                                            {errors.documentNumber && <p className={errorStyle}>{errors.documentNumber}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='w-full flex'>
+                                    <div className='w-1/2 pr-5'>
+                                        <h2 className='text-white font-semibold'>
+                                            Habilidades Técnicas y Sociales
+                                        </h2>
+                                        <p className='text-white'>
+                                            Ingresa tus habilidades técnicas (Ej. Operación en maquinaria pesada.)
+                                            <br /> Ingresa tus habilidades sociales (Ej. Buena comunicación y trabajo en equipo.)
+                                        </p>
+                                        <Input
+                                            iName='skillOne'
+                                            isFor='skillOne'
+                                            iType='text'
+                                            iValue={form.skillOne}
+                                            iChange={handleChange}
+                                            iHolder='Ingresa nombre de tu habilidad técnica'
+                                        />
+                                        {errors.skillOne && <p className={errorStyle}>{errors.skillOne}</p>}
+                                        <Input
+                                            iName='skillTwo'
+                                            isFor='skillTwo'
+                                            iType='text'
+                                            iValue={form.skillTwo}
+                                            iChange={handleChange}
+                                            iHolder='Ingresa nombre de tu habilidad técnica'
+                                        />
+                                        {errors.skillTwo && <p className={errorStyle}>{errors.skillTwo}</p>}
+                                        <Input
+                                            iName='skillThree'
+                                            isFor='skillThree'
+                                            iType='text'
+                                            iValue={form.skillThree}
+                                            iChange={handleChange}
+                                            iHolder='Ingresa nombre de tu habilidad social'
+                                        />
+                                        {errors.skillThree && <p className={errorStyle}>{errors.skillThree}</p>}
+                                        <Input
+                                            iName='skillFour'
+                                            isFor='skillFour'
+                                            iType='text'
+                                            iValue={form.skillFour}
+                                            iChange={handleChange}
+                                            iHolder='Ingresa nombre de tu habilidad social'
+                                        />
+                                        {errors.skillFour && <p className={errorStyle}>{errors.skillFour}</p>}
+                                    </div>
+                                    <div className='w-1/2 pl-5'>
+                                        <h2 className='text-white font-semibold'>
+                                            Estudios complementarios
+                                        </h2>
+                                        <p className='text-white'>Ej. Curso básico de programación. (En caso de tener estudios complementarios, agrega tus estudios básicos)</p>
+                                        <Input
+                                            iName='studiesOne'
+                                            isFor='studiesOne'
+                                            iType='text'
+                                            iValue={form.studiesOne}
+                                            iChange={handleChange}
+                                            iHolder='Ingresa nombre de tu complementario'
+                                        />
+                                        {errors.studiesOne && <p className={errorStyle}>{errors.studiesOne}</p>}
+                                        <Input
+                                            iName='studiesTwo'
+                                            isFor='studiesTwo'
+                                            iType='text'
+                                            iValue={form.studiesTwo}
+                                            iChange={handleChange}
+                                            iHolder='Ingresa nombre de tu complementario'
+                                        />
+                                        {errors.studiesTwo && <p className={errorStyle}>{errors.studiesTwo}</p>}
+                                        <Input
+                                            iName='studiesThree'
+                                            isFor='studiesThree'
+                                            iType='text'
+                                            iValue={form.studiesThree}
+                                            iChange={handleChange}
+                                            iHolder='Ingresa nombre de tu complementario (Opcional)'
+                                        />
+                                        <Input
+                                            iName='studiesFour'
+                                            isFor='studiesFour'
+                                            iType='text'
+                                            iValue={form.studiesFour}
+                                            iChange={handleChange}
+                                            iHolder='Ingresa nombre de tu complementario (Opcional)'
+                                        />
+                                    </div>
+                                </div>
+                                <Button
+                                    btnType='submit'
+                                    btnStyle='w-[25%] bg-[#405e7f] text-white font-bold my-6 mx-100'
+                                    btnName='Continuar'
+                                />
+                            </form>
+                        }
+                    />
+                </div>
+                <WelcomeText
+                    text={<p> Nos alegra tener nuevos usuarios como tú en
+                        <br /> nuestro aplicativo, esperamos que tu
+                        <br /> experiencia sea agradable en PLP. </p>
+                    }
+                    ilustration={registerIlustration}
+                    imgDesc='Ilustración de inicio de sesión'
+                    imgStyle='w-[450px] h-[450px]'
+                />
+            </div>
+        </div>
+    )
+}

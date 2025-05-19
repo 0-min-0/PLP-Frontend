@@ -1,13 +1,12 @@
-import { useState } from 'react'
-import { useData } from '../Context/DataContext'
+import { useRegister } from '../Context/RegisterContext'
 
 export const ResumeDesc = () => {
-    const { data, errors, handleChange } = useData()
-    const maxLength = 500
+    const { form, errors, handleChange } = useRegister();
+    const maxLength = 500;
 
     const descStyle = `w-full h-25 bg-white px-4 py-2 resize-none text-lg mt-3 text-[#405e7f]/90 rounded-xl border 
                    border-[#405e7f]/50 focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent 
-                   transition-all duration-300`
+                   transition-all duration-300`;
 
     return (
         <div className='w-full'>
@@ -17,7 +16,7 @@ export const ResumeDesc = () => {
             <div className='relative'>
                 <textarea
                     name="description"
-                    value={data.description}
+                    value={form.description}
                     onChange={(e) => {
                         if (e.target.value.length <= maxLength) {
                             handleChange(e);
@@ -29,16 +28,16 @@ export const ResumeDesc = () => {
                     maxLength={maxLength + 1}
                 />
                 <span className='absolute bottom-3 right-4 text-[#405e7f]/60'>
-                    {data.description.length}/{maxLength}
+                    {form.description ? form.description.length : 0}/{maxLength}
                 </span>
             </div>
             {/* Muestra errores o advertencias */}
             {errors.description && (
-                <p className='text-red-400 text-sm mt-1'>{errors.description}</p>
+                <p className='text-[#ff6b6b] text-sm mt-1 font-semibold'>{errors.description}</p>
             )}
-            {data.description.length === maxLength && !errors.description && (
-                <p className='text-red-400 text-sm mt-1'>ⓘ Límite alcanzado</p>
+            {form.description && form.description.length === maxLength && !errors.description && (
+                <p className='text-[#ff6b6b] text-sm mt-1 font-semibold'>ⓘ Límite alcanzado</p>
             )}
         </div>
-    )
-}
+    );
+};

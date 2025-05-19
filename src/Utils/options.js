@@ -1,5 +1,4 @@
 export const optionTown = [  //Opciones de municipios
-    { value: '', label: 'No seleccionado' },
     { value: 'armenia', label: 'Armenia' },
     { value: 'buenaVista', label: 'Buenavista' },
     { value: 'circasia', label: 'Circasia' },
@@ -15,14 +14,12 @@ export const optionTown = [  //Opciones de municipios
 ]
 
 export const optionGenre = [  //Opciones de generos
-    { value: '', label: 'No seleccionado' },
     { value: 'masculino', label: 'Masculino' },
     { value: 'femenino', label: 'Femenino' },
 ]
 
 export const optionId = [  //Opciones de tipo de documento
-    { value: '', label: 'No seleccionado' },
     { value: 'cedula', label: 'C.C (Cédula de Ciudadanía)' },
     { value: 'cedulaExtranjeria', label: 'C.E (Cédula de Extranjería)' },
-    { value: 'pasaporte', label: 'P.P (Cédula de Extranjería)' },
+    { value: 'pasaporte', label: 'P.P (Pasaporte)' },
 ]
