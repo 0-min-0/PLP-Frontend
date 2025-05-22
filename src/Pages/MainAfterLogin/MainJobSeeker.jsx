@@ -7,7 +7,7 @@ import { HiOutlineInbox } from 'react-icons/hi2'
 import avatar from '../../assets/images/avatar.jpg'
 import { VacanciesLayout } from '../../Layouts/VacanciesLayout/VacanciesLayout'
 
-export const MainAfterLogin = () => {
+export const MainJobSeeker = () => {
     return (
         <div>
             <Header
@@ -20,6 +20,7 @@ export const MainAfterLogin = () => {
                 buttons={
                     <NavLink
                         to='/centro-de-notificaciones'
+                        title='Centro de notificaciones'
                     >
                         <div>
                             <HiOutlineInbox className='w-8 h-8 text-[#405e7f] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98]' />

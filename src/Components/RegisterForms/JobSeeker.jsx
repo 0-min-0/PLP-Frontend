@@ -8,7 +8,7 @@ import { Button } from '../../UI/button'
 import { Input } from '../../UI/Input'
 import { Select } from '../../UI/Select'
 import { optionId } from '../../Utils/options'
-import { useRegister } from '../../Context/RegisterContext'
+import { useGlobal } from '../../Context/GlobalContext'
 
 export const JobSeeker = () => {
     const { 
@@ -17,7 +17,7 @@ export const JobSeeker = () => {
         handleChange, 
         handleSelectChange, 
         handleSubmit
-    } = useRegister()
+    } = useGlobal()
     
     const errorStyle = 'text-[#405e7f] text-sm mt-1 font-semibold'
 

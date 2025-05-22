@@ -1,9 +1,9 @@
 import { createContext, useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const RegisterContext = createContext()
+const GlobalContext = createContext()
 
-export const RegisterProvider = ({ children }) => {
+export const GlobalProvider = ({ children }) => {
     const navigate = useNavigate()
     const [form, setForm] = useState({
         // Campos para RegisterUser
@@ -196,7 +196,7 @@ export const RegisterProvider = ({ children }) => {
     }
 
     return (
-        <RegisterContext.Provider value={{
+        <GlobalContext.Provider value={{
             form,
             errors,
             handleChange,
@@ -207,14 +207,14 @@ export const RegisterProvider = ({ children }) => {
             validateRegisterUserForm
         }}>
             {children}
-        </RegisterContext.Provider>
+        </GlobalContext.Provider>
     )
 }
 
-export const useRegister = () => {
-    const context = useContext(RegisterContext)
+export const useGlobal = () => {
+    const context = useContext(GlobalContext)
     if (!context) {
-        throw new Error('useRegister debe usarse dentro de un RegisterProvider')
+        throw new Error('useGlobal debe usarse dentro de un GlobalProvider')
     }
     return context
 }

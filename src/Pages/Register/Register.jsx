@@ -4,7 +4,7 @@ import { Header } from '../../Components/Header/Header'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
 import { RegisterUser } from '../../Components/RegisterForms/RegisterUser'
-import { RegisterProvider } from '../../Context/RegisterContext'
+import { GlobalProvider } from '../../Context/GlobalContext'
 
 export const Register = () => {
     return (
@@ -24,9 +24,9 @@ export const Register = () => {
                 }
             />
             <div className='flex justify-center items-start mt-6 gap-20'>
-                    <RegisterProvider>
+                    <GlobalProvider>
                         <RegisterUser />
-                    </RegisterProvider>
+                    </GlobalProvider>
                 <WelcomeText
                     text={<p> Nos alegra tener nuevos usuarios como tú en
                           <br /> nuestro aplicativo, esperamos que tu 

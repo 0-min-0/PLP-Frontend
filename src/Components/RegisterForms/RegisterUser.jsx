@@ -5,9 +5,9 @@ import { Input } from '../../UI/Input'
 import { HiOutlinePhone, HiOutlineMail } from 'react-icons/hi'
 import { optionGenre, optionTown } from '../../Utils/options'
 import { Select } from '../../UI/Select'
-import { ResumeDesc } from '../../UI/ResumeDesc'
+import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
-import { useRegister } from '../../Context/RegisterContext'
+import { useGlobal } from '../../Context/GlobalContext'
 
 export const RegisterUser = () => {
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ export const RegisterUser = () => {
         handleSelectChange,
         handleSubmit,
         validateRegisterUserForm
-    } = useRegister()
+    } = useGlobal()
 
     const errorStyle = 'text-[#ff6b6b] text-sm mt-1 font-semibold'
 
@@ -107,7 +107,9 @@ export const RegisterUser = () => {
                             </div>
 
                             <div className='w-1/2 pl-5'>
-                                <ResumeDesc
+                                <Desc
+                                    nameDesc='Descripción'
+                                    holderDesc='Escribe una breve descripción de la empresa o de ti mismo'
                                     value={form.description}
                                     onChange={(value) => handleChange({
                                         target: {

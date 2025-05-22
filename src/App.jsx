@@ -7,46 +7,55 @@ import { Register } from './Pages/Register/Register'
 import { Password } from './Components/RegisterForms/Password'
 import { DynamicTitle } from './Titles'
 import { PasswordProvider } from './Context/PasswordContext'
-import { MainAfterLogin } from './Pages/MainAfterLogin/MainAfterLogin'
+import { MainJobSeeker } from './Pages/MainAfterLogin/MainJobSeeker'
+import { MainEmployer } from './Pages/MainAfterLogin/MainEmployer'
 import { RegisterRolType } from './Components/RegisterForms/RegisterRolType'
 import { JobSeeker } from './Components/RegisterForms/JobSeeker'
 import { Employer } from './Components/RegisterForms/Employer'
 import { Company } from './Components/RegisterForms/Company'
-import { RegisterProvider } from './Context/RegisterContext'
+import { GlobalProvider } from './Context/GlobalContext'
+import { CreateVacancie } from './Pages/CreateVacancie/CreateVacancie'
+import { MenuProvider } from './Context/MenuContext'
 
 function App() {
 
   return (
-      <div className='w-full h-screen p-6 font-[afacad]'>
-        <DynamicTitle />
-        <Routes>
-          <Route path='/' element={<MainPage />} />
-          <Route path='/acceder' element={
-            <PasswordProvider>
-              <Login />
-            </PasswordProvider>
-          } />
-          <Route path='/crear-cuenta' element={<Register />} />
-          <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
-          <Route path='/crear-cuenta/contratista' element={
-            <RegisterProvider>
-              <JobSeeker />
-            </RegisterProvider>
-          } />
-          <Route path='/crear-cuenta/contratante' element={
-            <RegisterProvider>
-              <Employer />
-            </RegisterProvider>
-          } />
-          <Route path='/crear-cuenta/empresa' element={<Company />} />
-          <Route path='/crear-contraseña' element={
-            <PasswordProvider>
-              <Password />
-            </PasswordProvider>
-          } />
-          <Route path='/inicio' element={<MainAfterLogin />} />
-        </Routes>
-      </div>
+    <div className='w-full h-screen p-6 font-[afacad]'>
+      <DynamicTitle />
+      <Routes>
+        <Route path='/' element={<MainPage />} />
+        <Route path='/acceder' element={
+          <PasswordProvider>
+            <Login />
+          </PasswordProvider>
+        } />
+        <Route path='/crear-cuenta' element={<Register />} />
+        <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
+        <Route path='/crear-cuenta/contratista' element={
+          <GlobalProvider>
+            <JobSeeker />
+          </GlobalProvider>
+        } />
+        <Route path='/crear-cuenta/contratante' element={
+          <GlobalProvider>
+            <Employer />
+          </GlobalProvider>
+        } />
+        <Route path='/crear-cuenta/empresa' element={<Company />} />
+        <Route path='/crear-contraseña' element={
+          <PasswordProvider>
+            <Password />
+          </PasswordProvider>
+        } />
+        <Route path='/inicio-contratista' element={<MainJobSeeker />} />
+        <Route path='/inicio-contratante' element={<MainEmployer />} />
+        <Route path='/crear-vacante' element={
+          <MenuProvider>
+            <CreateVacancie />
+          </MenuProvider>
+        } />
+      </Routes>
+    </div>
   )
 }
 

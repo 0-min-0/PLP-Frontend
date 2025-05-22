@@ -6,7 +6,7 @@ import { Input } from '../../UI/Input'
 import { Select } from '../../UI/Select'
 import { optionId } from '../../Utils/options'
 import { Button } from '../../UI/button'
-import { useRegister } from '../../Context/RegisterContext'
+import { useGlobal } from '../../Context/GlobalContext'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
 
@@ -17,7 +17,7 @@ export const Employer = () => {
         handleChange,
         handleSelectChange,
         handleSubmit
-    } = useRegister()
+    } = useGlobal()
 
     const errorStyle = 'text-[#ff6b6b] text-sm mt-1 font-semibold'
 

@@ -13,7 +13,11 @@ export const DynamicTitle = () => {
     '/crear-cuenta/empresa': 'Registrarse como empresa | PLP',
     '/crear-cuenta/contratista': 'Registrarse como contratista | PLP',
     '/crear-contraseña': 'Crear contraseña | PLP',
-    '/inicio': 'Inicio | PLP'
+    '/inicio-contratista': 'Inicio | PLP',
+    '/inicio-contratante': 'Inicio | PLP',
+    '/inicio-empresa': 'Inicio | PLP',
+    '/crear-vacante': 'Crear vacante | PLP',
+    '/centro-de-notificaciones': 'Centro de notificaciones | PLP',
   }
 
   useEffect(() => {
