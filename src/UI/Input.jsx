@@ -10,7 +10,8 @@ export const Input = ({
     labelColor = '[#405e7f]',
     iHolder = '',
     padding = 'px-4 py-2',
-    error = ''
+    error = '',
+    errColor = 'text-red-400'
 }) => {
 
     const iStyle = `w-full bg-white ${padding} text-lg mt-3 text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
@@ -39,7 +40,7 @@ export const Input = ({
                 onChange={iChange}
             />
             <div>
-                {error && <span className='text-red-400 text-sm mt-1'>{error}</span>}
+                {error && <span className={`${errColor} font-semibold text-sm mt-1`}>{error}</span>}
             </div>
         </div>
     )

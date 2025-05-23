@@ -2,11 +2,14 @@ import React from 'react'
 import { Input } from '../../UI/Input'
 import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
+import { useGlobal } from '../../Context/GlobalContext'
 
 export const VacancyForm = () => {
+    const { form, errors, handleChange, handleSubmit } = useGlobal()
+
     return (
         <div className='rounded-xl px-20 py-14 mx-30 mt-6 bg-[#405e7f]'>
-            <form action='' className='w-full'>
+            <form onSubmit={(e) => handleSubmit(e, 'vacancy')} className='w-full'>
                 <div className='flex justify-between items-start mb-8'>
                     <h2 className='text-white text-2xl font-semibold'>
                         Crea una nueva vacante, al terminar de llenar todos los campos, haz click en "publicar vacante"
@@ -26,54 +29,70 @@ export const VacancyForm = () => {
                             isFor='vacancyName'
                             iType='text'
                             iHolder='Ingresa nombre de la ocupación que solicitas'
+                            iValue={form.vacancyName || ''}
+                            iChange={handleChange}
+                            error={errors.vacancyName}
                         />
                         <Input
                             labelTitle='Persona de contacto'
                             labelColor='white'
                             iName='contactPerson'
-                            isFor='contactPerson'
                             iType='text'
                             iHolder='Ingresa nombre de la persona de contacto'
+                            iValue={form.contactPerson || ''}
+                            iChange={handleChange}
+                            error={errors.contactPerson}
                         />
                         <Input
                             labelTitle='Contacto'
                             labelColor='white'
                             iName='contact'
-                            isFor='contact'
-                            iType={'email' || 'tel'}
+                            iType='text'
                             iHolder='Ingresa número de contacto o correo electrónico'
+                            iValue={form.contact || ''}
+                            iChange={handleChange}
+                            error={errors.contact}
                         />
                         <Input
                             labelTitle='Ubicación'
                             labelColor='white'
                             iName='location'
-                            isFor='location'
                             iType='text'
                             iHolder='Ingresa la ubicación de la vacante'
+                            iValue={form.location || ''}
+                            iChange={handleChange}
+                            error={errors.location}
                         />
                     </div>
                     <div className='w-1/2 flex flex-col gap-4'>
                         <Desc
-                            height='h-34'
-                            color='text-white'
                             nameDesc='Responsabilidades y especificaciones'
+                            color='text-white'
                             holderDesc='Escribe las responsabilidades que tendrá la persona que ocupe la vacante'
+                            value={form.responsibilities || ''}
+                            onChange={handleChange}
+                            error={errors.responsibilities}
+                            height='h-34'
                         />
                         <Input
                             labelTitle='Disponibilidad requerida'
                             labelColor='white'
                             iName='availability'
-                            isFor='availability'
                             iType='text'
                             iHolder='Ingresa la disponibilidad que solicitas (Ej. Tiempo completo de lunes a viernes)'
+                            iValue={form.availability || ''}
+                            iChange={handleChange}
+                            error={errors.availability}
                         />
                         <Input
                             labelTitle='Salario estimado'
                             labelColor='white'
                             iName='salary'
-                            isFor='salary'
                             iType='text'
                             iHolder='Ingresa el salario que ofreces Ej. 1.200.000 COP (dependiendo de tus especificaciones)'
+                            iValue={form.salary || ''}
+                            iChange={handleChange}
+                            error={errors.salary}
                         />
                     </div>
                 </div>
@@ -81,4 +100,3 @@ export const VacancyForm = () => {
         </div>
     )
 }
-

@@ -24,10 +24,20 @@ export const GlobalProvider = ({ children }) => {
         studiesOne: '',
         studiesTwo: '',
         studiesThree: '',
-        studiesFour: ''
+        studiesFour: '',
+        // Campos para VacancyForm
+        vacancyName: '',
+        contactPerson: '',
+        contact: '',
+        location: '',
+        responsibilities: '',
+        availability: '',
+        salary: ''
     })
     
     const [errors, setErrors] = useState({
+
+        // Errores para RegisterUser
         documentType: '',
         documentNumber: '',
         name: '',
@@ -37,12 +47,21 @@ export const GlobalProvider = ({ children }) => {
         description: '',
         town: '',
         genre: '',
+        // Errores para JobSeeker
         skillOne: '',
         skillTwo: '',
         skillThree: '',
         skillFour: '',
         studiesOne: '',
-        studiesTwo: ''
+        studiesTwo: '',
+        // Errores para VacancyForm
+        vacancyName: '',
+        contactPerson: '',
+        contact: '',
+        location: '',
+        responsibilities: '',
+        availability: '',
+        salary: ''
     })
 
     const validatePhone = (value, isRequired = true) => {
@@ -77,13 +96,28 @@ export const GlobalProvider = ({ children }) => {
         return ''
     }
 
-    const handleChange = (e) => {
+    // Nueva validación para el campo de contacto (teléfono o email)
+    const validateContact = (value) => {
+        if (!value) return 'ⓘ El contacto es requerido.'
+        
+        // Si parece ser un email
+        if (value.includes('@')) {
+            return validateEmail(value)
+        } 
+        // Si parece ser un teléfono
+        else {
+            return validatePhone(value)
+        }
+    }
+
+        const handleChange = (e) => {
         const { name, value } = e.target
         setForm(prev => ({
             ...prev,
             [name]: value
         }))
 
+        // Limpiar error si existe
         if (errors[name]) {
             setErrors(prev => ({
                 ...prev,
@@ -91,16 +125,17 @@ export const GlobalProvider = ({ children }) => {
             }))
         }
 
+        // Validación en tiempo real
         if (value) {
             let error = ''
-            if (name === 'phone') {
-                error = validatePhone(value)
-            } else if (name === 'phoneSec') {
-                error = validatePhone(value, false)
+            if (name === 'phone' || name === 'phoneSec') {
+                error = validatePhone(value, name === 'phone')
             } else if (name === 'email') {
                 error = validateEmail(value)
             } else if (name === 'documentNumber') {
                 error = validateDocumentNumber(value)
+            } else if (name === 'contact') {
+                error = validateContact(value)
             }
 
             if (error) {
@@ -111,7 +146,7 @@ export const GlobalProvider = ({ children }) => {
             }
         }
     }
-
+    
     const handleSelectChange = (name, value) => {
         setForm(prev => ({
             ...prev,
@@ -175,6 +210,26 @@ export const GlobalProvider = ({ children }) => {
         return !Object.values(newErrors).some(error => error !== '')
     }
 
+    // Nueva validación para el formulario de vacantes
+    const validateVacancyForm = () => {
+        const newErrors = {
+            vacancyName: validateNotEmpty(form.vacancyName, 'nombre de la vacante'),
+            contactPerson: validateNotEmpty(form.contactPerson, 'persona de contacto'),
+            contact: validateContact(form.contact),
+            location: validateNotEmpty(form.location, 'ubicación'),
+            responsibilities: validateNotEmpty(form.responsibilities, 'responsabilidades'),
+            availability: validateNotEmpty(form.availability, 'disponibilidad requerida'),
+            salary: validateNotEmpty(form.salary, 'salario estimado')
+        }
+        
+        setErrors(prev => ({
+            ...prev,
+            ...newErrors
+        }))
+        
+        return !Object.values(newErrors).some(error => error !== '')
+    }
+
     // Función de envío genérica
     const handleSubmit = (e, formType) => {
         e.preventDefault()
@@ -186,6 +241,8 @@ export const GlobalProvider = ({ children }) => {
             isValid = validateJobSeekerForm()
         } else if (formType === 'registerUser') {
             isValid = validateRegisterUserForm()
+        } else if (formType === 'vacancy') {
+            isValid = validateVacancyForm()
         }
 
         if (isValid) {
@@ -202,9 +259,10 @@ export const GlobalProvider = ({ children }) => {
             handleChange,
             handleSelectChange,
             handleSubmit,
-            validateEmployerForm,
+            validateEmployerForm: validateEmployerForm,
             validateJobSeekerForm,
-            validateRegisterUserForm
+            validateRegisterUserForm,
+            validateVacancyForm
         }}>
             {children}
         </GlobalContext.Provider>
@@ -218,3 +276,4 @@ export const useGlobal = () => {
     }
     return context
 }
+

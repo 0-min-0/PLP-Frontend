@@ -6,7 +6,7 @@ export const Desc = ({ nameDesc, holderDesc, height = 'h-25', color = 'text-[#40
 
     const descStyle = `w-full ${height} bg-white px-4 py-2 resize-none text-lg mt-3 text-[#405e7f]/90 rounded-xl border 
                    border-[#405e7f]/50 focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent 
-                   transition-all duration-300`;
+                   transition-all duration-300`
 
     return (
         <div className='w-full'>
