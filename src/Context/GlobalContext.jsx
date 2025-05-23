@@ -5,6 +5,7 @@ const GlobalContext = createContext()
 
 export const GlobalProvider = ({ children }) => {
     const navigate = useNavigate()
+    const [vacancies, setVacancies] = useState([])
     const [form, setForm] = useState({
         // Campos para RegisterUser
         documentType: '',
@@ -34,7 +35,7 @@ export const GlobalProvider = ({ children }) => {
         availability: '',
         salary: ''
     })
-    
+
     const [errors, setErrors] = useState({
 
         // Errores para RegisterUser
@@ -90,34 +91,28 @@ export const GlobalProvider = ({ children }) => {
         return ''
     }
 
-    // Validación específica para campos de selección (Select)
     const validateSelect = (value, fieldName) => {
         if (!value) return `ⓘ El ${fieldName} es requerido.`
         return ''
     }
 
-    // Nueva validación para el campo de contacto (teléfono o email)
     const validateContact = (value) => {
         if (!value) return 'ⓘ El contacto es requerido.'
-        
-        // Si parece ser un email
         if (value.includes('@')) {
             return validateEmail(value)
-        } 
-        // Si parece ser un teléfono
+        }
         else {
             return validatePhone(value)
         }
     }
 
-        const handleChange = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target
         setForm(prev => ({
             ...prev,
             [name]: value
         }))
 
-        // Limpiar error si existe
         if (errors[name]) {
             setErrors(prev => ({
                 ...prev,
@@ -125,7 +120,6 @@ export const GlobalProvider = ({ children }) => {
             }))
         }
 
-        // Validación en tiempo real
         if (value) {
             let error = ''
             if (name === 'phone' || name === 'phoneSec') {
@@ -146,13 +140,13 @@ export const GlobalProvider = ({ children }) => {
             }
         }
     }
-    
+
     const handleSelectChange = (name, value) => {
         setForm(prev => ({
             ...prev,
             [name]: value
         }))
-        
+
         if (errors[name]) {
             setErrors(prev => ({
                 ...prev,
@@ -167,12 +161,12 @@ export const GlobalProvider = ({ children }) => {
             phone: validatePhone(form.phone),
             email: validateEmail(form.email),
             description: validateNotEmpty(form.description, 'descripción'),
-            town: validateSelect(form.town, 'municipio'),  
-            genre: validateSelect(form.genre, 'género')    
+            town: validateSelect(form.town, 'municipio'),
+            genre: validateSelect(form.genre, 'género')
         }
-        
+
         setErrors(newErrors)
-        
+
         return !Object.values(newErrors).some(error => error !== '')
     }
 
@@ -181,12 +175,12 @@ export const GlobalProvider = ({ children }) => {
             documentType: validateSelect(form.documentType, 'tipo de documento'),
             documentNumber: validateDocumentNumber(form.documentNumber)
         }
-        
+
         setErrors(prev => ({
             ...prev,
             ...newErrors
         }))
-        
+
         return !Object.values(newErrors).some(error => error !== '')
     }
 
@@ -201,16 +195,15 @@ export const GlobalProvider = ({ children }) => {
             studiesOne: validateNotEmpty(form.studiesOne, 'estudio complementario'),
             studiesTwo: validateNotEmpty(form.studiesTwo, 'estudio complementario')
         }
-        
+
         setErrors(prev => ({
             ...prev,
             ...newErrors
         }))
-        
+
         return !Object.values(newErrors).some(error => error !== '')
     }
 
-    // Nueva validación para el formulario de vacantes
     const validateVacancyForm = () => {
         const newErrors = {
             vacancyName: validateNotEmpty(form.vacancyName, 'nombre de la vacante'),
@@ -218,22 +211,36 @@ export const GlobalProvider = ({ children }) => {
             contact: validateContact(form.contact),
             location: validateNotEmpty(form.location, 'ubicación'),
             responsibilities: validateNotEmpty(form.responsibilities, 'responsabilidades'),
-            availability: validateNotEmpty(form.availability, 'disponibilidad requerida'),
+            availability: validateNotEmpty(form.availability, 'disponibilidad'),
             salary: validateNotEmpty(form.salary, 'salario estimado')
         }
-        
+
         setErrors(prev => ({
             ...prev,
             ...newErrors
         }))
-        
+
         return !Object.values(newErrors).some(error => error !== '')
     }
 
-    // Función de envío genérica
-    const handleSubmit = (e, formType) => {
+    const addVacancy = (vacancyData) => {
+        const newId = vacancies.length > 0 ? Math.max(...vacancies.map(v => v.id)) + 1 : 1
+
+        const newVacancy = {
+            id: newId,
+            title: vacancyData.vacancyName,
+            company: vacancyData.contactPerson,
+            location: vacancyData.location,
+            type: vacancyData.availability,
+            fullData: { ...vacancyData } // Guardamos todos los datos del formulario
+        }
+
+        setVacancies(prev => [...prev, newVacancy])
+    }
+
+    const handleSubmit = (e, formType, onSuccess) => {
         e.preventDefault()
-        
+
         let isValid = false
         if (formType === 'employer') {
             isValid = validateEmployerForm()
@@ -244,11 +251,12 @@ export const GlobalProvider = ({ children }) => {
         } else if (formType === 'vacancy') {
             isValid = validateVacancyForm()
         }
-
         if (isValid) {
-            // Guardar datos antes de redirigir
-            console.log('Formulario válido:', form)
-            navigate('/crear-contraseña')
+            if (typeof onSuccess === 'function') {
+                onSuccess()
+            } else {
+                navigate('/crear-contraseña')
+            }
         }
     }
 
@@ -256,6 +264,8 @@ export const GlobalProvider = ({ children }) => {
         <GlobalContext.Provider value={{
             form,
             errors,
+            vacancies,
+            addVacancy,
             handleChange,
             handleSelectChange,
             handleSubmit,

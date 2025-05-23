@@ -1,11 +1,10 @@
-export const vacanciesExample = [
+export let vacanciesExample = [
     {
         id: 1,
         title: 'Desarrollador Frontend',
         company: 'Tech Solutions',
         location: 'Madrid, España',
         type: 'Full-time',
-        experience: '2 años',
     },
     {
         id: 2,
@@ -13,7 +12,6 @@ export const vacanciesExample = [
         company: 'Creative Agency',
         location: 'Barcelona, España',
         type: 'Part-time',
-        experience: '1 año',
     },
     {
         id: 3,
@@ -21,7 +19,6 @@ export const vacanciesExample = [
         company: 'Business Corp',
         location: 'Valencia, España',
         type: 'Full-time',
-        experience: '5 años',
     },
     {
         id: 4,
@@ -29,7 +26,6 @@ export const vacanciesExample = [
         company: 'Data Insights',
         location: 'Sevilla, España',
         type: 'Internship',
-        experience: 'No requerida',
     },
     {
         id: 5,
@@ -37,7 +33,6 @@ export const vacanciesExample = [
         company: 'Web Solutions',
         location: 'Bilbao, España',
         type: 'Full-time',
-        experience: '3 años',
     },
     {
         id: 6,
@@ -45,7 +40,6 @@ export const vacanciesExample = [
         company: 'Marketing Agency',
         location: 'Málaga, España',
         type: 'Part-time',
-        experience: '2 años',
     },
     {
         id: 7,
@@ -53,7 +47,6 @@ export const vacanciesExample = [
         company: 'Tech Innovations',
         location: 'Zaragoza, España',
         type: 'Full-time',
-        experience: '4 años',
     },
     {
         id: 8,
@@ -61,7 +54,6 @@ export const vacanciesExample = [
         company: 'Office Solutions',
         location: 'Alicante, España',
         type: 'Internship',
-        experience: 'No requerida',
     },
     {
         id: 9,
@@ -69,7 +61,6 @@ export const vacanciesExample = [
         company: 'App Development',
         location: 'Granada, España',
         type: 'Full-time',
-        experience: '2 años',
     },
     {
         id: 10,
@@ -77,7 +68,6 @@ export const vacanciesExample = [
         company: 'Accounting Firm',
         location: 'Murcia, España',
         type: 'Part-time',
-        experience: '3 años',
     },
     {
         id: 11,
@@ -85,7 +75,6 @@ export const vacanciesExample = [
         company: 'Design Studio',
         location: 'Córdoba, España',
         type: 'Full-time',
-        experience: '2 años',
     },
     {
         id: 12,
@@ -93,6 +82,43 @@ export const vacanciesExample = [
         company: 'Gaming Company',
         location: 'Bilbao, España',
         type: 'Internship',
-        experience: 'No requerida',
     }
+]
+
+const saveVacancies = () => {
+  localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
+}
+
+if (!localStorage.getItem('vacancies')) {
+  saveVacancies()
+} else {
+  vacanciesExample = JSON.parse(localStorage.getItem('vacancies'))
+}
+
+export const addVacancyToExample = (formData) => {
+  const newId = vacanciesExample.length > 0 
+    ? Math.max(...vacanciesExample.map(v => v.id)) + 1 
+    : 1
+
+  const newVacancy = {
+    id: newId,
+    title: formData.vacancyName,
+    company: formData.contactPerson,
+    location: formData.location,
+    type: formData.availability
+  }
+
+  vacanciesExample.push(newVacancy)
+  saveVacancies()
+  return newVacancy
+}
+
+export const publishedVacancies = [
+    {
+        id: 1,
+        title: 'Desarrollador Frontend',
+        company: 'Tech Solutions',
+        location: 'Madrid, España',
+        type: 'Full-time',
+    },
 ]

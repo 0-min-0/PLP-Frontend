@@ -3,13 +3,32 @@ import { Input } from '../../UI/Input'
 import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
 import { useGlobal } from '../../Context/GlobalContext'
+import { useNavigate } from 'react-router-dom'
+import { showSuccessAlert, showErrorAlert } from '../../UI/CustomAlerts'
+import { addVacancyToExample } from '../../Utils/objectsExample'
 
 export const VacancyForm = () => {
     const { form, errors, handleChange, handleSubmit } = useGlobal()
+    const navigate = useNavigate()
+
+    const handleFormSubmit = (e) => {
+    const onSuccess = () => {
+      try {
+        addVacancyToExample(form)
+        showSuccessAlert(navigate, form)
+        return { success: true }
+      } catch (error) {
+        showErrorAlert()
+        return { success: false }
+      }
+    }
+
+    handleSubmit(e, 'vacancy', onSuccess)
+  }
 
     return (
         <div className='rounded-xl px-20 py-14 mx-30 mt-6 bg-[#405e7f]'>
-            <form onSubmit={(e) => handleSubmit(e, 'vacancy')} className='w-full'>
+            <form onSubmit={handleFormSubmit} className='w-full'>
                 <div className='flex justify-between items-start mb-8'>
                     <h2 className='text-white text-2xl font-semibold'>
                         Crea una nueva vacante, al terminar de llenar todos los campos, haz click en "publicar vacante"
@@ -32,6 +51,7 @@ export const VacancyForm = () => {
                             iValue={form.vacancyName || ''}
                             iChange={handleChange}
                             error={errors.vacancyName}
+                            errColor='text-[#60efdb]'
                         />
                         <Input
                             labelTitle='Persona de contacto'
@@ -42,6 +62,7 @@ export const VacancyForm = () => {
                             iValue={form.contactPerson || ''}
                             iChange={handleChange}
                             error={errors.contactPerson}
+                            errColor='text-[#60efdb]'
                         />
                         <Input
                             labelTitle='Contacto'
@@ -52,6 +73,7 @@ export const VacancyForm = () => {
                             iValue={form.contact || ''}
                             iChange={handleChange}
                             error={errors.contact}
+                            errColor='text-[#60efdb]'
                         />
                         <Input
                             labelTitle='Ubicación'
@@ -62,17 +84,20 @@ export const VacancyForm = () => {
                             iValue={form.location || ''}
                             iChange={handleChange}
                             error={errors.location}
+                            errColor='text-[#60efdb]'
                         />
                     </div>
                     <div className='w-1/2 flex flex-col gap-4'>
                         <Desc
                             nameDesc='Responsabilidades y especificaciones'
-                            color='text-white'
                             holderDesc='Escribe las responsabilidades que tendrá la persona que ocupe la vacante'
-                            value={form.responsibilities || ''}
+                            name='responsibilities'
+                            value={form.responsibilities}
                             onChange={handleChange}
                             error={errors.responsibilities}
                             height='h-34'
+                            color='text-white'
+                            errColor='text-[#60efdb]'
                         />
                         <Input
                             labelTitle='Disponibilidad requerida'
@@ -83,6 +108,7 @@ export const VacancyForm = () => {
                             iValue={form.availability || ''}
                             iChange={handleChange}
                             error={errors.availability}
+                            errColor='text-[#60efdb]'
                         />
                         <Input
                             labelTitle='Salario estimado'
@@ -93,6 +119,7 @@ export const VacancyForm = () => {
                             iValue={form.salary || ''}
                             iChange={handleChange}
                             error={errors.salary}
+                            errColor='text-[#60efdb]'
                         />
                     </div>
                 </div>

@@ -1,0 +1,163 @@
+/* Estilos base */
+.swal-success-popup, .swal-error-popup {
+    border-radius: 15px !important;
+    padding: 2rem !important;
+    max-width: 500px !important;
+    font-family: 'Afacad', sans-serif !important;
+}
+
+/* Títulos */
+.swal-success-title {
+    color: #405e7f !important;
+    font-family: 'AfacadBold', sans-serif !important;
+    font-size: 1.8rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.swal-error-title {
+    color: #dc3545 !important;
+    font-family: 'AfacadBold', sans-serif !important;
+    font-size: 1.8rem !important;
+}
+
+/* Contenido */
+.swal-custom-content {
+    color: #4a5568;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.swal-description {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #405e7f;
+}
+
+/* Tarjeta de vacante */
+.swal-vacancy-card {
+    display: flex;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.swal-company-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.swal-vacancy-info {
+    text-align: left;
+}
+
+.swal-vacancy-title {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.25rem;
+}
+
+.swal-vacancy-location {
+    font-size: 1rem;
+    color: #718096;
+}
+
+.swal-error-message {
+    background-color: #fff5f5;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    color: #e53e3e;
+    margin-top: 1rem;
+}
+
+.swal-success-confirm-btn {
+    background-color: #405e7f !important;
+    color: white !important;
+    border-radius: 50px !important;
+    padding: 0.5rem 1.5rem !important;
+    font-family: 'Afacad', sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: bold;
+    margin-right: 0.5rem !important;
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    cursor: pointer;
+}
+
+.swal-success-confirm-btn:hover {
+    transform: translateY(-0.125rem) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.swal-success-confirm-btn:active {
+    transform: scale(0.98) translateY(-0.125rem) !important;
+}
+
+.swal-success-cancel-btn {
+    background-color: #60efdb !important;
+    color: #405e7f !important;
+    border-radius: 50px !important;
+    padding: 0.5rem 1.5rem !important;
+    font-family: 'Afacad', sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: bold;
+    border: none !important; 
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    cursor: pointer;
+}
+
+.swal-success-cancel-btn:hover {
+    transform: translateY(-0.125rem) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.swal-success-cancel-btn:active {
+    transform: scale(0.98) translateY(-0.125rem) !important;
+}
+
+
+.swal-error-confirm-btn {
+    background-color: #dc3545 !important;
+    color: white !important;
+    border-radius: 50px !important;
+    padding: 0.5rem 1.5rem !important;
+    font-family: 'Afacad', sans-serif !important;
+    font-size: 1rem !important;
+    border: none !important;    
+    margin-bottom: 1rem;
+    transition: all 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    cursor: pointer;
+}
+
+.swal-error-confirm-btn:hover {
+    transform: translateY(-0.125rem) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+.swal-error-confirm-btn:active {
+    transform: scale(0.98) translateY(-0.125rem) !important;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.swal-show-animation {
+    animation: fadeInUp 0.3s ease-out forwards !important;
+}
