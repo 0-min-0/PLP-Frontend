@@ -5,7 +5,11 @@ const GlobalContext = createContext()
 
 export const GlobalProvider = ({ children }) => {
     const navigate = useNavigate()
-    const [vacancies, setVacancies] = useState([])
+     const [vacancies, setVacancies] = useState(() => {
+    const saved = localStorage.getItem('vacancies')
+    return saved ? JSON.parse(saved) : []
+  })
+
     const [form, setForm] = useState({
         // Campos para RegisterUser
         documentType: '',

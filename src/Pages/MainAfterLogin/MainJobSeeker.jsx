@@ -16,6 +16,7 @@ export const MainJobSeeker = () => {
                     <ProfileMenu
                         avatar={avatar}
                         name={<span className='text-lg font-semibold'>Jasmin Esperanza Garcia Paez</span>}
+                        settingsRoute='/configuraciones-contratista'
                     />}
                 buttons={
                     <NavLink

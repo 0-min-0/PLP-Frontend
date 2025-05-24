@@ -14,15 +14,12 @@ export const VacancyForm = () => {
     const handleFormSubmit = (e) => {
     const onSuccess = () => {
       try {
-        addVacancyToExample(form)
+        addVacancyToExample(form, form.name) 
         showSuccessAlert(navigate, form)
-        return { success: true }
       } catch (error) {
         showErrorAlert()
-        return { success: false }
       }
     }
-
     handleSubmit(e, 'vacancy', onSuccess)
   }
 

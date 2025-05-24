@@ -4,7 +4,7 @@ import { FiLogOut } from 'react-icons/fi'
 import { MenuItem } from '../../UI/MenuItem'
 import { useMenu } from '../../Context/MenuContext'
 
-export const ProfileMenu = ({ avatar, name }) => {
+export const ProfileMenu = ({ avatar, name, settingsRoute }) => {
     const { isOpen, setIsOpen } = useMenu()
     const menuRef = useRef(null)
 
@@ -70,7 +70,7 @@ export const ProfileMenu = ({ avatar, name }) => {
                         </button>
                     </div>
 
-                    <MenuItem to='/configuraciones'>Configuraciones</MenuItem>
+                    <MenuItem to={settingsRoute}>Configuraciones</MenuItem>
                     <MenuItem to='/categorias'>Categorías de trabajo</MenuItem>
                     <MenuItem to='/contacto'>Contacto</MenuItem>
                     <MenuItem to='/tema'>Tema (Predeterminado)</MenuItem>

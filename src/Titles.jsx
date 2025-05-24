@@ -18,6 +18,8 @@ export const DynamicTitle = () => {
     '/inicio-empresa': 'Inicio | PLP',
     '/crear-vacante': 'Crear vacante | PLP',
     '/centro-de-notificaciones': 'Centro de notificaciones | PLP',
+    '/configuraciones-contratante': 'Configuraciones | PLP',
+    '/configuraciones-contratista': 'Configuraciones | PLP',
   }
 
   useEffect(() => {

@@ -95,21 +95,21 @@ if (!localStorage.getItem('vacancies')) {
   vacanciesExample = JSON.parse(localStorage.getItem('vacancies'))
 }
 
-export const addVacancyToExample = (formData) => {
+export const addVacancyToExample = (vacancyData, companyName) => {
   const newId = vacanciesExample.length > 0 
     ? Math.max(...vacanciesExample.map(v => v.id)) + 1 
     : 1
 
   const newVacancy = {
     id: newId,
-    title: formData.vacancyName,
-    company: formData.contactPerson,
-    location: formData.location,
-    type: formData.availability
+    title: vacancyData.vacancyName,
+    company: companyName, 
+    location: vacancyData.location,
+    type: vacancyData.availability
   }
 
   vacanciesExample.push(newVacancy)
-  saveVacancies()
+  localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
   return newVacancy
 }
 

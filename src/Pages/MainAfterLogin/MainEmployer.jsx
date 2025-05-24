@@ -17,6 +17,7 @@ export const MainEmployer = () => {
                     <ProfileMenu
                         avatar={avatar}
                         name={<span className='text-lg font-semibold'>Jasmin Esperanza Garcia Paez</span>}
+                        settingsRoute='/configuraciones-contratante'
                     />}
                 buttons={
                     <div className='w-full flex'>

@@ -1,5 +1,5 @@
 import React from 'react'
-import plpLogo from '../assets/images/plpLogo.jpg'
+import plpLogo from '../assets/images/plpLogo.png'
 import { NavLink } from 'react-router-dom'
 
 export const InteractiveLogo = () => {

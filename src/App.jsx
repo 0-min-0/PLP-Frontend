@@ -16,11 +16,15 @@ import { Company } from './Components/RegisterForms/Company'
 import { GlobalProvider } from './Context/GlobalContext'
 import { CreateVacancie } from './Pages/CreateVacancie/CreateVacancie'
 import { MenuProvider } from './Context/MenuContext'
+import { SettingsEmployer } from './Pages/Settings/SettingsEmployer'
 
 function App() {
 
   return (
-    <div className='w-full h-screen p-6 font-[afacad]'>
+    <div className={`w-full h-screen p-6 font-[afacad] 
+      ${location.pathname === '/configuraciones-contratante' ? 'bg-[#dcfff6]' : 
+        location.pathname === '/configraciones-contratista' ? 'bg-[#dcfff6]' : 'bg-white'
+      }`}>
       <DynamicTitle />
       <Routes>
         <Route path='/' element={<MainPage />} />
@@ -53,6 +57,11 @@ function App() {
           <MenuProvider>
             <CreateVacancie />
           </MenuProvider>
+        } />
+        <Route path='/configuraciones-contratante' element={
+          <GlobalProvider>
+             <SettingsEmployer />
+          </GlobalProvider>
         } />
       </Routes>
     </div>
