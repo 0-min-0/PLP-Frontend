@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const RegisterContext = createContext()
@@ -31,10 +31,29 @@ export const RegisterProvider = ({ children }) => {
     sector: '',
     website: '',
     // Campo para RegisterRolType
-    userType: null
+    userType: null,
+    // Campos para Password
+    createPassword: '',
+    confirmPassword: ''
   })
 
+  // Estados para errores
   const [errors, setErrors] = useState({})
+
+  // Estados para visibilidad de contraseñas
+  const [visibility, setVisibility] = useState({
+    createPassword: false,
+    confirmPassword: false,
+    loginPassword: false
+  })
+
+  // Toggle para visibilidad de contraseñas
+  const toggleVisibility = (field) => {
+    setVisibility(prev => ({
+      ...prev,
+      [field]: !prev[field]
+    }))
+  }
 
   // Validaciones comunes
   const validatePhone = (value, isRequired = true) => {
@@ -102,6 +121,49 @@ export const RegisterProvider = ({ children }) => {
     return ''
   }
 
+  // Validaciones para Password
+  const validatePasswordStrength = (password) => {
+    const minLength = password.length >= 8
+    const hasNumber = /\d/.test(password)
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    const hasUpperCase = /[A-Z]/.test(password)
+
+    if (!minLength) return 'ⓘ La contraseña debe tener al menos 8 caracteres'
+    if (!hasNumber) return 'ⓘ La contraseña debe contener al menos un número'
+    if (!hasSpecialChar) return 'ⓘ Debe contener al menos un carácter especial'
+    if (!hasUpperCase) return 'ⓘ Debe contener al menos una mayúscula'
+    return ''
+  }
+
+  // Efectos para validaciones en tiempo real
+  useEffect(() => {
+    if (form.createPassword) {
+      const strengthError = validatePasswordStrength(form.createPassword)
+      setErrors(prev => ({
+        ...prev,
+        errorStrength: strengthError
+      }))
+    } else {
+      setErrors(prev => ({
+        ...prev,
+        errorStrength: ''
+      }))
+    }
+
+    if (form.confirmPassword && form.createPassword !== form.confirmPassword) {
+      setErrors(prev => ({
+        ...prev,
+        errorMismatch: 'ⓘ Las contraseñas no coinciden.'
+      }))
+    } else {
+      setErrors(prev => ({
+        ...prev,
+        errorMismatch: ''
+      }))
+    }
+  }, [form.createPassword, form.confirmPassword])
+
+  // Handlers
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm(prev => ({
@@ -161,6 +223,7 @@ export const RegisterProvider = ({ children }) => {
     }
   }
 
+  // Validaciones de formularios
   const validateRegisterUserForm = () => {
     const newErrors = {
       name: validateNotEmpty(form.name, 'nombre'),
@@ -217,6 +280,19 @@ export const RegisterProvider = ({ children }) => {
     return !Object.values(newErrors).some(error => error !== '')
   }
 
+  const validatePasswordForm = () => {
+    const newErrors = {
+      errorCreatePassword: form.createPassword ? '' : 'ⓘ Este campo es requerido',
+      errorConfirmPassword: form.confirmPassword ? '' : 'ⓘ Este campo es requerido',
+      errorMismatch: errors.errorMismatch,
+      errorStrength: errors.errorStrength
+    }
+
+    setErrors(prev => ({ ...prev, ...newErrors }))
+    return !Object.values(newErrors).some(error => error !== '')
+  }
+
+  // Submit handler
   const handleSubmit = (e, formType, onSuccess) => {
     e.preventDefault()
     let isValid = false
@@ -226,9 +302,11 @@ export const RegisterProvider = ({ children }) => {
     else if (formType === 'registerUser') isValid = validateRegisterUserForm()
     else if (formType === 'company') isValid = validateCompanyForm()
     else if (formType === 'roleType') isValid = validateRoleTypeForm()
+    else if (formType === 'password') isValid = validatePasswordForm()
 
     if (isValid) {
       if (typeof onSuccess === 'function') onSuccess()
+      else if (formType === 'password') navigate('/verificación-de-correo')
       else navigate('/crear-contraseña')
     }
   }
@@ -237,15 +315,18 @@ export const RegisterProvider = ({ children }) => {
     <RegisterContext.Provider value={{
       form,
       errors,
+      visibility,
       handleChange,
       handleSelectChange,
       handleUserTypeChange,
+      toggleVisibility,
       handleSubmit,
       validateEmployerForm,
       validateJobSeekerForm,
       validateRegisterUserForm,
       validateCompanyForm,
-      validateRoleTypeForm
+      validateRoleTypeForm,
+      validatePasswordForm
     }}>
       {children}
     </RegisterContext.Provider>

@@ -200,7 +200,6 @@ export const addVacancyToExample = (formData, companyName) => {
   return newVacancy
 }
 
-// Actualizar una vacante existente
 export const updateVacancyInExample = (updatedVacancy) => {
   const currentVacancies = getVacancies()
   const index = currentVacancies.findIndex(v => v.id === updatedVacancy.id)

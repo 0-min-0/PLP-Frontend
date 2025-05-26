@@ -104,7 +104,7 @@ export const RegisterRolType = () => {
                     setError={() => {}}
                     desc='Haga click en la tarjeta para seleccionar su rol como Empresa/Emprendimiento'
                   />
-                  {errors.userType && <p className='text-red-400 font-semibold w-full text-left'>{errors.userType}</p>}
+                  {errors.userType && <p className='text-red-400 text-sm font-semibold w-full text-left'>{errors.userType}</p>}
                 </div>
 
                 <div className='w-[30%]'>

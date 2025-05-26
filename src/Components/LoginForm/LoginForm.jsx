@@ -5,12 +5,12 @@ import { PiEye, PiEyeClosed } from 'react-icons/pi'
 import { Button } from '../../UI/button'
 import { FormsContainer } from '../../UI/FormsContainer'
 import { Input } from '../../UI/Input'
-import { usePassword } from '../../Context/PasswordContext'
+import { useRegister } from '../../Context/RegisterContext'
 import { useLogin } from '../../Context/LoginContext'
 
 export const LoginForm = () => {
     const pStyle = 'text-[#60efdb] text-sm mt-1 font-semibold'
-    const { visibility, toggleVisibility } = usePassword()
+    const { visibility, toggleVisibility } = useRegister()
     const {
         form,
         errorForm,
@@ -47,7 +47,6 @@ export const LoginForm = () => {
                     </div>}
                 form={
                     <form onSubmit={handleSubmit} className='w-full relative flex flex-col items-center'>
-                        {/* Mensaje de error general */}
                         {errorForm.loginError && (
                             <div className='w-full mb-4 text-center'>
                                 <p className={pStyle}>{errorForm.loginError}</p>
@@ -61,8 +60,6 @@ export const LoginForm = () => {
                                 )}
                             </div>
                         )}
-
-                        {/* Campo de email/teléfono */}
                         <div className='w-full'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
@@ -83,8 +80,6 @@ export const LoginForm = () => {
                                 <p className={pStyle}>{errorForm.errorEmailOrPhone}</p>
                             )}
                         </div>
-
-                        {/* Campo de contraseña */}
                         <div className='w-full mt-4'>
                             <div className='w-full relative'>
                                 <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
@@ -112,8 +107,6 @@ export const LoginForm = () => {
                                 <p className={pStyle}>{errorForm.errorPassword}</p>
                             )}
                         </div>
-
-                        {/* Botones y enlaces */}
                         <div className='flex flex-col items-center gap-4 mt-6'>
                             <NavLink
                                 to='/recuperar-contraseña'
