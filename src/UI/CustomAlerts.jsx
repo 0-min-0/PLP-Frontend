@@ -45,7 +45,7 @@ export const showSuccessAlert = (navigate, formData) => {
         if (result.isConfirmed) {
             navigate('/')
         } else if (result.dismiss === Swal.DismissReason.cancel) {
-            navigate('/mis-publicaciones')
+            navigate('/configuraciones-contratante')
         }
     })
 }

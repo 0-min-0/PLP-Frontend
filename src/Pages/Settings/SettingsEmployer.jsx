@@ -4,13 +4,13 @@ import { Header } from '../../Components/Header/Header'
 import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2'
 import avatar from '../../assets/images/avatar.jpg'
 import { SearchBar } from '../../UI/SearchBar'
-import { useGlobal } from '../../Context/GlobalContext'
+import { useVacancy } from '../../Context/VacancyContext' 
 import { FiEdit, FiTrash2 } from 'react-icons/fi'
 import { VacancyDetail } from '../../UI/VacancyDetail'
 import { deleteVacancyFromExample, getVacancies, updateVacancyInExample } from '../../Utils/objectsExample'
 
 export const SettingsEmployer = () => {
-  const { vacancies, setVacancies } = useGlobal()
+  const { vacancies, setVacancies } = useVacancy() 
   const [selectedVacancy, setSelectedVacancy] = useState(null)
 
   const handleSaveVacancy = (updatedVacancy) => {

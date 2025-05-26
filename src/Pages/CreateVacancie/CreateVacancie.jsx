@@ -5,7 +5,6 @@ import { ProfileMenu } from '../../Components/ProfileMenu/ProfileMenu'
 import avatar from '../../assets/images/avatar.jpg'
 import { HiOutlineInbox } from 'react-icons/hi2'
 import { VacancyForm } from '../../Components/VacancyForm/VacancyForm'
-import { GlobalProvider } from '../../Context/GlobalContext'
 import { VacancyProvider } from '../../Context/VacancyContext'
 
 export const CreateVacancie = () => {

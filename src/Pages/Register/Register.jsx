@@ -4,7 +4,6 @@ import { Header } from '../../Components/Header/Header'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
 import { RegisterUser } from '../../Components/RegisterForms/RegisterUser'
-import { GlobalProvider } from '../../Context/GlobalContext'
 
 export const Register = () => {
     return (
@@ -24,13 +23,11 @@ export const Register = () => {
                 }
             />
             <div className='flex justify-center items-start mt-6 gap-20'>
-                    <GlobalProvider>
-                        <RegisterUser />
-                    </GlobalProvider>
+                <RegisterUser />
                 <WelcomeText
                     text={<p> Nos alegra tener nuevos usuarios como tú en
-                          <br /> nuestro aplicativo, esperamos que tu 
-                          <br /> experiencia sea agradable en PLP. </p>
+                        <br /> nuestro aplicativo, esperamos que tu
+                        <br /> experiencia sea agradable en PLP. </p>
                     }
                     ilustration={registerIlustration}
                     imgDesc='Ilustración de inicio de sesión'

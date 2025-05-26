@@ -20,8 +20,6 @@ export const VacancyProvider = ({ children }) => {
 
     const [errors, setErrors] = useState({})
 
-    // ====================== Validaciones ======================
-
     const validatePhone = (value, isRequired = true) => {
         if (!value) return isRequired ? 'ⓘ El número de teléfono es requerido.' : ''
         if (!/^[0-9]+$/.test(value)) return 'ⓘ El número de teléfono solo puede contener dígitos (0-9).'
@@ -63,8 +61,6 @@ export const VacancyProvider = ({ children }) => {
             errors: newErrors
         }
     }
-
-    // ====================== Funciones ======================
 
     const handleChange = (e) => {
         const { name, value } = e.target

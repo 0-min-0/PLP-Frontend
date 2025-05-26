@@ -26,10 +26,17 @@ export const RegisterProvider = ({ children }) => {
     studiesTwo: '',
     studiesThree: '',
     studiesFour: '',
+    // Campos para Company
+    nit: '',
+    sector: '',
+    website: '',
+    // Campo para RegisterRolType
+    userType: null
   })
 
   const [errors, setErrors] = useState({})
 
+  // Validaciones comunes
   const validatePhone = (value, isRequired = true) => {
     if (!value) return isRequired ? 'ⓘ El número de teléfono es requerido.' : ''
     if (!/^[0-9]+$/.test(value)) return 'ⓘ El número de teléfono solo puede contener dígitos (0-9).'
@@ -61,6 +68,40 @@ export const RegisterProvider = ({ children }) => {
     return ''
   }
 
+  // Validaciones específicas para Company
+  const validateNIT = (nit) => {
+    if (!nit) return 'ⓘ El NIT es requerido'
+    if (!/^[0-9-]+$/.test(nit)) return 'ⓘ El NIT solo puede contener números y guiones'
+    if (nit.replace(/-/g, '').length < 6) return 'ⓘ NIT demasiado corto'
+    
+    const cleanNit = nit.replace(/-/g, '')
+    const digits = cleanNit.split('').map(Number)
+    const lastDigit = digits.pop()
+
+    let sum = 0
+    let factor = digits.length + 1
+
+    digits.forEach(digit => {
+      sum += digit * factor
+      factor--
+    })
+
+    const calculatedDigit = 11 - (sum % 11)
+    const finalDigit = calculatedDigit === 10 ? 'k' : calculatedDigit === 11 ? 0 : calculatedDigit
+
+    if (String(finalDigit).toLowerCase() !== String(lastDigit).toLowerCase()) {
+      return 'ⓘ NIT inválido (dígito verificador incorrecto)'
+    }
+
+    return ''
+  }
+
+  // Validación para RegisterRolType
+  const validateUserType = (userType) => {
+    if (!userType) return 'ⓘ Selecciona un rol para continuar'
+    return ''
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm(prev => ({
@@ -82,6 +123,8 @@ export const RegisterProvider = ({ children }) => {
         error = validateEmail(value)
       } else if (name === 'documentNumber') {
         error = validateDocumentNumber(value)
+      } else if (name === 'nit') {
+        error = validateNIT(value)
       }
       if (error) {
         setErrors(prev => ({
@@ -101,6 +144,19 @@ export const RegisterProvider = ({ children }) => {
       setErrors(prev => ({
         ...prev,
         [name]: ''
+      }))
+    }
+  }
+
+  const handleUserTypeChange = (value) => {
+    setForm(prev => ({
+      ...prev,
+      userType: value
+    }))
+    if (errors.userType) {
+      setErrors(prev => ({
+        ...prev,
+        userType: ''
       }))
     }
   }
@@ -144,6 +200,23 @@ export const RegisterProvider = ({ children }) => {
     return !Object.values(newErrors).some(error => error !== '')
   }
 
+  const validateCompanyForm = () => {
+    const newErrors = {
+      nit: validateNIT(form.nit),
+      sector: validateNotEmpty(form.sector, 'sector de la empresa')
+    }
+    setErrors(prev => ({ ...prev, ...newErrors }))
+    return !Object.values(newErrors).some(error => error !== '')
+  }
+
+  const validateRoleTypeForm = () => {
+    const newErrors = {
+      userType: validateUserType(form.userType)
+    }
+    setErrors(prev => ({ ...prev, ...newErrors }))
+    return !Object.values(newErrors).some(error => error !== '')
+  }
+
   const handleSubmit = (e, formType, onSuccess) => {
     e.preventDefault()
     let isValid = false
@@ -151,6 +224,8 @@ export const RegisterProvider = ({ children }) => {
     if (formType === 'employer') isValid = validateEmployerForm()
     else if (formType === 'jobSeeker') isValid = validateJobSeekerForm()
     else if (formType === 'registerUser') isValid = validateRegisterUserForm()
+    else if (formType === 'company') isValid = validateCompanyForm()
+    else if (formType === 'roleType') isValid = validateRoleTypeForm()
 
     if (isValid) {
       if (typeof onSuccess === 'function') onSuccess()
@@ -164,10 +239,13 @@ export const RegisterProvider = ({ children }) => {
       errors,
       handleChange,
       handleSelectChange,
+      handleUserTypeChange,
       handleSubmit,
       validateEmployerForm,
       validateJobSeekerForm,
-      validateRegisterUserForm
+      validateRegisterUserForm,
+      validateCompanyForm,
+      validateRoleTypeForm
     }}>
       {children}
     </RegisterContext.Provider>

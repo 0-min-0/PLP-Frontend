@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
 import { Button } from '../../UI/button'
 import { CardUserType } from '../../UI/CardUserType'
@@ -9,31 +8,27 @@ import { BiBuildings } from 'react-icons/bi'
 import { Header } from '../Header/Header'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
+import { useRegister } from '../../Context/RegisterContext'
 
 export const RegisterRolType = () => {
-  const [userType, setUserType] = useState(null)
-  const [error, setError] = useState('')
   const navigate = useNavigate()
+  const {
+    form,
+    errors,
+    handleUserTypeChange,
+    handleSubmit
+  } = useRegister()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-
-    if (!userType) {
-      setError('ⓘ Selecciona un rol para continuar')
-      return
-    }
-
-    setError('')
-
-    if (userType === 'jobSeeker') {
-      navigate('/crear-cuenta/contratista')
-    } else if (userType === 'employer') {
-      navigate('/crear-cuenta/contratante')
-    } else if (userType === 'company') {
-      navigate('/crear-cuenta/empresa')
-    } else {
-      setError('ⓘ Ocurrió un error inesperado')
-    }
+  const localHandleSubmit = (e) => {
+    handleSubmit(e, 'roleType', () => {
+      if (form.userType === 'jobSeeker') {
+        navigate('/crear-cuenta/contratista')
+      } else if (form.userType === 'employer') {
+        navigate('/crear-cuenta/contratante')
+      } else if (form.userType === 'company') {
+        navigate('/crear-cuenta/empresa')
+      }
+    })
   }
 
   return (
@@ -66,50 +61,50 @@ export const RegisterRolType = () => {
                 </NavLink>
               </p>}
             form={
-              <form onSubmit={handleSubmit} className='w-full flex flex-col items-center gap-6 my-6'>
+              <form onSubmit={localHandleSubmit} className='w-full flex flex-col items-center gap-6 my-6'>
                 <div className='w-full'>
                   <p className='mb-4 font-semibold text-lg'>
                     Selecciona el rol con el que utilizarás tu cuenta y luego presiona continuar.
                   </p>
                   <CardUserType
                     value='jobSeeker'
-                    currentSelection={userType}
+                    currentSelection={form.userType}
                     title='Soy una persona en busca de nuevas oportunidades laborales'
                     userType='Contratista'
                     rolIcon={<HiOutlineBriefcase className='w-10 h-10' />}
                     iconDesc='Contratista Logo'
-                    onChange={setUserType}
-                    error={error}
-                    setError={setError}
+                    onChange={handleUserTypeChange}
+                    error={errors.userType}
+                    setError={() => {}}
                     desc='Haga click en la tarjeta para seleccionar su rol como Contratista'
                   />
 
                   <CardUserType
                     value='employer'
-                    currentSelection={userType}
+                    currentSelection={form.userType}
                     title='Soy una persona que solicita servicios temporales'
                     userType='Contratante'
                     rolIcon={<HiOutlineUserGroup className='w-12 h-12' />}
                     iconDesc='Contratante Logo'
-                    onChange={setUserType}
-                    error={error}
-                    setError={setError}
+                    onChange={handleUserTypeChange}
+                    error={errors.userType}
+                    setError={() => {}}
                     desc='Haga click en la tarjeta para seleccionar su rol como Contratante'
                   />
 
                   <CardUserType
                     value='company'
-                    currentSelection={userType}
+                    currentSelection={form.userType}
                     title='Somos una empresa en busca de talento y experiencia'
                     userType='Empresa/Emprendimiento'
                     rolIcon={<BiBuildings className='w-12 h-12' />}
                     iconDesc='Empresa/Emprendimiento Logo'
-                    onChange={setUserType}
-                    error={error}
-                    setError={setError}
+                    onChange={handleUserTypeChange}
+                    error={errors.userType}
+                    setError={() => {}}
                     desc='Haga click en la tarjeta para seleccionar su rol como Empresa/Emprendimiento'
                   />
-                  {error && <p className='text-red-400 font-semibold w-full text-left'>{error}</p>}
+                  {errors.userType && <p className='text-red-400 font-semibold w-full text-left'>{errors.userType}</p>}
                 </div>
 
                 <div className='w-[30%]'>

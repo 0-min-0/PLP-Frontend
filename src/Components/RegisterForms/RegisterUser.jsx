@@ -7,7 +7,6 @@ import { optionGenre, optionTown } from '../../Utils/options'
 import { Select } from '../../UI/Select'
 import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
-// Cambiar el import del contexto
 import { useRegister } from '../../Context/RegisterContext'
 
 export const RegisterUser = () => {
@@ -19,7 +18,7 @@ export const RegisterUser = () => {
         handleSelectChange,
         handleSubmit,
         validateRegisterUserForm
-    } = useRegister() // Cambiar aquí el hook
+    } = useRegister() 
 
     const errorStyle = 'text-[#ff6b6b] text-sm mt-1 font-semibold'
 

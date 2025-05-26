@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react' 
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
 import { FormsContainer } from '../../UI/FormsContainer'
@@ -6,92 +6,30 @@ import { Input } from '../../UI/Input'
 import { Button } from '../../UI/button'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
+import { useRegister } from '../../Context/RegisterContext'
 
 export const Company = () => {
     const navigate = useNavigate()
     const errorStyle = 'text-[#60efdb] text-sm mt-1 font-semibold'
-
-    const [form, setForm] = useState({
-        nit: '',
-        sector: '',
-        website: ''
-    })
-
-    const [errors, setErrors] = useState({
-        nit: '',
-        sector: '',
-        website: ''
-    })
-
-    const validateNIT = (nit) => {
-        if (!nit) return 'ⓘ El NIT es requerido'
-        if (!/^[0-9-]+$/.test(nit)) return 'ⓘ El NIT solo puede contener números y guiones'
-        if (nit.replace(/-/g, '').length < 6) return 'ⓘ NIT demasiado corto'
-        const cleanNit = nit.replace(/-/g, '')
-        const digits = cleanNit.split('').map(Number)
-        const lastDigit = digits.pop()
-
-        let sum = 0
-        let factor = digits.length + 1
-
-        digits.forEach(digit => {
-            sum += digit * factor
-            factor--
-        })
-
-        // const calculatedVerifier = (11 - (sum % 11)) % 11
-        // if (calculatedVerifier !== lastDigit) {
-        //     return 'ⓘ NIT inválido (dígito verificador incorrecto)'
-        // }
-        // return ''
-    }
+    
+    const {
+        form,
+        errors,
+        handleChange,
+        handleSubmit,
+        validateCompanyForm
+    } = useRegister()
 
     useEffect(() => {
         if (form.nit) {
-            const nitError = validateNIT(form.nit)
-            setErrors(prev => ({
-                ...prev,
-                nit: nitError
-            }))
-        }
-
-        if (form.sector) {
-            setErrors(prev => ({
-                ...prev,
-                sector: form.sector ? '' : 'ⓘ El sector es requerido'
-            }))
+            validateCompanyForm()
         }
     }, [form.nit, form.sector])
 
-    const handleChange = (e) => {
-        const { name, value } = e.target
-        setForm(prev => ({
-            ...prev,
-            [name]: value
-        }))
-
-        if (errors[name]) {
-            setErrors(prev => ({
-                ...prev,
-                [name]: ''
-            }))
-        }
-    }
-
     const localHandleSubmit = (e) => {
-        e.preventDefault()
-
-        const newErrors = {
-            nit: validateNIT(form.nit),
-            sector: form.sector ? '' : 'ⓘ El sector es requerido',
-            website: '' 
-        }
-
-        setErrors(newErrors)
-
-        if (!newErrors.nit && !newErrors.sector) {
+        handleSubmit(e, 'company', () => {
             navigate('/crear-contraseña')
-        }
+        })
     }
 
     return (
