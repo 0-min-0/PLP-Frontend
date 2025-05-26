@@ -1,13 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { getVacancies, addVacancyToExample, updateVacancyInExample, deleteVacancyFromExample } from '../Utils/objectsExample'
 
 const VacancyContext = createContext()
 
 export const VacancyProvider = ({ children }) => {
-    const [vacancies, setVacancies] = useState(() => {
-        const saved = localStorage.getItem('vacancies')
-        return saved ? JSON.parse(saved) : []
-    })
-
+    const [vacancies, setVacancies] = useState(getVacancies())
     const [vacancy, setVacancy] = useState({
         vacancyName: '',
         contactPerson: '',
@@ -19,6 +16,16 @@ export const VacancyProvider = ({ children }) => {
     })
 
     const [errors, setErrors] = useState({})
+
+    // Actualizar vacancies cuando cambie localStorage
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setVacancies(getVacancies())
+        }
+        
+        window.addEventListener('storage', handleStorageChange)
+        return () => window.removeEventListener('storage', handleStorageChange)
+    }, [])
 
     const validatePhone = (value, isRequired = true) => {
         if (!value) return isRequired ? 'ⓘ El número de teléfono es requerido.' : ''
@@ -67,19 +74,23 @@ export const VacancyProvider = ({ children }) => {
         setVacancy(prev => ({ ...prev, [name]: value }))
     }
 
-    const addVacancy = (vacancyData) => {
-        const newId = vacancies.length > 0 ? Math.max(...vacancies.map(v => v.id)) + 1 : 1
-        const newVacancy = {
-            id: newId,
-            title: vacancyData.vacancyName,
-            company: vacancyData.contactPerson,
-            location: vacancyData.location,
-            type: vacancyData.availability,
-            fullData: { ...vacancyData }
+    const addVacancy = (vacancyData, companyName) => {
+        const newVacancy = addVacancyToExample(vacancyData, companyName)
+        setVacancies(getVacancies())
+        return newVacancy
+    }
+
+    const updateVacancy = (updatedVacancy) => {
+        const success = updateVacancyInExample(updatedVacancy)
+        if (success) {
+            setVacancies(getVacancies())
         }
-        const updatedVacancies = [...vacancies, newVacancy]
-        setVacancies(updatedVacancies)
-        localStorage.setItem('vacancies', JSON.stringify(updatedVacancies))
+        return success
+    }
+
+    const deleteVacancy = (id) => {
+        deleteVacancyFromExample(id)
+        setVacancies(getVacancies())
     }
 
     const handleSubmit = (e, type, onSuccess) => {
@@ -110,6 +121,8 @@ export const VacancyProvider = ({ children }) => {
             setVacancy,
             setVacancies,
             addVacancy,
+            updateVacancy,
+            deleteVacancy,
             validateVacancyForm,
             handleChange,
             handleSubmit

@@ -66,15 +66,15 @@ export const SettingsEmployer = () => {
         <div className='mt-8'>
           <SearchBar />
           <div className='mt-6'>
-            <h2 className='text-2xl font-[afacadBold] text-[#405e7f] mb-4'>
+            <h2 className='text-3xl font-[afacadBold] text-[#405e7f] mb-4'>
               Publicaciones
             </h2>
             {vacancies.length > 0 ? (
-              <div className='w-full h-85 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto pr-4'>
+              <div className='w-full h-85 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
                 {vacancies.map((vacancy) => (
                   <div
                     key={vacancy.id}
-                    className='border-2 border-[#60efdb] rounded-xl p-6 cursor-pointer hover:shadow-md transition-all duration-300'
+                    className='border-2 border-[#60efdb] rounded-xl p-6'
                     onClick={() => setSelectedVacancy(vacancy)}
                   >
                     <div className='flex justify-between items-start'>
@@ -82,19 +82,17 @@ export const SettingsEmployer = () => {
                         <h3 className='font-bold text-lg text-[#405e7f]'>
                           {vacancy.vacancyName || vacancy.title}
                         </h3>
-                        <p className='text-gray-600 mt-2'>
-                          <span className='font-medium'>Contacto:</span> {vacancy.contactPerson}
+                        <p className='text-gray-600 mt-1'>
+                          <span className='font-semibold text-[#405e7f]'>Contacto  •</span> {vacancy.contactPerson}
                         </p>
                         <p className='text-gray-600'>
-                          <span className='font-medium'>Teléfono/Email:</span> {vacancy.contact}
-                        </p>
-                        <p className='text-gray-600'>
-                          <span className='font-medium'>Ubicación:</span> {vacancy.location}
+                          <span className='font-semibold text-[#405e7f]'>Teléfono/Email  •</span> {vacancy.contact}
                         </p>
                       </div>
-                      <div className="flex flex-col space-y-2 ml-4">
+                      <div className="flex ml-4">
                         <button
-                          className='text-[#405e7f] cursor-pointer p-1
+                        title='Editar vacante'
+                          className='text-[#405e7f] cursor-pointer p-2
                                     transition-all duration-300
                                     hover:bg-[#60efdb]/20 rounded-full'
                           onClick={(e) => {
@@ -102,12 +100,13 @@ export const SettingsEmployer = () => {
                             setSelectedVacancy(vacancy)
                           }}
                         >
-                          <FiEdit size={20} />
+                          <FiEdit size={24} />
                         </button>
                         <button
-                          className='text-red-500 cursor-pointer p-1
+                          title='Eliminar vacante'
+                          className='text-[#405e7f] cursor-pointer p-2
                                     transition-all duration-300
-                                    hover:bg-red-500/20 rounded-full'
+                                    hover:bg-[#60efdb]/20 rounded-full'
                           onClick={(e) => {
                             e.stopPropagation()
                             if (window.confirm('¿Estás seguro de eliminar esta vacante?')) {
@@ -115,7 +114,7 @@ export const SettingsEmployer = () => {
                             }
                           }}
                         >
-                          <FiTrash2 size={20} />
+                          <FiTrash2 size={24} />
                         </button>
                       </div>
                     </div>
