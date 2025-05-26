@@ -269,6 +269,7 @@ export const GlobalProvider = ({ children }) => {
             form,
             errors,
             vacancies,
+            setVacancies,
             addVacancy,
             handleChange,
             handleSelectChange,

@@ -1,4 +1,4 @@
-import { useGlobal } from '../Context/GlobalContext'
+import { useRegister } from '../Context/RegisterContext'
 
 export const Desc = ({ 
     nameDesc, 
@@ -11,14 +11,14 @@ export const Desc = ({
     color = 'text-[#405e7f]', 
     errColor = 'text-red-400'
 }) => {
-    const { form, errors, handleChange } = useGlobal()
+
+    const { form, errors, handleChange } = useRegister()
     const maxLength = 500
 
     const descStyle = `w-full ${height} bg-white px-4 py-2 resize-none text-lg mt-3 text-[#405e7f]/90 rounded-xl border 
                    border-[#405e7f]/50 focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent 
                    transition-all duration-300`
 
-    // Determinar qué error mostrar (prioriza el error pasado como prop)
     const currentError = error || errors[name]
 
     return (
@@ -40,7 +40,6 @@ export const Desc = ({
                     {value ? value.length : form[name] ? form[name].length : 0}/{maxLength}
                 </span>
             </div>
-            {/* Muestra solo un error */}
             {currentError && (
                 <p className={`${errColor} text-sm mt-1 font-semibold`}>{currentError}</p>
             )}

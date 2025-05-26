@@ -172,8 +172,8 @@ export const LoginProvider = ({ children }) => {
         try {
             //Aqui va la logica de autenticacion
             setTimeout(() => {
-                navigate('/inicio');
-                setIsSubmitting(false);
+                navigate('/inicio-contratista')
+                setIsSubmitting(false)
             }, 1000)
         } catch (error) {
             setErrorForm({

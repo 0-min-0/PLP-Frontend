@@ -7,7 +7,8 @@ import { optionGenre, optionTown } from '../../Utils/options'
 import { Select } from '../../UI/Select'
 import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
-import { useGlobal } from '../../Context/GlobalContext'
+// Cambiar el import del contexto
+import { useRegister } from '../../Context/RegisterContext'
 
 export const RegisterUser = () => {
     const navigate = useNavigate()
@@ -18,7 +19,7 @@ export const RegisterUser = () => {
         handleSelectChange,
         handleSubmit,
         validateRegisterUserForm
-    } = useGlobal()
+    } = useRegister() // Cambiar aquí el hook
 
     const errorStyle = 'text-[#ff6b6b] text-sm mt-1 font-semibold'
 
@@ -77,6 +78,7 @@ export const RegisterUser = () => {
                                         <HiOutlinePhone className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
                                     </div>
                                     {errors.phone && <p className={errorStyle}>{errors.phone}</p>}
+
                                     <div className='relative mt-4'>
                                         <Input
                                             iName='phoneSec'
@@ -153,4 +155,4 @@ export const RegisterUser = () => {
             />
         </div>
     );
-};
+}

@@ -2,26 +2,26 @@ import React from 'react'
 import { Input } from '../../UI/Input'
 import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
-import { useGlobal } from '../../Context/GlobalContext'
+import { useVacancy } from '../../Context/VacancyContext'
 import { useNavigate } from 'react-router-dom'
 import { showSuccessAlert, showErrorAlert } from '../../UI/CustomAlerts'
 import { addVacancyToExample } from '../../Utils/objectsExample'
 
 export const VacancyForm = () => {
-    const { form, errors, handleChange, handleSubmit } = useGlobal()
+    const { vacancy, errors, handleChange, handleSubmit } = useVacancy()
     const navigate = useNavigate()
 
     const handleFormSubmit = (e) => {
-    const onSuccess = () => {
-      try {
-        addVacancyToExample(form, form.name) 
-        showSuccessAlert(navigate, form)
-      } catch (error) {
-        showErrorAlert()
-      }
+        const onSuccess = () => {
+            try {
+                addVacancyToExample(vacancy, vacancy.name)
+                showSuccessAlert(navigate, vacancy)
+            } catch (error) {
+                showErrorAlert()
+            }
+        }
+        handleSubmit(e, 'vacancy', onSuccess)
     }
-    handleSubmit(e, 'vacancy', onSuccess)
-  }
 
     return (
         <div className='rounded-xl px-20 py-14 mx-30 mt-6 bg-[#405e7f]'>
@@ -45,7 +45,7 @@ export const VacancyForm = () => {
                             isFor='vacancyName'
                             iType='text'
                             iHolder='Ingresa nombre de la ocupación que solicitas'
-                            iValue={form.vacancyName || ''}
+                            iValue={vacancy.vacancyName || ''}
                             iChange={handleChange}
                             error={errors.vacancyName}
                             errColor='text-[#60efdb]'
@@ -56,7 +56,7 @@ export const VacancyForm = () => {
                             iName='contactPerson'
                             iType='text'
                             iHolder='Ingresa nombre de la persona de contacto'
-                            iValue={form.contactPerson || ''}
+                            iValue={vacancy.contactPerson || ''}
                             iChange={handleChange}
                             error={errors.contactPerson}
                             errColor='text-[#60efdb]'
@@ -67,7 +67,7 @@ export const VacancyForm = () => {
                             iName='contact'
                             iType='text'
                             iHolder='Ingresa número de contacto o correo electrónico'
-                            iValue={form.contact || ''}
+                            iValue={vacancy.contact || ''}
                             iChange={handleChange}
                             error={errors.contact}
                             errColor='text-[#60efdb]'
@@ -78,7 +78,7 @@ export const VacancyForm = () => {
                             iName='location'
                             iType='text'
                             iHolder='Ingresa la ubicación de la vacante'
-                            iValue={form.location || ''}
+                            iValue={vacancy.location || ''}
                             iChange={handleChange}
                             error={errors.location}
                             errColor='text-[#60efdb]'
@@ -89,7 +89,7 @@ export const VacancyForm = () => {
                             nameDesc='Responsabilidades y especificaciones'
                             holderDesc='Escribe las responsabilidades que tendrá la persona que ocupe la vacante'
                             name='responsibilities'
-                            value={form.responsibilities}
+                            value={vacancy.responsibilities}
                             onChange={handleChange}
                             error={errors.responsibilities}
                             height='h-34'
@@ -102,7 +102,7 @@ export const VacancyForm = () => {
                             iName='availability'
                             iType='text'
                             iHolder='Ingresa la disponibilidad que solicitas (Ej. Tiempo completo de lunes a viernes)'
-                            iValue={form.availability || ''}
+                            iValue={vacancy.availability || ''}
                             iChange={handleChange}
                             error={errors.availability}
                             errColor='text-[#60efdb]'
@@ -113,7 +113,7 @@ export const VacancyForm = () => {
                             iName='salary'
                             iType='text'
                             iHolder='Ingresa el salario que ofreces Ej. 1.200.000 COP (dependiendo de tus especificaciones)'
-                            iValue={form.salary || ''}
+                            iValue={vacancy.salary || ''}
                             iChange={handleChange}
                             error={errors.salary}
                             errColor='text-[#60efdb]'

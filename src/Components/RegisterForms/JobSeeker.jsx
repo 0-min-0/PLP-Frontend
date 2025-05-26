@@ -8,17 +8,17 @@ import { Button } from '../../UI/button'
 import { Input } from '../../UI/Input'
 import { Select } from '../../UI/Select'
 import { optionId } from '../../Utils/options'
-import { useGlobal } from '../../Context/GlobalContext'
+import { useRegister } from '../../Context/RegisterContext' // <-- cambiado
 
 export const JobSeeker = () => {
-    const { 
-        form, 
-        errors, 
-        handleChange, 
-        handleSelectChange, 
+    const {
+        form,
+        errors,
+        handleChange,
+        handleSelectChange,
         handleSubmit
-    } = useGlobal()
-    
+    } = useRegister() // <-- cambiado
+
     const errorStyle = 'text-[#405e7f] text-sm mt-1 font-semibold'
 
     const localHandleSubmit = (e) => {

@@ -11,36 +11,40 @@ export const Input = ({
     iHolder = '',
     padding = 'px-4 py-2',
     error = '',
-    errColor = 'text-red-400'
+    errColor = 'text-red-400',
+    borderColor = 'border-[#405e7f]/50',
+    focusColor = 'focus:ring-[#60efdb]',
+    disabled = false
 }) => {
-
-    const iStyle = `w-full bg-white ${padding} text-lg mt-3 text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
-                    focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all 
-                    duration-300`
-
-    const lStyle = `text-${labelColor} font-semibold`
+    const iStyle = `w-full bg-white ${padding} text-lg mt-3 text-[#405e7f]/90 rounded-xl border ${borderColor} 
+                    focus:outline-none focus:ring-2 ${focusColor} focus:border-transparent transition-all 
+                    duration-300 ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}`
 
     return (
-
         <div className='w-full text-[#405e7f]'>
-            <label
-                htmlFor={isFor}
-                className={lStyle}
-            >
-                {labelTitle}
-            </label>
+            {labelTitle && (
+                <label
+                    htmlFor={isFor}
+                    className={`text-${labelColor} font-semibold`}
+                >
+                    {labelTitle}
+                </label>
+            )}
             <input
                 id={isFor}
                 type={iType}
                 name={iName}
-                value={iValue}
+                value={iValue || ''}
                 className={iStyle}
                 placeholder={iHolder}
                 onChange={iChange}
+                disabled={disabled}
             />
-            <div>
-                {error && <span className={`${errColor} font-semibold text-sm mt-1`}>{error}</span>}
-            </div>
+            {error && (
+                <span className={`${errColor} font-semibold text-sm mt-1 block`}>
+                    {error}
+                </span>
+            )}
         </div>
     )
 }
