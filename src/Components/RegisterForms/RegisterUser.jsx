@@ -18,7 +18,7 @@ export const RegisterUser = () => {
         handleSelectChange,
         handleSubmit,
         validateRegisterUserForm
-    } = useRegister() 
+    } = useRegister()
 
     const errorStyle = 'text-[#ff6b6b] text-sm mt-1 font-semibold'
 
@@ -111,13 +111,15 @@ export const RegisterUser = () => {
                                 <Desc
                                     nameDesc='Descripción'
                                     holderDesc='Escribe una breve descripción de la empresa o de ti mismo'
+                                    name='description'
                                     value={form.description}
-                                    onChange={(value) => handleChange({
+                                    onChange={(e) => handleChange({
                                         target: {
                                             name: 'description',
-                                            value: value
+                                            value: e.target.value 
                                         }
                                     })}
+                                    error={errors.description}
                                 />
                                 <div className='w-full gap-6 mt-3'>
                                     <div className='mt-5'>

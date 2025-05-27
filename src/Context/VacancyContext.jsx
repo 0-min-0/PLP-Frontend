@@ -7,22 +7,25 @@ export const VacancyProvider = ({ children }) => {
     const [vacancies, setVacancies] = useState(getVacancies())
     const [vacancy, setVacancy] = useState({
         vacancyName: '',
+        company: '',
         contactPerson: '',
         contact: '',
         location: '',
         responsibilities: '',
+        type: '',
         availability: '',
         salary: ''
     })
 
+    const [isEditing, setIsEditing] = useState(false)
+    const [showConfirm, setShowConfirm] = useState(false)
+    const [editedVacancy, setEditedVacancy] = useState(null)
     const [errors, setErrors] = useState({})
 
-    // Actualizar vacancies cuando cambie localStorage
     useEffect(() => {
         const handleStorageChange = () => {
             setVacancies(getVacancies())
         }
-        
         window.addEventListener('storage', handleStorageChange)
         return () => window.removeEventListener('storage', handleStorageChange)
     }, [])
@@ -52,15 +55,23 @@ export const VacancyProvider = ({ children }) => {
         return value.includes('@') ? validateEmail(value) : validatePhone(value)
     }
 
+    const validateSalary = (value) => {
+        if (!value) return 'ⓘ El salario estimado es requerido.'
+        if (!/^[\d,.]+$/.test(value)) return 'ⓘ Ingresa un valor numérico válido'
+        return ''
+    }
+
     const validateVacancyForm = (form) => {
         const newErrors = {
-            vacancyName: validateNotEmpty(form.vacancyName, 'nombre de la vacante'),
+            vacancyName: validateNotEmpty(form.vacancyName || form.title, 'nombre de la vacante'),
+            company: validateNotEmpty(form.company, 'empresa'),
             contactPerson: validateNotEmpty(form.contactPerson, 'persona de contacto'),
             contact: validateContact(form.contact),
             location: validateNotEmpty(form.location, 'ubicación'),
             responsibilities: validateNotEmpty(form.responsibilities, 'responsabilidades'),
+            type: validateNotEmpty(form.type, 'tipo de contrato'),
             availability: validateNotEmpty(form.availability, 'disponibilidad'),
-            salary: validateNotEmpty(form.salary, 'salario estimado')
+            salary: validateSalary(form.salary)
         }
 
         return {
@@ -72,18 +83,41 @@ export const VacancyProvider = ({ children }) => {
     const handleChange = (e) => {
         const { name, value } = e.target
         setVacancy(prev => ({ ...prev, [name]: value }))
+        const validation = validateVacancyForm({ ...vacancy, [name]: value })
+        setErrors(prev => ({ ...prev, [name]: validation.errors[name] }))
+    }
+
+    const handleEditChange = (e) => {
+        const { name, value } = e.target
+        const updated = { ...editedVacancy, [name]: value }
+        setEditedVacancy(updated)
+        const validation = validateVacancyForm(updated)
+        setErrors(prev => ({ ...prev, [name]: validation.errors[name] }))
     }
 
     const addVacancy = (vacancyData, companyName) => {
+        const validation = validateVacancyForm(vacancyData)
+        if (!validation.isValid) {
+            setErrors(validation.errors)
+            return false
+        }
+
         const newVacancy = addVacancyToExample(vacancyData, companyName)
         setVacancies(getVacancies())
         return newVacancy
     }
 
     const updateVacancy = (updatedVacancy) => {
+        const validation = validateVacancyForm(updatedVacancy)
+        if (!validation.isValid) {
+            setErrors(validation.errors)
+            return false
+        }
+
         const success = updateVacancyInExample(updatedVacancy)
         if (success) {
             setVacancies(getVacancies())
+            setErrors({})
         }
         return success
     }
@@ -102,10 +136,12 @@ export const VacancyProvider = ({ children }) => {
             addVacancy(vacancy)
             setVacancy({
                 vacancyName: '',
+                company: '',
                 contactPerson: '',
                 contact: '',
                 location: '',
                 responsibilities: '',
+                type: '',
                 availability: '',
                 salary: ''
             })
@@ -118,13 +154,20 @@ export const VacancyProvider = ({ children }) => {
             vacancy,
             vacancies,
             errors,
+            isEditing,
+            showConfirm,
+            editedVacancy,
             setVacancy,
             setVacancies,
+            setIsEditing,
+            setShowConfirm,
+            setEditedVacancy,
             addVacancy,
             updateVacancy,
             deleteVacancy,
             validateVacancyForm,
             handleChange,
+            handleEditChange,
             handleSubmit
         }}>
             {children}

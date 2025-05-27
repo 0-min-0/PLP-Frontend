@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useEffect } from 'react'
 import { Input } from '../UI/Input'
 import { Desc } from '../UI/Desc'
 import { Button } from '../UI/button'
@@ -7,18 +7,25 @@ import { ConfirmAlert } from './ConfirmAlert'
 import { useVacancy } from '../Context/VacancyContext'
 
 export const VacancyDetail = ({ vacancy, onClose }) => {
-  const { updateVacancy, deleteVacancy } = useVacancy()
-  const [isEditing, setIsEditing] = useState(false)
-  const [showConfirm, setShowConfirm] = useState(false)
-  const [editedVacancy, setEditedVacancy] = useState({
-    ...vacancy,
-    vacancyName: vacancy.vacancyName || vacancy.title
-  })
+  const {
+    isEditing,
+    showConfirm,
+    editedVacancy,
+    setEditedVacancy,
+    setIsEditing,
+    setShowConfirm,
+    updateVacancy,
+    deleteVacancy,
+    errors,
+    handleEditChange
+  } = useVacancy()
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setEditedVacancy(prev => ({ ...prev, [name]: value }))
-  }
+  useEffect(() => {
+    setEditedVacancy({
+      ...vacancy,
+      vacancyName: vacancy.vacancyName || vacancy.title
+    })
+  }, [vacancy])
 
   const handleSave = () => {
     const success = updateVacancy({
@@ -28,6 +35,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
 
     if (success) {
       setIsEditing(false)
+      onClose?.()
     }
   }
 
@@ -57,12 +65,13 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             iName='vacancyName'
             iType='text'
             isFor='vacancyName'
-            iValue={editedVacancy.vacancyName}
-            iChange={handleChange}
+            iValue={editedVacancy?.vacancyName || ''}
+            iChange={handleEditChange}
             iHolder='Nombre de la vacante'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]/50'
+            borderColor={isEditing ? (errors.vacancyName ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.vacancyName ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
             disabled={!isEditing}
+            error={errors.vacancyName}
           />
 
           <Input
@@ -70,12 +79,13 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             iName='company'
             iType='text'
             isFor='company'
-            iValue={editedVacancy.company}
-            iChange={handleChange}
+            iValue={editedVacancy?.company || ''}
+            iChange={handleEditChange}
             iHolder='Empresa'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]/50'
+            borderColor={isEditing ? (errors.company ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.company ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
             disabled={!isEditing}
+            error={errors.company}
           />
 
           <Input
@@ -83,12 +93,13 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             iName='contactPerson'
             iType='text'
             isFor='contactPerson'
-            iValue={editedVacancy.contactPerson}
-            iChange={handleChange}
+            iValue={editedVacancy?.contactPerson || ''}
+            iChange={handleEditChange}
             iHolder='Persona de contacto'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]'
+            borderColor={isEditing ? (errors.contactPerson ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.contactPerson ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]'}
             disabled={!isEditing}
+            error={errors.contactPerson}
           />
 
           <Input
@@ -96,12 +107,13 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             iName='contact'
             iType='text'
             isFor='contact'
-            iValue={editedVacancy.contact}
-            iChange={handleChange}
+            iValue={editedVacancy?.contact || ''}
+            iChange={handleEditChange}
             iHolder='Teléfono/Email'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]/50'
+            borderColor={isEditing ? (errors.contact ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.contact ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
             disabled={!isEditing}
+            error={errors.contact}
           />
 
           <Input
@@ -109,29 +121,31 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             iName='location'
             iType='text'
             isFor='location'
-            iValue={editedVacancy.location}
-            iChange={handleChange}
+            iValue={editedVacancy?.location || ''}
+            iChange={handleEditChange}
             iHolder='Ubicación'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]/50'
+            borderColor={isEditing ? (errors.location ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.location ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
             disabled={!isEditing}
+            error={errors.location}
           />
 
           <Desc
             nameDesc='Responsabilidades'
             holderDesc='Describe las responsabilidades del puesto'
             name='responsibilities'
-            value={editedVacancy.responsibilities}
-            onChange={(e) => handleChange({
+            value={editedVacancy?.responsibilities || ''}
+            onChange={(e) => handleEditChange({
               target: {
                 name: 'responsibilities',
                 value: e.target.value
               }
             })}
             height='h-32'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]/50'
+            borderColor={isEditing ? (errors.responsibilities ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.responsibilities ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
             disabled={!isEditing}
+            error={errors.responsibilities}
           />
 
           <Input
@@ -139,12 +153,13 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             iName='type'
             iType='text'
             isFor='type'
-            iValue={editedVacancy.type}
-            iChange={handleChange}
+            iValue={editedVacancy?.type || ''}
+            iChange={handleEditChange}
             iHolder='Tipo de contrato'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]/50'
+            borderColor={isEditing ? (errors.type ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.type ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
             disabled={!isEditing}
+            error={errors.type}
           />
 
           <Input
@@ -152,12 +167,13 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             iName='availability'
             iType='text'
             isFor='availability'
-            iValue={editedVacancy.availability}
-            iChange={handleChange}
+            iValue={editedVacancy?.availability || ''}
+            iChange={handleEditChange}
             iHolder='Disponibilidad'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]/50'
+            borderColor={isEditing ? (errors.availability ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.availability ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
             disabled={!isEditing}
+            error={errors.availability}
           />
 
           <Input
@@ -165,12 +181,13 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             iName='salary'
             iType='text'
             isFor='salary'
-            iValue={editedVacancy.salary}
-            iChange={handleChange}
+            iValue={editedVacancy?.salary || ''}
+            iChange={handleEditChange}
             iHolder='Salario estimado'
-            borderColor={isEditing ? 'border-[#60efdb]' : 'border-gray-300'}
-            focusColor='focus:ring-[#405e7f]/50'
+            borderColor={isEditing ? (errors.salary ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+            focusColor={errors.salary ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
             disabled={!isEditing}
+            error={errors.salary}
           />
         </div>
 
@@ -188,9 +205,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             btnName='Eliminar vacante'
             btnType='button'
             btnStyle='px-6 py-2 bg-red-500 text-white rounded-full font-semibold'
-            clicked={() => {
-              setShowConfirm(true)
-            }}
+            clicked={() => setShowConfirm(true)}
           />
         </div>
 
