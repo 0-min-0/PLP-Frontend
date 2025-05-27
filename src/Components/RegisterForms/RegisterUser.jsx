@@ -90,6 +90,7 @@ export const RegisterUser = () => {
                                         />
                                         <HiOutlinePhone className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
                                     </div>
+                                    {errors.phoneSec && <p className={errorStyle}>{errors.phoneSec}</p>}
 
                                     <div className='relative mt-4'>
                                         <Input
