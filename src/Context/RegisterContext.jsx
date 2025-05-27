@@ -234,7 +234,6 @@ export const RegisterProvider = ({ children }) => {
     const newErrors = {
       name: validateNotEmpty(form.name, 'nombre'),
       phone: validatePhone(form.phone),
-      phoneSec: validatePhoneSec(form.phoneSec),
       email: validateEmail(form.email),
       description: validateNotEmpty(form.description, 'descripción'),
       town: validateSelect(form.town, 'municipio'),
