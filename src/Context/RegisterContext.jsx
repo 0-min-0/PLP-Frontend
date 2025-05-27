@@ -63,6 +63,12 @@ export const RegisterProvider = ({ children }) => {
     return ''
   }
 
+   const validatePhoneSec = (value) => {
+    if (!/^[0-9]+$/.test(value)) return 'ⓘ El número de teléfono solo puede contener dígitos (0-9).'
+    if (value.length !== 10) return 'ⓘ El número de teléfono debe tener exactamente 10 dígitos.'
+    return ''
+  }
+
   const validateEmail = (value) => {
     if (!value) return 'ⓘ El correo electrónico campo es requerido.'
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -180,7 +186,7 @@ export const RegisterProvider = ({ children }) => {
     let error = ''
     if (value) {
       if (name === 'phone' || name === 'phoneSec') {
-        error = validatePhone(value, name === 'phone')
+        error = validatePhone(value, name === 'phone' || name === 'phoneSec')
       } else if (name === 'email') {
         error = validateEmail(value)
       } else if (name === 'documentNumber') {
@@ -228,6 +234,7 @@ export const RegisterProvider = ({ children }) => {
     const newErrors = {
       name: validateNotEmpty(form.name, 'nombre'),
       phone: validatePhone(form.phone),
+      phoneSec: validatePhoneSec(form.phoneSec),
       email: validateEmail(form.email),
       description: validateNotEmpty(form.description, 'descripción'),
       town: validateSelect(form.town, 'municipio'),
