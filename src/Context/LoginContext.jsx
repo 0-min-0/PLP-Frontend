@@ -190,8 +190,20 @@ export const LoginProvider = ({ children }) => {
             const data = await  response.json()
             console.log('data', data)
 
+            if(response.status === 401) {
+                setErrorForm({
+                    errorEmailOrPhone: '',
+                    errorPassword: '',
+                    loginError: 'ⓘ La información ingresada es incorrecta, porfavor verifica tu correo/número de teléfono y contraseña'
+                })
+                setIsSubmitting(false)
+                return
+            }
+            
             if (response.status === 200) {
             console.log('Login successful', data);
+            
+
 
             const {token} = data
             // Almacenar el token en localStorage
@@ -206,6 +218,8 @@ export const LoginProvider = ({ children }) => {
             })
 
             const refreshData = await refreshResponse.json();
+            
+
             const { token: refreshedToken } = refreshData;
 
             if (refreshedToken) {
