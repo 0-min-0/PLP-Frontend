@@ -139,7 +139,7 @@ export const LoginProvider = ({ children }) => {
         return true
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setIsSubmitting(true)
 
@@ -159,6 +159,8 @@ export const LoginProvider = ({ children }) => {
             return
         }
 
+        /*
+
         if (!validateUserExists()) {
             setIsSubmitting(false)
             return
@@ -168,13 +170,84 @@ export const LoginProvider = ({ children }) => {
             setIsSubmitting(false)
             return
         }
-
+        */
         try {
             //Aqui va la logica de autenticacion
+             console.log('data: ', form.emailOrPhone, form.password )
+
+            const response = await fetch('http://localhost:8000/Users/login/login_user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: form.emailOrPhone,
+                    password: form.password
+                }),
+                credentials: 'include'
+            })
+
+            const data = await  response.json()
+            console.log('data', data)
+
+            if (response.status === 200) {
+            console.log('Login successful', data);
+
+            const {token} = data
+            // Almacenar el token en localStorage
+            localStorage.setItem('token', token);
+
+            const refreshResponse = await fetch('http://localhost:8000/Users/login/refresh', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },  
+                credentials: 'include'
+            })
+
+            const refreshData = await refreshResponse.json();
+            const { token: refreshedToken } = refreshData;
+
+            if (refreshedToken) {
+                localStorage.setItem('token', refreshedToken);
+                console.log('Token inicial refrescado:', refreshedToken);
+            }
+
+             // Intervalo automático para refrescar cada hora
+            setInterval(() => {
+                const token = localStorage.getItem('token');
+
+                if (!token) {
+                    console.error('No token found in localStorage');
+                    return;
+                }
+
+                fetch('http://localhost:8000/Users/login/refresh', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+                credentials: 'include'
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log('Token refrescado automáticamente:', data)
+                const { token: newToken } = data;
+                if (newToken) {
+                    localStorage.setItem('token', newToken)
+                    console.log('Token refrescado automáticamente:', newToken)
+                }
+            })
+            .catch(err => {
+                console.error('Error al refrescar token:', err)
+            })
+            }, 1000 * 60 * 60) // 1 hora
+
             setTimeout(() => {
                 navigate('/inicio-contratista')
                 setIsSubmitting(false)
             }, 1000)
+        }
         } catch (error) {
             setErrorForm({
                 errorEmailOrPhone: '',

@@ -292,8 +292,91 @@ export const RegisterProvider = ({ children }) => {
     return !Object.values(newErrors).some(error => error !== '')
   }
 
+  const mampFrom = (form) => {
+    console.log('mampFrom', form)
+
+     const genreMap = {
+    'femenino': 'F',
+    'masculino': 'M'
+  }
+
+  const userTypeMap = {
+    'jobSeeker': 'contratista',
+    'employer': 'contratante_informal',
+    'company': 'contratante_formal'
+  }
+
+  const documentTypeMap = {
+    'cedula': 'CC',
+    'cedula de Extranjería': 'CE',
+    'nit': 'NIT'
+  }
+
+  return {
+    ...form,
+    genre: genreMap[form.genre] || '',
+    userType: userTypeMap[form.userType] || '',
+    documentType: documentTypeMap[form.documentType] || '',
+  }
+  }
+
+  const subirData = async () => {
+      const mappedForm = mampFrom(form)
+      
+      const formData = new FormData()
+
+      formData.append('nombreCompleto', mappedForm.name)
+      formData.append('email', mappedForm.email)
+      formData.append('telefono', mappedForm.phone)
+      formData.append('telefono2', mappedForm.phoneSec)
+      formData.append('password', mappedForm.createPassword)
+      formData.append('descripcion', mappedForm.description)
+      formData.append('fotoPerfil', null)
+      formData.append('municipio', mappedForm.town)
+      formData.append('tipoDocumento', mappedForm.documentType)
+      formData.append('numeroCedula', mappedForm.documentNumber)
+      formData.append('genero', mappedForm.genre)
+      formData.append('estado_perfil', 'activo')
+      formData.append('tipo_usuario', mappedForm.userType)
+      formData.append('numeroDocumento', mappedForm.documentNumber)
+      formData.append('categoria_trabajo', mappedForm.skillOne)
+      formData.append('HabilidadesTecnicas', [mappedForm.skillTwo, mappedForm.skillThree, mappedForm.skillFour].filter(Boolean).join(', '))
+      formData.append('HabilidadesSociales', [mappedForm.studiesOne, mappedForm.studiesTwo].filter(Boolean).join(', '))
+      formData.append('NIT', mappedForm.nit)
+      formData.append('sector', mappedForm.sector)
+      formData.append('sitioWeb', mappedForm.website)
+
+      //console.log('Datos a enviar:', Object.fromEntries(formData.entries()))
+
+      try {
+        const response = await fetch('http://localhost:8000/Users/RegisterUser', {
+          method: 'POST',
+          body: formData,
+          credentials: 'include',
+        })
+
+        const data = await response.json()
+        console.log('Response data:', data)
+        if (response.status === 200) {
+          console.log('Datos enviados correctamente')
+          const {token} = data;
+          if (token) {
+            localStorage.setItem('token', token)
+            console.log('Token almacenado en localStorage:', token)
+          }
+          return true
+        }  else {
+          console.error('Error al enviar los datos:', data);
+          return false;
+      }
+      }catch (error) {
+        console.error('Error al enviar los datos:', error)
+        return false
+      }
+  }
+
   // Submit handler
-  const handleSubmit = (e, formType, onSuccess) => {
+  const handleSubmit = async (e, formType, onSuccess) => {
     e.preventDefault()
     let isValid = false
 
@@ -304,13 +387,28 @@ export const RegisterProvider = ({ children }) => {
     else if (formType === 'roleType') isValid = validateRoleTypeForm()
     else if (formType === 'password') isValid = validatePasswordForm()
 
-    if (isValid) {
-      if (typeof onSuccess === 'function') onSuccess()
-      else if (formType === 'password') navigate('/verificación-de-correo')
-      else navigate('/crear-contraseña')
-    }
+    if (!isValid) return
+
+  if (typeof onSuccess === 'function') {
+    onSuccess()
+    return
   }
 
+  if (formType === 'password') {
+    try {
+      const success = await subirData()
+      if (success) {
+        navigate('/verificación-de-correo')
+      } else {
+        console.error('Error al enviar los datos')
+      }
+    } catch (error) {
+      console.error('Error inesperado:', error)
+    }
+  } else {
+    navigate('/crear-contraseña')
+  }
+  }
   return (
     <RegisterContext.Provider value={{
       form,
