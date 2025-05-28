@@ -257,10 +257,41 @@ export const LoginProvider = ({ children }) => {
             })
             }, 1000 * 60 * 60) // 1 hora
 
+             const redirectUserRol = async () => {
+                try {
+                    const response = await fetch('http://localhost:8000/Users/login/auth/me', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        },
+                        credentials: 'include',
+                    })
+                        if(response.status !== 200) {
+                            setErrorForm({
+                            errorEmailOrPhone: '',
+                            errorPassword: '',
+                            loginError: 'ⓘ Algo salió mal al obtener los datos del usuario, porfavor inténtalo de nuevo'
+                        })
+                        setIsSubmitting(false)
+                        return
+                    }
+
+                const userData = await response.json();
+
+                const rol = userData.rol;
+                console.log('Rol del usuario:', rol);
+
+                if(rol === 'contratista') navigate('/inicio-contratista')
+                if(rol === 'contratante_formal' || rol === 'contratante_informal') navigate('/inicio-contratante')
+                setIsSubmitting(false)  
+                }catch (err) {
+                    setIsSubmitting(false)
+                }
+            }
+            
             setTimeout(() => {
-                navigate('/inicio-contratista')
-                setIsSubmitting(false)
-            }, 1000)
+                redirectUserRol();
+            }, 1000);
         }
         } catch (error) {
             setErrorForm({
