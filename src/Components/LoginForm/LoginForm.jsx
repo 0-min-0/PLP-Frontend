@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
-import { HiOutlineLockClosed } from 'react-icons/hi'
+import { HiOutlineMail, HiOutlineLockClosed, HiOutlinePhone } from 'react-icons/hi'
 import { PiEye, PiEyeClosed } from 'react-icons/pi'
 import { Button } from '../../UI/button'
 import { FormsContainer } from '../../UI/FormsContainer'
