@@ -145,85 +145,6 @@ export let vacanciesExample = [
   }
 ]
 
-// export const initializeVacancies = () => {
-//   const storedVacancies = localStorage.getItem('vacancies')
-
-//   if (!storedVacancies) {
-//     vacanciesExample = [
-//       {
-//         id: 1,
-//         title: 'Desarrollador Frontend',
-//         company: 'Tech Solutions',
-//         contactPerson: 'Ana López',
-//         contact: 'ana@tech.com',
-//         location: 'Madrid, España',
-//         type: 'Full-time',
-//         availability: 'Full-time',
-//         responsibilities: 'Desarrollo de interfaces con React',
-//         salary: '$3,000,000 COP'
-//       }
-//     ]
-//     localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
-//   } else {
-//     vacanciesExample = JSON.parse(storedVacancies)
-//   }
-// }
-
-// initializeVacancies()
-
-// export const getVacancies = () => {
-//   const storedVacancies = localStorage.getItem('vacancies')
-//   return storedVacancies ? JSON.parse(storedVacancies) : []
-// }
-
-// export const addVacancyToExample = (formData) => {
-//   const currentVacancies = getVacancies()
-  
-//   const newId = currentVacancies.length > 0
-//     ? Math.max(...currentVacancies.map(v => v.id)) + 1
-//     : 1
-
-//   const newVacancy = {
-//     id: newId,
-//     title: formData.vacancyName,
-//     vacancyName: formData.vacancyName,
-//     company: formData.company || "Empresa no especificada",
-//     contactPerson: formData.contactPerson,
-//     contact: formData.contact,
-//     location: formData.location,
-//     responsibilities: formData.responsibilities,
-//     availability: formData.availability,
-//     type: formData.type || formData.availability,
-//     salary: formData.salary
-//   }
-
-//   const updatedVacancies = [...currentVacancies, newVacancy]
-//   localStorage.setItem('vacancies', JSON.stringify(updatedVacancies))
-  
-//   return newVacancy
-// }
-
-// export const updateVacancyInExample = (updatedVacancy) => {
-//   const currentVacancies = getVacancies()
-//   const index = currentVacancies.findIndex(v => v.id === updatedVacancy.id)
-//   if (index !== -1) {
-//     currentVacancies[index] = {
-//       ...currentVacancies[index],
-//       ...updatedVacancy,
-//       title: updatedVacancy.vacancyName || updatedVacancy.title
-//     }
-//     localStorage.setItem('vacancies', JSON.stringify(currentVacancies))
-//     return true
-//   }
-//   return false
-// }
-
-// export const deleteVacancyFromExample = (id) => {
-//   const currentVacancies = getVacancies()
-//   const updated = currentVacancies.filter(v => v.id !== id)
-//   localStorage.setItem('vacancies', JSON.stringify(updated))
-// }
-
 const syncVacancies = () => {
   localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
 }
@@ -241,19 +162,40 @@ export const initializeVacancies = () => {
 initializeVacancies();
 
 export const getVacancies = () => {
-  return [...vacanciesExample]
-}
+  // En desarrollo: usa localStorage si existe, sino el array
+  if (process.env.NODE_ENV === 'development') {
+    const stored = localStorage.getItem('vacancies');
+    return stored ? JSON.parse(stored) : [...vacanciesExample];
+  }
+  
+  // En producción: combina localStorage con vacantes de ejemplo
+  try {
+    const stored = localStorage.getItem('vacancies');
+    const storedVacancies = stored ? JSON.parse(stored) : [];
+    
+    // Filtrar vacantes duplicadas
+    const storedIds = new Set(storedVacancies.map(v => v.id));
+    const uniqueExampleVacancies = vacanciesExample.filter(v => !storedIds.has(v.id));
+    
+    return [...storedVacancies, ...uniqueExampleVacancies];
+  } catch (error) {
+    console.error('Error al cargar vacantes:', error);
+    return [...vacanciesExample]; // Fallback seguro
+  }
+};
 
+// Función para añadir vacantes (compatible con VacancyForm)
 export const addVacancyToExample = (formData) => {
-  const newId = vacanciesExample.length > 0
-    ? Math.max(...vacanciesExample.map(v => v.id)) + 1
-    : 1
+  const currentVacancies = getVacancies();
+  const newId = currentVacancies.length > 0 
+    ? Math.max(...currentVacancies.map(v => v.id)) + 1 
+    : 1;
 
   const newVacancy = {
     id: newId,
     title: formData.vacancyName,
     vacancyName: formData.vacancyName,
-    company: formData.company || '',
+    company: formData.company || "Empresa no especificada",
     contactPerson: formData.contactPerson,
     contact: formData.contact,
     location: formData.location,
@@ -261,13 +203,13 @@ export const addVacancyToExample = (formData) => {
     availability: formData.availability,
     type: formData.type || formData.availability,
     salary: formData.salary
-  }
+  };
 
-  vacanciesExample.push(newVacancy)
-  syncVacancies()
+  const updatedVacancies = [...currentVacancies, newVacancy];
+  localStorage.setItem('vacancies', JSON.stringify(updatedVacancies));
   
-  return newVacancy
-}
+  return newVacancy;
+};
 
 export const updateVacancyInExample = (updatedVacancy) => {
   const index = vacanciesExample.findIndex(v => v.id === updatedVacancy.id)
