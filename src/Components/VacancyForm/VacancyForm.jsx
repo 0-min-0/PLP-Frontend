@@ -5,7 +5,6 @@ import { Button } from '../../UI/button'
 import { useVacancy } from '../../Context/VacancyContext'
 import { useNavigate } from 'react-router-dom'
 import { showSuccessAlert, showErrorAlert } from '../../UI/CustomAlerts'
-import { addVacancyToExample } from '../../Utils/objectsExample'
 
 export const VacancyForm = () => {
     const { vacancy, errors, handleChange, handleSubmit } = useVacancy()
@@ -14,14 +13,16 @@ export const VacancyForm = () => {
     const handleFormSubmit = (e) => {
         const onSuccess = () => {
             try {
-                addVacancyToExample(vacancy, vacancy.name)
                 showSuccessAlert(navigate, vacancy)
             } catch (error) {
+                console.error('Error al mostrar alerta:', error)
                 showErrorAlert()
             }
         }
+        
         handleSubmit(e, 'vacancy', onSuccess)
     }
+
 
     return (
         <div className='rounded-xl px-20 py-14 mx-30 mt-6 bg-[#405e7f]'>

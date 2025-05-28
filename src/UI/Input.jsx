@@ -18,7 +18,7 @@ export const Input = ({
 }) => {
     const iStyle = `w-full bg-white ${padding} text-lg mt-3 text-[#405e7f]/90 rounded-xl border ${borderColor} 
                     focus:outline-none focus:ring-2 ${focusColor} focus:border-transparent transition-all 
-                    duration-300 ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}`
+                    duration-500 ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}`
 
     return (
         <div className='w-full text-[#405e7f]'>

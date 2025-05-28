@@ -1,18 +1,21 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import { getVacancies, addVacancyToExample, updateVacancyInExample, deleteVacancyFromExample } from '../Utils/objectsExample'
+import { createContext, useContext, useState, useEffect } from 'react';
+import { 
+  getVacancies, 
+  addVacancyToExample, 
+  updateVacancyInExample, 
+  deleteVacancyFromExample 
+} from '../Utils/objectsExample';
 
-const VacancyContext = createContext()
+const VacancyContext = createContext();
 
 export const VacancyProvider = ({ children }) => {
-    const [vacancies, setVacancies] = useState(getVacancies())
+    const [vacancies, setVacancies] = useState(getVacancies());
     const [vacancy, setVacancy] = useState({
         vacancyName: '',
-        company: '',
         contactPerson: '',
         contact: '',
         location: '',
         responsibilities: '',
-        type: '',
         availability: '',
         salary: ''
     })
@@ -63,13 +66,11 @@ export const VacancyProvider = ({ children }) => {
 
     const validateVacancyForm = (form) => {
         const newErrors = {
-            vacancyName: validateNotEmpty(form.vacancyName || form.title, 'nombre de la vacante'),
-            company: validateNotEmpty(form.company, 'empresa'),
+            vacancyName: validateNotEmpty(form.vacancyName, 'nombre de la vacante'),
             contactPerson: validateNotEmpty(form.contactPerson, 'persona de contacto'),
             contact: validateContact(form.contact),
             location: validateNotEmpty(form.location, 'ubicación'),
             responsibilities: validateNotEmpty(form.responsibilities, 'responsabilidades'),
-            type: validateNotEmpty(form.type, 'tipo de contrato'),
             availability: validateNotEmpty(form.availability, 'disponibilidad'),
             salary: validateSalary(form.salary)
         }
@@ -95,16 +96,21 @@ export const VacancyProvider = ({ children }) => {
         setErrors(prev => ({ ...prev, [name]: validation.errors[name] }))
     }
 
-    const addVacancy = (vacancyData, companyName) => {
+    const addVacancy = (vacancyData) => {
         const validation = validateVacancyForm(vacancyData)
         if (!validation.isValid) {
             setErrors(validation.errors)
             return false
         }
 
-        const newVacancy = addVacancyToExample(vacancyData, companyName)
-        setVacancies(getVacancies())
-        return newVacancy
+        try {
+            const newVacancy = addVacancyToExample(vacancyData)
+            setVacancies(getVacancies()) // Actualizar estado con los nuevos datos
+            return newVacancy
+        } catch (error) {
+            console.error('Error al agregar vacante:', error)
+            return false
+        }
     }
 
     const updateVacancy = (updatedVacancy) => {
@@ -128,24 +134,28 @@ export const VacancyProvider = ({ children }) => {
     }
 
     const handleSubmit = (e, type, onSuccess) => {
-        e.preventDefault()
-        const validation = validateVacancyForm(vacancy)
-        setErrors(validation.errors)
+        e.preventDefault();
+        const validation = validateVacancyForm(vacancy);
+        setErrors(validation.errors);
 
         if (validation.isValid) {
-            addVacancy(vacancy)
-            setVacancy({
-                vacancyName: '',
-                company: '',
-                contactPerson: '',
-                contact: '',
-                location: '',
-                responsibilities: '',
-                type: '',
-                availability: '',
-                salary: ''
-            })
-            if (typeof onSuccess === 'function') onSuccess()
+            try {
+                const result = addVacancy(vacancy);
+                if (result) {
+                    setVacancy({
+                        vacancyName: '',
+                        contactPerson: '',
+                        contact: '',
+                        location: '',
+                        responsibilities: '',
+                        availability: '',
+                        salary: ''
+                    });
+                    if (typeof onSuccess === 'function') onSuccess();
+                }
+            } catch (error) {
+                console.error('Error en handleSubmit:', error);
+            }
         }
     }
 

@@ -145,38 +145,106 @@ export let vacanciesExample = [
   }
 ]
 
+// export const initializeVacancies = () => {
+//   const storedVacancies = localStorage.getItem('vacancies')
+
+//   if (!storedVacancies) {
+//     vacanciesExample = [
+//       {
+//         id: 1,
+//         title: 'Desarrollador Frontend',
+//         company: 'Tech Solutions',
+//         contactPerson: 'Ana López',
+//         contact: 'ana@tech.com',
+//         location: 'Madrid, España',
+//         type: 'Full-time',
+//         availability: 'Full-time',
+//         responsibilities: 'Desarrollo de interfaces con React',
+//         salary: '$3,000,000 COP'
+//       }
+//     ]
+//     localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
+//   } else {
+//     vacanciesExample = JSON.parse(storedVacancies)
+//   }
+// }
+
+// initializeVacancies()
+
+// export const getVacancies = () => {
+//   const storedVacancies = localStorage.getItem('vacancies')
+//   return storedVacancies ? JSON.parse(storedVacancies) : []
+// }
+
+// export const addVacancyToExample = (formData) => {
+//   const currentVacancies = getVacancies()
+  
+//   const newId = currentVacancies.length > 0
+//     ? Math.max(...currentVacancies.map(v => v.id)) + 1
+//     : 1
+
+//   const newVacancy = {
+//     id: newId,
+//     title: formData.vacancyName,
+//     vacancyName: formData.vacancyName,
+//     company: formData.company || "Empresa no especificada",
+//     contactPerson: formData.contactPerson,
+//     contact: formData.contact,
+//     location: formData.location,
+//     responsibilities: formData.responsibilities,
+//     availability: formData.availability,
+//     type: formData.type || formData.availability,
+//     salary: formData.salary
+//   }
+
+//   const updatedVacancies = [...currentVacancies, newVacancy]
+//   localStorage.setItem('vacancies', JSON.stringify(updatedVacancies))
+  
+//   return newVacancy
+// }
+
+// export const updateVacancyInExample = (updatedVacancy) => {
+//   const currentVacancies = getVacancies()
+//   const index = currentVacancies.findIndex(v => v.id === updatedVacancy.id)
+//   if (index !== -1) {
+//     currentVacancies[index] = {
+//       ...currentVacancies[index],
+//       ...updatedVacancy,
+//       title: updatedVacancy.vacancyName || updatedVacancy.title
+//     }
+//     localStorage.setItem('vacancies', JSON.stringify(currentVacancies))
+//     return true
+//   }
+//   return false
+// }
+
+// export const deleteVacancyFromExample = (id) => {
+//   const currentVacancies = getVacancies()
+//   const updated = currentVacancies.filter(v => v.id !== id)
+//   localStorage.setItem('vacancies', JSON.stringify(updated))
+// }
+
+const syncVacancies = () => {
+  localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
+}
+
 export const initializeVacancies = () => {
   const storedVacancies = localStorage.getItem('vacancies')
 
   if (!storedVacancies) {
-    vacanciesExample = [
-      {
-        id: 1,
-        title: 'Desarrollador Frontend',
-        company: 'Tech Solutions',
-        contactPerson: 'Ana López',
-        contact: 'ana@tech.com',
-        location: 'Madrid, España',
-        type: 'Full-time',
-        availability: 'Full-time',
-        responsibilities: 'Desarrollo de interfaces con React',
-        salary: '$3,000,000 COP'
-      }
-    ]
-    localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
+    syncVacancies()
   } else {
     vacanciesExample = JSON.parse(storedVacancies)
   }
 }
 
-initializeVacancies()
+initializeVacancies();
 
 export const getVacancies = () => {
-  const storedVacancies = localStorage.getItem('vacancies')
-  return storedVacancies ? JSON.parse(storedVacancies) : []
+  return [...vacanciesExample]
 }
 
-export const addVacancyToExample = (formData, companyName) => {
+export const addVacancyToExample = (formData) => {
   const newId = vacanciesExample.length > 0
     ? Math.max(...vacanciesExample.map(v => v.id)) + 1
     : 1
@@ -185,38 +253,37 @@ export const addVacancyToExample = (formData, companyName) => {
     id: newId,
     title: formData.vacancyName,
     vacancyName: formData.vacancyName,
-    company: companyName,
+    company: formData.company || '',
     contactPerson: formData.contactPerson,
     contact: formData.contact,
     location: formData.location,
     responsibilities: formData.responsibilities,
     availability: formData.availability,
-    type: formData.availability,
+    type: formData.type || formData.availability,
     salary: formData.salary
   }
 
   vacanciesExample.push(newVacancy)
-  localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
+  syncVacancies()
+  
   return newVacancy
 }
 
 export const updateVacancyInExample = (updatedVacancy) => {
-  const currentVacancies = getVacancies()
-  const index = currentVacancies.findIndex(v => v.id === updatedVacancy.id)
+  const index = vacanciesExample.findIndex(v => v.id === updatedVacancy.id)
   if (index !== -1) {
-    currentVacancies[index] = {
-      ...currentVacancies[index],
+    vacanciesExample[index] = {
+      ...vacanciesExample[index],
       ...updatedVacancy,
       title: updatedVacancy.vacancyName || updatedVacancy.title
     }
-    localStorage.setItem('vacancies', JSON.stringify(currentVacancies))
+    syncVacancies()
     return true
   }
   return false
 }
 
 export const deleteVacancyFromExample = (id) => {
-  const currentVacancies = getVacancies()
-  const updated = currentVacancies.filter(v => v.id !== id)
-  localStorage.setItem('vacancies', JSON.stringify(updated))
+  vacanciesExample = vacanciesExample.filter(v => v.id !== id)
+  syncVacancies()
 }
