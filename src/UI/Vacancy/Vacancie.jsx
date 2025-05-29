@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { IoBriefcaseOutline } from 'react-icons/io5'
-import { Button } from './button'
+import { Button } from '../button'
 import { VacancyView } from './VacancyView'
 
 export const Vacancie = ({ title, company, location, type, experience, ...vacancy }) => {

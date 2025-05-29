@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Vacancie } from '../../UI/Vacancie'
+import { Vacancie } from '../../UI/Vacancy/Vacancie'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 
 export const CardContainer = ({

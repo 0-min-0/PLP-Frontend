@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from '../UI/button'
+import { Button } from '../button'
 import { FiX } from 'react-icons/fi'
 import { VacancyInfo } from './VacancyInfo'
 
@@ -75,7 +75,7 @@ export const VacancyView = ({ vacancy, onClose, onApply, isOpen }) => {
                             <Button
                                 btnName='Postular hoja de vida'
                                 btnType='button'
-                                btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-8 py-3 rounded-full transition-all duration-300'
+                                btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-8 py-2 rounded-full transition-all duration-300'
                                 clicked={handleApply}
                             />
                         </div>

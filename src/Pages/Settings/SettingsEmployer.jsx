@@ -6,8 +6,9 @@ import avatar from '../../assets/images/avatar.jpg'
 import { SearchBar } from '../../UI/SearchBar'
 import { useVacancy } from '../../Context/VacancyContext' 
 import { FiEdit, FiTrash2 } from 'react-icons/fi'
-import { VacancyDetail } from '../../UI/VacancyDetail'
+import { VacancyDetail } from '../../UI/Vacancy/VacancyDetail'
 import { deleteVacancyFromExample, getVacancies, updateVacancyInExample } from '../../Utils/objectsExample'
+import { motion } from 'framer-motion'
 
 export const SettingsEmployer = () => {
   const { vacancies, setVacancies } = useVacancy() 
@@ -28,6 +29,37 @@ export const SettingsEmployer = () => {
     setVacancies(getVacancies())
   }, [])
 
+  // Animaciones para las tarjetas
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: "easeOut",
+        duration: 0.4
+      }
+    },
+    hover: {
+      scale: 1.02,
+      transition: {
+        duration: 0.2,
+        ease: "easeOut"
+      }
+    }
+  }
+
   return (
     <div className=''>
       <Header
@@ -47,7 +79,7 @@ export const SettingsEmployer = () => {
           </div>
         }
       />
-      <div className='w-[75%] bg-white p-10 rounded-xl'>
+      <div className='w-[75%] bg-white px-10 py-8 rounded-xl'>
         <div className='flex items-center'>
           <img
             src={avatar}
@@ -70,12 +102,19 @@ export const SettingsEmployer = () => {
               Publicaciones
             </h2>
             {vacancies.length > 0 ? (
-              <div className='w-full h-85 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
+              <motion.div 
+                className='w-full h-85 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
                 {vacancies.map((vacancy) => (
-                  <div
+                  <motion.div
                     key={vacancy.id}
-                    className='border-2 border-[#60efdb] rounded-xl p-6'
+                    className='border-2 border-[#60efdb] rounded-xl p-6 cursor-pointer'
                     onClick={() => setSelectedVacancy(vacancy)}
+                    variants={cardVariants}
+                    whileHover="hover"
                   >
                     <div className='flex justify-between items-start'>
                       <div className='w-full'>
@@ -90,8 +129,8 @@ export const SettingsEmployer = () => {
                         </p>
                       </div>
                       <div className="flex ml-4">
-                        <button
-                        title='Editar vacante'
+                        <motion.button
+                          title='Editar vacante'
                           className='text-[#405e7f] cursor-pointer p-2
                                     transition-all duration-300
                                     hover:bg-[#60efdb]/20 rounded-full'
@@ -99,10 +138,12 @@ export const SettingsEmployer = () => {
                             e.stopPropagation()
                             setSelectedVacancy(vacancy)
                           }}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                         >
                           <FiEdit size={24} />
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
                           title='Eliminar vacante'
                           className='text-[#405e7f] cursor-pointer p-2
                                     transition-all duration-300
@@ -113,18 +154,25 @@ export const SettingsEmployer = () => {
                               handleDeleteVacancy(vacancy.id)
                             }
                           }}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
                         >
                           <FiTrash2 size={24} />
-                        </button>
+                        </motion.button>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             ) : (
-              <p className='text-gray-500 py-8 text-center'>
+              <motion.p 
+                className='text-gray-500 py-8 text-center'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
                 No hay vacantes publicadas aún
-              </p>
+              </motion.p>
             )}
           </div>
         </div>

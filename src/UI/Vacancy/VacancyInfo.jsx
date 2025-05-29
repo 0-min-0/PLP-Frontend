@@ -59,14 +59,14 @@ export const VacancyInfo = ({ vacancy }) => {
                     </div>
                 </div>
 
-                <div className='mb-4'>
+                <div className='mb-6'>
                     <h5 className='font-semibold text-[#405e7f] mb-2'>Descripción de la empresa</h5>
                     <p>Somos una empresa de tecnología en busca de problemáticas alrededor para darles soluciones innovadoras y eficientes.</p>
                 </div>
             </motion.div>
             
             <motion.hr 
-                className='border-t border-gray-200 mb-8' 
+                className='border-t border-gray-200 mb-6' 
                 variants={itemVariants}
             />
             
