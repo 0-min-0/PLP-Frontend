@@ -10,6 +10,8 @@ export const Select = ({
     color = 'text-[#405e7f]',
     error = '',
     errColor = 'text-red-400',
+    borderColor = 'border-[#405e7f]/50',
+    focusColor = 'focus:ring-[#60efdb]',
     disabled = false
 }) => {
 
@@ -34,7 +36,8 @@ export const Select = ({
             {label && <h2 className={`mb-2 ${color} font-semibold text-left`}>{label}</h2>}
             {desc && <p className='mb-3 text-[#405e7f] text-sm text-left'>{desc}</p>}
             <div
-                className='w-full py-2 px-4 text-[#405e7f] bg-white border border-[#405e7f]/50 rounded-xl cursor-pointer flex justify-between items-center'
+                className={`w-full py-2 px-4 text-[#405e7f] bg-white border ${borderColor} rounded-xl focus:border-transparent transition-all 
+                    duration-500 focus:ring-2 ${focusColor} cursor-pointer flex justify-between items-center`}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {displayText}

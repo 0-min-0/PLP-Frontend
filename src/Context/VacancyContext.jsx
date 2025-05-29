@@ -81,7 +81,7 @@ export const VacancyProvider = ({ children }) => {
             location: validateNotEmpty(form.location, 'ubicación'),
             responsibilities: validateNotEmpty(form.responsibilities, 'responsabilidades'),
             availability: validateNotEmpty(form.availability, 'disponibilidad'),
-            category: validateSelect(form.category, 'categoria'),
+            category: validateSelect(form.category, 'categoría'),
             salary: validateSalary(form.salary)
         }
 
@@ -98,15 +98,27 @@ export const VacancyProvider = ({ children }) => {
         setErrors(prev => ({ ...prev, [name]: validation.errors[name] }))
     }
 
-
     const handleSelectChange = (name, value) => {
+        // Actualizar el estado de la vacante
         setVacancy(prev => ({
             ...prev,
             [name]: value
         }))
-
-        // Validación inmediata al cambiar el select
-        const validation = validateVacancyForm({ ...vacancy, [name]: value })
+        
+        // Actualizar el estado de edición si existe
+        if (editedVacancy) {
+            setEditedVacancy(prev => ({
+                ...prev,
+                [name]: value
+            }))
+        }
+        
+        // Validación inmediata
+        const validation = validateVacancyForm({ 
+            ...vacancy, 
+            ...editedVacancy,
+            [name]: value 
+        })
         setErrors(prev => ({
             ...prev,
             [name]: validation.errors[name]
@@ -130,7 +142,7 @@ export const VacancyProvider = ({ children }) => {
 
         try {
             const newVacancy = addVacancyToExample(vacancyData)
-            setVacancies(getVacancies()) // Actualizar estado con los nuevos datos
+            setVacancies(getVacancies())
             return newVacancy
         } catch (error) {
             console.error('Error al agregar vacante:', error)
@@ -174,6 +186,7 @@ export const VacancyProvider = ({ children }) => {
                         location: '',
                         responsibilities: '',
                         availability: '',
+                        category: '',
                         salary: ''
                     });
                     if (typeof onSuccess === 'function') onSuccess();
