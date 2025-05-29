@@ -60,9 +60,9 @@ export const VacancyProvider = ({ children }) => {
     }
 
     const validateSelect = (value, fieldName) => {
-        if (!value) return `ⓘ El campo ${fieldName} es requerido.`
-        return ''
-    }
+    if (!value) return `ⓘ El campo ${fieldName} es requerido.`
+    return ''
+}
 
     const validateSalary = (value) => {
         if (!value) return 'ⓘ El salario estimado es requerido.'
@@ -97,16 +97,17 @@ export const VacancyProvider = ({ children }) => {
 
 
     const handleSelectChange = (name, value) => {
-        setForm(prev => ({
+        setVacancy(prev => ({
             ...prev,
             [name]: value
         }))
-        if (errors[name]) {
-            setErrors(prev => ({
-                ...prev,
-                [name]: ''
-            }))
-        }
+
+        // Validación inmediata al cambiar el select
+        const validation = validateVacancyForm({ ...vacancy, [name]: value })
+        setErrors(prev => ({
+            ...prev,
+            [name]: validation.errors[name]
+        }))
     }
 
     const handleEditChange = (e) => {

@@ -26,7 +26,7 @@ export const VacancyForm = () => {
     }
 
     return (
-        <div className='rounded-xl px-20 py-14 mx-30 mt-6 bg-[#405e7f]'>
+        <div className='rounded-xl px-20 py-12 mx-30 mt-4 bg-[#405e7f]'>
             <form onSubmit={handleFormSubmit} className='w-full'>
                 <div className='flex justify-between items-start mb-8'>
                     <h2 className='text-white text-2xl font-semibold'>
@@ -39,7 +39,7 @@ export const VacancyForm = () => {
                     />
                 </div>
                 <div className='w-full flex gap-12'>
-                    <div className='w-1/2 flex flex-col gap-4'>
+                    <div className='w-1/2 flex flex-col gap-2'>
                         <Input
                             labelTitle='Nombre de la vacante'
                             labelColor='white'
@@ -85,29 +85,6 @@ export const VacancyForm = () => {
                             error={errors.location}
                             errColor='text-[#60efdb]'
                         />
-                    </div>
-                    <div className='w-1/2 flex flex-col gap-4'>
-                    <Select
-                            label='Categoria'
-                            color='text-white'
-                            name='category'
-                            value={vacancy.category}
-                            onChange={(value) => handleSelectChange('category', value)}
-                            options={categories}
-                            error={errors.category}
-                            errColor='text-[#60efdb]'
-                        />
-                        <Desc
-                            nameDesc='Responsabilidades y especificaciones'
-                            holderDesc='Escribe las responsabilidades que tendrá la persona que ocupe la vacante'
-                            name='responsibilities'
-                            value={vacancy.responsibilities}
-                            onChange={handleChange}
-                            error={errors.responsibilities}
-                            height='h-24'
-                            color='text-white'
-                            errColor='text-[#60efdb]'
-                        />
                         <Input
                             labelTitle='Disponibilidad requerida'
                             labelColor='white'
@@ -117,6 +94,29 @@ export const VacancyForm = () => {
                             iValue={vacancy.availability || ''}
                             iChange={handleChange}
                             error={errors.availability}
+                            errColor='text-[#60efdb]'
+                        />
+                    </div>
+                    <div className='w-1/2 flex flex-col gap-5'>
+                        <Desc
+                            nameDesc='Responsabilidades y especificaciones'
+                            holderDesc='Escribe las responsabilidades que tendrá la persona que ocupe la vacante'
+                            name='responsibilities'
+                            value={vacancy.responsibilities}
+                            onChange={handleChange}
+                            error={errors.responsibilities}
+                            height='h-50'
+                            color='text-white'
+                            errColor='text-[#60efdb]'
+                        />
+                        <Select
+                            label='Categoria'
+                            color='text-white'
+                            name='category'
+                            value={vacancy.category || ''}
+                            onChange={(value) => handleSelectChange('category', value)}
+                            options={categories}
+                            error={errors.category}
                             errColor='text-[#60efdb]'
                         />
                         <Input

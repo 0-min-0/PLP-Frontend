@@ -201,7 +201,7 @@ export const addVacancyToExample = (formData) => {
     location: formData.location,
     responsibilities: formData.responsibilities,
     availability: formData.availability,
-    type: formData.type || formData.availability,
+    category: formData.category,
     salary: formData.salary
   };
 
