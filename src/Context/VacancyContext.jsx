@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { 
-  getVacancies, 
-  addVacancyToExample, 
-  updateVacancyInExample, 
-  deleteVacancyFromExample 
+import {
+    getVacancies,
+    addVacancyToExample,
+    updateVacancyInExample,
+    deleteVacancyFromExample
 } from '../Utils/objectsExample';
 
 const VacancyContext = createContext();
@@ -17,6 +17,7 @@ export const VacancyProvider = ({ children }) => {
         location: '',
         responsibilities: '',
         availability: '',
+        category: '',
         salary: ''
     })
 
@@ -58,6 +59,11 @@ export const VacancyProvider = ({ children }) => {
         return value.includes('@') ? validateEmail(value) : validatePhone(value)
     }
 
+    const validateSelect = (value, fieldName) => {
+        if (!value) return `ⓘ El campo ${fieldName} es requerido.`
+        return ''
+    }
+
     const validateSalary = (value) => {
         if (!value) return 'ⓘ El salario estimado es requerido.'
         if (!/^[\d,.]+$/.test(value)) return 'ⓘ Ingresa un valor numérico válido'
@@ -72,6 +78,7 @@ export const VacancyProvider = ({ children }) => {
             location: validateNotEmpty(form.location, 'ubicación'),
             responsibilities: validateNotEmpty(form.responsibilities, 'responsabilidades'),
             availability: validateNotEmpty(form.availability, 'disponibilidad'),
+            category: validateSelect(form.category, 'categoria'),
             salary: validateSalary(form.salary)
         }
 
@@ -86,6 +93,20 @@ export const VacancyProvider = ({ children }) => {
         setVacancy(prev => ({ ...prev, [name]: value }))
         const validation = validateVacancyForm({ ...vacancy, [name]: value })
         setErrors(prev => ({ ...prev, [name]: validation.errors[name] }))
+    }
+
+
+    const handleSelectChange = (name, value) => {
+        setForm(prev => ({
+            ...prev,
+            [name]: value
+        }))
+        if (errors[name]) {
+            setErrors(prev => ({
+                ...prev,
+                [name]: ''
+            }))
+        }
     }
 
     const handleEditChange = (e) => {
@@ -177,6 +198,7 @@ export const VacancyProvider = ({ children }) => {
             deleteVacancy,
             validateVacancyForm,
             handleChange,
+            handleSelectChange,
             handleEditChange,
             handleSubmit
         }}>

@@ -18,6 +18,10 @@ import { MenuProvider } from './Context/MenuContext'
 import { SettingsEmployer } from './Pages/Settings/SettingsEmployer/SettingsEmployer'
 import { RegisterProvider } from './Context/RegisterContext'
 import { VacancyProvider } from './Context/VacancyContext'
+import { PublishedVacancies } from './Pages/Settings/SettingsEmployer/PublishedVacancies'
+import { GeneralEmployer } from './Pages/Settings/SettingsEmployer/GeneralEmployer'
+import { Help } from './Pages/Settings/Help'
+import { Terms } from './Pages/Settings/Terms'
 
 function App() {
 
@@ -33,17 +37,23 @@ function App() {
               <DynamicTitle />
               <Routes>
                 <Route path='/' element={<MainPage />} />
-                <Route path='/acceder' element={ <Login /> } />
+                <Route path='/acceder' element={<Login />} />
                 <Route path='/crear-cuenta' element={<Register />} />
                 <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
-                <Route path='/crear-cuenta/contratista' element={ <JobSeeker /> } />
-                <Route path='/crear-cuenta/contratante' element={<Employer /> } />
+                <Route path='/crear-cuenta/contratista' element={<JobSeeker />} />
+                <Route path='/crear-cuenta/contratante' element={<Employer />} />
                 <Route path='/crear-cuenta/empresa' element={<Company />} />
-                <Route path='/crear-contraseña' element={ <Password /> } />
+                <Route path='/crear-contraseña' element={<Password />} />
                 <Route path='/inicio-contratista' element={<MainJobSeeker />} />
                 <Route path='/inicio-contratante' element={<MainEmployer />} />
-                <Route path='/crear-vacante' element={ <CreateVacancie /> } />
-                <Route path='/configuraciones-contratante' element={ <SettingsEmployer /> } />
+                <Route path='/crear-vacante' element={<CreateVacancie />} />
+                <Route path='configuraciones-contratante' element={<SettingsEmployer />}>
+                  <Route index element={<PublishedVacancies />} />
+                  <Route path="general-contratante" element={<GeneralEmployer />} />
+                  <Route path="publicaciones-contratante" element={<PublishedVacancies />} />
+                  <Route path="terminos-condiciones" element={<Terms />} />
+                  <Route path="ayuda-soporte" element={<Help />} />
+                </Route>
               </Routes>
             </div>
           </VacancyProvider>

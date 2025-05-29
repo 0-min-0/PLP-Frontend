@@ -146,7 +146,6 @@ export const RegisterUser = () => {
                                 </div>
                             </div>
                         </div>
-
                         <Button
                             btnType='submit'
                             btnStyle='w-[30%] bg-[#405e7f] text-white font-bold my-6 mx-85'

@@ -1,7 +1,16 @@
 import { useState, useEffect, useRef } from 'react'
 import { HiChevronDown } from 'react-icons/hi'
 
-export const Select = ({ label = '', value, onChange, desc = '', options = [] }) => {
+export const Select = ({ 
+    label = '', 
+    value, 
+    onChange, 
+    desc = '', 
+    options = [], 
+    color = 'text-[#405e7f]',
+    error = '',
+    errColor = 'text-red-400'
+}) => {
 
     const [isOpen, setIsOpen] = useState(false)
     const ref = useRef(null)
@@ -21,7 +30,7 @@ export const Select = ({ label = '', value, onChange, desc = '', options = [] })
 
     return (
         <div className='relative w-full' ref={ref}>
-            {label && <h2 className='mb-2 text-[#405e7f] font-semibold text-left'>{label}</h2>}
+            {label && <h2 className={`mb-2 ${color} font-semibold text-left`}>{label}</h2>}
             {desc && <p className='mb-3 text-[#405e7f] text-sm text-left'>{desc}</p>}
             <div
                 className='w-full py-2 px-4 text-[#405e7f] bg-white border border-[#405e7f]/50 rounded-xl cursor-pointer flex justify-between items-center'
@@ -50,6 +59,11 @@ export const Select = ({ label = '', value, onChange, desc = '', options = [] })
                     </div>
                 ))}
             </div>
+            {error && (
+                    <span className={`${errColor} font-semibold text-sm mt-1 block`}>
+                        {error}
+                    </span>
+                )}
         </div>
     )
 }

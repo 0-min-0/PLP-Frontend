@@ -2,12 +2,14 @@ import React from 'react'
 import { Input } from '../../UI/Input'
 import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
+import { Select } from '../../UI/Select'
 import { useVacancy } from '../../Context/VacancyContext'
 import { useNavigate } from 'react-router-dom'
 import { showSuccessAlert, showErrorAlert } from '../../UI/CustomAlerts'
+import { categories } from '../../Utils/options'
 
 export const VacancyForm = () => {
-    const { vacancy, errors, handleChange, handleSubmit } = useVacancy()
+    const { vacancy, errors, handleChange, handleSelectChange, handleSubmit } = useVacancy()
     const navigate = useNavigate()
 
     const handleFormSubmit = (e) => {
@@ -19,10 +21,9 @@ export const VacancyForm = () => {
                 showErrorAlert()
             }
         }
-        
+
         handleSubmit(e, 'vacancy', onSuccess)
     }
-
 
     return (
         <div className='rounded-xl px-20 py-14 mx-30 mt-6 bg-[#405e7f]'>
@@ -86,6 +87,16 @@ export const VacancyForm = () => {
                         />
                     </div>
                     <div className='w-1/2 flex flex-col gap-4'>
+                    <Select
+                            label='Categoria'
+                            color='text-white'
+                            name='category'
+                            value={vacancy.category}
+                            onChange={(value) => handleSelectChange('category', value)}
+                            options={categories}
+                            error={errors.category}
+                            errColor='text-[#60efdb]'
+                        />
                         <Desc
                             nameDesc='Responsabilidades y especificaciones'
                             holderDesc='Escribe las responsabilidades que tendrá la persona que ocupe la vacante'
@@ -93,7 +104,7 @@ export const VacancyForm = () => {
                             value={vacancy.responsibilities}
                             onChange={handleChange}
                             error={errors.responsibilities}
-                            height='h-34'
+                            height='h-24'
                             color='text-white'
                             errColor='text-[#60efdb]'
                         />
