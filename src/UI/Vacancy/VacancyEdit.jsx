@@ -2,10 +2,12 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { Input } from '../Input'
 import { Desc } from '../Desc'
+import { Select } from '../Select'
 import { useVacancy } from '../../Context/VacancyContext'
+import { categories } from '../../Utils/options'
 
 export const VacancyEdit = ({ editedVacancy, isEditing }) => {
-  const { errors, handleEditChange } = useVacancy()
+  const { errors, handleEditChange, handleSelectChange } = useVacancy()
 
   // Animaciones para los campos del formulario
   const containerVariants = {
@@ -139,18 +141,15 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
       </motion.div>
 
       <motion.div variants={itemVariants}>
-        <Input
-          labelTitle='Tipo'
-          iName='type'
-          iType='text'
-          isFor='type'
-          iValue={editedVacancy?.type || ''}
-          iChange={handleEditChange}
-          iHolder='Tipo de contrato'
-          borderColor={isEditing ? (errors.type ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
-          focusColor={errors.type ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+        <Select
+          label='Categoría'
+          value={editedVacancy?.category || ''}
+          onChange={(value) => handleSelectChange('category', value)}
+          options={categories}
+          color='text-[#405e7f]'
+          error={errors.category}
+          errColor='text-red-400'
           disabled={!isEditing}
-          error={errors.type}
         />
       </motion.div>
 

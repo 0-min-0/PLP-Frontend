@@ -9,7 +9,8 @@ export const Select = ({
     options = [], 
     color = 'text-[#405e7f]',
     error = '',
-    errColor = 'text-red-400'
+    errColor = 'text-red-400',
+    disabled = false
 }) => {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -54,6 +55,7 @@ export const Select = ({
                             onChange(option.value)
                             setIsOpen(false)
                         }}
+                        disabled={disabled}
                     >
                         {option.label}
                     </div>

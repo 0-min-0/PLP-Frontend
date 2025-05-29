@@ -4,26 +4,10 @@ import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
 import { Select } from '../../UI/Select'
 import { useVacancy } from '../../Context/VacancyContext'
-import { useNavigate } from 'react-router-dom'
-import { showSuccessAlert, showErrorAlert } from '../../UI/CustomAlerts'
 import { categories } from '../../Utils/options'
 
 export const VacancyForm = () => {
     const { vacancy, errors, handleChange, handleSelectChange, handleSubmit } = useVacancy()
-    const navigate = useNavigate()
-
-    const handleFormSubmit = (e) => {
-        const onSuccess = () => {
-            try {
-                showSuccessAlert(navigate, vacancy)
-            } catch (error) {
-                console.error('Error al mostrar alerta:', error)
-                showErrorAlert()
-            }
-        }
-
-        handleSubmit(e, 'vacancy', onSuccess)
-    }
 
     return (
         <div className='rounded-xl px-20 py-12 mx-30 mt-4 bg-[#405e7f]'>

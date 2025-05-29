@@ -1,4 +1,6 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { showSuccessAlert, showErrorAlert } from '../UI/CustomAlerts'
 import {
     getVacancies,
     addVacancyToExample,
@@ -9,7 +11,8 @@ import {
 const VacancyContext = createContext();
 
 export const VacancyProvider = ({ children }) => {
-    const [vacancies, setVacancies] = useState(getVacancies());
+    const navigate = useNavigate()
+    const [vacancies, setVacancies] = useState(getVacancies())
     const [vacancy, setVacancy] = useState({
         vacancyName: '',
         contactPerson: '',
@@ -60,9 +63,9 @@ export const VacancyProvider = ({ children }) => {
     }
 
     const validateSelect = (value, fieldName) => {
-    if (!value) return `ⓘ El campo ${fieldName} es requerido.`
-    return ''
-}
+        if (!value) return `ⓘ El campo ${fieldName} es requerido.`
+        return ''
+    }
 
     const validateSalary = (value) => {
         if (!value) return 'ⓘ El salario estimado es requerido.'
@@ -181,6 +184,19 @@ export const VacancyProvider = ({ children }) => {
         }
     }
 
+    const handleFormSubmit = (e) => {
+        const onSuccess = () => {
+            try {
+                showSuccessAlert(navigate, vacancy)
+            } catch (error) {
+                console.error('Error al mostrar alerta:', error)
+                showErrorAlert()
+            }
+        }
+
+        handleSubmit(e, 'vacancy', onSuccess)
+    }
+
     return (
         <VacancyContext.Provider value={{
             vacancy,
@@ -201,7 +217,8 @@ export const VacancyProvider = ({ children }) => {
             handleChange,
             handleSelectChange,
             handleEditChange,
-            handleSubmit
+            handleSubmit,
+            handleFormSubmit
         }}>
             {children}
         </VacancyContext.Provider>
