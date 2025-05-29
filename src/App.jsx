@@ -15,7 +15,7 @@ import { Employer } from './Components/RegisterForms/Employer'
 import { Company } from './Components/RegisterForms/Company'
 import { CreateVacancie } from './Pages/CreateVacancie/CreateVacancie'
 import { MenuProvider } from './Context/MenuContext'
-import { SettingsEmployer } from './Pages/Settings/SettingsEmployer'
+import { SettingsEmployer } from './Pages/Settings/SettingsEmployer/SettingsEmployer'
 import { RegisterProvider } from './Context/RegisterContext'
 import { VacancyProvider } from './Context/VacancyContext'
 
