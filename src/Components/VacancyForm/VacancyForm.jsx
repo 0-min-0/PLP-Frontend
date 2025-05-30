@@ -7,7 +7,7 @@ import { useVacancy } from '../../Context/VacancyContext'
 import { categories } from '../../Utils/options'
 
 export const VacancyForm = () => {
-    const { vacancy, errors, handleChange, handleSelectChange, handleSubmit } = useVacancy()
+    const { vacancy, errors, handleChange, handleSelectChange, handleFormSubmit } = useVacancy()
 
     return (
         <div className='rounded-xl px-20 py-12 mx-30 mt-4 bg-[#405e7f]'>

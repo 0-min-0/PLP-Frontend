@@ -33,8 +33,22 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
     }
   }
 
+  const handleCategorySelect = (value) => {
+    if (!isEditing) return
+
+    handleSelectChange('category', value)
+
+    const fakeEvent = {
+      target: {
+        name: 'category',
+        value: value
+      }
+    }
+    handleEditChange(fakeEvent)
+  }
+
   return (
-    <motion.div 
+    <motion.div
       className='max-h-[60vh] overflow-y-auto scrollbar-custom space-y-6 px-10'
       variants={containerVariants}
       initial="hidden"
@@ -144,14 +158,14 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
         <Select
           label='Categoría'
           value={editedVacancy?.category || ''}
-          onChange={(value) => handleSelectChange('category', value)}
+          onChange={handleCategorySelect}
           options={categories}
           color='text-[#405e7f]'
           error={errors.category}
           errColor='text-red-400'
-          borderColor={isEditing ? (errors.category ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
-          focusColor={errors.category ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
           disabled={!isEditing}
+          borderColor={isEditing ? (errors.responsibilities ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          focusColor={errors.responsibilities ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
         />
       </motion.div>
 

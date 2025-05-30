@@ -122,8 +122,8 @@ export const RegisterUser = () => {
                                     })}
                                     error={errors.description}
                                 />
-                                <div className='w-full gap-6 mt-3'>
-                                    <div className='mt-5'>
+                                <div className='w-full gap-6 mt-2'>
+                                    <div className='mt-3'>
                                         <Select
                                             label='Municipio'
                                             name='town'

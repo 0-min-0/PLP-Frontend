@@ -22,6 +22,7 @@ import { PublishedVacancies } from './Pages/Settings/SettingsEmployer/PublishedV
 import { GeneralEmployer } from './Pages/Settings/SettingsEmployer/GeneralEmployer'
 import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
+import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
                   <Route path="terminos-condiciones" element={<Terms />} />
                   <Route path="ayuda-soporte" element={<Help />} />
                 </Route>
+                <Route path='/verificar-cuenta' element={<VerifyAccount />} />
               </Routes>
             </div>
           </VacancyProvider>
