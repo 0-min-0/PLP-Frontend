@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from 'react'
-import { CardContainer } from '../../Components/Container/CardContainer'
-import { getVacancies } from '../../Utils/objectsExample'
+import { CardContainerV } from '../../Components/Container/CardContainerV'
+import { getVacancies, vacanciesExample } from '../../Utils/objectsExample'
 import { SetPerfil } from '../../Components/SetPerfil/SetPerfil'
 
 export const VacanciesLayout = () => {
     const [vacancies, setVacancies] = useState([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        const loadedVacancies = getVacancies()
-        setVacancies(loadedVacancies)
+        const loadData = async () => {
+            try {
+                const loadedVacancies = getVacancies()
+                const dataToUse = loadedVacancies.length > 0 ? loadedVacancies : vacanciesExample
+                setVacancies(dataToUse)
+            } catch (error) {
+                console.error("Error loading vacancies:", error)
+                setVacancies(vacanciesExample)
+            } finally {
+                setLoading(false)
+            }
+        }
+        
+        loadData()
     }, [])
 
-    return (
+    if (loading) {
+        return <div className="text-center py-10">Cargando vacantes...</div>
+    }
+
+     return (
         <div className='flex flex-col'>
             <div className='text-[#405e7f] mx-10 mt-10 mb-5'>
                 <h1 className='font-[afacadBold] text-4xl mb-2'>
@@ -22,7 +39,7 @@ export const VacanciesLayout = () => {
             <div className='mb-10'>
                 <div className='flex w-full gap-4'>
                     <div className='w-[70%]'>
-                        <CardContainer
+                        <CardContainerV
                             title='Hoy'
                             vacancies={vacancies}
                             rounded='top'
@@ -32,12 +49,12 @@ export const VacanciesLayout = () => {
                         <SetPerfil />
                     </div>
                 </div>
-                <CardContainer
+                <CardContainerV
                     title='Esta semana'
                     vacancies={vacancies}
                     rounded='top-right'
                 />
-                <CardContainer
+                <CardContainerV
                     title='Este mes'
                     vacancies={vacancies}
                     rounded='bottom'

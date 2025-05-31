@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { Vacancie } from '../../UI/Vacancy/Vacancie'
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 
-export const CardContainer = ({
+export const CardContainerV = ({
     title,
     vacancies = [],
     rounded = 'none'

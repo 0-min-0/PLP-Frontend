@@ -14,8 +14,8 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
     setEditedVacancy,
     setIsEditing,
     setShowConfirm,
-    updateVacancy,
-    deleteVacancy
+    handleSaveVacancy,
+    handleDeleteConfirmVacancy
   } = useVacancy()
 
   useEffect(() => {
@@ -24,23 +24,6 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
       vacancyName: vacancy.vacancyName || vacancy.title
     })
   }, [vacancy, setEditedVacancy])
-
-  const handleSave = () => {
-    const success = updateVacancy({
-      ...editedVacancy,
-      title: editedVacancy.vacancyName || editedVacancy.title
-    })
-
-    if (success) {
-      setIsEditing(false)
-      onClose?.()
-    }
-  }
-
-  const handleDeleteConfirm = () => {
-    deleteVacancy(vacancy.id)
-    onClose()
-  }
 
   // Animaciones
   const backdropVariants = {
@@ -127,7 +110,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
                   ? 'bg-[#60efdb] text-[#405e7f]'
                   : 'bg-[#405e7f] text-white'
                 } font-semibold`}
-              clicked={isEditing ? handleSave : () => setIsEditing(true)}
+              clicked={isEditing ? () => handleSaveVacancy(onClose) : () => setIsEditing(true)}
             />
             <Button
               btnName='Eliminar vacante'
@@ -141,7 +124,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             {showConfirm && (
               <ConfirmAlert
                 message='¿Estás seguro de eliminar esta vacante?'
-                onConfirm={handleDeleteConfirm}
+                onConfirm={() => handleDeleteConfirmVacancy(vacancy.id, onClose)}
                 onCancel={() => setShowConfirm(false)}
               />
             )}

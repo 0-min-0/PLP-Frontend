@@ -5,7 +5,7 @@ import { SearchBar } from '../../UI/SearchBar'
 import { ProfileMenu } from '../../Components/ProfileMenu/ProfileMenu'
 import { HiOutlineInbox } from 'react-icons/hi2'
 import avatar from '../../assets/images/avatar.jpg'
-import { PersonsLayout } from '../../Layouts/PersonsLayout/PersonsLayout'
+import { PeopleLayout } from '../../Layouts/PeopleLayout/PeopleLayout'
 import { IoBriefcaseOutline } from 'react-icons/io5'
 
 export const MainEmployer = () => {
@@ -43,7 +43,7 @@ export const MainEmployer = () => {
                 }
             />
             <div>
-                <PersonsLayout />
+                <PeopleLayout />
             </div>
         </div>
     )

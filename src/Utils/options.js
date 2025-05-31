@@ -24,7 +24,7 @@ export const optionId = [  //Opciones de tipo de documento
     { value: 'pasaporte', label: 'P.P (Pasaporte)' },
 ]
 
-export const categories = [ //Categorias de trabajo
+export const categories = [  //Categorias de trabajo
     { value: 'administracion', label: 'Administración y oficina' },
     { value: 'arte', label: 'Arte y decoración' },
     { value: 'cocina', label: 'Cocina y Gastronomía' },
@@ -42,3 +42,12 @@ export const categories = [ //Categorias de trabajo
     { value: 'tecnologia', label: 'Tecnología e informática' },
     { value: 'manual', label: 'Trabajo manual y oficios' }
 ]
+
+const categoryMap = categories.reduce((acc, category) => {
+    acc[category.value] = category.label
+    return acc
+}, {})
+
+export const getCategoryLabel = (categoryValue) => {
+    return categoryMap[categoryValue] || categoryValue
+}

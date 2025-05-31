@@ -170,6 +170,23 @@ export const VacancyProvider = ({ children }) => {
         setVacancies(getVacancies())
     }
 
+    const handleSaveVacancy = (onClose) => {
+        const success = updateVacancy({
+            ...editedVacancy,
+            title: editedVacancy.vacancyName || editedVacancy.title
+        })
+
+        if (success) {
+            setIsEditing(false)
+            onClose?.()
+        }
+    }
+
+    const handleDeleteConfirmVacancy = (id, onClose) => {
+        deleteVacancy(id)
+        onClose()
+    }
+
     const handleSubmit = (e, type, onSuccess) => {
         e.preventDefault();
         const validation = validateVacancyForm(vacancy);
@@ -231,7 +248,9 @@ export const VacancyProvider = ({ children }) => {
             handleSelectChange,
             handleEditChange,
             handleSubmit,
-            handleFormSubmit
+            handleFormSubmit,
+            handleSaveVacancy,
+            handleDeleteConfirmVacancy
         }}>
             {children}
         </VacancyContext.Provider>

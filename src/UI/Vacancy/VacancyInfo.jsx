@@ -1,9 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
+import { getCategoryLabel } from '../../Utils/options'
 
 export const VacancyInfo = ({ vacancy }) => {
-    // Animaciones para los elementos internos
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -39,8 +40,8 @@ export const VacancyInfo = ({ vacancy }) => {
                 <div className='mb-4'>
                     <h5 className='font-bold text-xl text-[#405e7f] mb-3'>Información de la empresa</h5>
                     <div className='space-y-2'>
-                        <p><span className='font-semibold text-[#405e7f]'>Nombre de la empresa/contratante:</span> {vacancy.company}</p>
-                        <p><span className='font-semibold text-[#405e7f]'>Ubicación(es) de la empresa:</span> {vacancy.location}</p>
+                        <p><span className='font-semibold text-[#405e7f]'>Nombre de la empresa/emprendimiento:</span> {vacancy.company}</p>
+                        <p><span className='font-semibold text-[#405e7f]'>Ubicación:</span> {vacancy.location}</p>
                         <p><span className='font-semibold text-[#405e7f]'>Sector:</span> Tecnología</p>
                     </div>
                 </div>
@@ -82,6 +83,14 @@ export const VacancyInfo = ({ vacancy }) => {
                     <motion.div variants={itemVariants}>
                         <h5 className='font-semibold text-[#405e7f]'>Persona de contacto:</h5>
                         <p>{vacancy.contactPerson}</p>
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
+                        <h5 className='font-semibold text-[#405e7f]'>Disponibilidad requerida:</h5>
+                        <p>{vacancy.availability}</p>
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
+                        <h5 className='font-semibold text-[#405e7f]'>Categoria de trabajo:</h5>
+                        <p>{getCategoryLabel(vacancy.category)}</p>
                     </motion.div>
                     <motion.div variants={itemVariants}>
                         <h5 className='w-[] font-semibold text-[#405e7f]'>Responsabilidades y tareas:</h5>

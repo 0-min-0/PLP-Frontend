@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { Button } from '../../UI/button'
 import plpLogo from '../../assets/images/plpLogo.png'
 
 export const VerifyAccount = () => {
@@ -32,11 +34,11 @@ export const VerifyAccount = () => {
 
     useEffect(() => {
         if (timeLeft <= 0) return
-        
+
         const timer = setTimeout(() => {
             setTimeLeft(timeLeft - 1)
         }, 1000)
-        
+
         return () => clearTimeout(timer)
     }, [timeLeft])
 
@@ -69,64 +71,69 @@ export const VerifyAccount = () => {
             </header>
             <div className='w-full'>
                 <h3 className='text-center text-lg/6 text-[#405e7f] mt-8'>
-                    Abre tu aplicación de correo electrónico, abre el correo que te hemos enviado y escribe aquí el código para 
+                    Abre tu aplicación de correo electrónico, abre el correo que te hemos enviado y escribe aquí el código para
                     <br /> verificar tu cuenta.
                 </h3>
                 <div className='flex flex-col items-center mt-6 gap-4'>
-                    <div className='flex justify-center gap-2 my-40'>
-                        {code.map((digit, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ scale: 1 }}
-                                animate={{ 
-                                    scale: activeInput === index ? 1.05 : 1
-                                }}
-                                transition={{ duration: 0.3, ease: "easeOut" }}
+                    <div className='flex flex-col text-center my-40'>
+                        <div className='flex gap-2'>
+                            {code.map((digit, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ scale: 1 }}
+                                    animate={{
+                                        scale: activeInput === index ? 1.05 : 1
+                                    }}
+                                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                                >
+                                    <input
+                                        ref={(el) => (inputRefs.current[index] = el)}
+                                        type='text'
+                                        maxLength={1}
+                                        value={digit}
+                                        onChange={(e) => handleCodeChange(index, e.target.value)}
+                                        onKeyDown={(e) => handleKeyDown(index, e)}
+                                        onFocus={() => setActiveInput(index)}
+                                        className={`w-14 h-16 text-3xl text-center border-2 rounded-xl focus:outline-none ${activeInput === index
+                                            ? 'border-[#60efdb] text-[#405e7f]'
+                                            : 'border-[#405e7f]/60 text-[#405e7f]'
+                                            }`}
+                                    />
+                                </motion.div>
+                            ))}
+                        </div>
+                        <motion.span
+                            className='text-[#405e7f] text-lg mt-6'
+                            animate={{
+                                color: timeLeft <= 30 ? '#ff0000' : '#405e7f',
+                                borderColor: timeLeft <= 30 ? '#ff0000' : '#405e7f',
+                                scale: timeLeft <= 30 ? 1.1 : 1
+                            }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            El codigo vence en
+                            <strong className='ml-3 border-2 border-[#405e7f]/70 rounded-2xl px-2'>
+                                {formatTime(timeLeft)}
+                            </strong>
+                        </motion.span>
+                    </div>
+                    <div className='flex flex-col items-center gap-4'>
+                        <NavLink to='/'>
+                            <Button
+                                btnName='Verificar'
+                                btnStyle='bg-[#405e7f] text-white text-lg px-14'
+                            />
+                        </NavLink>
+                        <p className='text-[#405e7f]'>
+                            ¿Aún no recibes ningún correo?
+                            <NavLink
+                                to='/'
+                                className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60 ml-2'
                             >
-                                <input
-                                    ref={(el) => (inputRefs.current[index] = el)}
-                                    type='text'
-                                    maxLength={1}
-                                    value={digit}
-                                    onChange={(e) => handleCodeChange(index, e.target.value)}
-                                    onKeyDown={(e) => handleKeyDown(index, e)}
-                                    onFocus={() => setActiveInput(index)}
-                                    className={`w-14 h-16 text-3xl text-center border-2 rounded-xl focus:outline-none ${
-                                        activeInput === index 
-                                            ? 'border-[#60efdb] text-[#405e7f]' 
-                                            : 'border-[#405e7f] text-[#405e7f]'
-                                    }`}
-                                />
-                            </motion.div>
-                        ))}
+                                Reenviar correo
+                            </NavLink>
+                        </p>
                     </div>
-                    <div className='flex gap-4'>
-                        <motion.button 
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className='bg-[#405e7f] text-white px-6 py-2 rounded-md hover:bg-[#2c4363] transition-colors'
-                        >
-                            Verificar
-                        </motion.button>
-                        <motion.button 
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className='text-[#405e7f] px-6 py-2 rounded-md border border-[#405e7f] hover:bg-gray-100 transition-colors'
-                            onClick={handleResend}
-                        >
-                            Reenviar correo
-                        </motion.button>
-                    </div>
-                    <motion.span 
-                        className='text-[#405e7f]'
-                        animate={{
-                            color: timeLeft <= 30 ? '#ff0000' : '#405e7f',
-                            scale: timeLeft <= 30 ? 1.1 : 1
-                        }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        {formatTime(timeLeft)}
-                    </motion.span>
                 </div>
             </div>
         </div>
