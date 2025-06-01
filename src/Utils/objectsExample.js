@@ -220,14 +220,12 @@ export const peopleExample = [ //array de contratistas
   }
 ]
 
-
 const syncVacancies = () => {
   localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
 }
 
 export const initializeVacancies = () => {
   const storedVacancies = localStorage.getItem('vacancies')
-
   if (!storedVacancies) {
     syncVacancies()
   } else {
@@ -242,15 +240,12 @@ export const getVacancies = () => {
     const stored = localStorage.getItem('vacancies')
     return stored ? JSON.parse(stored) : [...vacanciesExample]
   }
-  console.log(1);
-  
+
   try {
     const stored = localStorage.getItem('vacancies')
     const storedVacancies = stored ? JSON.parse(stored) : []
-    
     const storedIds = new Set(storedVacancies.map(v => v.id))
     const uniqueExampleVacancies = vacanciesExample.filter(v => !storedIds.has(v.id))
-
     return [...storedVacancies, ...uniqueExampleVacancies]
   } catch (error) {
     console.error('Error al cargar vacantes:', error)
@@ -259,9 +254,9 @@ export const getVacancies = () => {
 }
 
 export const addVacancyToExample = (formData) => {
-  const currentVacancies = getVacancies();
-  const newId = currentVacancies.length > 0 
-    ? Math.max(...currentVacancies.map(v => v.id)) + 1 
+  const currentVacancies = getVacancies()
+  const newId = currentVacancies.length > 0
+    ? Math.max(...currentVacancies.map(v => v.id)) + 1
     : 1
 
   const newVacancy = {
@@ -280,7 +275,6 @@ export const addVacancyToExample = (formData) => {
 
   const updatedVacancies = [...currentVacancies, newVacancy]
   localStorage.setItem('vacancies', JSON.stringify(updatedVacancies))
-  
   return newVacancy
 }
 

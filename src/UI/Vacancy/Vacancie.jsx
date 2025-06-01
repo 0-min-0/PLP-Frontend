@@ -11,6 +11,15 @@ export const Vacancie = ({ onShowDetails, title, company, location, type, experi
     console.log('Postulando a:', vacancyData)
   }
 
+  const handleClick = () => {
+    if (onShowDetails) {
+      onShowDetails(vacancy)
+    } else {
+      setShowDetail(true)
+      setIsOpen(true)
+    }
+  }
+
   return (
     <>
       <div className='bg-white rounded-xl border border-[#60efdb] px-8 py-6 text-[#405e7f] w-75 min-h-[240px] flex flex-col'>
@@ -26,12 +35,12 @@ export const Vacancie = ({ onShowDetails, title, company, location, type, experi
             <h3 className='font-semibold whitespace-nowrap'>Empresa • </h3>
             <p className='ml-1 line-clamp-1'>{company || 'Empresa no especificada'}</p>
           </div>
-          
+
           <div className='flex items-start'>
             <h3 className='font-semibold whitespace-nowrap'>Ubicación • </h3>
             <p className='ml-1 line-clamp-1'>{location || 'Ubicación no especificada'}</p>
           </div>
-          
+
           <div className='flex items-start'>
             <h3 className='font-semibold whitespace-nowrap'>Disponibilidad • </h3>
             <p className='ml-1 line-clamp-1'>{type || 'No especificado'}</p>
@@ -42,22 +51,18 @@ export const Vacancie = ({ onShowDetails, title, company, location, type, experi
           btnName='Ver detalles'
           btnType='button'
           btnStyle='bg-[#405e7f] text-white font-semibold w-full mt-3 py-2'
-          clicked={() => {
-            setShowDetail(true)
-            setIsOpen(true)
-          }}
+          clicked={handleClick}
         />
       </div>
 
-      {showDetail && (
+      {!onShowDetails && showDetail && (
         <VacancyView
           vacancy={vacancy}
+          isOpen={isOpen}
           onClose={() => {
             setShowDetail(false)
             setIsOpen(false)
           }}
-          onApply={handleApply}
-          isOpen={isOpen}
         />
       )}
     </>

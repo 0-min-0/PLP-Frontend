@@ -1,32 +1,29 @@
-import { useRef, useState } from 'react';
-import { Vacancie } from '../../UI/Vacancy/Vacancie';
-import { Person } from '../../UI/Person/Person';
-import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
+import { useRef, useState } from 'react'
+import { IoChevronBack, IoChevronForward } from 'react-icons/io5'
 
-export const JobsContainer = ({
+export const CardContainer = ({
   title,
-  vacancies = [],
-  people = [],
+  items = [],
   rounded = 'none',
-  onShowDetails,
-  onShowResume
+  ItemComponent
 }) => {
-  const containerRef = useRef(null);
-  const [showLeftArrow, setShowLeftArrow] = useState(false);
-  const [showRightArrow, setShowRightArrow] = useState(true);
+
+  const containerRef = useRef(null)
+  const [showLeftArrow, setShowLeftArrow] = useState(false)
+  const [showRightArrow, setShowRightArrow] = useState(true)
 
   const scroll = (direction) => {
-    const container = containerRef.current;
+    const container = containerRef.current
     const scrollAmount = 300;
-    container.scrollLeft += direction === 'left' ? -scrollAmount : scrollAmount;
-    checkScrollPosition();
-  };
+    container.scrollLeft += direction === 'left' ? -scrollAmount : scrollAmount
+    checkScrollPosition()
+  }
 
   const checkScrollPosition = () => {
-    const container = containerRef.current;
-    setShowLeftArrow(container.scrollLeft > 0);
-    setShowRightArrow(container.scrollLeft < container.scrollWidth - container.clientWidth);
-  };
+    const container = containerRef.current
+    setShowLeftArrow(container.scrollLeft > 0)
+    setShowRightArrow(container.scrollLeft < container.scrollWidth - container.clientWidth)
+  }
 
   const getRoundedClass = () => {
     switch (rounded) {
@@ -37,31 +34,6 @@ export const JobsContainer = ({
       default: return '';
     }
   };
-
-  const mixedItems = [];
-  const maxLength = Math.max(vacancies.length, people.length);
-
-  for (let i = 0; i < maxLength; i++) {
-    if (i < vacancies.length) {
-      mixedItems.push({
-        type: 'vacancy',
-        data: {
-          ...vacancies[i],
-          onShowDetails: () => onShowDetails(vacancies[i])
-        }
-      });
-    }
-
-    if (i < people.length) {
-      mixedItems.push({
-        type: 'person',
-        data: {
-          ...people[i],
-          onShowResume: () => onShowResume(people[i])
-        }
-      });
-    }
-  }
 
   return (
     <div className={`mx-10 relative bg-[#dcfff6] ${getRoundedClass()}`}>
@@ -88,13 +60,9 @@ export const JobsContainer = ({
             onScroll={checkScrollPosition}
             className='flex overflow-x-auto scroll-smooth space-x-6 px-10 pb-10 scrollbar-hide scrollbar-custom'
           >
-            {mixedItems.map((item, index) => (
-              <div key={`${item.type}-${item.data.id || index}`} className='flex-shrink-0 px-2'>
-                {item.type === 'vacancy' ? (
-                  <Vacancie {...item.data} />
-                ) : (
-                  <Person {...item.data} />
-                )}
+            {items.map((item) => (
+              <div key={item.id} className='flex-shrink-0 px-2'>
+                <ItemComponent {...item} />
               </div>
             ))}
           </div>

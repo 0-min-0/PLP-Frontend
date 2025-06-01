@@ -1,10 +1,19 @@
-import React from 'react'
 import { motion } from 'framer-motion'
-import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
+import {
+    HiOutlineMail,
+    HiOutlinePhone,
+    HiOutlineOfficeBuilding,
+    HiOutlineLocationMarker,
+    HiOutlineBriefcase,
+    HiOutlineUser,
+    HiOutlineClock,
+    HiOutlineCurrencyDollar,
+    HiOutlineClipboardList,
+    HiOutlineTag
+} from 'react-icons/hi'
 import { getCategoryLabel } from '../../Utils/options'
 
 export const VacancyInfo = ({ vacancy }) => {
-
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -29,7 +38,7 @@ export const VacancyInfo = ({ vacancy }) => {
     }
 
     return (
-        <motion.div 
+        <motion.div
             className='w-full px-12 max-h-[65vh] overflow-y-auto scrollbar-custom'
             variants={containerVariants}
             initial="hidden"
@@ -37,70 +46,128 @@ export const VacancyInfo = ({ vacancy }) => {
         >
             {/* Información de la empresa */}
             <motion.div variants={itemVariants}>
-                <div className='mb-4'>
-                    <h5 className='font-bold text-xl text-[#405e7f] mb-3'>Información de la empresa</h5>
-                    <div className='space-y-2'>
-                        <p><span className='font-semibold text-[#405e7f]'>Nombre de la empresa/emprendimiento:</span> {vacancy.company}</p>
-                        <p><span className='font-semibold text-[#405e7f]'>Ubicación:</span> {vacancy.location}</p>
-                        <p><span className='font-semibold text-[#405e7f]'>Sector:</span> Tecnología</p>
-                    </div>
-                </div>
-
-                <div className='mb-4'>
-                    <h5 className='font-semibold text-[#405e7f] mb-2'>Contacto</h5>
-                    <div className='space-y-1'>
-                        <p className='flex items-center gap-2'>
-                            <HiOutlineMail className='w-5 h-5 text-[#405e7f]' />
-                            {vacancy.contact.includes('@') ? vacancy.contact : 'No especificado'}
-                        </p>
-                        <p className='flex items-center gap-2'>
-                            <HiOutlinePhone className='w-5 h-5 text-[#405e7f]' />
-                            {!vacancy.contact.includes('@') ? vacancy.contact : 'No especificado'}
-                        </p>
+                <div className='mb-6'>
+                    <h5 className='font-bold text-xl text-[#405e7f] mb-4'>Información de la Empresa</h5>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div className='flex items-start gap-3'>
+                            <HiOutlineOfficeBuilding className='w-5 h-5 text-[#60efdb] mt-1' />
+                            <div>
+                                <p className='font-semibold text-[#405e7f]'>Empresa/Emprendimiento</p>
+                                <p>{vacancy.company || 'No especificado'}</p>
+                            </div>
+                        </div>
+                        <div className='flex items-start gap-3'>
+                            <HiOutlineLocationMarker className='w-5 h-5 text-[#60efdb] mt-1' />
+                            <div>
+                                <p className='font-semibold text-[#405e7f]'>Ubicación</p>
+                                <p>{vacancy.location}</p>
+                            </div>
+                        </div>
+                        <div className='flex items-start gap-3'>
+                            <HiOutlineTag className='w-5 h-5 text-[#60efdb] mt-1' />
+                            <div>
+                                <p className='font-semibold text-[#405e7f]'>Sector</p>
+                                <p>Tecnología</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div className='mb-6'>
-                    <h5 className='font-semibold text-[#405e7f] mb-2'>Descripción de la empresa</h5>
-                    <p>Somos una empresa de tecnología en busca de problemáticas alrededor para darles soluciones innovadoras y eficientes.</p>
+                    <h5 className='font-semibold text-lg text-[#405e7f] mb-3'>Contacto</h5>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div className='flex items-start gap-3'>
+                            <HiOutlineUser className='w-5 h-5 text-[#60efdb] mt-1' />
+                            <div>
+                                <p className='font-semibold text-[#405e7f]'>Persona de contacto</p>
+                                <p>{vacancy.contactPerson || 'No especificado'}</p>
+                            </div>
+                        </div>
+                        {vacancy.contact.includes('@') ? (
+                            <div className='flex items-start gap-3'>
+                                <HiOutlineMail className='w-5 h-5 text-[#60efdb] mt-1' />
+                                <div>
+                                    <p className='font-semibold text-[#405e7f]'>Correo electrónico</p>
+                                    <p>{vacancy.contact}</p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className='flex items-start gap-3'>
+                                <HiOutlinePhone className='w-5 h-5 text-[#60efdb] mt-1' />
+                                <div>
+                                    <p className='font-semibold text-[#405e7f]'>Teléfono</p>
+                                    <p>{vacancy.contact}</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <div className='mb-6'>
+                    <h5 className='font-semibold text-lg text-[#405e7f] mb-3'>Descripción de la empresa</h5>
+                    <p className='text-gray-700'>
+                        {vacancy.companyDescription || 'Somos una empresa de tecnología en busca de problemáticas alrededor para darles soluciones innovadoras y eficientes.'}
+                    </p>
                 </div>
             </motion.div>
-            
-            <motion.hr 
-                className='border-t border-gray-200 mb-6' 
+
+            <motion.hr
+                className='border-t border-gray-200 mb-6'
                 variants={itemVariants}
             />
-            
-            {/* Información de la vacante */}
-            <motion.div className='mb-8' variants={itemVariants}>
-                <h4 className='text-xl font-semibold text-[#405e7f] mb-4'>Información de la vacante</h4>
 
-                <motion.div className='space-y-4'>
-                    <motion.div variants={itemVariants}>
-                        <h5 className='font-semibold text-[#405e7f]'>Nombre de la vacante:</h5>
-                        <p>{vacancy.title || vacancy.vacancyName}</p>
-                    </motion.div>
-                    <motion.div variants={itemVariants}>
-                        <h5 className='font-semibold text-[#405e7f]'>Persona de contacto:</h5>
-                        <p>{vacancy.contactPerson}</p>
-                    </motion.div>
-                    <motion.div variants={itemVariants}>
-                        <h5 className='font-semibold text-[#405e7f]'>Disponibilidad requerida:</h5>
-                        <p>{vacancy.availability}</p>
-                    </motion.div>
-                    <motion.div variants={itemVariants}>
-                        <h5 className='font-semibold text-[#405e7f]'>Categoria de trabajo:</h5>
-                        <p>{getCategoryLabel(vacancy.category)}</p>
-                    </motion.div>
-                    <motion.div variants={itemVariants}>
-                        <h5 className='w-[] font-semibold text-[#405e7f]'>Responsabilidades y tareas:</h5>
-                        <p>{vacancy.responsibilities}</p>
-                    </motion.div>
-                    <motion.div variants={itemVariants}>
-                        <h5 className='font-semibold text-[#405e7f]'>Salario estimado:</h5>
-                        <p>{vacancy.salary}</p>
-                    </motion.div>
-                </motion.div>
+            {/* Información de la vacante */}
+            <motion.div variants={itemVariants}>
+                <h4 className='text-xl font-semibold text-[#405e7f] mb-4'>Detalles de la Vacante</h4>
+
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
+                    <div className='flex items-start gap-3'>
+                        <HiOutlineBriefcase className='w-5 h-5 text-[#60efdb] mt-1' />
+                        <div>
+                            <p className='font-semibold text-[#405e7f]'>Nombre del puesto</p>
+                            <p>{vacancy.title || vacancy.vacancyName}</p>
+                        </div>
+                    </div>
+                    <div className='flex items-start gap-3'>
+                        <HiOutlineClock className='w-5 h-5 text-[#60efdb] mt-1' />
+                        <div>
+                            <p className='font-semibold text-[#405e7f]'>Disponibilidad</p>
+                            <p>{vacancy.availability}</p>
+                        </div>
+                    </div>
+                    <div className='flex items-start gap-3'>
+                        <HiOutlineTag className='w-5 h-5 text-[#60efdb] mt-1' />
+                        <div>
+                            <p className='font-semibold text-[#405e7f]'>Categoría</p>
+                            <p>{getCategoryLabel(vacancy.category)}</p>
+                        </div>
+                    </div>
+                    <div className='flex items-start gap-3'>
+                        <HiOutlineCurrencyDollar className='w-5 h-5 text-[#60efdb] mt-1' />
+                        <div>
+                            <p className='font-semibold text-[#405e7f]'>Salario estimado</p>
+                            <p>{vacancy.salary || 'A convenir'}</p>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <motion.hr
+                className='border-t border-gray-200 mb-6'
+                variants={itemVariants}
+            />
+
+            {/* Responsabilidades */}
+            <motion.div variants={itemVariants}>
+                <h4 className='text-xl font-semibold text-[#405e7f] mb-4'>Responsabilidades</h4>
+                <div className='flex items-start gap-3'>
+                    <HiOutlineClipboardList className='w-5 h-5 text-[#60efdb] mt-1' />
+                    <div className='text-gray-700'>
+                        {vacancy.responsibilities.split('\n').map((item, i) => (
+                            <p key={i} className='mb-2'>{item}</p>
+                        ))}
+                    </div>
+                </div>
             </motion.div>
         </motion.div>
     )
