@@ -45,7 +45,7 @@ export const Select = ({
 
     return (
         <div className='relative w-full' ref={ref}>
-            {label && <h2 className={`mb-2 ${color} font-semibold text-left`}>{label}</h2>}
+            {label && <h2 className={`mb-3 ${color} font-semibold text-left`}>{label}</h2>}
             {desc && <p className='mb-3 text-[#405e7f] text-sm text-left'>{desc}</p>}
             <div
                 className={`w-full py-2 px-4 text-[#405e7f] text-lg bg-white border ${borderColor} rounded-xl 

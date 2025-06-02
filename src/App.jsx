@@ -23,6 +23,7 @@ import { GeneralEmployer } from './Pages/Settings/SettingsEmployer/GeneralEmploy
 import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
 import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
+import { SettingsProvider } from './Context/SettingsContext'
 
 function App() {
 
@@ -31,33 +32,35 @@ function App() {
       <RegisterProvider>
         <MenuProvider>
           <VacancyProvider>
-            <div className={`w-full h-screen p-6 font-[afacad] 
+            <SettingsProvider>
+              <div className={`w-full h-screen p-6 font-[afacad] 
                 ${location.pathname === '/configuraciones-contratante' ? 'bg-[#dcfff6]' :
-                location.pathname === '/configraciones-contratista' ? 'bg-[#dcfff6]' : 'bg-white'
-              }`}>
-              <DynamicTitle />
-              <Routes>
-                <Route path='/' element={<MainPage />} />
-                <Route path='/acceder' element={<Login />} />
-                <Route path='/crear-cuenta' element={<Register />} />
-                <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
-                <Route path='/crear-cuenta/contratista' element={<JobSeeker />} />
-                <Route path='/crear-cuenta/contratante' element={<Employer />} />
-                <Route path='/crear-cuenta/empresa' element={<Company />} />
-                <Route path='/crear-contraseña' element={<Password />} />
-                <Route path='/inicio-contratista' element={<MainJobSeeker />} />
-                <Route path='/inicio-contratante' element={<MainEmployer />} />
-                <Route path='/crear-vacante' element={<CreateVacancie />} />
-                <Route path='configuraciones-contratante' element={<SettingsEmployer />}>
-                  <Route index element={<PublishedVacancies />} />
-                  <Route path="general-contratante" element={<GeneralEmployer />} />
-                  <Route path="publicaciones-contratante" element={<PublishedVacancies />} />
-                  <Route path="terminos-condiciones" element={<Terms />} />
-                  <Route path="ayuda-soporte" element={<Help />} />
-                </Route>
-                <Route path='/verificar-cuenta' element={<VerifyAccount />} />
-              </Routes>
-            </div>
+                  location.pathname === '/configraciones-contratista' ? 'bg-[#dcfff6]' : 'bg-white'
+                }`}>
+                <DynamicTitle />
+                <Routes>
+                  <Route path='/' element={<MainPage />} />
+                  <Route path='/acceder' element={<Login />} />
+                  <Route path='/crear-cuenta' element={<Register />} />
+                  <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
+                  <Route path='/crear-cuenta/contratista' element={<JobSeeker />} />
+                  <Route path='/crear-cuenta/contratante' element={<Employer />} />
+                  <Route path='/crear-cuenta/empresa' element={<Company />} />
+                  <Route path='/crear-contraseña' element={<Password />} />
+                  <Route path='/inicio-contratista' element={<MainJobSeeker />} />
+                  <Route path='/inicio-contratante' element={<MainEmployer />} />
+                  <Route path='/crear-vacante' element={<CreateVacancie />} />
+                  <Route path='configuraciones-contratante' element={<SettingsEmployer />}>
+                    <Route index element={<PublishedVacancies />} />
+                    <Route path="general-contratante" element={<GeneralEmployer />} />
+                    <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
+                    <Route path="terminos-condiciones" element={<Terms />} />
+                    <Route path="ayuda-soporte" element={<Help />} />
+                  </Route>
+                  <Route path='/verificar-cuenta' element={<VerifyAccount />} />
+                </Routes>
+              </div>
+            </SettingsProvider>
           </VacancyProvider>
         </MenuProvider>
       </RegisterProvider>
