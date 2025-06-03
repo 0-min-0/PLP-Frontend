@@ -1,6 +1,6 @@
 import React from 'react'
 import './Style/index.css'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { MainPage } from './Pages/MainPage/MainPage'
 import { Login } from './Pages/Login/Login'
 import { Register } from './Pages/Register/Register'
@@ -27,6 +27,19 @@ import { SettingsProvider } from './Context/SettingsContext'
 
 function App() {
 
+  const location = useLocation()
+
+  const bgRoutes = [
+    '/configuraciones-contratante',
+    '/configuraciones-contratista',
+    '/configuraciones-contratante/general-contratante',
+    '/configuraciones-contratante/publicaciones-contratante',
+    '/configuraciones-contratante/terminos-condiciones',
+    '/configuraciones-contratante/ayuda-soporte',
+  ]
+
+  const isBgRoute = bgRoutes.includes(location.pathname);
+
   return (
     <PasswordProvider>
       <RegisterProvider>
@@ -34,9 +47,7 @@ function App() {
           <VacancyProvider>
             <SettingsProvider>
               <div className={`w-full h-screen p-6 font-[afacad] 
-                ${location.pathname === '/configuraciones-contratante' ? 'bg-[#dcfff6]' :
-                  location.pathname === '/configraciones-contratista' ? 'bg-[#dcfff6]' : 'bg-white'
-                }`}>
+               ${isBgRoute ? 'bg-[#dcfff6]' : 'bg-white'}`}>
                 <DynamicTitle />
                 <Routes>
                   <Route path='/' element={<MainPage />} />
@@ -51,11 +62,11 @@ function App() {
                   <Route path='/inicio-contratante' element={<MainEmployer />} />
                   <Route path='/crear-vacante' element={<CreateVacancie />} />
                   <Route path='configuraciones-contratante' element={<SettingsEmployer />}>
-                    <Route index element={<PublishedVacancies />} />
-                    <Route path="general-contratante" element={<GeneralEmployer />} />
+                    <Route index element={<GeneralEmployer />} />
+                    <Route path='general-contratante' element={<GeneralEmployer />} />
                     <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
-                    <Route path="terminos-condiciones" element={<Terms />} />
-                    <Route path="ayuda-soporte" element={<Help />} />
+                    <Route path='terminos-condiciones' element={<Terms />} />
+                    <Route path='ayuda-soporte' element={<Help />} />
                   </Route>
                   <Route path='/verificar-cuenta' element={<VerifyAccount />} />
                 </Routes>

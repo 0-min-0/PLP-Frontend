@@ -3,6 +3,25 @@ import { SearchBar } from '../../../UI/SearchBar'
 import { VacancyDetail } from '../../../UI/Vacancy/VacancyDetail'
 import avatar from '../../../assets/images/avatar.jpg'
 import { useOutletContext } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Avatar } from '../../../Components/Avatar/Avatar'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  }
+}
+
+const buttonVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  exit: { opacity: 0, y: 10, transition: { duration: 0.2 } }
+}
 
 export const PublishedVacancies = () => {
   const { 
@@ -15,27 +34,19 @@ export const PublishedVacancies = () => {
 
   return (
     <>
-      <div className='flex items-center'>
-        <img
-          src={avatar}
-          alt='avatar'
-          className='w-25 h-25 border-double border-8 border-[#60efdb] rounded-full'
-        />
-        <div className='ml-8'>
-          <h2 className='text-4xl font-[afacadBold] text-[#405e7f]'>
-            Nombre de usuario
-          </h2>
-          <h3 className='text-xl text-[#405e7f]'>
-            Agregar cuenta
-          </h3>
-        </div>
-      </div>
-      <div className='mt-8'>
+      <Avatar />
+      <div className='max-w-5xl mx-auto py-8'>
         <SearchBar />
-        <div className='mt-6'>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          className='mt-6'
+        >
           <h2 className='text-3xl font-[afacadBold] text-[#405e7f] mb-4'>
             Publicaciones
           </h2>
+          
           {vacancies.length > 0 ? (
             <div className='w-full h-85 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {vacancies.map((vacancy) => (
@@ -66,6 +77,7 @@ export const PublishedVacancies = () => {
                           e.stopPropagation()
                           setSelectedVacancy(vacancy)
                         }}
+                        variants={buttonVariants}
                       >
                         <FiEdit size={24} />
                       </button>
@@ -80,6 +92,7 @@ export const PublishedVacancies = () => {
                             handleDeleteVacancy(vacancy.id)
                           }
                         }}
+                        variants={buttonVariants}
                       >
                         <FiTrash2 size={24} />
                       </button>
@@ -89,20 +102,28 @@ export const PublishedVacancies = () => {
               ))}
             </div>
           ) : (
-            <p className='text-gray-500 py-8 text-center'>
+            <motion.p 
+              className='text-gray-500 py-8 text-center'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
               No hay vacantes publicadas aún
-            </p>
+            </motion.p>
           )}
-        </div>
+        </motion.div>
       </div>
-      {selectedVacancy && (
-        <VacancyDetail
-          vacancy={selectedVacancy}
-          onClose={() => setSelectedVacancy(null)}
-          onSave={handleSaveVacancy}
-          onDelete={handleDeleteVacancy}
-        />
-      )}
+      
+      <AnimatePresence>
+        {selectedVacancy && (
+          <VacancyDetail
+            vacancy={selectedVacancy}
+            onClose={() => setSelectedVacancy(null)}
+            onSave={handleSaveVacancy}
+            onDelete={handleDeleteVacancy}
+          />
+        )}
+      </AnimatePresence>
     </>
   )
 }

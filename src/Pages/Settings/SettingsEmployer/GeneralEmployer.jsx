@@ -4,11 +4,11 @@ import { SearchBar } from '../../../UI/SearchBar'
 import { Input } from '../../../UI/Input'
 import { Select } from '../../../UI/Select'
 import { Desc } from '../../../UI/Desc'
-import avatar from '../../../assets/images/avatar.jpg'
 import { useSettings } from '../../../Context/SettingsContext'
 import { optionTown, optionId } from '../../../Utils/options'
 import { users } from '../../../Utils/users'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Avatar } from '../../../Components/Avatar/Avatar'
 
 const themeOptions = [
   { value: 'light', label: 'Tema claro' },
@@ -42,6 +42,17 @@ const passwordFieldsVariants = {
   }
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
+    }
+  }
+}
+
 export const GeneralEmployer = () => {
   const {
     user,
@@ -65,8 +76,8 @@ export const GeneralEmployer = () => {
   useEffect(() => {
     if (editMode && activeSection === 'personal') {
       Object.entries(tempUser).forEach(([name, value]) => {
-        if (['documentType', 'documentNumber', 'phoneEmployer', 
-             'phoneSecEmployer', 'emailEmployer', 'townEmployer'].includes(name)) {
+        if (['documentType', 'documentNumber', 'phoneEmployer',
+          'phoneSecEmployer', 'emailEmployer', 'townEmployer'].includes(name)) {
           validateField(name, value)
         }
       })
@@ -75,7 +86,7 @@ export const GeneralEmployer = () => {
 
   const handleSaveWithValidation = () => {
     let isValid = true
-    
+
     if (activeSection === 'personal') {
       isValid = validatePersonalSection();
     } else if (activeSection === 'security') {
@@ -89,30 +100,19 @@ export const GeneralEmployer = () => {
 
   return (
     <>
-      <div className='flex items-center'>
-        <img
-          src={avatar}
-          alt='avatar'
-          className='w-25 h-25 border-double border-8 border-[#60efdb] rounded-full'
-        />
-        <div className='ml-8'>
-          <h2 className='text-4xl font-[afacadBold] text-[#405e7f]'>
-            {users.nameEmployer || users[0].nameEmployer}
-          </h2>
-          <h3 className='text-xl text-[#405e7f]'>
-            Empresa/Organización
-          </h3>
-        </div>
-      </div>
-
-      <div className='mt-8'>
-        <SearchBar placeholder='Buscar configuraciones...' />
+      <Avatar />
+      <div className='max-w-5xl mx-auto mt-8'>
+        <SearchBar />
         <h2 className='text-3xl mb-4 mt-6 font-[afacadBold] text-[#405e7f]'>
           General
         </h2>
       </div>
-
-      <div className='w-full h-85 bg-white rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className='max-w-5xl mx-auto h-85 bg-white rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'
+      >
         {/* Personal Information Section */}
         <div className='space-y-4 pr-6'>
           <div className='flex justify-between items-center'>
@@ -160,8 +160,8 @@ export const GeneralEmployer = () => {
                 onChange={(value) => handleSelectChange('documentType', value)}
                 options={optionId}
                 disabled={!editMode || activeSection !== 'personal'}
-                borderColor={editMode && activeSection === 'personal' ? 
-                  (validationErrors.documentType ? 'border-red-500' : 'border-[#60efdb]') : 
+                borderColor={editMode && activeSection === 'personal' ?
+                  (validationErrors.documentType ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={validationErrors.documentType ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
                 error={validationErrors.documentType}
@@ -177,8 +177,8 @@ export const GeneralEmployer = () => {
                 labelTitle='Número de documento'
                 iHolder='Ingrese su número de documento'
                 disabled={!editMode || activeSection !== 'personal'}
-                borderColor={editMode && activeSection === 'personal' ? 
-                  (validationErrors.documentNumber ? 'border-red-500' : 'border-[#60efdb]') : 
+                borderColor={editMode && activeSection === 'personal' ?
+                  (validationErrors.documentNumber ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={validationErrors.documentNumber ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
                 error={validationErrors.documentNumber}
@@ -194,8 +194,8 @@ export const GeneralEmployer = () => {
                 labelTitle='Teléfono principal'
                 iHolder='Ingrese su teléfono principal'
                 disabled={!editMode || activeSection !== 'personal'}
-                borderColor={editMode && activeSection === 'personal' ? 
-                  (validationErrors.phoneEmployer ? 'border-red-500' : 'border-[#60efdb]') : 
+                borderColor={editMode && activeSection === 'personal' ?
+                  (validationErrors.phoneEmployer ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={validationErrors.phoneEmployer ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
                 error={validationErrors.phoneEmployer}
@@ -211,8 +211,8 @@ export const GeneralEmployer = () => {
                 labelTitle='Teléfono secundario'
                 iHolder='Ingrese su teléfono secundario'
                 disabled={!editMode || activeSection !== 'personal'}
-                borderColor={editMode && activeSection === 'personal' ? 
-                  (validationErrors.phoneSecEmployer ? 'border-red-500' : 'border-[#60efdb]') : 
+                borderColor={editMode && activeSection === 'personal' ?
+                  (validationErrors.phoneSecEmployer ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={validationErrors.phoneSecEmployer ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
                 error={validationErrors.phoneSecEmployer}
@@ -228,8 +228,8 @@ export const GeneralEmployer = () => {
                 labelTitle='Correo electrónico'
                 iHolder='Ingrese su correo electrónico'
                 disabled={!editMode || activeSection !== 'personal'}
-                borderColor={editMode && activeSection === 'personal' ? 
-                  (validationErrors.emailEmployer ? 'border-red-500' : 'border-[#60efdb]') : 
+                borderColor={editMode && activeSection === 'personal' ?
+                  (validationErrors.emailEmployer ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={validationErrors.emailEmployer ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
                 error={validationErrors.emailEmployer}
@@ -243,8 +243,8 @@ export const GeneralEmployer = () => {
                 onChange={(value) => handleSelectChange('townEmployer', value)}
                 options={optionTown}
                 disabled={!editMode || activeSection !== 'personal'}
-                borderColor={editMode && activeSection === 'personal' ? 
-                  (validationErrors.townEmployer ? 'border-red-500' : 'border-[#60efdb]') : 
+                borderColor={editMode && activeSection === 'personal' ?
+                  (validationErrors.townEmployer ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={validationErrors.townEmployer ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
                 error={validationErrors.townEmployer}
@@ -387,12 +387,6 @@ export const GeneralEmployer = () => {
                   key='edit-preferences'
                   onClick={() => handleEdit('preferences')}
                   className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
-                  initial='hidden'
-                  animate='visible'
-                  exit='exit'
-                  variants={buttonVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <FiEdit className='w-5 h-5' /> Editar Preferencias
                 </button>
@@ -434,7 +428,7 @@ export const GeneralEmployer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }

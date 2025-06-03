@@ -72,37 +72,6 @@ export const VacancyInfo = ({ vacancy }) => {
                         </div>
                     </div>
                 </div>
-
-                <div className='mb-6'>
-                    <h5 className='font-semibold text-lg text-[#405e7f] mb-3'>Contacto</h5>
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                        <div className='flex items-start gap-3'>
-                            <HiOutlineUser className='w-5 h-5 text-[#60efdb] mt-1' />
-                            <div>
-                                <p className='font-semibold text-[#405e7f]'>Persona de contacto</p>
-                                <p>{vacancy.contactPerson || 'No especificado'}</p>
-                            </div>
-                        </div>
-                        {vacancy.contact.includes('@') ? (
-                            <div className='flex items-start gap-3'>
-                                <HiOutlineMail className='w-5 h-5 text-[#60efdb] mt-1' />
-                                <div>
-                                    <p className='font-semibold text-[#405e7f]'>Correo electrónico</p>
-                                    <p>{vacancy.contact}</p>
-                                </div>
-                            </div>
-                        ) : (
-                            <div className='flex items-start gap-3'>
-                                <HiOutlinePhone className='w-5 h-5 text-[#60efdb] mt-1' />
-                                <div>
-                                    <p className='font-semibold text-[#405e7f]'>Teléfono</p>
-                                    <p>{vacancy.contact}</p>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
-
                 <div className='mb-6'>
                     <h5 className='font-semibold text-lg text-[#405e7f] mb-3'>Descripción de la empresa</h5>
                     <p className='text-gray-700'>
@@ -128,6 +97,30 @@ export const VacancyInfo = ({ vacancy }) => {
                             <p>{vacancy.title || vacancy.vacancyName}</p>
                         </div>
                     </div>
+                    <div className='flex items-start gap-3'>
+                        <HiOutlineUser className='w-5 h-5 text-[#60efdb] mt-1' />
+                        <div>
+                            <p className='font-semibold text-[#405e7f]'>Persona de contacto</p>
+                            <p>{vacancy.contactPerson || 'No especificado'}</p>
+                        </div>
+                    </div>
+                    {vacancy.contact.includes('@') ? (
+                        <div className='flex items-start gap-3'>
+                            <HiOutlineMail className='w-5 h-5 text-[#60efdb] mt-1' />
+                            <div>
+                                <p className='font-semibold text-[#405e7f]'>Correo electrónico</p>
+                                <p>{vacancy.contact}</p>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className='flex items-start gap-3'>
+                            <HiOutlinePhone className='w-5 h-5 text-[#60efdb] mt-1' />
+                            <div>
+                                <p className='font-semibold text-[#405e7f]'>Teléfono</p>
+                                <p>{vacancy.contact}</p>
+                            </div>
+                        </div>
+                    )}
                     <div className='flex items-start gap-3'>
                         <HiOutlineClock className='w-5 h-5 text-[#60efdb] mt-1' />
                         <div>

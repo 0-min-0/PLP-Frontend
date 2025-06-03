@@ -164,8 +164,8 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           error={errors.category}
           errColor='text-red-400'
           disabled={!isEditing}
-          borderColor={isEditing ? (errors.responsibilities ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
-          focusColor={errors.responsibilities ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+          borderColor={isEditing ? (errors.category ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          focusColor={errors.category ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
         />
       </motion.div>
 

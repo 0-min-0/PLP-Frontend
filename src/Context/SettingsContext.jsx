@@ -1,20 +1,40 @@
-import React, { createContext, useState, useContext } from 'react'
-import { useRegister } from './RegisterContext'
+import React, { createContext, useState, useContext, useEffect } from 'react'
+
+const AVATAR_STORAGE_KEY = 'plp_user_avatar';
 
 const SettingsContext = createContext()
 
 export const SettingsProvider = ({ children, initialUser }) => {
   const [user, setUser] = useState(initialUser)
   const [editMode, setEditMode] = useState(false)
-  const [tempUser, setTempUser] = useState({...initialUser})
+  const [tempUser, setTempUser] = useState({ ...initialUser })
   const [activeSection, setActiveSection] = useState(null)
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   })
+
+  const loadAvatar = () => {
+    if (typeof window !== 'undefined') {
+      const savedAvatar = localStorage.getItem(AVATAR_STORAGE_KEY);
+      return savedAvatar || initialUser?.avatar || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+    }
+    return initialUser?.avatar || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
+  }
+
+
   const [validationErrors, setValidationErrors] = useState({})
   const [passwordErrors, setPasswordErrors] = useState({})
+  const [userAvatar, setUserAvatar] = useState(loadAvatar());
+  const [avatarOptions] = useState([
+    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+    'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+    'https://cdn-icons-png.flaticon.com/512/921/921071.png',
+    'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+    'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
+    'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
+  ]);
 
   // Common validations
   const validatePhone = (value, isRequired = true) => {
@@ -67,7 +87,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
   const validateField = (name, value) => {
     let error = ''
 
-    switch(name) {
+    switch (name) {
       case 'phoneEmployer':
         error = validatePhone(value)
         break
@@ -155,7 +175,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
 
   // Handlers
   const handleEdit = (section) => {
-    setTempUser({...user})
+    setTempUser({ ...user })
     setActiveSection(section)
     setEditMode(true)
     setValidationErrors({})
@@ -171,8 +191,8 @@ export const SettingsProvider = ({ children, initialUser }) => {
       return
     }
 
-    const updatedUser = {...tempUser}
-    
+    const updatedUser = { ...tempUser }
+
     if (activeSection === 'security') {
       setPasswordData({
         currentPassword: '',
@@ -196,7 +216,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target
     const newValue = type === 'checkbox' ? checked : value
-    
+
     setTempUser({
       ...tempUser,
       [name]: newValue
@@ -215,8 +235,8 @@ export const SettingsProvider = ({ children, initialUser }) => {
     })
 
     if (editMode && activeSection === 'security') {
-      const newErrors = {...passwordErrors}
-      
+      const newErrors = { ...passwordErrors }
+
       if (name === 'newPassword') {
         const strengthError = validatePasswordStrength(value)
         newErrors.newPassword = strengthError || ''
@@ -241,16 +261,30 @@ export const SettingsProvider = ({ children, initialUser }) => {
     }
   }
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(AVATAR_STORAGE_KEY, userAvatar);
+    }
+  }, [userAvatar]);
+
+  const handleAvatarChange = (newAvatar) => {
+    setUserAvatar(newAvatar);
+  };
+
   return (
     <SettingsContext.Provider
       value={{
         user,
+        userAvatar,
         tempUser,
         editMode,
         activeSection,
         passwordData,
         validationErrors,
         passwordErrors,
+        avatarOptions,
+        handleAvatarChange,
+        setUserAvatar,
         handleEdit,
         handleSave,
         handleCancel,
