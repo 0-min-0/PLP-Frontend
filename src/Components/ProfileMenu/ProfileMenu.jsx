@@ -3,9 +3,11 @@ import { HiOutlineX } from 'react-icons/hi'
 import { FiLogOut } from 'react-icons/fi'
 import { MenuItem } from '../../UI/MenuItem'
 import { useMenu } from '../../Context/MenuContext'
+import { useSettings } from '../../Context/SettingsContext'
 
-export const ProfileMenu = ({ avatar, name, settingsRoute }) => {
+export const ProfileMenu = ({ name, settingsRoute }) => { 
     const { isOpen, setIsOpen } = useMenu()
+    const { userAvatar } = useSettings()
     const menuRef = useRef(null)
 
     useEffect(() => {
@@ -42,7 +44,7 @@ export const ProfileMenu = ({ avatar, name, settingsRoute }) => {
                 aria-label='Toggle profile menu'
             >
                 <img
-                    src={avatar}
+                    src={userAvatar}
                     alt='avatar'
                     className='w-14 h-14 rounded-full border-6 border-double border-[#60efdb]'
                 />

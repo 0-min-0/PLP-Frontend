@@ -1,42 +1,30 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 
-const AVATAR_STORAGE_KEY = 'plp_user_avatar';
+const AVATAR_STORAGE_KEY = 'plp_user_avatar'
+const USER_DATA_STORAGE_KEY = 'plp_user_data';
 
 const SettingsContext = createContext()
 
 export const SettingsProvider = ({ children, initialUser }) => {
+
+  //---------------------------------------------MANEJO DE EDICION DE PERFIL-------------------------------------------------//
+
+
+  // Estados
   const [user, setUser] = useState(initialUser)
   const [editMode, setEditMode] = useState(false)
   const [tempUser, setTempUser] = useState({ ...initialUser })
   const [activeSection, setActiveSection] = useState(null)
+  const [validationErrors, setValidationErrors] = useState({})
+  const [passwordErrors, setPasswordErrors] = useState({})
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   })
 
-  const loadAvatar = () => {
-    if (typeof window !== 'undefined') {
-      const savedAvatar = localStorage.getItem(AVATAR_STORAGE_KEY);
-      return savedAvatar || initialUser?.avatar || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
-    }
-    return initialUser?.avatar || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png';
-  }
 
-
-  const [validationErrors, setValidationErrors] = useState({})
-  const [passwordErrors, setPasswordErrors] = useState({})
-  const [userAvatar, setUserAvatar] = useState(loadAvatar());
-  const [avatarOptions] = useState([
-    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-    'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-    'https://cdn-icons-png.flaticon.com/512/921/921071.png',
-    'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-    'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
-    'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
-  ]);
-
-  // Common validations
+  // Validaciones
   const validatePhone = (value, isRequired = true) => {
     if (!value) return isRequired ? 'ⓘ El número de teléfono es requerido.' : ''
     if (!/^[0-9]+$/.test(value)) return 'ⓘ El número de teléfono solo puede contener dígitos (0-9).'
@@ -83,7 +71,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return ''
   }
 
-  // Field validation
   const validateField = (name, value) => {
     let error = ''
 
@@ -116,7 +103,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return error === ''
   }
 
-  // Section validation
   const validatePersonalSection = () => {
     const fieldsToValidate = {
       documentType: tempUser.documentType,
@@ -173,7 +159,8 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return isValid
   }
 
-  // Handlers
+
+  // Handlers y funciones
   const handleEdit = (section) => {
     setTempUser({ ...user })
     setActiveSection(section)
@@ -261,15 +248,59 @@ export const SettingsProvider = ({ children, initialUser }) => {
     }
   }
 
+  //----------------------------------------------AVATAR Y NOMBRE DE USUARIO-------------------------------------------------//
+
+ const loadInitialData = () => {
+    if (typeof window !== 'undefined') {
+      const savedAvatar = localStorage.getItem(AVATAR_STORAGE_KEY)
+      const savedUserData = localStorage.getItem(USER_DATA_STORAGE_KEY)
+      
+      return {
+        avatar: savedAvatar || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+        userData: savedUserData ? JSON.parse(savedUserData) : null
+      }
+    }
+    return {
+      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+      userData: null
+    }
+  }
+
+  // Estados
+  const [userAvatar, setUserAvatar] = useState(loadInitialData().avatar)
+  const [userData, setUserData] = useState(loadInitialData().userData)
+  const [isEditingName, setIsEditingName] = useState(false)
+  const [avatarOptions] = useState([
+    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+    'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+    'https://cdn-icons-png.flaticon.com/512/921/921071.png',
+    'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+    'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
+    'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
+  ])
+
+  // Efecto para cargar el avatar desde localStorage al iniciar
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem(AVATAR_STORAGE_KEY, userAvatar);
+      localStorage.setItem(AVATAR_STORAGE_KEY, userAvatar)
+      if (userData) {
+        localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(userData))
+      }
     }
-  }, [userAvatar]);
+  }, [userAvatar, userData])
 
+  // Handlers
   const handleAvatarChange = (newAvatar) => {
-    setUserAvatar(newAvatar);
-  };
+    setUserAvatar(newAvatar)
+  }
+
+  const handleNameChange = (newName) => {
+    setUserData(prev => ({
+      ...prev,
+      nameEmployer: newName
+    }))
+    setIsEditingName(false)
+  }
 
   return (
     <SettingsContext.Provider
@@ -283,6 +314,10 @@ export const SettingsProvider = ({ children, initialUser }) => {
         validationErrors,
         passwordErrors,
         avatarOptions,
+        userData,
+        isEditingName,
+        setIsEditingName,
+        handleNameChange,
         handleAvatarChange,
         setUserAvatar,
         handleEdit,

@@ -15,7 +15,6 @@ export const MainEmployer = () => {
                 middleObject={<SearchBar />}
                 menu={
                     <ProfileMenu
-                        avatar={avatar}
                         name={<span className='text-lg font-semibold'>Jasmin Esperanza Garcia Paez</span>}
                         settingsRoute='/configuraciones-contratante'
                     />}
