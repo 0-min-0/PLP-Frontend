@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const GeneralJobSeeker = () => {
+export const Postulations = () => {
   return (
     <div>
-      General
+      Postulaciones
     </div>
   )
 }

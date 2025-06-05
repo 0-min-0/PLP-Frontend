@@ -16,15 +16,18 @@ import { Company } from './Components/RegisterForms/Company'
 import { CreateVacancie } from './Pages/CreateVacancie/CreateVacancie'
 import { MenuProvider } from './Context/MenuContext'
 import { SettingsEmployer } from './Pages/Settings/SettingsEmployer/SettingsEmployer'
+import { SettingsJobSeeker } from './Pages/Settings/SettingsJobSeeker/SettingsJobSeeker'
 import { RegisterProvider } from './Context/RegisterContext'
 import { VacancyProvider } from './Context/VacancyContext'
 import { PublishedVacancies } from './Pages/Settings/SettingsEmployer/PublishedVacancies'
 import { GeneralEmployer } from './Pages/Settings/SettingsEmployer/GeneralEmployer'
+import { GeneralJobSeeker } from './Pages/Settings/SettingsJobSeeker/GeneralJobSeeker'
 import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
 import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
 import { SettingsProvider } from './Context/SettingsContext'
 import { users } from './Utils/users'
+import { Postulations } from './Pages/Settings/SettingsJobSeeker/Postulations'
 
 function App() {
 
@@ -37,12 +40,16 @@ function App() {
     '/configuraciones-contratante/publicaciones-contratante',
     '/configuraciones-contratante/terminos-condiciones',
     '/configuraciones-contratante/ayuda-soporte',
+    '/configuraciones-contratista/general-contratista',
+    '/configuraciones-contratista/postulaciones-contratista',
+    '/configuraciones-contratista/terminos-condiciones',
+    '/configuraciones-contratista/ayuda-soporte'
   ]
 
   const isBgRoute = bgRoutes.includes(location.pathname)
 
   const getInitialUser = () => {
-    const role = 'contratante' 
+    const role = 'contratante'
     return {
       ...users.find(user => user.role === role),
       role
@@ -71,10 +78,19 @@ function App() {
                   <Route path='/inicio-contratista' element={<MainJobSeeker />} />
                   <Route path='/inicio-contratante' element={<MainEmployer />} />
                   <Route path='/crear-vacante' element={<CreateVacancie />} />
-                  <Route path='configuraciones-contratante' element={<SettingsEmployer />}>
+                  { /* Configuraciones contratante*/}
+                  <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
                     <Route index element={<GeneralEmployer />} />
                     <Route path='general-contratante' element={<GeneralEmployer />} />
                     <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
+                    <Route path='terminos-condiciones' element={<Terms />} />
+                    <Route path='ayuda-soporte' element={<Help />} />
+                  </Route>
+                  { /* Configuraciones contratista*/}
+                  <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
+                    <Route index element={<GeneralJobSeeker />} />
+                    <Route path='general-contratista' element={<GeneralJobSeeker />} />
+                    <Route path='postulaciones-contratista' element={<Postulations />} />
                     <Route path='terminos-condiciones' element={<Terms />} />
                     <Route path='ayuda-soporte' element={<Help />} />
                   </Route>

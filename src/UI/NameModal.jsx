@@ -1,15 +1,16 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { IoClose } from 'react-icons/io5';
-import { Button } from './Button';
-import { Input } from './Input';
+import { motion, AnimatePresence } from 'framer-motion'
+import { IoClose } from 'react-icons/io5'
+import { Button } from './button'
+import { useState } from 'react'
+import { Input } from './Input'
 
 export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
-  const [newName, setNewName] = useState(currentName);
+  const [newName, setNewName] = useState(currentName)
 
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 }
-  };
+  }
 
   const modalVariants = {
     hidden: {
@@ -35,14 +36,14 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
         ease: 'easeIn'
       }
     }
-  };
+  }
 
   const handleSave = () => {
     if (newName.trim() !== '') {
-      onSave(newName);
-      onClose();
+      onSave(newName)
+      onClose()
     }
-  };
+  }
 
   return (
     <AnimatePresence>
@@ -100,5 +101,5 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
         </motion.div>
       )}
     </AnimatePresence>
-  );
-};
+  )
+}

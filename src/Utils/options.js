@@ -51,3 +51,18 @@ const categoryMap = categories.reduce((acc, category) => {
 export const getCategoryLabel = (categoryValue) => {
     return categoryMap[categoryValue] || categoryValue
 }
+
+export const menuConfig = {
+  jobSeeker: [
+    { to: 'general-contratista', label: 'General' },
+    { to: 'postulaciones-contratista', label: 'Postulaciones' },
+    { to: 'terminos-condiciones', label: 'Términos y condiciones' },
+    { to: 'ayuda-soporte', label: 'Ayuda' }
+  ],
+  employer: [
+    { to: 'general-contratante', label: 'General' },
+    { to: 'publicaciones-contratante', label: 'Publicaciones' },
+    { to: 'terminos-condiciones', label: 'Términos y condiciones' },
+    { to: 'ayuda-soporte', label: 'Ayuda' }
+  ]
+}

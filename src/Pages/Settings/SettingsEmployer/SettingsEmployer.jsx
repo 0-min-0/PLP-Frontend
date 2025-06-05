@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom'
 import { RightMenu } from '../../../Components/RightMenu/RightMenu'
 import { useVacancy } from '../../../Context/VacancyContext'
 import { deleteVacancyFromExample, getVacancies, updateVacancyInExample } from '../../../Utils/objectsExample'
+import { menuConfig } from '../../../Utils/options'
 
 export const SettingsEmployer = () => {
   const { vacancies, setVacancies } = useVacancy()
@@ -47,10 +48,10 @@ export const SettingsEmployer = () => {
       />
       <div className='w-[90%] flex justify-center gap-6 mx-30 mt-4'>
         <div className='w-[70%] bg-white px-10 py-8 rounded-xl'>
-          <Outlet context={{ 
-            selectedVacancy, 
-            setSelectedVacancy, 
-            handleSaveVacancy, 
+          <Outlet context={{
+            selectedVacancy,
+            setSelectedVacancy,
+            handleSaveVacancy,
             handleDeleteVacancy,
             vacancies
           }} />
@@ -59,6 +60,8 @@ export const SettingsEmployer = () => {
           <RightMenu
             width='w-[80%]'
             height='h-165'
+            menuItems={menuConfig.employer}
+            basePath='/configuraciones-contratante'
           />
         </div>
       </div>
