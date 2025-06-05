@@ -250,11 +250,11 @@ export const SettingsProvider = ({ children, initialUser }) => {
 
   //----------------------------------------------AVATAR Y NOMBRE DE USUARIO-------------------------------------------------//
 
- const loadInitialData = () => {
+  const loadInitialData = () => {
     if (typeof window !== 'undefined') {
       const savedAvatar = localStorage.getItem(AVATAR_STORAGE_KEY)
       const savedUserData = localStorage.getItem(USER_DATA_STORAGE_KEY)
-      
+
       return {
         avatar: savedAvatar || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
         userData: savedUserData ? JSON.parse(savedUserData) : null
@@ -267,59 +267,125 @@ export const SettingsProvider = ({ children, initialUser }) => {
   }
 
   // Estados
-  const [userAvatar, setUserAvatar] = useState(loadInitialData().avatar)
-  const [userData, setUserData] = useState(loadInitialData().userData)
   const [isEditingName, setIsEditingName] = useState(false)
-  const [avatarOptions] = useState([
-    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-    'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-    'https://cdn-icons-png.flaticon.com/512/921/921071.png',
-    'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-    'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
-    'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
-  ])
-
-  // Efecto para cargar el avatar desde localStorage al iniciar
-  useEffect(() => {
+  const [currentRole, setCurrentRole] = useState(initialUser?.role || 'contratante')
+  const [userData, setUserData] = useState(() => {
     if (typeof window !== 'undefined') {
-      localStorage.setItem(AVATAR_STORAGE_KEY, userAvatar)
-      if (userData) {
-        localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(userData))
-      }
+      const savedData = localStorage.getItem(USER_DATA_STORAGE_KEY)
+      return savedData ? JSON.parse(savedData) : initialUser || null
     }
-  }, [userAvatar, userData])
+    return initialUser || null
+  })
+
+  // Configuración por rol
+  const [rolesConfig, setRolesConfig] = useState({
+    contratista: {
+      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+      nameKey: 'name',
+      defaultName: 'Contratista',
+      avatarOptions: [
+        'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+        'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+        'https://cdn-icons-png.flaticon.com/512/921/921071.png',
+        'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+        'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
+        'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
+      ],
+      menuItems: [
+        { to: '/mis-habilidades', label: 'Mis habilidades' },
+        { to: '/mis-postulaciones', label: 'Mis postulaciones' }
+      ]
+    },
+    contratante: {
+      avatar: 'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+      nameKey: 'nameEmployer',
+      defaultName: 'Contratante',
+      avatarOptions: [
+        'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+        'https://cdn-icons-png.flaticon.com/512/921/921071.png'
+      ],
+      menuItems: [
+        { to: '/mis-vacantes', label: 'Mis vacantes' },
+        { to: '/candidatos', label: 'Candidatos' }
+      ]
+    },
+    empresa: {
+      avatar: 'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+      nameKey: 'companyName',
+      defaultName: 'Empresa',
+      avatarOptions: [
+        'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+        'https://cdn-icons-png.flaticon.com/512/3667/3667339.png'
+      ],
+      menuItems: [
+        { to: '/nuestras-vacantes', label: 'Nuestras vacantes' },
+        { to: '/equipo', label: 'Equipo de contratación' }
+      ]
+    }
+  })
+
+  // Actualizar rol cuando cambian los datos
+  useEffect(() => {
+    if (userData?.role) {
+      setCurrentRole(userData.role)
+    }
+  }, [userData])
+
+  // Persistencia de datos
+  useEffect(() => {
+    if (typeof window !== 'undefined' && userData) {
+      localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(userData))
+    }
+  }, [userData])
 
   // Handlers
   const handleAvatarChange = (newAvatar) => {
-    setUserAvatar(newAvatar)
+    setRolesConfig(prev => ({
+      ...prev,
+      [currentRole]: {
+        ...prev[currentRole],
+        avatar: newAvatar
+      }
+    }))
   }
 
   const handleNameChange = (newName) => {
+    const nameKey = rolesConfig[currentRole].nameKey;
     setUserData(prev => ({
       ...prev,
-      nameEmployer: newName
+      [nameKey]: newName
     }))
-    setIsEditingName(false)
   }
+
+  // Obtener datos actuales
+  const currentConfig = rolesConfig[currentRole] || rolesConfig.contratante;
+  const userName = userData?.[currentConfig.nameKey] || currentConfig.defaultName;
+  const userAvatar = currentConfig.avatar;
+  const avatarOptions = currentConfig.avatarOptions;
+  const roleMenuItems = currentConfig.menuItems;
+
 
   return (
     <SettingsContext.Provider
       value={{
         user,
-        userAvatar,
         tempUser,
         editMode,
         activeSection,
         passwordData,
         validationErrors,
         passwordErrors,
-        avatarOptions,
-        userData,
         isEditingName,
+        currentRole,
+        userData,
+        userAvatar,
+        userName,
+        avatarOptions,
+        roleMenuItems,
+        handleAvatarChange,
+        setCurrentRole,
         setIsEditingName,
         handleNameChange,
-        handleAvatarChange,
-        setUserAvatar,
         handleEdit,
         handleSave,
         handleCancel,

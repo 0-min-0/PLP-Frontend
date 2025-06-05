@@ -11,16 +11,17 @@ export const VacancyView = ({ vacancy, onClose, onApply, isOpen }) => {
         }
     }
 
+    // Animaciones idénticas a NameModal
     const backdropVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 }
     }
 
     const modalVariants = {
-        hidden: { 
-            y: -50,
+        hidden: {
+            y: -20,
             opacity: 0,
-            scale: 0.95
+            scale: 0.98
         },
         visible: {
             y: 0,
@@ -33,9 +34,9 @@ export const VacancyView = ({ vacancy, onClose, onApply, isOpen }) => {
             }
         },
         exit: {
-            y: 50,
+            y: 20,
             opacity: 0,
-            scale: 0.95,
+            scale: 0.98,
             transition: {
                 ease: 'easeIn'
             }
@@ -46,21 +47,21 @@ export const VacancyView = ({ vacancy, onClose, onApply, isOpen }) => {
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    className='fixed inset-0 bg-black/30 flex items-center justify-center z-50'
+                    className='fixed inset-0 bg-black/40 flex items-center justify-center z-50'
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className='bg-white rounded-xl pr-6 py-8 w-full max-w-2xl max-h-[90vh]'
+                        className='bg-white rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
                         variants={modalVariants}
                         initial="hidden"
                         animate="visible"
                         exit="exit"
                     >
                         <div className='flex justify-between items-center mb-6'>
-                            <h2 className='text-3xl font-bold text-[#405e7f] px-12'>{vacancy.vacancyName}</h2>
+                            <h2 className='text-3xl font-bold text-[#405e7f]'>{vacancy.vacancyName}</h2>
                             <button
                                 onClick={onClose}
                                 className='text-[#405e7f] hover:bg-gray-100 transition-colors duration-300 cursor-pointer p-2 rounded-md'

@@ -24,6 +24,7 @@ import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
 import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
 import { SettingsProvider } from './Context/SettingsContext'
+import { users } from './Utils/users'
 
 function App() {
 
@@ -38,14 +39,23 @@ function App() {
     '/configuraciones-contratante/ayuda-soporte',
   ]
 
-  const isBgRoute = bgRoutes.includes(location.pathname);
+  const isBgRoute = bgRoutes.includes(location.pathname)
+
+  const getInitialUser = () => {
+    const role = 'contratante' 
+    return {
+      ...users.find(user => user.role === role),
+      role
+    }
+  }
+
 
   return (
     <PasswordProvider>
       <RegisterProvider>
         <MenuProvider>
           <VacancyProvider>
-            <SettingsProvider>
+            <SettingsProvider initialUser={getInitialUser()}>
               <div className={`w-full h-screen p-6 font-[afacad] 
                ${isBgRoute ? 'bg-[#dcfff6]' : 'bg-white'}`}>
                 <DynamicTitle />

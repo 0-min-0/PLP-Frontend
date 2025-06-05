@@ -1,16 +1,15 @@
-import React, { useState } from 'react'
-import { IoClose } from 'react-icons/io5'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from './Button'
-import { Input } from './Input'
+import { motion, AnimatePresence } from 'framer-motion';
+import { IoClose } from 'react-icons/io5';
+import { Button } from './Button';
+import { Input } from './Input';
 
 export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
-  const [newName, setNewName] = useState(currentName)
+  const [newName, setNewName] = useState(currentName);
 
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 }
-  }
+  };
 
   const modalVariants = {
     hidden: {
@@ -40,9 +39,10 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
 
   const handleSave = () => {
     if (newName.trim() !== '') {
-      onSave(newName)
+      onSave(newName);
+      onClose();
     }
-  }
+  };
 
   return (
     <AnimatePresence>
@@ -64,6 +64,7 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
             <button
               onClick={onClose}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+              aria-label="Cerrar modal"
             >
               <div className='p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
                 <IoClose className='w-6 h-6' />
@@ -86,12 +87,12 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
             <div className='flex justify-end space-x-3 mt-6'>
               <Button
                 btnName="Cancelar"
-                btnStyle="bg-gray-200 text-gray-700"
+                btnStyle="bg-gray-200 text-gray-700 hover:bg-gray-300"
                 clicked={onClose}
               />
               <Button
                 btnName="Guardar"
-                btnStyle="bg-[#60efdb] text-[#405e7f]"
+                btnStyle="bg-[#60efdb] text-[#405e7f] hover:bg-[#4fd4c7]"
                 clicked={handleSave}
               />
             </div>
@@ -99,5 +100,5 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
         </motion.div>
       )}
     </AnimatePresence>
-  )
-}
+  );
+};
