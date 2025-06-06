@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { FiEdit } from 'react-icons/fi';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useSettings } from '../../Context/SettingsContext';
-import { NameModal } from '../../UI/NameModal';
+import { useState } from 'react'
+import { FiEdit } from 'react-icons/fi'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useSettings } from '../../Context/SettingsContext'
+import { NameModal } from '../../UI/NameModal'
 
 export const Avatar = () => {
   const { 
@@ -12,16 +12,16 @@ export const Avatar = () => {
     avatarOptions,
     handleAvatarChange,
     handleNameChange
-  } = useSettings();
+  } = useSettings()
   
-  const [avatarSelector, setAvatarSelector] = useState(false);
-  const [isEditingName, setIsEditingName] = useState(false);
+  const [avatarSelector, setAvatarSelector] = useState(false)
+  const [isEditingName, setIsEditingName] = useState(false)
 
   // Animaciones
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 }
-  };
+  }
 
   const selectorVariants = {
     hidden: {

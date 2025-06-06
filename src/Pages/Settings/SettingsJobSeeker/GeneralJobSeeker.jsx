@@ -1,10 +1,5 @@
-import React from 'react'
+import { GeneralSettings } from '../GeneralSettings';
 
 export const GeneralJobSeeker = () => {
-  return (
-    <div>
-      General
-    </div>
-  )
+  return <GeneralSettings />
 }
-

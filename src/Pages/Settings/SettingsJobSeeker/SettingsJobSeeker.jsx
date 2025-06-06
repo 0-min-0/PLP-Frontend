@@ -1,10 +1,9 @@
-import React from 'react'
-import { Outlet, NavLink } from 'react-router-dom'
-import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2'
-import { Header } from '../../../Components/Header/Header'
-import { RightMenu } from '../../../Components/RightMenu/RightMenu'
-import { menuConfig } from '../../../Utils/options'
-
+import React from 'react';
+import { Outlet, NavLink } from 'react-router-dom';
+import { Header } from '../../../Components/Header/Header';
+import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2';
+import { RightMenu } from '../../../Components/RightMenu/RightMenu';
+import { menuConfig } from '../../../Utils/options';
 
 export const SettingsJobSeeker = () => {
     return (
@@ -27,10 +26,15 @@ export const SettingsJobSeeker = () => {
                         </div>
                     }
                 />
+                
                 <div className='w-[90%] flex justify-center gap-6 mx-30 mt-4'>
+                    {/* Contenedor principal de configuraciones */}
                     <div className='w-[70%] bg-white px-10 py-8 rounded-xl'>
+                        {/* Outlet renderizará GeneralSettings u otros componentes según la ruta */}
                         <Outlet />
                     </div>
+                    
+                    {/* Menú lateral derecho */}
                     <div className='w-[30%]'>
                         <RightMenu
                             width='w-[80%]'
@@ -42,5 +46,5 @@ export const SettingsJobSeeker = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

@@ -20,8 +20,7 @@ import { SettingsJobSeeker } from './Pages/Settings/SettingsJobSeeker/SettingsJo
 import { RegisterProvider } from './Context/RegisterContext'
 import { VacancyProvider } from './Context/VacancyContext'
 import { PublishedVacancies } from './Pages/Settings/SettingsEmployer/PublishedVacancies'
-import { GeneralEmployer } from './Pages/Settings/SettingsEmployer/GeneralEmployer'
-import { GeneralJobSeeker } from './Pages/Settings/SettingsJobSeeker/GeneralJobSeeker'
+import { GeneralSettings } from './Pages/Settings/GeneralSettings';
 import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
 import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
@@ -56,7 +55,6 @@ function App() {
     }
   }
 
-
   return (
     <PasswordProvider>
       <RegisterProvider>
@@ -80,16 +78,16 @@ function App() {
                   <Route path='/crear-vacante' element={<CreateVacancie />} />
                   { /* Configuraciones contratante*/}
                   <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
-                    <Route index element={<GeneralEmployer />} />
-                    <Route path='general-contratante' element={<GeneralEmployer />} />
+                    <Route index element={<GeneralSettings />} />
+                    <Route path='general-contratante' element={<GeneralSettings />} />
                     <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
                     <Route path='terminos-condiciones' element={<Terms />} />
                     <Route path='ayuda-soporte' element={<Help />} />
                   </Route>
                   { /* Configuraciones contratista*/}
                   <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
-                    <Route index element={<GeneralJobSeeker />} />
-                    <Route path='general-contratista' element={<GeneralJobSeeker />} />
+                    <Route index element={<GeneralSettings />} />
+                    <Route path='general-contratista' element={<GeneralSettings />} />
                     <Route path='postulaciones-contratista' element={<Postulations />} />
                     <Route path='terminos-condiciones' element={<Terms />} />
                     <Route path='ayuda-soporte' element={<Help />} />

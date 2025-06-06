@@ -1,19 +1,22 @@
-import React, { createContext, useState, useContext, useEffect } from 'react'
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import {
+  validateEmail,
+  validatePhone,
+  validateDocumentNumber,
+  validateRequired,
+  validatePasswordStrength
+} from './validations';
 
-const AVATAR_STORAGE_KEY = 'plp_user_avatar'
+const AVATAR_STORAGE_KEY = 'plp_user_avatar';
 const USER_DATA_STORAGE_KEY = 'plp_user_data';
 
-const SettingsContext = createContext()
+const SettingsContext = createContext();
 
 export const SettingsProvider = ({ children, initialUser }) => {
-
-  //---------------------------------------------MANEJO DE EDICION DE PERFIL-------------------------------------------------//
-
-
-  // Estados
+  // Estados principales
   const [user, setUser] = useState(initialUser)
-  const [editMode, setEditMode] = useState(false)
   const [tempUser, setTempUser] = useState({ ...initialUser })
+  const [editMode, setEditMode] = useState(false)
   const [activeSection, setActiveSection] = useState(null)
   const [validationErrors, setValidationErrors] = useState({})
   const [passwordErrors, setPasswordErrors] = useState({})
@@ -22,251 +25,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
     newPassword: '',
     confirmPassword: ''
   })
-
-
-  // Validaciones
-  const validatePhone = (value, isRequired = true) => {
-    if (!value) return isRequired ? 'ⓘ El número de teléfono es requerido.' : ''
-    if (!/^[0-9]+$/.test(value)) return 'ⓘ El número de teléfono solo puede contener dígitos (0-9).'
-    if (value.length !== 10) return 'ⓘ El número de teléfono debe tener exactamente 10 dígitos.'
-    return ''
-  }
-
-  const validatePhoneSec = (value) => {
-    if (!value) return ''
-    if (!/^[0-9]+$/.test(value)) return 'ⓘ El número de teléfono solo puede contener dígitos (0-9).'
-    if (value.length !== 10) return 'ⓘ El número de teléfono debe tener exactamente 10 dígitos.'
-    return ''
-  }
-
-  const validateEmail = (value) => {
-    if (!value) return 'ⓘ El correo electrónico es requerido.'
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    if (!emailRegex.test(value)) return 'ⓘ Ingresa un correo válido (Ej. usuario@ejemplo.com).'
-    if (/\s/.test(value)) return 'ⓘ El correo no puede contener espacios.'
-    return ''
-  }
-
-  const validateDocumentNumber = (value) => {
-    if (!value) return 'ⓘ El número de documento es requerido.'
-    if (!/^[0-9]+$/.test(value)) return 'ⓘ El número de documento solo puede contener números.'
-    return ''
-  }
-
-  const validateNotEmpty = (value, fieldName) => {
-    if (!value) return `ⓘ El campo ${fieldName} es requerido.`
-    return ''
-  }
-
-  const validatePasswordStrength = (password) => {
-    const minLength = password.length >= 8
-    const hasNumber = /\d/.test(password)
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password)
-    const hasUpperCase = /[A-Z]/.test(password)
-
-    if (!minLength) return 'ⓘ La contraseña debe tener al menos 8 caracteres'
-    if (!hasNumber) return 'ⓘ La contraseña debe contener al menos un número'
-    if (!hasSpecialChar) return 'ⓘ Debe contener al menos un carácter especial'
-    if (!hasUpperCase) return 'ⓘ Debe contener al menos una mayúscula'
-    return ''
-  }
-
-  const validateField = (name, value) => {
-    let error = ''
-
-    switch (name) {
-      case 'phoneEmployer':
-        error = validatePhone(value)
-        break
-      case 'phoneSecEmployer':
-        error = validatePhoneSec(value)
-        break
-      case 'emailEmployer':
-        error = validateEmail(value)
-        break
-      case 'documentNumber':
-        error = validateDocumentNumber(value)
-        break
-      case 'documentType':
-      case 'townEmployer':
-        error = validateNotEmpty(value, name === 'documentType' ? 'tipo de documento' : 'ubicación')
-        break
-      default:
-        break
-    }
-
-    setValidationErrors(prev => ({
-      ...prev,
-      [name]: error
-    }))
-
-    return error === ''
-  }
-
-  const validatePersonalSection = () => {
-    const fieldsToValidate = {
-      documentType: tempUser.documentType,
-      documentNumber: tempUser.documentNumber,
-      phoneEmployer: tempUser.phoneEmployer,
-      phoneSecEmployer: tempUser.phoneSecEmployer,
-      emailEmployer: tempUser.emailEmployer,
-      townEmployer: tempUser.townEmployer
-    }
-
-    let isValid = true
-    const newErrors = {}
-
-    Object.entries(fieldsToValidate).forEach(([name, value]) => {
-      const fieldValid = validateField(name, value)
-      if (!fieldValid) {
-        isValid = false
-      }
-    })
-
-    return isValid;
-  }
-
-  const validatePasswordFields = () => {
-    const { currentPassword, newPassword, confirmPassword } = passwordData
-    const newErrors = {}
-    let isValid = true
-
-    if (!currentPassword) {
-      newErrors.currentPassword = 'ⓘ La contraseña actual es requerida'
-      isValid = false
-    }
-
-    if (!newPassword) {
-      newErrors.newPassword = 'ⓘ La nueva contraseña es requerida'
-      isValid = false
-    } else {
-      const strengthError = validatePasswordStrength(newPassword)
-      if (strengthError) {
-        newErrors.newPassword = strengthError
-        isValid = false
-      }
-    }
-
-    if (!confirmPassword) {
-      newErrors.confirmPassword = 'ⓘ Confirma tu nueva contraseña'
-      isValid = false
-    } else if (newPassword !== confirmPassword) {
-      newErrors.confirmPassword = 'ⓘ Las contraseñas no coinciden'
-      isValid = false
-    }
-
-    setPasswordErrors(newErrors)
-    return isValid
-  }
-
-
-  // Handlers y funciones
-  const handleEdit = (section) => {
-    setTempUser({ ...user })
-    setActiveSection(section)
-    setEditMode(true)
-    setValidationErrors({})
-    setPasswordErrors({})
-  }
-
-  const handleSave = () => {
-    if (activeSection === 'personal' && !validatePersonalSection()) {
-      return
-    }
-
-    if (activeSection === 'security' && !validatePasswordFields()) {
-      return
-    }
-
-    const updatedUser = { ...tempUser }
-
-    if (activeSection === 'security') {
-      setPasswordData({
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-      })
-    }
-
-    setUser(updatedUser)
-    setEditMode(false)
-    setActiveSection(null)
-  }
-
-  const handleCancel = () => {
-    setEditMode(false)
-    setActiveSection(null)
-    setValidationErrors({})
-    setPasswordErrors({})
-  }
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
-    const newValue = type === 'checkbox' ? checked : value
-
-    setTempUser({
-      ...tempUser,
-      [name]: newValue
-    })
-
-    if (editMode && activeSection === 'personal') {
-      validateField(name, newValue)
-    }
-  }
-
-  const handlePasswordChange = (e) => {
-    const { name, value } = e.target
-    setPasswordData({
-      ...passwordData,
-      [name]: value
-    })
-
-    if (editMode && activeSection === 'security') {
-      const newErrors = { ...passwordErrors }
-
-      if (name === 'newPassword') {
-        const strengthError = validatePasswordStrength(value)
-        newErrors.newPassword = strengthError || ''
-      } else if (name === 'confirmPassword' && passwordData.newPassword !== value) {
-        newErrors.confirmPassword = 'ⓘ Las contraseñas no coinciden'
-      } else {
-        newErrors[name] = ''
-      }
-
-      setPasswordErrors(newErrors)
-    }
-  }
-
-  const handleSelectChange = (name, value) => {
-    setTempUser({
-      ...tempUser,
-      [name]: value
-    })
-
-    if (editMode && activeSection === 'personal') {
-      validateField(name, value)
-    }
-  }
-
-  //----------------------------------------------AVATAR Y NOMBRE DE USUARIO-------------------------------------------------//
-
-  const loadInitialData = () => {
-    if (typeof window !== 'undefined') {
-      const savedAvatar = localStorage.getItem(AVATAR_STORAGE_KEY)
-      const savedUserData = localStorage.getItem(USER_DATA_STORAGE_KEY)
-
-      return {
-        avatar: savedAvatar || 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-        userData: savedUserData ? JSON.parse(savedUserData) : null
-      }
-    }
-    return {
-      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-      userData: null
-    }
-  }
-
-  // Estados
+  
   const [isEditingName, setIsEditingName] = useState(false)
   const [currentRole, setCurrentRole] = useState(initialUser?.role || 'contratante')
   const [userData, setUserData] = useState(() => {
@@ -277,7 +36,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return initialUser || null
   })
 
-  // Configuración por rol
   const [rolesConfig, setRolesConfig] = useState({
     contratista: {
       avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
@@ -322,23 +80,212 @@ export const SettingsProvider = ({ children, initialUser }) => {
         { to: '/equipo', label: 'Equipo de contratación' }
       ]
     }
-  })
+  });
 
-  // Actualizar rol cuando cambian los datos
+  // Efecto para persistir cambios
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(user));
+      setUserData(user); // Keep userData in sync
+    }
+  }, [user]);
+
   useEffect(() => {
     if (userData?.role) {
-      setCurrentRole(userData.role)
+      setCurrentRole(userData.role);
     }
-  }, [userData])
+  }, [userData]);
 
-  // Persistencia de datos
-  useEffect(() => {
-    if (typeof window !== 'undefined' && userData) {
-      localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(userData))
+  //---------------------------------------------VALIDACIONES MEJORADAS----------------------------------//
+  const validateField = (name, value) => {
+    const isEmployer = user?.role === 'contratante';
+    
+    switch (name) {
+      case 'emailEmployer':
+      case 'emailJobSeeker':
+        return validateEmail(value);
+      case 'phoneEmployer':
+      case 'phoneJobSeeker':
+      case 'phoneSecEmployer':
+      case 'phoneSecJobSeeker':
+        return validatePhone(value);
+      case 'documentNumber':
+        return validateDocumentNumber(value);
+      case 'skill1':
+      case 'skill2':
+      case 'study1':
+      case 'study2':
+        return !isEmployer ? validateRequired(value) : '';
+      default:
+        return validateRequired(value);
     }
-  }, [userData])
+  };
 
-  // Handlers
+  const validateAllFields = () => {
+    const isEmployer = user?.role === 'contratante';
+    const errors = {};
+    let isValid = true;
+
+    const fieldsToValidate = isEmployer ? [
+      'documentType', 'documentNumber', 'nameEmployer', 
+      'phoneEmployer', 'emailEmployer', 'townEmployer', 'genreEmployer'
+    ] : [
+      'documentType', 'documentNumber', 'nameJobSeeker',
+      'phoneJobSeeker', 'emailJobSeeker', 'townJobSeeker', 'genreJobSeeker',
+      'skill1', 'skill2', 'study1', 'study2'
+    ];
+
+    fieldsToValidate.forEach(field => {
+      const error = validateField(field, tempUser[field]);
+      if (error) {
+        errors[field] = error;
+        isValid = false;
+      }
+    });
+
+    setValidationErrors(errors);
+    return isValid;
+  };
+
+  const validatePasswordStrength = (password) => {
+    if (!password) return 'ⓘ La contraseña es requerida';
+    const minLength = password.length >= 8;
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    const hasUpperCase = /[A-Z]/.test(password);
+
+    if (!minLength) return 'ⓘ La contraseña debe tener al menos 8 caracteres';
+    if (!hasNumber) return 'ⓘ Debe contener al menos un número';
+    if (!hasSpecialChar) return 'ⓘ Debe contener al menos un carácter especial';
+    if (!hasUpperCase) return 'ⓘ Debe contener al menos una mayúscula';
+    return '';
+  };
+
+  const validatePasswordFields = () => {
+    const { currentPassword, newPassword, confirmPassword } = passwordData;
+    const newErrors = {};
+    let isValid = true;
+
+    if (!currentPassword) {
+      newErrors.currentPassword = 'ⓘ La contraseña actual es requerida';
+      isValid = false;
+    }
+
+    const passwordError = validatePasswordStrength(newPassword);
+    if (passwordError) {
+      newErrors.newPassword = passwordError;
+      isValid = false;
+    }
+
+    if (!confirmPassword) {
+      newErrors.confirmPassword = 'ⓘ Confirma tu nueva contraseña';
+      isValid = false;
+    } else if (newPassword !== confirmPassword) {
+      newErrors.confirmPassword = 'ⓘ Las contraseñas no coinciden';
+      isValid = false;
+    }
+
+    setPasswordErrors(newErrors);
+    return isValid;
+  };
+
+  //---------------------------------------------HANDLERS-------------------------------------------------//
+  const handleEdit = (section) => {
+    setTempUser({ ...user });
+    setActiveSection(section);
+    setEditMode(true);
+    setValidationErrors({});
+    setPasswordErrors({});
+  };
+
+  const handleSave = () => {
+    let isValid = true;
+
+    if (activeSection === 'personal') {
+      isValid = validateAllFields();
+    } else if (activeSection === 'security') {
+      isValid = validatePasswordFields();
+    }
+
+    if (!isValid) return false;
+
+    const updatedUser = { ...tempUser };
+
+    if (activeSection === 'security') {
+      setPasswordData({
+        currentPassword: '',
+        newPassword: '',
+        confirmPassword: ''
+      });
+    }
+
+    setUser(updatedUser);
+    setUserData(updatedUser); // Keep userData in sync
+    setEditMode(false);
+    setActiveSection(null);
+    return true;
+  };
+
+  const handleCancel = () => {
+    setEditMode(false);
+    setActiveSection(null);
+    setValidationErrors({});
+    setPasswordErrors({});
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const newValue = type === 'checkbox' ? checked : value;
+
+    setTempUser(prev => ({
+      ...prev,
+      [name]: newValue
+    }));
+
+    if (editMode && activeSection === 'personal') {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: validateField(name, newValue)
+      }));
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const { name, value } = e.target;
+    setPasswordData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+    if (editMode && activeSection === 'security') {
+      const newErrors = { ...passwordErrors };
+
+      if (name === 'newPassword') {
+        newErrors.newPassword = validatePasswordStrength(value);
+      } else if (name === 'confirmPassword') {
+        newErrors.confirmPassword = 
+          passwordData.newPassword !== value ? 'ⓘ Las contraseñas no coinciden' : '';
+      }
+
+      setPasswordErrors(newErrors);
+    }
+  };
+
+  const handleSelectChange = (name, value) => {
+    setTempUser(prev => ({
+      ...prev,
+      [name]: value
+    }));
+
+    if (editMode && activeSection === 'personal') {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: validateField(name, value)
+      }));
+    }
+  };
+
+  // Avatar and user name handlers (kept intact)
   const handleAvatarChange = (newAvatar) => {
     setRolesConfig(prev => ({
       ...prev,
@@ -346,28 +293,31 @@ export const SettingsProvider = ({ children, initialUser }) => {
         ...prev[currentRole],
         avatar: newAvatar
       }
-    }))
-  }
+    }));
+    localStorage.setItem(AVATAR_STORAGE_KEY, newAvatar);
+  };
 
   const handleNameChange = (newName) => {
     const nameKey = rolesConfig[currentRole].nameKey;
-    setUserData(prev => ({
-      ...prev,
+    const updatedUser = {
+      ...user,
       [nameKey]: newName
-    }))
-  }
+    };
+    setUser(updatedUser);
+    setUserData(updatedUser);
+  };
 
-  // Obtener datos actuales
   const currentConfig = rolesConfig[currentRole] || rolesConfig.contratante;
-  const userName = userData?.[currentConfig.nameKey] || currentConfig.defaultName;
+  const userName = user?.[currentConfig.nameKey] || currentConfig.defaultName;
   const userAvatar = currentConfig.avatar;
   const avatarOptions = currentConfig.avatarOptions;
   const roleMenuItems = currentConfig.menuItems;
 
-
+  //---------------------------------------------PROVIDER-------------------------------------------------//
   return (
     <SettingsContext.Provider
       value={{
+        // Estados
         user,
         tempUser,
         editMode,
@@ -382,6 +332,8 @@ export const SettingsProvider = ({ children, initialUser }) => {
         userName,
         avatarOptions,
         roleMenuItems,
+        
+        // Handlers
         handleAvatarChange,
         setCurrentRole,
         setIsEditingName,
@@ -391,21 +343,18 @@ export const SettingsProvider = ({ children, initialUser }) => {
         handleCancel,
         handleChange,
         handlePasswordChange,
-        handleSelectChange,
-        validateField,
-        validatePersonalSection,
-        validatePasswordFields
+        handleSelectChange
       }}
     >
       {children}
     </SettingsContext.Provider>
-  )
-}
+  );
+};
 
 export const useSettings = () => {
-  const context = useContext(SettingsContext)
+  const context = useContext(SettingsContext);
   if (!context) {
-    throw new Error('useSettings debe usarse dentro de un SettingsProvider')
+    throw new Error('useSettings debe usarse dentro de un SettingsProvider');
   }
-  return context
-}
+  return context;
+};
