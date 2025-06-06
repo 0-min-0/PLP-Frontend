@@ -1,7 +1,6 @@
 import { FiEdit, FiTrash2 } from 'react-icons/fi'
 import { SearchBar } from '../../../UI/SearchBar'
 import { VacancyDetail } from '../../../UI/Vacancy/VacancyDetail'
-import avatar from '../../../assets/images/avatar.jpg'
 import { useOutletContext } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Avatar } from '../../../Components/Avatar/Avatar'
