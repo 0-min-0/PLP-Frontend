@@ -31,7 +31,11 @@ export const users = [
         study2: 'Curso de React Avanzado',
         study3: '',
         study4: '',
+<<<<<<< HEAD
         role: 'Contratista'
+=======
+        role: 'jobseeker'
+>>>>>>> b8c3c6fdf051c57467915bfb8eada8cd67bb20a3
     },
     {
         id: 3,

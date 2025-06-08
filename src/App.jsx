@@ -20,6 +20,10 @@ import { SettingsJobSeeker } from './Pages/Settings/SettingsJobSeeker/SettingsJo
 import { RegisterProvider } from './Context/RegisterContext'
 import { VacancyProvider } from './Context/VacancyContext'
 import { PublishedVacancies } from './Pages/Settings/SettingsEmployer/PublishedVacancies'
+<<<<<<< HEAD
+=======
+import { GeneralSettings } from './Pages/Settings/GeneralSettings';
+>>>>>>> b8c3c6fdf051c57467915bfb8eada8cd67bb20a3
 import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
 import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
@@ -86,16 +90,16 @@ function App() {
                   <Route path='/crear-vacante' element={<CreateVacancie />} />
                   { /* Configuraciones contratante */}
                   <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
-                    <Route index element={<GeneralEmployer />} />
-                    <Route path='general-contratante' element={<GeneralEmployer />} />
+                    <Route index element={<GeneralSettings />} />
+                    <Route path='general-contratante' element={<GeneralSettings />} />
                     <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
                     <Route path='terminos-condiciones' element={<Terms />} />
                     <Route path='ayuda-soporte' element={<Help />} />
                   </Route>
                   { /* Configuraciones contratista */}
                   <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
-                    <Route index element={<GeneralJobSeeker />} />
-                    <Route path='general-contratista' element={<GeneralJobSeeker />} />
+                    <Route index element={<GeneralSettings />} />
+                    <Route path='general-contratista' element={<GeneralSettings />} />
                     <Route path='postulaciones-contratista' element={<Postulations />} />
                     <Route path='terminos-condiciones' element={<Terms />} />
                     <Route path='ayuda-soporte' element={<Help />} />

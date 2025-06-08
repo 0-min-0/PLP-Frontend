@@ -1,34 +1,34 @@
-import { useState, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
-import { Header } from '../../../Components/Header/Header'
-import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2'
-import { NavLink } from 'react-router-dom'
-import { RightMenu } from '../../../Components/RightMenu/RightMenu'
-import { useVacancy } from '../../../Context/VacancyContext'
-import { deleteVacancyFromExample, getVacancies, updateVacancyInExample } from '../../../Utils/objectsExample'
-import { menuConfig } from '../../../Utils/options'
+import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { Header } from '../../../Components/Header/Header';
+import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2';
+import { NavLink } from 'react-router-dom';
+import { RightMenu } from '../../../Components/RightMenu/RightMenu';
+import { useVacancy } from '../../../Context/VacancyContext';
+import { deleteVacancyFromExample, getVacancies, updateVacancyInExample } from '../../../Utils/objectsExample';
+import { menuConfig } from '../../../Utils/options';
 
 export const SettingsEmployer = () => {
-  const { vacancies, setVacancies } = useVacancy()
-  const [selectedVacancy, setSelectedVacancy] = useState(null)
+  const { vacancies, setVacancies } = useVacancy();
+  const [selectedVacancy, setSelectedVacancy] = useState(null);
 
   // Guardar vacante editada
   const handleSaveVacancy = (updatedVacancy) => {
-    updateVacancyInExample(updatedVacancy)
-    setVacancies(getVacancies())
-  }
+    updateVacancyInExample(updatedVacancy);
+    setVacancies(getVacancies());
+  };
 
   // Eliminar vacante
   const handleDeleteVacancy = (id) => {
-    deleteVacancyFromExample(id)
-    setVacancies(getVacancies())
-    setSelectedVacancy(null)
-  }
+    deleteVacancyFromExample(id);
+    setVacancies(getVacancies());
+    setSelectedVacancy(null);
+  };
 
   // Cargar vacantes al iniciar
   useEffect(() => {
-    setVacancies(getVacancies())
-  }, [setVacancies])
+    setVacancies(getVacancies());
+  }, [setVacancies]);
 
   return (
     <div className=''>
@@ -68,11 +68,13 @@ export const SettingsEmployer = () => {
           <RightMenu
             width='w-[80%]'
             height='h-165'
-            menuItems={menuConfig.employer}
+            menuItems={menuConfig.employer.filter(item =>
+              item.label !== 'Habilidades' && item.label !== 'Estudios'
+            )}
             basePath='/configuraciones-contratante'
           />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import { FiEdit, FiSave, FiX } from 'react-icons/fi'
 import { SearchBar } from '../../../UI/SearchBar'
@@ -264,4 +265,10 @@ export const GeneralEmployer = () => {
       )}
     </>
   )
+=======
+import { GeneralSettings } from '../GeneralSettings'
+
+export const GeneralEmployer = () => {
+  return <GeneralSettings />
+>>>>>>> b8c3c6fdf051c57467915bfb8eada8cd67bb20a3
 }
