@@ -54,7 +54,7 @@ export const Avatar = () => {
     contratista: 'Contratista',
     contratante: 'Contratante',
     empresa: 'Empresa'
-  };
+  }
 
   return (
     <div className='max-w-5xl mx-auto flex items-center relative'>
@@ -168,5 +168,5 @@ export const Avatar = () => {
         </h3>
       </div>
     </div>
-  );
-};
+  )
+}

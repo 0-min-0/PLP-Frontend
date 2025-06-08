@@ -5,9 +5,9 @@ import { MenuItem } from '../../UI/MenuItem'
 import { useMenu } from '../../Context/MenuContext'
 import { useSettings } from '../../Context/SettingsContext'
 
-export const ProfileMenu = ({ settingsRoute }) => {
+export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
   const { isOpen, setIsOpen } = useMenu()
-  const { userAvatar, userName, roleMenuItems } = useSettings()
+  const { userAvatar, userName } = useSettings() 
   const menuRef = useRef(null)
 
   // Cerrar al hacer clic fuera
@@ -35,6 +35,7 @@ export const ProfileMenu = ({ settingsRoute }) => {
   // Items comunes a todos los roles
   const commonMenuItems = [
     { to: settingsRoute, label: 'Configuraciones' },
+    { to: '/categorias', label: 'Categorías de trabajo' },
     { to: '/contacto', label: 'Contacto' },
     { to: '/tema', label: 'Tema' },
     { to: '/ayuda', label: 'Ayuda' }
@@ -83,7 +84,7 @@ export const ProfileMenu = ({ settingsRoute }) => {
             </MenuItem>
           ))}
 
-          {roleMenuItems?.map((item) => (
+          {menuItems.map((item) => (
             <MenuItem key={item.to} to={item.to}>
               {item.label}
             </MenuItem>

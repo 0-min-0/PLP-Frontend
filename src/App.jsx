@@ -20,13 +20,16 @@ import { SettingsJobSeeker } from './Pages/Settings/SettingsJobSeeker/SettingsJo
 import { RegisterProvider } from './Context/RegisterContext'
 import { VacancyProvider } from './Context/VacancyContext'
 import { PublishedVacancies } from './Pages/Settings/SettingsEmployer/PublishedVacancies'
-import { GeneralSettings } from './Pages/Settings/GeneralSettings';
 import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
 import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
 import { SettingsProvider } from './Context/SettingsContext'
 import { users } from './Utils/users'
 import { Postulations } from './Pages/Settings/SettingsJobSeeker/Postulations'
+import { GeneralEmployer } from './Pages/Settings/SettingsEmployer/GeneralEmployer'
+import { GeneralJobSeeker } from './Pages/Settings/SettingsJobSeeker/GeneralJobSeeker'
+import { SettingsCompany } from './Pages/Settings/SettingsCompany/SettingsCompany'
+import { GeneralCompany } from './Pages/Settings/SettingsCompany/GeneralCompany'
 
 function App() {
 
@@ -42,7 +45,12 @@ function App() {
     '/configuraciones-contratista/general-contratista',
     '/configuraciones-contratista/postulaciones-contratista',
     '/configuraciones-contratista/terminos-condiciones',
-    '/configuraciones-contratista/ayuda-soporte'
+    '/configuraciones-contratista/ayuda-soporte',
+    '/configuraciones-empresa',
+    '/configuraciones-empresa/general-empresa',
+    '/configuraciones-empresa/publicaciones-empresa',
+    '/configuraciones-empresa/terminos-condiciones',
+    '/configuraciones-empresa/ayuda-soporte'
   ]
 
   const isBgRoute = bgRoutes.includes(location.pathname)
@@ -76,19 +84,27 @@ function App() {
                   <Route path='/inicio-contratista' element={<MainJobSeeker />} />
                   <Route path='/inicio-contratante' element={<MainEmployer />} />
                   <Route path='/crear-vacante' element={<CreateVacancie />} />
-                  { /* Configuraciones contratante*/}
+                  { /* Configuraciones contratante */}
                   <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
-                    <Route index element={<GeneralSettings />} />
-                    <Route path='general-contratante' element={<GeneralSettings />} />
+                    <Route index element={<GeneralEmployer />} />
+                    <Route path='general-contratante' element={<GeneralEmployer />} />
                     <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
                     <Route path='terminos-condiciones' element={<Terms />} />
                     <Route path='ayuda-soporte' element={<Help />} />
                   </Route>
-                  { /* Configuraciones contratista*/}
+                  { /* Configuraciones contratista */}
                   <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
-                    <Route index element={<GeneralSettings />} />
-                    <Route path='general-contratista' element={<GeneralSettings />} />
+                    <Route index element={<GeneralJobSeeker />} />
+                    <Route path='general-contratista' element={<GeneralJobSeeker />} />
                     <Route path='postulaciones-contratista' element={<Postulations />} />
+                    <Route path='terminos-condiciones' element={<Terms />} />
+                    <Route path='ayuda-soporte' element={<Help />} />
+                  </Route>
+                  { /* Configuraciones empresa */}
+                  <Route path='/configuraciones-empresa' element={<SettingsCompany />}>
+                    <Route index element={<GeneralCompany />} />
+                    <Route path='general-empresa' element={<GeneralCompany />} />
+                    <Route path='publicaciones-empresa' element={<PublishedVacancies />} />
                     <Route path='terminos-condiciones' element={<Terms />} />
                     <Route path='ayuda-soporte' element={<Help />} />
                   </Route>

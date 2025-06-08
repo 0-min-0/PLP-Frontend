@@ -122,8 +122,8 @@ export const RegisterUser = () => {
                                     })}
                                     error={errors.description}
                                 />
-                                <div className='w-full gap-6 mt-2'>
-                                    <div className='mt-3'>
+                                <div className='w-full gap-6 '>
+                                    <div className='mt-2'>
                                         <Select
                                             label='Municipio'
                                             name='town'
@@ -133,7 +133,7 @@ export const RegisterUser = () => {
                                         />
                                         {errors.town && <p className={errorStyle}>{errors.town}</p>}
                                     </div>
-                                    <div className='mt-4'>
+                                    <div className='mt-3'>
                                         <Select
                                             label='Género (Si te estas registrando como empresa no aplica)'
                                             name='genre'

@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 export const RightMenu = ({ width, height, menuItems }) => {
   const location = useLocation()
-  const basePath = location.pathname.split('/').slice(0, 2).join('/') // Obtiene la ruta base dinámicamente
+  const basePath = location.pathname.split('/').slice(0, 2).join('/')
 
   const baseItemStyle = 'text-lg text-[#405e7f] px-8 py-3 my-1 hover:bg-gray-50 mx-2 rounded-lg transition-colors duration-200'
 
@@ -18,9 +18,9 @@ export const RightMenu = ({ width, height, menuItems }) => {
         {menuItems.map((item) => (
           <NavLink
             key={item.to}
-            to={`${basePath}/${item.to}`} // Construye la ruta completa
+            to={`${basePath}/${item.to}`}
             className={getNavLinkStyle}
-            end // Asegura que coincida exactamente
+            end
           >
             {item.label}
           </NavLink>

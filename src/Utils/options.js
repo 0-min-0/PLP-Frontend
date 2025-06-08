@@ -16,6 +16,7 @@ export const optionTown = [  //Opciones de municipios
 export const optionGenre = [  //Opciones de generos
     { value: 'masculino', label: 'Masculino' },
     { value: 'femenino', label: 'Femenino' },
+    { value: 'noAplica', label: 'No aplica (empresa)' },
 ]
 
 export const optionId = [  //Opciones de tipo de documento
@@ -62,6 +63,12 @@ export const menuConfig = {
   employer: [
     { to: 'general-contratante', label: 'General' },
     { to: 'publicaciones-contratante', label: 'Publicaciones' },
+    { to: 'terminos-condiciones', label: 'Términos y condiciones' },
+    { to: 'ayuda-soporte', label: 'Ayuda' }
+  ],
+  company: [
+    { to: 'general-empresa', label: 'General' },
+    { to: 'publicaciones-empresa', label: 'Publicaciones' },
     { to: 'terminos-condiciones', label: 'Términos y condiciones' },
     { to: 'ayuda-soporte', label: 'Ayuda' }
   ]
