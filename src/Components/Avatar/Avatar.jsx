@@ -3,9 +3,10 @@ import { FiEdit } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSettings } from '../../Context/SettingsContext'
 import { NameModal } from '../../UI/NameModal'
+import { useLocation } from 'react-router-dom'
 
 export const Avatar = () => {
-  const { 
+  const {
     currentRole,
     userAvatar,
     userName,
@@ -13,11 +14,20 @@ export const Avatar = () => {
     handleAvatarChange,
     handleNameChange
   } = useSettings()
-  
+
   const [avatarSelector, setAvatarSelector] = useState(false)
   const [isEditingName, setIsEditingName] = useState(false)
+  const location = useLocation()
 
-  // Animaciones
+  // Función para determinar el rol basado en la ruta
+  const getRoleFromPath = () => {
+    const path = location.pathname
+    if (path.includes('configuraciones-contratista')) return 'Contratista'
+    if (path.includes('configuraciones-empresa')) return 'Empresa'
+    if (path.includes('configuraciones-contratante')) return 'Contratante'
+    return 'Usuario' 
+  }
+
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 }
@@ -47,26 +57,23 @@ export const Avatar = () => {
         ease: 'easeIn'
       }
     }
-  };
-
-  // Etiquetas de rol
-  const roleLabels = {
-    contratista: 'Contratista',
-    contratante: 'Contratante',
-    empresa: 'Empresa'
   }
+
+  const currentDisplayRole = getRoleFromPath()
 
   return (
     <div className='max-w-5xl mx-auto flex items-center relative'>
-      {/* Modal de edición de nombre */}
       <NameModal
         isOpen={isEditingName}
         onClose={() => setIsEditingName(false)}
         currentName={userName}
-        onSave={handleNameChange}
+        onSave={(newName) => {
+          handleNameChange(newName)
+          setIsEditingName(false)
+        }}
+        currentRole={currentRole}
       />
 
-      {/* Avatar y selector */}
       <div className="relative group">
         <div className="relative">
           <img
@@ -85,8 +92,7 @@ export const Avatar = () => {
             <FiEdit className='text-[#405e7f]' size={18} />
           </button>
         </div>
-        
-        {/* Selector de avatares */}
+
         <AnimatePresence>
           {avatarSelector && (
             <>
@@ -98,7 +104,7 @@ export const Avatar = () => {
                 variants={backdropVariants}
                 onClick={() => setAvatarSelector(false)}
               />
-              
+
               <motion.div
                 className="absolute z-50 mt-3 w-72 bg-white rounded-xl shadow-lg border border-gray-100 p-6"
                 variants={selectorVariants}
@@ -118,7 +124,7 @@ export const Avatar = () => {
                     </svg>
                   </button>
                 </div>
-                
+
                 <div className='grid grid-cols-3 gap-3 max-h-60 overflow-y-auto custom-scrollbar'>
                   {avatarOptions.map((avatar, index) => (
                     <motion.button
@@ -127,8 +133,8 @@ export const Avatar = () => {
                       whileTap={{ scale: 0.95 }}
                       className={`p-1 rounded-lg transition-all duration-200 flex justify-center cursor-pointer
                                 ${userAvatar === avatar
-                                  ? 'bg-[#60efdb]/20 border-2 border-[#60efdb]'
-                                  : 'hover:bg-gray-100'}`}
+                          ? 'bg-[#60efdb]/20 border-2 border-[#60efdb]'
+                          : 'hover:bg-gray-100'}`}
                       onClick={() => {
                         handleAvatarChange(avatar);
                         setAvatarSelector(false);
@@ -149,7 +155,6 @@ export const Avatar = () => {
         </AnimatePresence>
       </div>
 
-      {/* Información del usuario */}
       <div className='ml-6 relative group'>
         <div className='flex items-center'>
           <h2 className='text-3xl font-bold text-[#405e7f]'>
@@ -164,7 +169,7 @@ export const Avatar = () => {
           </button>
         </div>
         <h3 className='text-lg text-[#405e7f] opacity-80'>
-          {roleLabels[currentRole] || 'Usuario'}
+          {currentDisplayRole}
         </h3>
       </div>
     </div>

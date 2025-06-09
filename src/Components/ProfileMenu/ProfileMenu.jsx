@@ -7,7 +7,7 @@ import { useSettings } from '../../Context/SettingsContext'
 
 export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
   const { isOpen, setIsOpen } = useMenu()
-  const { userAvatar, userName } = useSettings() 
+  const { userAvatar, currentRoleName } = useSettings() 
   const menuRef = useRef(null)
 
   // Cerrar al hacer clic fuera
@@ -69,7 +69,7 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
       >
         <ul className='p-2'>
           <div className='flex justify-between items-center p-3 border-b border-gray-100'>
-            <h3 className='font-bold text-gray-900 truncate max-w-[180px]'>{userName}</h3>
+            <h3 className='font-bold text-gray-900 truncate max-w-[180px]'>{currentRoleName}</h3>
             <button
               onClick={() => setIsOpen(false)}
               className='p-1 rounded-md hover:bg-gray-100'

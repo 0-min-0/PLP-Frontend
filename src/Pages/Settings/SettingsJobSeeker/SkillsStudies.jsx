@@ -26,19 +26,20 @@ export const SkillsStudies = () => {
       study3: '',
       study4: ''
     },
-    handleChange,
     isEditing,
     activeSection,
-    getActiveError,
     handleEdit,
     handleSaveWithValidation,
-    handleCancel
+    handleCancel,
+    getCombinedError,
+    handleSkillChange,
+    handleStudyChange
   } = useSettings()
 
   // Determinar si estamos editando esta sección
   const editingSkills = isEditing && activeSection === 'skills'
   const editingStudies = isEditing && activeSection === 'studies'
-
+  
   return (
     <div className="space-y-6">
       {/* Sección de Habilidades */}
@@ -87,36 +88,43 @@ export const SkillsStudies = () => {
         
         <p className="text-sm text-gray-500">Las dos primeras habilidades son requeridas</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[1, 2, 3, 4].map((num) => (
-            <motion.div 
-              key={`skill-${num}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: num * 0.05 }}
-            >
-              <Input
-                iType='text'
-                iValue={formData[`skill${num}`] || ''}
-                iName={`skill${num}`}
-                iChange={handleChange}
-                iHolder='Ingresa tu habilidad'
-                disabled={!editingSkills}
-                borderColor={
-                  editingSkills
-                    ? getActiveError(`skill${num}`)
-                      ? 'border-red-500'
-                      : 'border-[#60efdb]'
-                    : 'border-gray-300'
-                }
-                focusColor={
-                  getActiveError(`skill${num}`)
-                    ? 'focus:ring-red-500'
-                    : 'focus:ring-[#405e7f]/50'
-                }
-                error={getActiveError(`skill${num}`)}
-              /> 
-            </motion.div>
-          ))}
+          {[1, 2, 3, 4].map((num) => {
+            const fieldName = `skill${num}`
+            const isRequired = num <= 2
+            const error = getCombinedError(fieldName)
+            
+            return (
+              <motion.div 
+                key={`skill-${num}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: num * 0.05 }}
+              >
+                <Input
+                  iType='text'
+                  iValue={formData[fieldName] || ''}
+                  iName={fieldName}
+                  iChange={handleSkillChange}
+                  iHolder={`Ingresa tu habilidad ${num}${isRequired ? ' (requerido)' : ''}`}
+                  disabled={!editingSkills}
+                  borderColor={
+                    editingSkills
+                      ? error
+                        ? 'border-red-500'
+                        : 'border-[#60efdb]'
+                      : 'border-gray-300'
+                  }
+                  focusColor={
+                    error
+                      ? 'focus:ring-red-500'
+                      : 'focus:ring-[#405e7f]/50'
+                  }
+                  error={error}
+                  required={isRequired && editingSkills}
+                /> 
+              </motion.div>
+            )
+          })}
         </div>
       </div>
 
@@ -166,36 +174,43 @@ export const SkillsStudies = () => {
         
         <p className="text-sm text-gray-500">Los dos primeros estudios son requeridos</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[1, 2, 3, 4].map((num) => (
-            <motion.div 
-              key={`study-${num}`}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: num * 0.05 }}
-            >
-              <Input
-                iType='text'
-                iValue={formData[`study${num}`] || ''}
-                iName={`study${num}`}
-                iChange={handleChange}
-                iHolder='Ingresa tu estudio'
-                disabled={!editingStudies}
-                borderColor={
-                  editingStudies
-                    ? getActiveError(`study${num}`)
-                      ? 'border-red-500'
-                      : 'border-[#60efdb]'
-                    : 'border-gray-300'
-                }
-                focusColor={
-                  getActiveError(`study${num}`)
-                    ? 'focus:ring-red-500'
-                    : 'focus:ring-[#405e7f]/50'
-                }
-                error={getActiveError(`study${num}`)}
-              /> 
-            </motion.div>
-          ))}
+          {[1, 2, 3, 4].map((num) => {
+            const fieldName = `study${num}`
+            const isRequired = num <= 2
+            const error = getCombinedError(fieldName)
+            
+            return (
+              <motion.div 
+                key={`study-${num}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: num * 0.05 }}
+              >
+                <Input
+                  iType='text'
+                  iValue={formData[fieldName] || ''}
+                  iName={fieldName}
+                  iChange={handleStudyChange}
+                  iHolder={`Ingresa tu estudio ${num}${isRequired ? ' (requerido)' : ''}`}
+                  disabled={!editingStudies}
+                  borderColor={
+                    editingStudies
+                      ? error
+                        ? 'border-red-500'
+                        : 'border-[#60efdb]'
+                      : 'border-gray-300'
+                  }
+                  focusColor={
+                    error
+                      ? 'focus:ring-red-500'
+                      : 'focus:ring-[#405e7f]/50'
+                  }
+                  error={error}
+                  required={isRequired && editingStudies}
+                /> 
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </div>

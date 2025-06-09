@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { FiEdit, FiSave, FiX } from 'react-icons/fi'
 import { SearchBar } from '../../../UI/SearchBar'
 import { Input } from '../../../UI/Input'
@@ -30,7 +29,6 @@ const containerVariants = {
 }
 
 export const GeneralJobSeeker = () => {
-  const [saveSuccess, setSaveSuccess] = useState(false);
   const {
     userData,
     isEditing,
@@ -38,41 +36,19 @@ export const GeneralJobSeeker = () => {
     formData,
     errors,
     handleEdit,
-    handleSave,
     handleCancel,
     handleChange,
     handleSelectChange,
-    validateFields,
     roleFields,
     currentRole,
     optionTown,
     optionId,
     getActiveError,
-    handleSaveWithValidation
+    handleSaveWithValidation,
+    saveSuccess
   } = useSettings()
 
-  useEffect(() => {
-    if (isEditing && activeSection === 'personal' && userData) {
-      Object.entries(formData).forEach(([name, value]) => {
-        if (['documentType', 'documentNumber', 'phone', 'phoneSec', 'email', 'town'].includes(name)) {
-          if (roleFields && roleFields[currentRole]) {
-            if (name === 'phone') {
-              errors.phone = validatePhone(value)
-            } else if (name === 'phoneSec' && value) {
-              errors.phoneSec = validatePhone(value)
-            } else if (name === 'email') {
-              errors.email = validateEmail(value)
-            } else if (name === 'documentNumber') {
-              errors.documentNumber = validateDocumentNumber(value)
-            } else if (name === 'documentType' || name === 'town') {
-              const fieldLabel = roleFields[currentRole][name] || name
-              errors[name] = validateRequiredField(value, fieldLabel.toLowerCase())
-            }
-          }
-        }
-      })
-    }
-  }, [formData, isEditing, activeSection, currentRole, roleFields])
+  // Remove the local saveSuccess state since it's now coming from context
 
   return (
     <>
@@ -121,6 +97,7 @@ export const GeneralJobSeeker = () => {
                   key='edit'
                   onClick={() => handleEdit('personal')}
                   className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                  data-testid="edit-personal-info-button"
                 >
                   <FiEdit className='w-5 h-5' /> Editar información
                 </button>
@@ -244,7 +221,7 @@ export const GeneralJobSeeker = () => {
         </div>
         <hr className=' border-gray-200 mr-8' />
         <div className='mr-8'>
-           <SkillsStudies />
+          <SkillsStudies />
         </div>
         <hr className='border-gray-200 mr-8' />
         {/* Seguridad y preferencias */}
@@ -253,22 +230,18 @@ export const GeneralJobSeeker = () => {
         <Preferences />
       </motion.div>
       {/* Mensaje de éxito al guardar */}
-      {saveSuccess && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg"
-        >
-          ¡Datos guardados correctamente!
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {saveSuccess && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-4 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg"
+          >
+            ¡Datos guardados correctamente!
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
-=======
-import { GeneralSettings } from '../GeneralSettings';
-
-export const GeneralJobSeeker = () => {
-  return <GeneralSettings />
->>>>>>> b8c3c6fdf051c57467915bfb8eada8cd67bb20a3
 }

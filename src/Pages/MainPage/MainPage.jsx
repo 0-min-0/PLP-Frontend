@@ -6,10 +6,12 @@ import { MainMenu } from '../../Components/MainMenu/MainMenu'
 import { AccountButtons } from '../../Components/AccountButtons/AccountButtons'
 import { Footer } from '../../Components/Footer/Footer'
 import { JobsLayout } from '../../Layouts/JobsLayout/JobsLayout'
+import { Contact } from '../../Layouts/Contact/Contact'
+import { MainAboutUs } from '../../Layouts/MainAboutUs/MainAboutUs'
 
 export const MainPage = () => {
   return (
-    <div>
+    <div className='mt-6'>
       <Header
         middleObject={<SearchBar />}
         buttons={<AccountButtons />}
@@ -17,9 +19,9 @@ export const MainPage = () => {
       />
       <MainLayout />
       <JobsLayout />
-      <div className='pb-12'>
-        <Footer />
-      </div>
+      <MainAboutUs />
+      <Contact />
+      <Footer />
     </div>
   )
 }

@@ -32,7 +32,7 @@ export const RegisterRolType = () => {
   }
 
   return (
-    <div>
+    <div className='p-6'>
       <Header
         middleObject={
           <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>

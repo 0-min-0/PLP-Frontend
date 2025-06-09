@@ -1,11 +1,45 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { IoClose } from 'react-icons/io5'
 import { Button } from './button'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Input } from './Input'
 
-export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
+export const NameModal = ({ isOpen, onClose, currentName, onSave, currentRole }) => {
   const [newName, setNewName] = useState(currentName)
+  const [fieldConfig, setFieldConfig] = useState({
+    label: 'Nombre',
+    placeholder: 'Ingresa el nuevo nombre'
+  })
+
+  useEffect(() => {
+    setNewName(currentName)
+    
+    switch(currentRole) {
+      case 'contratista':
+        setFieldConfig({
+          label: 'Nombre del Contratista',
+          placeholder: 'Ingresa el nombre del contratista'
+        })
+        break
+      case 'contratante':
+        setFieldConfig({
+          label: 'Nombre del Contratante',
+          placeholder: 'Ingresa el nombre del contratante'
+        })
+        break
+      case 'empresa':
+        setFieldConfig({
+          label: 'Nombre de la Empresa',
+          placeholder: 'Ingresa el nombre de la empresa'
+        })
+        break
+      default:
+        setFieldConfig({
+          label: 'Nombre',
+          placeholder: 'Ingresa el nuevo nombre'
+        })
+    }
+  }, [isOpen, currentName, currentRole])
 
   const backdropVariants = {
     hidden: { opacity: 0 },
@@ -40,8 +74,7 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
 
   const handleSave = () => {
     if (newName.trim() !== '') {
-      onSave(newName)
-      onClose()
+      onSave(newName.trim())
     }
   }
 
@@ -73,7 +106,7 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
             </button>
 
             <h2 className="text-2xl font-bold text-[#405e7f] mb-5">
-              Editar nombre
+              Editar {fieldConfig.label.toLowerCase()}
             </h2>
 
             <Input
@@ -81,7 +114,7 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave }) => {
               iValue={newName}
               iName="name"
               iChange={(e) => setNewName(e.target.value)}
-              iHolder='Ingresa el nuevo nombre'
+              iHolder={fieldConfig.placeholder}
               padding="px-4 py-2"
             />
 

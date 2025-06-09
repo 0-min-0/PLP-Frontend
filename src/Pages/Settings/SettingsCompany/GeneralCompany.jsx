@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FiEdit, FiSave, FiX } from 'react-icons/fi'
 import { SearchBar } from '../../../UI/SearchBar'
 import { Input } from '../../../UI/Input'
@@ -33,47 +33,31 @@ export const GeneralCompany = () => {
     userData,
     isEditing,
     activeSection,
-    formData,
+    formData = {},
     errors,
     handleEdit,
-    handleSave,
+    handleSaveWithValidation,
     handleCancel,
     handleChange,
     handleSelectChange,
-    validateFields,
     roleFields,
     currentRole,
     optionTown,
     optionCategory,
     getActiveError,
-    handleSaveWithValidation
+    fieldLabels,
+    saveSuccess: contextSaveSuccess,
+    setSaveSuccess: setContextSaveSuccess
   } = useSettings()
 
-  // Validation effect for company fields
-  useEffect(() => {
-    if (isEditing && activeSection === 'company' && userData) {
-      Object.entries(formData).forEach(([name, value]) => {
-        if (['nit', 'nameCompany', 'phoneCompany', 'phoneSecCompany', 'emailCompany', 'townCompany', 'category', 'webSite'].includes(name)) {
-          if (roleFields && roleFields[currentRole]) {
-            if (name === 'phoneCompany') {
-              errors.phoneCompany = validatePhone(value)
-            } else if (name === 'phoneSecCompany' && value) {
-              errors.phoneSecCompany = validatePhone(value)
-            } else if (name === 'emailCompany') {
-              errors.emailCompany = validateEmail(value)
-            } else if (name === 'nit') {
-              errors.nit = validateNit(value)
-            } else if (name === 'webSite') {
-              errors.webSite = validateWebsite(value)
-            } else if (['nameCompany', 'townCompany', 'category'].includes(name)) {
-              const fieldLabel = roleFields[currentRole][name] || name
-              errors[name] = validateRequiredField(value, fieldLabel.toLowerCase())
-            }
-          }
-        }
-      })
-    }
-  }, [formData, isEditing, activeSection, currentRole, roleFields])
+  // Sincronizar el mensaje de éxito con el contexto
+  if (contextSaveSuccess && !saveSuccess) {
+    setSaveSuccess(true);
+    setTimeout(() => {
+      setSaveSuccess(false);
+      setContextSaveSuccess(false);
+    }, 3000);
+  }
 
   return (
     <>
@@ -81,7 +65,7 @@ export const GeneralCompany = () => {
       <div className='max-w-5xl mx-auto mt-8'>
         <SearchBar />
         <h2 className='text-3xl mb-4 mt-6 font-[afacadBold] text-[#405e7f]'>
-          General
+          Información General
         </h2>
       </div>
       <motion.div
@@ -90,12 +74,12 @@ export const GeneralCompany = () => {
         variants={containerVariants}
         className='max-w-5xl mx-auto h-85 bg-white rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'
       >
-        {/* Company Information Section */}
+        {/* Sección de Información de la Empresa */}
         <div className='space-y-4 pr-6'>
           <div className='flex justify-between items-center'>
             <h3 className='text-xl font-semibold text-[#405e7f]'>Información de la Empresa</h3>
             <AnimatePresence mode='wait'>
-              {activeSection === 'company' && isEditing ? (
+              {activeSection === 'personal' && isEditing ? (
                 <motion.div
                   key='save-cancel'
                   className='flex gap-2'
@@ -120,9 +104,9 @@ export const GeneralCompany = () => {
               ) : (
                 <button
                   key='edit'
-                  onClick={() => handleEdit('company')}
+                  onClick={() => handleEdit('personal')}
                   className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
-                  >
+                >
                   <FiEdit className='w-5 h-5' /> Editar información
                 </button>
               )}
@@ -130,131 +114,145 @@ export const GeneralCompany = () => {
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 space-x-2'>
+            {/* Campo NIT */}
             <div className=''>
               <Input
                 iType='text'
                 iValue={formData.nit || ''}
                 iName='nit'
                 iChange={handleChange}
-                labelTitle='NIT'
+                labelTitle={fieldLabels.nit || 'NIT'}
                 iHolder='Ingrese el NIT de la empresa'
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
                   (getActiveError('nit') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={getActiveError('nit') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
                 error={getActiveError('nit')}
+                required={isEditing && activeSection === 'personal'}
               />
             </div>
 
+            {/* Campo Nombre de la Empresa */}
             <div className=''>
               <Input
                 iType='text'
-                iValue={formData.nameCompany || ''}
-                iName='nameCompany'
+                iValue={formData.name || ''}
+                iName='name'
                 iChange={handleChange}
-                labelTitle='Nombre de la empresa'
+                labelTitle={fieldLabels.name || 'Nombre de la empresa'}
                 iHolder='Ingrese el nombre de la empresa'
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
-                  (getActiveError('nameCompany') ? 'border-red-500' : 'border-[#60efdb]') :
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
+                  (getActiveError('name') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
-                focusColor={getActiveError('nameCompany') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('nameCompany')}
+                focusColor={getActiveError('name') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+                error={getActiveError('name')}
+                required={isEditing && activeSection === 'personal'}
               />
             </div>
 
+            {/* Campo Teléfono Principal */}
             <div className=''>
               <Input
                 iType='tel'
-                iValue={formData.phoneCompany || ''}
-                iName='phoneCompany'
+                iValue={formData.phone || ''}
+                iName='phone'
                 iChange={handleChange}
-                labelTitle='Teléfono principal'
+                labelTitle={fieldLabels.phone || 'Teléfono principal'}
                 iHolder='Ingrese el teléfono principal'
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
-                  (getActiveError('phoneCompany') ? 'border-red-500' : 'border-[#60efdb]') :
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
+                  (getActiveError('phone') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
-                focusColor={getActiveError('phoneCompany') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('phoneCompany')}
+                focusColor={getActiveError('phone') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+                error={getActiveError('phone')}
+                required={isEditing && activeSection === 'personal'}
               />
             </div>
 
+            {/* Campo Teléfono Secundario */}
             <div className=''>
               <Input
                 iType='tel'
-                iValue={formData.phoneSecCompany || ''}
-                iName='phoneSecCompany'
+                iValue={formData.phoneSec || ''}
+                iName='phoneSec'
                 iChange={handleChange}
-                labelTitle='Teléfono secundario'
+                labelTitle={fieldLabels.phoneSec || 'Teléfono secundario'}
                 iHolder='Ingrese el teléfono secundario'
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
-                  (getActiveError('phoneSecCompany') ? 'border-red-500' : 'border-[#60efdb]') :
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
+                  (getActiveError('phoneSec') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
-                focusColor={getActiveError('phoneSecCompany') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('phoneSecCompany')}
+                focusColor={getActiveError('phoneSec') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+                error={getActiveError('phoneSec')}
               />
             </div>
 
+            {/* Campo Correo Electrónico */}
             <div className=''>
               <Input
                 iType='email'
-                iValue={formData.emailCompany || ''}
-                iName='emailCompany'
+                iValue={formData.email || ''}
+                iName='email'
                 iChange={handleChange}
-                labelTitle='Correo electrónico'
+                labelTitle={fieldLabels.email || 'Correo electrónico'}
                 iHolder='Ingrese el correo electrónico'
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
-                  (getActiveError('emailCompany') ? 'border-red-500' : 'border-[#60efdb]') :
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
+                  (getActiveError('email') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
-                focusColor={getActiveError('emailCompany') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('emailCompany')}
+                focusColor={getActiveError('email') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+                error={getActiveError('email')}
+                required={isEditing && activeSection === 'personal'}
               />
             </div>
 
+            {/* Campo Ubicación */}
             <div className=''>
               <Select
-                label='Ubicación'
-                value={formData.townCompany || ''}
-                onChange={(value) => handleSelectChange('townCompany', value)}
+                label={fieldLabels.town || 'Ubicación'}
+                value={formData.town || ''}
+                onChange={(value) => handleSelectChange('town', value)}
                 options={optionTown}
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
-                  (getActiveError('townCompany') ? 'border-red-500' : 'border-[#60efdb]') :
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
+                  (getActiveError('town') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
-                focusColor={getActiveError('townCompany') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('townCompany')}
+                focusColor={getActiveError('town') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+                error={getActiveError('town')}
+                required={isEditing && activeSection === 'personal'}
               />
             </div>
 
+            {/* Campo Categoría */}
             <div className=''>
               <Select
-                label='Categoría'
+                label={fieldLabels.category || 'Sector'}
                 value={formData.category || ''}
                 onChange={(value) => handleSelectChange('category', value)}
                 options={optionCategory}
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
                   (getActiveError('category') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={getActiveError('category') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
                 error={getActiveError('category')}
+                required={isEditing && activeSection === 'personal'}
               />
             </div>
 
+            {/* Campo Sitio Web */}
             <div className=''>
               <Input
                 iType='url'
                 iValue={formData.webSite || ''}
                 iName='webSite'
                 iChange={handleChange}
-                labelTitle='Sitio web'
+                labelTitle={fieldLabels.webSite || 'Sitio web'}
                 iHolder='Ingrese la URL del sitio web'
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
                   (getActiveError('webSite') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
                 focusColor={getActiveError('webSite') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -262,18 +260,19 @@ export const GeneralCompany = () => {
               />
             </div>
 
+            {/* Campo Descripción */}
             <div className='pr-2 col-span-1 md:col-span-2'>
               <Desc
-                nameDesc='Descripción de la empresa'
+                nameDesc={fieldLabels.desc || 'Descripción de la empresa'}
                 holderDesc='Escribe una breve descripción sobre tu empresa'
-                name='descCompany'
-                value={formData.descCompany || ''}
+                name='desc'
+                value={formData.desc || ''}
                 onChange={handleChange}
-                disabled={!isEditing || activeSection !== 'company'}
-                borderColor={isEditing && activeSection === 'company' ?
-                  (getActiveError('descCompany') ? 'border-red-500' : 'border-[#60efdb]') :
+                disabled={!isEditing || activeSection !== 'personal'}
+                borderColor={isEditing && activeSection === 'personal' ?
+                  (getActiveError('desc') ? 'border-red-500' : 'border-[#60efdb]') :
                   'border-gray-300'}
-                error={getActiveError('descCompany')}
+                error={getActiveError('desc')}
               />
             </div>
           </div>
@@ -281,22 +280,25 @@ export const GeneralCompany = () => {
 
         <hr className='border-gray-200 mr-8' />
 
-        {/* Seguridad y preferencias */}
+        {/* Secciones de Seguridad y Preferencias */}
         <Security />
         <hr className='border-gray-200 mr-8' />
         <Preferences />
       </motion.div>
+
       {/* Mensaje de éxito al guardar */}
-      {saveSuccess && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-md shadow-lg"
-        >
-          ¡Datos guardados correctamente!
-        </motion.div>
-      )}
+      <AnimatePresence>
+        {saveSuccess && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed top-4 right-2 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg z-50"
+          >
+            ¡Datos guardados correctamente!
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
