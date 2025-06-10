@@ -1,11 +1,20 @@
-import { useState } from 'react';
-import { BaseLayout } from '../../Layouts/Base/BaseLayout';
-import { useData } from '../../Hooks/useData';
-import { Vacancie } from '../../UI/Vacancy/Vacancie';
-import { Person } from '../../UI/Person/Person';
-import { JobsContainer } from '../../Components/Container/JobsContainer';
-import { SetPerfil } from '../../Components/SetPerfil/SetPerfil';
-import { AuthModal } from '../../UI/AuthModal';
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { useData } from '../../Hooks/useData'
+import { JobsContainer } from '../../Components/Container/JobsContainer'
+import { AuthModal } from '../../UI/AuthModal'
+
+const sectionAnimation = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+}
 
 export const JobsLayout = () => {
   const { data: vacancies, loading: loadingVacancies } = useData('vacancies')
@@ -43,101 +52,65 @@ export const JobsLayout = () => {
   }
 
   return (
-    <div className='flex flex-col bg-[#405e7f] px-10 py-6'>
-      <div className='text-white mx-10 mt-10 mb-5'>
+    <motion.div
+      className='flex flex-col bg-[#405e7f] px-10 py-6'
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={{
+        visible: {
+          transition: { staggerChildren: 0.15 }
+        }
+      }}
+    >
+      <motion.div className='text-white mx-10 mt-10 mb-5' variants={sectionAnimation}>
         <h1 className='font-[afacadBold] text-4xl mb-2'>Vacantes y personas</h1>
         <h3 className='text-lg'>
-          Descubre las vacantes más recientes y postula tu hoja de vida o descubre personas a quienes 
+          Descubre las vacantes más recientes y postula tu hoja de vida o descubre personas a quienes
           darles una oportunidad laboral y puedan suplir tus necesidades.
         </h3>
-      </div>
-      
+      </motion.div>
+
       <div className='mb-10'>
-        <JobsContainer
-          title='Hoy'
-          vacancies={vacancies}
-          people={people}
-          rounded='top'
-          onShowDetails={handleShowDetails}
-          onShowResume={handleShowResume}
-        />
-        <JobsContainer
-          title='Esta semana'
-          vacancies={vacancies}
-          people={people}
-          rounded='top-right'
-          onShowDetails={handleShowDetails}
-          onShowResume={handleShowResume}
-        />
-        
-        <JobsContainer
-          title='Este mes'
-          vacancies={vacancies}
-          people={people}
-          rounded='bottom'
-          onShowDetails={handleShowDetails}
-          onShowResume={handleShowResume}
-        />
+        <motion.div variants={sectionAnimation}>
+          <JobsContainer
+            title='Hoy'
+            vacancies={vacancies}
+            people={people}
+            rounded='top'
+            onShowDetails={handleShowDetails}
+            onShowResume={handleShowResume}
+          />
+        </motion.div>
+        <motion.div variants={sectionAnimation}>
+          <JobsContainer
+            title='Esta semana'
+            vacancies={vacancies}
+            people={people}
+            rounded='top-right'
+            onShowDetails={handleShowDetails}
+            onShowResume={handleShowResume}
+          />
+        </motion.div>
+        <motion.div variants={sectionAnimation}>
+          <JobsContainer
+            title='Este mes'
+            vacancies={vacancies}
+            people={people}
+            rounded='bottom'
+            onShowDetails={handleShowDetails}
+            onShowResume={handleShowResume}
+          />
+        </motion.div>
       </div>
 
-      <AuthModal 
+      <AuthModal
         isOpen={showAuthModal}
         onClose={handleCloseAuthModal}
         onLogin={handleLogin}
         onRegister={handleRegister}
         itemType={selectedItem?.type}
       />
-    </div>
+    </motion.div>
   )
 }
-
-
-
-// import { BaseLayout } from '../../Layouts/Base/BaseLayout'
-// import { useData } from '../../Hooks/useData'
-// import { Vacancie } from '../../UI/Vacancy/Vacancie'
-// import { Person } from '../../UI/Person/Person'
-// import { CardContainer } from '../../Components/Container/CardContainer'
-// import { SetPerfil } from '../../Components/SetPerfil/SetPerfil'
-
-// export const JobsLayout = () => {
-//   const { data: vacancies, loading: loadingVacancies } = useData('vacancies')
-//   const { data: people, loading: loadingPeople } = useData('people')
-
-//   if (loadingVacancies || loadingPeople) {
-//     return <div className="text-center py-10">Cargando información...</div>
-//   }
-
-//   return (
-//     <div className='flex flex-col bg-[#405e7f] px-10 py-6'>
-//       <div className='text-white mx-10 mt-10 mb-5'>
-//         <h1 className='font-[afacadBold] text-4xl mb-2'>Vacantes y personas</h1>
-//         <h3 className='text-lg'>
-//           Descubre las vacantes más recientes y postula tu hoja de vida o descubre personas a quienes 
-//           darles una oportunidad laboral y puedan suplir tus necesidades.
-//         </h3>
-//       </div>
-      
-//       <div className='mb-10'>
-//         <div className='flex w-full gap-4'>
-//           <div className='w-full'>
-//             <CardContainer
-//               title='Vacantes'
-//               items={vacancies}
-//               rounded='top'
-//               ItemComponent={Vacancie}
-//             />
-//             <CardContainer
-//               title='Personas'
-//               items={people}
-//               rounded='bottom'
-//               ItemComponent={Person}
-//             />
-//           </div>
-//         </div>
-        
-//         {/* Secciones para Esta semana y Este mes */}
-//       </div>
-//     </div>
-//   )
-// }

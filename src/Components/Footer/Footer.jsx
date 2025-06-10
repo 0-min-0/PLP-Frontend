@@ -1,20 +1,61 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
 import { FaWhatsapp, FaGithub, FaDiscord, FaEnvelope, FaLinkedin } from 'react-icons/fa'
 import { SiGmail } from 'react-icons/si'
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+}
+
+const iconAnimation = {
+  hover: {
+    y: -3,
+    scale: 1.1,
+    color: "#60efdb",
+    transition: {
+      duration: 0.2,
+      ease: "easeOut"
+    }
+  }
+}
+
 export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) => {
   return (
-    <footer className={`${bgColor} ${textColor} py-8 px-4`}>
+    <motion.footer 
+      className={`${bgColor} ${textColor} py-8 px-4`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={{
+        visible: {
+          transition: { staggerChildren: 0.1 }
+        }
+      }}
+    >
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Sección de derechos */}
-        <div className="flex flex-col items-center md:items-start">
+        <motion.div 
+          className="flex flex-col items-center md:items-start"
+          variants={fadeInUp}
+        >
           <h3 className="text-xl font-bold mb-4">Plataforma Laboral Proactiva</h3>
           <p className="text-center md:text-left">© 2025 Todos los derechos reservados</p>
-        </div>
+        </motion.div>
 
         {/* Sección de enlaces legales */}
-        <div className="flex flex-col items-center">
+        <motion.div 
+          className="flex flex-col items-center"
+          variants={fadeInUp}
+        >
           <h3 className="text-xl font-bold mb-4">Legal</h3>
           <div className="flex flex-col space-y-2">
             <NavLink
@@ -30,64 +71,79 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               Términos y condiciones
             </NavLink>
           </div>
-        </div>
+        </motion.div>
 
         {/* Sección de contacto */}
-        <div className="flex flex-col items-center md:items-end">
+        <motion.div 
+          className="flex flex-col items-center md:items-end"
+          variants={fadeInUp}
+        >
           <h3 className="text-xl font-bold mb-4">Contáctanos</h3>
 
           <div className="flex space-x-4 mb-4">
-            <a
+            <motion.a
               href="https://wa.me/123456789"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#60efdb] transition duration-200"
               aria-label="WhatsApp"
+              variants={iconAnimation}
+              whileHover="hover"
             >
               <FaWhatsapp className="w-6 h-6" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://github.com/0-min-0/PLP-Frontend"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#60efdb] transition duration-200"
               aria-label="GitHub"
+              variants={iconAnimation}
+              whileHover="hover"
             >
               <FaGithub className="w-6 h-6" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://discord.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#60efdb] transition duration-200"
               aria-label="Discord"
+              variants={iconAnimation}
+              whileHover="hover"
             >
               <FaDiscord className="w-6 h-6" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[#60efdb] transition duration-200"
               aria-label="LinkedIn"
+              variants={iconAnimation}
+              whileHover="hover"
             >
               <FaLinkedin className="w-6 h-6" />
-            </a>
+            </motion.a>
           </div>
 
-          <a
+          <motion.a
             href="mailto:plataformalaboralproactiva@example.com"
             className="flex items-center hover:underline transition duration-200"
+            whileHover={{ x: 3 }}
           >
             <SiGmail className="mr-2 w-5 h-5" />
             plataformalaboralproactiva@example.com
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
 
-      <div className="max-w-7xl mx-auto mt-8 pt-4 border-t border-opacity-20 text-center">
+      <motion.div 
+        className="max-w-7xl mx-auto mt-8 pt-4 border-t border-opacity-20 text-center"
+        variants={fadeInUp}
+      >
         <p>Construyendo el futuro del empleo profesional</p>
-      </div>
-    </footer>
+      </motion.div>
+    </motion.footer>
   )
 }

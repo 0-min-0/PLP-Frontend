@@ -82,5 +82,5 @@ export const CardContainer = ({
         </button>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -31,6 +31,7 @@ import { GeneralJobSeeker } from './Pages/Settings/SettingsJobSeeker/GeneralJobS
 import { SettingsCompany } from './Pages/Settings/SettingsCompany/SettingsCompany'
 import { GeneralCompany } from './Pages/Settings/SettingsCompany/GeneralCompany'
 import { AboutUs } from './Pages/AboutUs/AboutUs'
+import { ContactProvider } from './Context/ContactContext'
 
 function App() {
 
@@ -70,49 +71,51 @@ function App() {
         <MenuProvider>
           <VacancyProvider>
             <SettingsProvider initialUser={getInitialUser()}>
-              <div className={`w-full h-screen p- font-[afacad] 
+              <ContactProvider>
+                <div className={`w-full h-screen p- font-[afacad] 
                ${isBgRoute ? 'bg-[#dcfff6]' : 'bg-white'}`}>
-                <DynamicTitle />
-                <Routes>
-                  <Route path='/' element={<MainPage />} />
-                  <Route path='/acceder' element={<Login />} />
-                  <Route path='/crear-cuenta' element={<Register />} />
-                  <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
-                  <Route path='/crear-cuenta/contratista' element={<JobSeeker />} />
-                  <Route path='/crear-cuenta/contratante' element={<Employer />} />
-                  <Route path='/crear-cuenta/empresa' element={<Company />} />
-                  <Route path='/crear-contraseña' element={<Password />} />
-                  <Route path='/inicio-contratista' element={<MainJobSeeker />} />
-                  <Route path='/inicio-contratante' element={<MainEmployer />} />
-                  <Route path='/crear-vacante' element={<CreateVacancie />} />
-                  { /* Configuraciones contratante */}
-                  <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
-                    <Route index element={<GeneralEmployer />} />
-                    <Route path='general-contratante' element={<GeneralEmployer />} />
-                    <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
-                    <Route path='terminos-condiciones' element={<Terms />} />
-                    <Route path='ayuda-soporte' element={<Help />} />
-                  </Route>
-                  { /* Configuraciones contratista */}
-                  <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
-                    <Route index element={<GeneralJobSeeker />} />
-                    <Route path='general-contratista' element={<GeneralJobSeeker />} />
-                    <Route path='postulaciones-contratista' element={<Postulations />} />
-                    <Route path='terminos-condiciones' element={<Terms />} />
-                    <Route path='ayuda-soporte' element={<Help />} />
-                  </Route>
-                  { /* Configuraciones empresa */}
-                  <Route path='/configuraciones-empresa' element={<SettingsCompany />}>
-                    <Route index element={<GeneralCompany />} />
-                    <Route path='general-empresa' element={<GeneralCompany />} />
-                    <Route path='publicaciones-empresa' element={<PublishedVacancies />} />
-                    <Route path='terminos-condiciones' element={<Terms />} />
-                    <Route path='ayuda-soporte' element={<Help />} />
-                  </Route>
-                  <Route path='/verificar-cuenta' element={<VerifyAccount />} />
-                  <Route path='/sobre-plp' element={<AboutUs />} />
-                </Routes>
-              </div>
+                  <DynamicTitle />
+                  <Routes>
+                    <Route path='/' element={<MainPage />} />
+                    <Route path='/acceder' element={<Login />} />
+                    <Route path='/crear-cuenta' element={<Register />} />
+                    <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
+                    <Route path='/crear-cuenta/contratista' element={<JobSeeker />} />
+                    <Route path='/crear-cuenta/contratante' element={<Employer />} />
+                    <Route path='/crear-cuenta/empresa' element={<Company />} />
+                    <Route path='/crear-contraseña' element={<Password />} />
+                    <Route path='/inicio-contratista' element={<MainJobSeeker />} />
+                    <Route path='/inicio-contratante' element={<MainEmployer />} />
+                    <Route path='/crear-vacante' element={<CreateVacancie />} />
+                    { /* Configuraciones contratante */}
+                    <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
+                      <Route index element={<GeneralEmployer />} />
+                      <Route path='general-contratante' element={<GeneralEmployer />} />
+                      <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
+                      <Route path='terminos-condiciones' element={<Terms />} />
+                      <Route path='ayuda-soporte' element={<Help />} />
+                    </Route>
+                    { /* Configuraciones contratista */}
+                    <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
+                      <Route index element={<GeneralJobSeeker />} />
+                      <Route path='general-contratista' element={<GeneralJobSeeker />} />
+                      <Route path='postulaciones-contratista' element={<Postulations />} />
+                      <Route path='terminos-condiciones' element={<Terms />} />
+                      <Route path='ayuda-soporte' element={<Help />} />
+                    </Route>
+                    { /* Configuraciones empresa */}
+                    <Route path='/configuraciones-empresa' element={<SettingsCompany />}>
+                      <Route index element={<GeneralCompany />} />
+                      <Route path='general-empresa' element={<GeneralCompany />} />
+                      <Route path='publicaciones-empresa' element={<PublishedVacancies />} />
+                      <Route path='terminos-condiciones' element={<Terms />} />
+                      <Route path='ayuda-soporte' element={<Help />} />
+                    </Route>
+                    <Route path='/verificar-cuenta' element={<VerifyAccount />} />
+                    <Route path='/sobre-plp' element={<AboutUs />} />
+                  </Routes>
+                </div>
+              </ContactProvider>
             </SettingsProvider>
           </VacancyProvider>
         </MenuProvider>
