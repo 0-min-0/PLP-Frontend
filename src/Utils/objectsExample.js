@@ -97,7 +97,7 @@ export let vacanciesExample = [ //array de vacantes
   }
 ]
 
-export const peopleExample = [ //array de contratistas
+export let peopleExample = [ //array de contratistas
   {
     id: 1,
     occupation: 'Desarrollador Frontend',
@@ -111,6 +111,8 @@ export const peopleExample = [ //array de contratistas
     personalDescription: 'Desarrollador con 3 años de experiencia en React y TypeScript',
     skills: ['React', 'JavaScript', 'CSS', 'Redux'],
     studies: 'Ingeniería de Sistemas - Universidad Nacional',
+    category: 'Educación y formación',
+    postulations: ['Desarrollador Backend'],
     type: 'person'
   },
   {
@@ -126,6 +128,8 @@ export const peopleExample = [ //array de contratistas
     personalDescription: 'Especialista en diseño de interfaces y experiencia de usuario con enfoque accesible',
     skills: ['Figma', 'Adobe XD', 'Sketch', 'HTML'],
     studies: 'Diseño Gráfico - Universidad de Medellín',
+    category: 'Educación y formación',
+    postulations: ['Desarrollador Backend'],
     type: 'person'
   },
   {
@@ -141,6 +145,8 @@ export const peopleExample = [ //array de contratistas
     personalDescription: 'Experiencia en análisis de grandes volúmenes de datos y visualización con Power BI',
     skills: ['Python', 'SQL', 'Power BI', 'Excel'],
     studies: 'Estadística - Universidad del Valle',
+    category: 'Educación y formación',
+    postulations: ['Desarrollador Backend'],
     type: 'person'
   },
   {
@@ -156,6 +162,8 @@ export const peopleExample = [ //array de contratistas
     personalDescription: 'Ingeniera de software enfocada en backend con experiencia en microservicios',
     skills: ['Java', 'Spring Boot', 'Docker', 'Kubernetes'],
     studies: 'Ingeniería de Software - Universidad del Norte',
+    category: 'Educación y formación',
+    postulations: ['Desarrollador Backend'],
     type: 'person'
   },
   {
@@ -171,6 +179,8 @@ export const peopleExample = [ //array de contratistas
     personalDescription: 'Técnico en soporte con habilidades en instalación y mantenimiento de equipos',
     skills: ['Windows', 'Linux', 'Networking', 'Atención al cliente'],
     studies: 'Tecnología en Sistemas - SENA',
+    category: 'Educación y formación',
+    postulations: ['Desarrollador Backend'],
     type: 'person'
   },
   {
@@ -186,6 +196,8 @@ export const peopleExample = [ //array de contratistas
     personalDescription: 'Especialista en SEO, SEM y estrategias de contenido para redes sociales',
     skills: ['SEO', 'Google Ads', 'Meta Ads', 'Canva'],
     studies: 'Comunicación Social - Universidad del Quindío',
+    category: 'Educación y formación',
+    postulations: ['Desarrollador Backend'],
     type: 'person'
   },
   {
@@ -201,6 +213,8 @@ export const peopleExample = [ //array de contratistas
     personalDescription: 'Contador con experiencia en auditoría y declaración de impuestos para pymes',
     skills: ['Contabilidad', 'Excel', 'Normas NIIF', 'Tributación'],
     studies: 'Contaduría Pública - Universidad Libre',
+    category: 'Administracion y oficina',
+    postulations: ['Asistente administrativo'],
     type: 'person'
   },
   {
@@ -216,9 +230,40 @@ export const peopleExample = [ //array de contratistas
     personalDescription: 'Docente bilingüe con experiencia en enseñanza a jóvenes y adultos',
     skills: ['Inglés', 'Didáctica', 'Evaluación', 'Herramientas TIC'],
     studies: 'Licenciatura en Lenguas Extranjeras - UIS',
+    category: 'Educación y formación',
+    postulations: ['Desarrollador Backend'],
     type: 'person'
   }
 ]
+
+export const comments = [ // Array de comentarios
+  {
+    role: 'contratante',
+    name: 'Carlos Méndez',
+    coment: 'Laura Torres es una profesional altamente comprometida. Durante su tiempo con nosotros, demostró puntualidad, responsabilidad y una excelente actitud frente a los retos. Su capacidad de trabajo en equipo y su ética laboral hicieron que el proyecto avanzara sin contratiempos.'
+  },
+  {
+    role: 'empresa',
+    name: 'Office Solutions',
+    coment: 'Trabajar con Laura Torres fue una grata experiencia. Mostró siempre disposición para colaborar, fue proactiva y resolutiva ante los inconvenientes que surgieron. Cumplió con todas las tareas asignadas con eficacia y sin necesidad de supervisión constante.'
+  },
+  {
+    role: 'empresa',
+    name: 'Marketing Solutions',
+    coment: 'Laura Torres se destacó por su profesionalismo, su organización y su actitud positiva. Su capacidad de adaptación a diferentes entornos de trabajo fue impresionante. Se notó su interés genuino por aportar y mejorar cada aspecto de las tareas que le fueron encomendadas.'
+  },
+  {
+    role: 'contratante',
+    name: 'María Fernanda Gómez',
+    coment: 'Estoy muy satisfecho con el desempeño de Laura Torres. Desde el primer día mostró iniciativa, responsabilidad y un gran enfoque en los objetivos. Fue una pieza clave para que lográramos cumplir los plazos y mantener altos estándares de calidad en los entregables.'
+  },
+  {
+    role: 'contratante',
+    name: 'Luis Herrera',
+    coment: 'Laura Torres ha sido una de las colaboradoras más eficientes que hemos tenido. Su compromiso con el trabajo, la excelente comunicación con el equipo y su constante disposición para aprender y mejorar fueron aspectos que marcaron una gran diferencia en el proyecto.'
+  }
+]
+
 
 const syncVacancies = () => {
   localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
@@ -295,4 +340,23 @@ export const updateVacancyInExample = (updatedVacancy) => {
 export const deleteVacancyFromExample = (id) => {
   vacanciesExample = vacanciesExample.filter(v => v.id !== id)
   syncVacancies()
+}
+
+// funciones para contratistas
+
+export const getPeople = () => {
+  const saved = localStorage.getItem('peopleData')
+  if (saved) {
+    return JSON.parse(saved)
+  }
+  localStorage.setItem('peopleData', JSON.stringify(peopleExample))
+  return [...peopleExample]
+}
+
+export const rejectPostulation = (personId) => {
+  // Filtramos el array para excluir la persona con el ID especificado
+  peopleExample = peopleExample.filter(person => person.id !== personId)
+  localStorage.setItem('peopleData', JSON.stringify(peopleExample))
+  
+  return [...peopleExample]
 }

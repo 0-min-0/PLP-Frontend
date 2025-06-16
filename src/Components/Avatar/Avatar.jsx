@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useSettings } from '../../Context/SettingsContext'
 import { NameModal } from '../../UI/NameModal'
 import { useLocation } from 'react-router-dom'
+import { HiOutlineX } from 'react-icons/hi'
 
 export const Avatar = () => {
   const {
@@ -25,7 +26,7 @@ export const Avatar = () => {
     if (path.includes('configuraciones-contratista')) return 'Contratista'
     if (path.includes('configuraciones-empresa')) return 'Empresa'
     if (path.includes('configuraciones-contratante')) return 'Contratante'
-    return 'Usuario' 
+    return 'Usuario'
   }
 
   const backdropVariants = {
@@ -97,7 +98,7 @@ export const Avatar = () => {
           {avatarSelector && (
             <>
               <motion.div
-                className="fixed inset-0 bg-black/20 z-40"
+                className="fixed inset-0 z-40"
                 initial="hidden"
                 animate="visible"
                 exit="hidden"
@@ -106,7 +107,7 @@ export const Avatar = () => {
               />
 
               <motion.div
-                className="absolute z-50 mt-3 w-72 bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+                className="absolute z-50 mt-3 w-80 bg-white rounded-xl shadow-lg border border-gray-100 p-6"
                 variants={selectorVariants}
                 initial="hidden"
                 animate="visible"
@@ -116,18 +117,16 @@ export const Avatar = () => {
                   <h4 className='text-[#405e7f] font-semibold text-lg'>Elige tu avatar</h4>
                   <button
                     onClick={() => setAvatarSelector(false)}
-                    className='text-gray-400 hover:bg-gray-100 p-1 rounded-md transition-colors'
+                    className='text-gray-400 hover:bg-gray-100 p-1 rounded-md transition-colors cursor-pointer'
                     aria-label='Cerrar selector'
                   >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                    <HiOutlineX className='w-5 h-5' />
                   </button>
                 </div>
 
                 <div className='grid grid-cols-3 gap-3 max-h-60 overflow-y-auto custom-scrollbar'>
                   {avatarOptions.map((avatar, index) => (
-                    <motion.button
+                    <button
                       key={index}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -146,7 +145,7 @@ export const Avatar = () => {
                         alt={`avatar-${index}`}
                         className="w-16 h-16 rounded-full object-cover"
                       />
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </motion.div>

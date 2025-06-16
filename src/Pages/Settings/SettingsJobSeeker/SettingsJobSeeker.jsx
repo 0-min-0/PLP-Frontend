@@ -11,7 +11,7 @@ export const SettingsJobSeeker = () => {
             <div className=''>
                 <Header
                     middleObject={
-                        <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                        <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
                             Configuraciones
                         </h1>
                     }
@@ -26,15 +26,10 @@ export const SettingsJobSeeker = () => {
                         </div>
                     }
                 />
-                
                 <div className='w-[90%] flex justify-center gap-6 mx-30 mt-4'>
-                    {/* Contenedor principal de configuraciones */}
                     <div className='w-[70%] bg-white px-10 py-8 rounded-xl'>
-                        {/* Outlet renderizará GeneralSettings u otros componentes según la ruta */}
                         <Outlet />
                     </div>
-                    
-                    {/* Menú lateral derecho */}
                     <div className='w-[30%]'>
                         <RightMenu
                             width='w-[80%]'

@@ -47,18 +47,17 @@ function App() {
     '/configuraciones-contratante/publicaciones-contratante',
     '/configuraciones-contratante/terminos-condiciones',
     '/configuraciones-contratante/ayuda-soporte',
-    '/configuraciones-contratante/postulados',
     '/configuraciones-contratista/general-contratista',
     '/configuraciones-contratista/postulaciones-contratista',
     '/configuraciones-contratista/terminos-condiciones',
     '/configuraciones-contratista/ayuda-soporte',
-    '/configuraciones-contratista/comentarios-contratista',
     '/configuraciones-empresa',
     '/configuraciones-empresa/general-empresa',
     '/configuraciones-empresa/publicaciones-empresa',
     '/configuraciones-empresa/terminos-condiciones',
     '/configuraciones-empresa/ayuda-soporte',
-    '/configuraciones-empresa/potulados'
+    '/configuraciones-contratante/postulados',
+    '/configuraciones-contratista/comentarios-contratista'
   ]
 
   const isBgRoute = bgRoutes.includes(location.pathname)
@@ -118,8 +117,8 @@ function App() {
                       <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
                         <Route index element={<GeneralEmployer />} />
                         <Route path='general-contratante' element={<GeneralEmployer />} />
-                        <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
                         <Route path='postulados' element={<PostulatedPeople />} />
+                        <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
                         <Route path='terminos-condiciones' element={<Terms />} />
                         <Route path='ayuda-soporte' element={<Help />} />
                       </Route>
@@ -137,7 +136,6 @@ function App() {
                         <Route index element={<GeneralCompany />} />
                         <Route path='general-empresa' element={<GeneralCompany />} />
                         <Route path='publicaciones-empresa' element={<PublishedVacancies />} />
-                        <Route path='postulados' element={<PostulatedPeople />} />
                         <Route path='terminos-condiciones' element={<Terms />} />
                         <Route path='ayuda-soporte' element={<Help />} />
                       </Route>

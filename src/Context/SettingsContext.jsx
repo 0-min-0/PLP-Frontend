@@ -786,6 +786,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
   }, [activeSection, validatePersonalFields, validateSkills, validateStudies, validatePassword, handleSave, passwordErrors, errors])
 
   //-----------------------------------------FUNCIONES AUXILIARES-----------------------------------//
+  
   // Obtener error activo
   const getActiveError = useCallback((field) => {
     return errors[field] || realTimeErrors[field] || null

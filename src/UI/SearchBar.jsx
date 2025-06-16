@@ -1,45 +1,199 @@
-import { useState, useEffect } from 'react'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import { useSearchBar } from '../Context/SearchBarContext'
+import { MagnifyingGlassIcon, XMarkIcon, ClockIcon, ArrowPathIcon, TrashIcon } from '@heroicons/react/24/outline'
 
-export const SearchBar = ({ onSearch, delay = 500 }) => {
-    const [query, setQuery] = useState('')
-    
-    // Implementación con debounce para búsqueda en tiempo real
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            if (query.trim() !== '') {
-                onSearch(query)
-            } else {
-                onSearch('') // Para resetear la búsqueda cuando se borra el texto
-            }
-        }, delay)
-        
-        return () => clearTimeout(timer)
-    }, [query, delay, onSearch])
+export const SearchBar = ({
+  placeholder = 'Buscar...',
+  className = '',
+  suggestions = [],
+  searchType = 'vacancies',
+  onSearch = () => {},
+  onSuggestionClick = () => {},
+  groupSuggestions = false
+}) => {
+  const {
+    query,
+    setQuery,
+    showSuggestions,
+    setShowSuggestions,
+    filteredSuggestions,
+    activeSuggestion,
+    setActiveSuggestion,
+    isLoading,
+    recentSearches,
+    inputRef,
+    suggestionsRef,
+    handleSuggestionClick,
+    handleKeyDown,
+    highlightMatch,
+    handleClear,
+    removeRecentSearch,
+    groupByCategory,
+    showRecentSearches
+  } = useSearchBar()
 
-    const handleChange = (e) => {
-        setQuery(e.target.value)
-    }
+  // Filtrado adicional por tipo
+  const filteredByType = filteredSuggestions.filter(item => 
+    !item.type || item.type === searchType
+  )
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            onSearch(query)
-        }
-    }
+  const renderSuggestionItem = (item, index, isRecent = false) => {
+    const isActive = activeSuggestion === index
+    const baseClass = 'm-2 rounded-lg px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200'
+    const activeClass = isActive ? 'bg-gray-50' : ''
 
     return (
-        <div className='w-full relative flex items-center'>
-            <div className='absolute left-3 text-[#7c92ab]'>
-                <MagnifyingGlassIcon className='h-5 w-5' />
+      <li
+        key={isRecent ? `recent-${index}` : index}
+        className={`${baseClass} ${activeClass} flex justify-between items-center`}
+        onMouseEnter={() => setActiveSuggestion(index)}
+      >
+        <div
+          className="flex-1"
+          onClick={() => {
+            handleSuggestionClick(item)
+            onSuggestionClick(item)
+          }}
+        >
+          <div className="font-medium text-[#405e7f]">
+            {highlightMatch(typeof item === 'string' ? item : item.text)}
+          </div>
+          {!isRecent && item.originalData && (
+            <div className="text-sm text-gray-500 mt-1">
+              {searchType === 'people' ? (
+                <>
+                  {item.originalData.occupation} • {item.originalData.town}
+                </>
+              ) : (
+                <>
+                  {item.originalData.company} • {item.originalData.location}
+                </>
+              )}
             </div>
-            <input
-                type='search'
-                placeholder='Buscar...'
-                value={query}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                className='w-340 pl-10 pr-4 py-2 rounded-full bg-white border border-[#7c92ab] focus:outline-none focus:ring-2 focus:ring-[#7c92ab] focus:border-transparent transition-all duration-300'
-            />
+          )}
         </div>
+        {isRecent && (
+          <button
+            className='text-gray-400 hover:text-gray-600 ml-2'
+            onClick={(e) => {
+              e.stopPropagation()
+              removeRecentSearch(item)
+            }}
+            aria-label="Eliminar búsqueda reciente"
+          >
+            <TrashIcon className='h-4 w-4' />
+          </button>
+        )}
+      </li>
     )
+  }
+
+  const renderSuggestions = () => {
+    if (query.length === 0 && showRecentSearches && recentSearches.length > 0) {
+      return (
+        <div className='py-2'>
+          <div className='px-4 py-2 text-sm text-gray-500 flex items-center'>
+            <ClockIcon className='h-4 w-4 mr-2' />
+            Búsquedas recientes
+          </div>
+          <ul>
+            {recentSearches.map((search, index) => 
+              renderSuggestionItem(search, index, true)
+            )}
+          </ul>
+        </div>
+      )
+    }
+
+    if (filteredByType.length > 0) {
+      if (groupSuggestions) {
+        return groupByCategory(filteredByType).map(([category, items]) => (
+          <div key={category} className='py-2'>
+            <div className='px-4 py-2 text-sm text-gray-500 border-b border-gray-100'>
+              {category}
+            </div>
+            <ul>
+              {items.map((item, index) => {
+                const globalIndex = filteredByType.indexOf(item)
+                return renderSuggestionItem(item, globalIndex)
+              })}
+            </ul>
+          </div>
+        ))
+      } else {
+        return (
+          <ul>
+            {filteredByType.map((item, index) => 
+              renderSuggestionItem(item, index)
+            )}
+          </ul>
+        )
+      }
+    }
+
+    if (query.length > 0) {
+      return (
+        <div className='px-4 py-6 text-center text-gray-500'>
+          No se encontraron resultados para "{query}"
+        </div>
+      )
+    }
+
+    return null
+  }
+
+  return (
+    <div className={`relative flex flex-col ${className}`}>
+      <div className='relative flex items-center'>
+        <div className='absolute left-4 text-gray-400'>
+          {isLoading ? (
+            <ArrowPathIcon className='h-5 w-5 animate-spin' />
+          ) : (
+            <MagnifyingGlassIcon className='h-5 w-5' />
+          )}
+        </div>
+        <input
+          ref={inputRef}
+          type='search'
+          placeholder={placeholder}
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value)
+            setShowSuggestions(true)
+            setActiveSuggestion(-1)
+            onSearch(e.target.value)
+          }}
+          onFocus={() => setShowSuggestions(true)}
+          onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              handleSuggestionClick(query.trim())
+              onSuggestionClick(query.trim())
+              setShowSuggestions(false)
+            } else {
+              handleKeyDown(e)
+            }
+          }}
+          className='w-full pl-12 pr-10 py-2.5 rounded-full bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all duration-300'
+        />
+        {query && (
+          <button 
+            onClick={handleClear}
+            className='absolute right-4 text-gray-400 hover:text-gray-600'
+            aria-label='Limpiar búsqueda'
+          >
+            <XMarkIcon className='h-5 w-5' />
+          </button>
+        )}
+      </div>
+      
+      {showSuggestions && (
+        <div 
+          ref={suggestionsRef}
+          className='absolute top-full mt-2 w-full z-50 bg-white border border-gray-200 rounded-xl shadow-lg max-h-96 overflow-y-auto'
+        >
+          {renderSuggestions()}
+        </div>
+      )}
+    </div>
+  )
 }

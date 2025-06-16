@@ -64,15 +64,22 @@ export const menuConfig = {
   employer: [
     { to: 'general-contratante', label: 'General' },
     { to: 'publicaciones-contratante', label: 'Publicaciones' },
-    { to: 'postulados', label: 'Personas postuladas' },
+    { to: 'postulados', label: 'Personas postulados' },
     { to: 'terminos-condiciones', label: 'Términos y condiciones' },
     { to: 'ayuda-soporte', label: 'Ayuda' }
   ],
   company: [
     { to: 'general-empresa', label: 'General' },
     { to: 'publicaciones-empresa', label: 'Publicaciones' },
-    { to: 'postulados', label: 'Personas postuladas' },
+    { to: 'postulados', label: 'Personas postulados' },
     { to: 'terminos-condiciones', label: 'Términos y condiciones' },
     { to: 'ayuda-soporte', label: 'Ayuda' }
   ]
 }
+
+export const suggestions = [
+  'Aministración',
+  'Tecnología',
+  'Trabajo manual',
+  'Artesanías'
+]
