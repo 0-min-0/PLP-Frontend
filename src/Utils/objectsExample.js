@@ -240,26 +240,31 @@ export const comments = [ // Array de comentarios
   {
     role: 'contratante',
     name: 'Carlos Méndez',
+    date: '2025-06-15',
     coment: 'Laura Torres es una profesional altamente comprometida. Durante su tiempo con nosotros, demostró puntualidad, responsabilidad y una excelente actitud frente a los retos. Su capacidad de trabajo en equipo y su ética laboral hicieron que el proyecto avanzara sin contratiempos.'
   },
   {
     role: 'empresa',
     name: 'Office Solutions',
+    date: '2025-06-15',
     coment: 'Trabajar con Laura Torres fue una grata experiencia. Mostró siempre disposición para colaborar, fue proactiva y resolutiva ante los inconvenientes que surgieron. Cumplió con todas las tareas asignadas con eficacia y sin necesidad de supervisión constante.'
   },
   {
     role: 'empresa',
     name: 'Marketing Solutions',
+    date: '2025-06-15',
     coment: 'Laura Torres se destacó por su profesionalismo, su organización y su actitud positiva. Su capacidad de adaptación a diferentes entornos de trabajo fue impresionante. Se notó su interés genuino por aportar y mejorar cada aspecto de las tareas que le fueron encomendadas.'
   },
   {
     role: 'contratante',
     name: 'María Fernanda Gómez',
+    date: '2025-06-16',
     coment: 'Estoy muy satisfecho con el desempeño de Laura Torres. Desde el primer día mostró iniciativa, responsabilidad y un gran enfoque en los objetivos. Fue una pieza clave para que lográramos cumplir los plazos y mantener altos estándares de calidad en los entregables.'
   },
   {
     role: 'contratante',
     name: 'Luis Herrera',
+    date: '2025-06-16',
     coment: 'Laura Torres ha sido una de las colaboradoras más eficientes que hemos tenido. Su compromiso con el trabajo, la excelente comunicación con el equipo y su constante disposición para aprender y mejorar fueron aspectos que marcaron una gran diferencia en el proyecto.'
   }
 ]
@@ -357,6 +362,6 @@ export const rejectPostulation = (personId) => {
   // Filtramos el array para excluir la persona con el ID especificado
   peopleExample = peopleExample.filter(person => person.id !== personId)
   localStorage.setItem('peopleData', JSON.stringify(peopleExample))
-  
+
   return [...peopleExample]
 }
