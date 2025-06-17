@@ -1,39 +1,10 @@
-import { motion } from 'framer-motion'
 import { HiOutlineMail, HiOutlinePhone, HiOutlineAcademicCap, HiOutlineUser, HiOutlineMap, HiOutlineBriefcase } from 'react-icons/hi'
 
 export const PersonInfo = ({ person }) => {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2
-            }
-        }
-    }
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                ease: "easeOut",
-                duration: 0.5
-            }
-        }
-    }
-
     return (
-        <motion.div
-            className='w-full px-12 max-h-[65vh] overflow-y-auto scrollbar-custom'
-            variants={containerVariants}
-            initial='hidden'
-            animate='visible'
-        >
+        <div className='w-full px-12 max-h-[65vh] overflow-y-auto scrollbar-custom'>
             {/* Información personal */}
-            <motion.div variants={itemVariants}>
+            <div>
                 <div className='mb-6'>
                     <h5 className='font-bold text-xl text-[#405e7f] mb-3'>Información Personal</h5>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -67,29 +38,23 @@ export const PersonInfo = ({ person }) => {
                         </div>
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
-            <motion.hr
-                className='border-t border-gray-200 mb-6'
-                variants={itemVariants}
-            />
+            <hr className='border-t border-gray-200 mb-6' />
 
             {/* Descripción personal */}
             {person.personalDescription && (
-                <motion.div className='mb-6' variants={itemVariants}>
+                <div className='mb-6'>
                     <h4 className='text-xl font-semibold text-[#405e7f] mb-4'>Sobre mí</h4>
                     <p className='text-gray-700'>{person.personalDescription}</p>
-                </motion.div>
+                </div>
             )}
 
-            <motion.hr
-                className='border-t border-gray-200 mb-6'
-                variants={itemVariants}
-            />
+            <hr className='border-t border-gray-200 mb-6' />
 
             {/* Habilidades */}
             {person.skills?.length > 0 && (
-                <motion.div className='mb-6' variants={itemVariants}>
+                <div className='mb-6'>
                     <h4 className='text-xl font-semibold text-[#405e7f] mb-4'>Habilidades</h4>
                     <div className='flex flex-wrap gap-2'>
                         {person.skills.map((skill, index) => (
@@ -101,24 +66,21 @@ export const PersonInfo = ({ person }) => {
                             </span>
                         ))}
                     </div>
-                </motion.div>
+                </div>
             )}
 
-            <motion.hr
-                className='border-t border-gray-200 mb-6'
-                variants={itemVariants}
-            />
+            <hr className='border-t border-gray-200 mb-6' />
 
             {/* Formación académica */}
             {person.studies && (
-                <motion.div className='mb-6' variants={itemVariants}>
+                <div className='mb-6'>
                     <h4 className='text-xl font-semibold text-[#405e7f] mb-4'>Estudios y complementarios</h4>
                     <div className='flex items-center gap-3'>
                         <HiOutlineAcademicCap className='w-6 h-6 text-[#60efdb] mt-1' />
                         <p>{person.studies}</p>
                     </div>
-                </motion.div>
+                </div>
             )}
-        </motion.div>
+        </div>
     )
 }

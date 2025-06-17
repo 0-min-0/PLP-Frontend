@@ -2,38 +2,113 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiX } from 'react-icons/fi'
 import { Button } from '../button'
 import { PersonInfo } from './PersonInfo'
+import { useRef } from 'react'
+import { jsPDF } from 'jspdf'
+import html2canvas from 'html2canvas'
 
 export const PersonView = ({ person, isOpen, onClose, onContact }) => {
-  // Animaciones idénticas a NameModal
+  const contentRef = useRef(null)
+
+  const sanitizeColors = (element) => {
+    try {
+      const elements = element.querySelectorAll('*')
+      const allElements = [element, ...elements]
+
+      allElements.forEach(el => {
+        const style = window.getComputedStyle(el)
+        const replaceOklch = (property, fallback) => {
+          if (style[property] && style[property].includes('oklch')) {
+            el.style[property] = fallback
+          }
+        }
+
+        // Reemplazar posibles valores "oklch"
+        replaceOklch('color', 'rgb(64, 94, 127)')
+        replaceOklch('backgroundColor', 'rgb(220, 255, 246)')
+        replaceOklch('borderColor', 'rgb(64, 94, 127)')
+        replaceOklch('borderTopColor', 'rgb(64, 94, 127)')
+        replaceOklch('borderRightColor', 'rgb(64, 94, 127)')
+        replaceOklch('borderBottomColor', 'rgb(64, 94, 127)')
+        replaceOklch('borderLeftColor', 'rgb(64, 94, 127)')
+        replaceOklch('outlineColor', 'rgb(64, 94, 127)')
+
+        // Manejar estilos en línea que podrían contener oklch
+        if (el.hasAttribute('style')) {
+          const inlineStyle = el.getAttribute('style')
+          if (inlineStyle.includes('oklch')) {
+            const cleanedStyle = inlineStyle.replace(/oklch\([^)]+\)/g, 'rgb(64, 94, 127)')
+            el.setAttribute('style', cleanedStyle)
+          }
+        }
+      })
+    } catch (error) {
+      console.warn('Error durante la sanitización de colores:', error)
+    }
+  }
+
+  const handleDownloadPDF = async () => {
+    if (!contentRef.current) {
+      console.error("El contenido no está disponible para generar PDF.")
+      return
+    }
+
+    // Creamos un clon del contenido para no afectar la visualización original
+    const clone = contentRef.current.cloneNode(true)
+    const container = document.createElement('div')
+
+    // Estilos para el contenedor fuera de pantalla
+    container.style.position = 'fixed'
+    container.style.left = '-9999px'
+    container.style.top = '0'
+    container.style.padding = '24px'
+    container.style.backgroundColor = 'white'
+    container.appendChild(clone)
+    document.body.appendChild(container)
+
+    // Sanitizacion de los colores antes de generar el PDF
+    sanitizeColors(container)
+
+    try {
+      // Configuración de html2canvas con opciones para mejor calidad
+      const canvas = await html2canvas(container, {
+        scale: 2,
+        logging: true,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#ffffff'
+      })
+
+      const imgData = canvas.toDataURL('image/png', 1.0)
+      const pdf = new jsPDF('p', 'mm', 'a4')
+      const pdfWidth = pdf.internal.pageSize.getWidth()
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width
+
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
+      pdf.save(`${person.name.replace(/\s+/g, '_')}_CV.pdf`)
+
+    } catch (error) {
+      console.error('Error al generar el PDF:', error)
+      // Podrías añadir aquí un toast o alerta para el usuario
+    } finally {
+      // Limpieza: remover el contenedor temporal
+      if (container.parentNode) {
+        document.body.removeChild(container)
+      }
+    }
+  }
+
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 }
   }
 
   const modalVariants = {
-    hidden: {
-      y: -20,
-      opacity: 0,
-      scale: 0.98
-    },
+    hidden: { y: -20, opacity: 0, scale: 0.98 },
     visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: 'spring',
-        damping: 25,
-        stiffness: 300
-      }
+      y: 0, opacity: 1, scale: 1,
+      transition: { type: 'spring', damping: 25, stiffness: 300 }
     },
-    exit: {
-      y: 20,
-      opacity: 0,
-      scale: 0.98,
-      transition: {
-        ease: 'easeIn'
-      }
-    }
+    exit: { y: 20, opacity: 0, scale: 0.98, transition: { ease: 'easeIn' } }
   }
 
   return (
@@ -57,26 +132,31 @@ export const PersonView = ({ person, isOpen, onClose, onContact }) => {
               <h2 className='text-3xl font-bold text-[#405e7f]'>{person.occupation}</h2>
               <button
                 onClick={onClose}
-                className='text-[#405e7f] hover:bg-gray-100 transition-colors duration-300 cursor-pointer p-2 rounded-md'
+                className='text-[#405e7f] hover:bg-gray-100 p-2 rounded-md transition-colors cursor-pointer'
+                aria-label="Cerrar ventana"
               >
-                <FiX size={24} />
+                <FiX className='w-5 h-5' />
               </button>
             </div>
 
-            <PersonInfo person={person} />
+            <div ref={contentRef}>
+              <PersonInfo person={person} />
+            </div>
 
             <div className='flex justify-center gap-4 mt-6'>
               <Button
                 btnName='Descargar CV'
                 btnType='button'
-                btnStyle='border border-[#405e7f] text-[#405e7f] text-lg font-medium px-6 py-2 rounded-full transition-all duration-300'
-                clicked={() => console.log('Descargar CV de', person.name)}
+                btnStyle='border border-[#405e7f] text-[#405e7f] text-lg font-medium px-6 py-2 rounded-full'
+                clicked={handleDownloadPDF}
+                aria-label="Descargar currículum en PDF"
               />
               <Button
                 btnName='Contactar'
                 btnType='button'
-                btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full transition-all duration-300'
+                btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full'
                 clicked={() => onContact(person)}
+                aria-label="Contactar a esta persona"
               />
             </div>
           </motion.div>

@@ -34,7 +34,7 @@ export const PublishedVacancies = () => {
   return (
     <>
       <Avatar />
-      <div className='max-w-5xl mx-auto py-8'>
+      <div className='max-w-5xl mx-auto pt-8 pb-4'>
         <SearchBar />
         <motion.div
           initial="hidden"
@@ -47,7 +47,7 @@ export const PublishedVacancies = () => {
           </h2>
           
           {vacancies.length > 0 ? (
-            <div className='w-full h-85 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
+            <div className='w-full h-80 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {vacancies.map((vacancy) => (
                 <div
                   key={vacancy.id}
@@ -78,7 +78,7 @@ export const PublishedVacancies = () => {
                         }}
                         variants={buttonVariants}
                       >
-                        <FiEdit size={24} />
+                        <FiEdit className='w-5 h-5' />
                       </button>
                       <button
                         title='Eliminar vacante'
@@ -93,7 +93,7 @@ export const PublishedVacancies = () => {
                         }}
                         variants={buttonVariants}
                       >
-                        <FiTrash2 size={24} />
+                        <FiTrash2 className='w-5 h-5' />
                       </button>
                     </div>
                   </div>

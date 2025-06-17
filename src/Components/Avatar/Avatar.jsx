@@ -23,10 +23,10 @@ export const Avatar = () => {
   // Función para determinar el rol basado en la ruta
   const getRoleFromPath = () => {
     const path = location.pathname
-    if (path.includes('configuraciones-contratista')) return 'Contratista'
-    if (path.includes('configuraciones-empresa')) return 'Empresa'
-    if (path.includes('configuraciones-contratante')) return 'Contratante'
-    return 'Usuario'
+    if (path.includes('/configuraciones-contratista')) return 'Contratista'
+    if (path.includes('/configuraciones-empresa')) return 'Empresa'
+    if (path.includes('/configuraciones-contratante')) return 'Contratante'
+    return ''
   }
 
   const backdropVariants = {

@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { FiChevronDown, FiX } from 'react-icons/fi'
-import { comments } from '../../../Utils/objectsExample' // Asegúrate de que la ruta sea correcta
+import { comments } from '../../../Utils/objectsExample' 
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -12,12 +12,6 @@ const containerVariants = {
       ease: "easeOut"
     }
   }
-}
-
-const buttonVariants = {
-  hidden: { opacity: 0, y: -10 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  exit: { opacity: 0, y: 10, transition: { duration: 0.2 } }
 }
 
 export const Comments = () => {
@@ -37,7 +31,7 @@ export const Comments = () => {
   }
 
   return (
-    <div className='max-w-5xl mx-auto py-8'>
+    <div className='max-w-5xl mx-auto'>
       <motion.div
         initial="hidden"
         animate="visible"
@@ -80,7 +74,7 @@ export const Comments = () => {
                             e.stopPropagation()
                             toggleExpand(index)
                           }}
-                          className='text-[#60efdb] hover:text-[#405e7f] text-sm mt-1 flex items-center'
+                          className='text-[#60efdb] hover:text-[#405e7f] text-md mt-1 flex items-center font-semibold'
                         >
                           {expandedComments[index] ? 'Ver menos' : 'Ver más'}
                           <FiChevronDown className={`ml-1 transition-transform ${expandedComments[index] ? 'rotate-180' : ''}`} />
@@ -110,14 +104,14 @@ export const Comments = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+            className='fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50'
             onClick={() => setSelectedComment(null)}
           >
             <motion.div
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              className='bg-white rounded-xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto'
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-start mb-4">
@@ -126,9 +120,9 @@ export const Comments = () => {
                 </h3>
                 <button
                   onClick={() => setSelectedComment(null)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className='p-1 text-gray-500 rounded-md hover:bg-gray-50 cursor-pointer'
                 >
-                  <FiX size={24} />
+                  <FiX className='w-5 h-5' />
                 </button>
               </div>
               <p className='text-gray-600 mb-2'>{formatDate(selectedComment.date)}</p>

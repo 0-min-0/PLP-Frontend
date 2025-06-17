@@ -32,7 +32,7 @@ export const PostulatedPeople = () => {
   return (
     <>
       <Avatar />
-      <div className='max-w-5xl mx-auto py-8'>
+      <div className='max-w-5xl mx-auto pt-8 pb-4'>
         <SearchBar />
         <motion.div
           initial="hidden"
@@ -45,7 +45,7 @@ export const PostulatedPeople = () => {
           </h2>
 
           {people.length > 0 ? (
-            <div className='w-full h-85 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
+            <div className='w-full h-80 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {people.map((person) => (
                 <div
                   key={person.id}
@@ -64,33 +64,23 @@ export const PostulatedPeople = () => {
                         {person.town}
                       </p>
                     </div>
-                    <div className="flex flex-col gap-1">
+                    <div className='flex'>
                       <button
                         onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedPerson(person);
+                          e.stopPropagation()
+                          setSelectedPerson(person)
                         }}
-                        className='text-[#405e7f] p-1 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Ver hoja de vida'
                       >
-                        <FiFileText size={20} />
-                      </button>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleContactPerson(person.id);
-                        }}
-                        className='text-[#405e7f] p-1 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
-                        title='Contactar'
-                      >
-                        <FiPhone size={20} />
+                        <FiFileText className='w-5 h-5' />
                       </button>
                       <button
                         onClick={(e) => handleSafeReject(person.id, e)}
-                        className='text-[#405e7f] p-1 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Rechazar'
                       >
-                        <FiX size={20} />
+                        <FiX className='w-5 h-5' />
                       </button>
                     </div>
                   </div>

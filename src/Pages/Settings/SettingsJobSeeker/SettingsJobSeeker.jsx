@@ -7,7 +7,7 @@ import { menuConfig } from '../../../Utils/options';
 
 export const SettingsJobSeeker = () => {
     return (
-        <div>
+        <div className='p-6'>
             <div className=''>
                 <Header
                     middleObject={
