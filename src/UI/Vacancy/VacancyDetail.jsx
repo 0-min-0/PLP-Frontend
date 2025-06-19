@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../button'
 import { FiX } from 'react-icons/fi'
-import { ConfirmAlert } from '../ConfirmAlert'
+import { ConfirmAlert } from '../Modals/ConfirmAlert'
 import { useVacancy } from '../../Context/VacancyContext'
 import { VacancyEdit } from './VacancyEdit'
 

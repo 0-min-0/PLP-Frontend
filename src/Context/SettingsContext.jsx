@@ -18,10 +18,11 @@ export const SettingsProvider = ({ children, initialUser }) => {
     if (path.includes('configuraciones-contratista')) return 'contratista'
     if (path.includes('configuraciones-empresa')) return 'empresa'
     if (path.includes('configuraciones-contratante')) return 'contratante'
-    return 'Usuario'
+    return ''
   }
 
   //-----------------------------------------------ESTADOS--------------------------------------------//
+
   // Estados principales
   const [user, setUser] = useState(initialUser)
   const [currentRole, setCurrentRole] = useState(initialUser?.role || 'contratante')
@@ -81,9 +82,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
 
   // Configuración de roles
   const [rolesConfig, setRolesConfig] = useState({
-    user: {
-      defaultName: 'Usuario'
-    },
     contratista: {
       avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
       nameKey: 'nameJobSeeker',
@@ -537,6 +535,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
   }, [passwordData, validatePasswordStrength, validateConfirmPassword])
 
   //-----------------------------------------MANEJO DE EVENTOS--------------------------------------//
+
   // Manejar cambios en el formulario
   const handleChange = useCallback((e) => {
     const { name, value, type, checked } = e.target
@@ -786,7 +785,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
   }, [activeSection, validatePersonalFields, validateSkills, validateStudies, validatePassword, handleSave, passwordErrors, errors])
 
   //-----------------------------------------FUNCIONES AUXILIARES-----------------------------------//
-  
+
   // Obtener error activo
   const getActiveError = useCallback((field) => {
     return errors[field] || realTimeErrors[field] || null
@@ -810,13 +809,19 @@ export const SettingsProvider = ({ children, initialUser }) => {
   }
 
   // Manejar cambio de nombre
+  const roleConfig = {
+    Contratista: { nameKey: 'contractorName', default: 'Usuario' },
+    Contratante: { nameKey: 'employerName', default: 'Usuario' },
+    Empresa: { nameKey: 'companyName', default: 'Usuario' }
+  }
+
   const handleNameChange = (newName) => {
     if (!newName || typeof newName !== 'string') {
       console.error('Nombre inválido:', newName)
       return
     }
 
-    const currentConfig = rolesConfig[currentRole]
+    const currentConfig = roleConfig[currentRole]
     if (!currentConfig) {
       console.error(`Configuración no encontrada para el rol: ${currentRole}`)
       return
@@ -831,6 +836,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
     setUserData(updatedUser)
     localStorage.setItem('userData', JSON.stringify(updatedUser))
   }
+
 
   //-----------------------------------------CONTEXTO-----------------------------------------------//
 

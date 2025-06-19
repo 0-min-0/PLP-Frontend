@@ -173,12 +173,13 @@ export const SearchBar = ({
               handleKeyDown(e)
             }
           }}
-          className='w-full pl-12 pr-10 py-2.5 rounded-full bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent transition-all duration-300'
+          className='w-350 pl-12 pr-10 py-2.5 rounded-full bg-white border border-gray-300 focus:outline-none focus:ring-2 
+                  focus:ring-[#60efdb] focus:border-transparent transition-all duration-300 input-no-clear'
         />
         {query && (
           <button 
             onClick={handleClear}
-            className='absolute right-4 text-gray-400 hover:text-gray-600'
+            className='absolute right-4 text-gray-400 hover:text-gray-600 cursor-pointer'
             aria-label='Limpiar búsqueda'
           >
             <XMarkIcon className='h-5 w-5' />

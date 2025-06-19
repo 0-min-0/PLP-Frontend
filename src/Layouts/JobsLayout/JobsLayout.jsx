@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useData } from '../../Hooks/useData'
 import { JobsContainer } from '../../Components/Container/JobsContainer'
-import { AuthModal } from '../../UI/AuthModal'
+import { AuthModal } from '../../UI/Modals/AuthModal'
 
 const sectionAnimation = {
   hidden: { opacity: 0, y: 20 },

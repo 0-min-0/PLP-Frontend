@@ -58,7 +58,7 @@ function App() {
     '/configuraciones-empresa/publicaciones-empresa',
     '/configuraciones-empresa/terminos-condiciones',
     '/configuraciones-empresa/ayuda-soporte',
-    '/configuraciones-empresa/potulados'
+    '/configuraciones-empresa/postulados'
   ]
 
   const isBgRoute = bgRoutes.includes(location.pathname)

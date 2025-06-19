@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { showSuccessAlert, showErrorAlert } from '../UI/CustomAlerts'
+import { showSuccessAlert, showErrorAlert } from '../UI/Modals/CustomAlerts'
 import {
     getVacancies,
     addVacancyToExample,

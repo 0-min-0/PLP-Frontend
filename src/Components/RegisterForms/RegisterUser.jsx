@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { FormsContainer } from '../../UI/FormsContainer'
 import { Input } from '../../UI/Input'
 import { HiOutlinePhone, HiOutlineMail } from 'react-icons/hi'
-import { optionGenre, optionTown } from '../../Utils/options'
+import { optionGenre, optionTown, categories } from '../../Utils/options'
 import { Select } from '../../UI/Select'
 import { Desc } from '../../UI/Desc'
 import { Button } from '../../UI/button'
@@ -31,23 +31,30 @@ export const RegisterUser = () => {
     }
 
     return (
-        <div className='w-[55%]'>
+        <div className='w-[35%]'>
             <FormsContainer
                 width='w-full'
                 bgColor='bg-[#dcfff6]'
                 textColor='#405e7f'
                 changeForm={
-                    <p className='text-[#405e7f] pt-4'>
-                        ¿Ya estás registrado en nuestra plataforma?{' '}
-                        <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
-                            Iniciar sesión
-                        </NavLink>
-                    </p>
+                    <div className=''>
+                        <Button
+                            btnType='submit'
+                            btnStyle='w-[30%] bg-[#405e7f] text-white font-bold mt-2'
+                            btnName='Continuar'
+                        />
+                        <p className='text-[#405e7f] pt-4'>
+                            ¿Ya estás registrado en nuestra plataforma?{' '}
+                            <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
+                                Iniciar sesión
+                            </NavLink>
+                        </p>
+                    </div>
                 }
                 form={
-                    <form onSubmit={localHandleSubmit} className='w-full'>
-                        <div className='w-full flex items-start'>
-                            <div className='w-1/2 pr-5'>
+                    <form onSubmit={localHandleSubmit} className='w-full h-115 overflow-y-auto scrollbar-custom mb-5'>
+                        <div className='w-full items-start'>
+                            <div className='w- pr-5 mb-3'>
                                 <div>
                                     <Input
                                         labelTitle='Nombre completo/Nombre de la empresa'
@@ -63,7 +70,6 @@ export const RegisterUser = () => {
 
                                 <div className='mt-4'>
                                     <h2 className='text-[#405e7f] font-semibold'>Contacto (Personal/Empresa)</h2>
-
                                     <div className='relative'>
                                         <Input
                                             iName='phone'
@@ -108,7 +114,7 @@ export const RegisterUser = () => {
                                 </div>
                             </div>
 
-                            <div className='w-1/2 pl-5'>
+                            <div className='pr-5'>
                                 <Desc
                                     nameDesc='Descripción'
                                     holderDesc='Escribe una breve descripción de la empresa o de ti mismo'
@@ -117,12 +123,12 @@ export const RegisterUser = () => {
                                     onChange={(e) => handleChange({
                                         target: {
                                             name: 'description',
-                                            value: e.target.value 
+                                            value: e.target.value
                                         }
                                     })}
                                     error={errors.description}
                                 />
-                                <div className='w-full gap-6 '>
+                                <div className='w-full'>
                                     <div className='mt-2'>
                                         <Select
                                             label='Municipio'
@@ -143,17 +149,22 @@ export const RegisterUser = () => {
                                         />
                                         {errors.genre && <p className={errorStyle}>{errors.genre}</p>}
                                     </div>
+                                    <div className='mt-3'>
+                                        <Select
+                                            label='Categoría'
+                                            name='category'
+                                            value={form.category}
+                                            onChange={(value) => handleSelectChange('category', value)}
+                                            options={categories}
+                                        />
+                                        {errors.category && <p className={errorStyle}>{errors.category}</p>}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <Button
-                            btnType='submit'
-                            btnStyle='w-[30%] bg-[#405e7f] text-white font-bold my-6 mx-85'
-                            btnName='Continuar'
-                        />
                     </form>
                 }
             />
         </div>
-    );
+    )
 }

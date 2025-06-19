@@ -1,14 +1,18 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { HiOutlineX } from 'react-icons/hi'
 import { FiLogOut } from 'react-icons/fi'
 import { MenuItem } from '../../UI/MenuItem'
 import { useMenu } from '../../Context/MenuContext'
 import { useSettings } from '../../Context/SettingsContext'
+// import { useAuth } from '../../Context/AuthContext' // Asume que tienes un contexto de autenticación
+import { LogoutModal } from '../../UI/Modals/LogoutModal' // Ajusta la ruta según tu estructura
 
 export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
   const { isOpen, setIsOpen } = useMenu()
   const { userAvatar, currentRoleName } = useSettings() 
+  // const { logout } = useAuth() // Función para cerrar sesión
   const menuRef = useRef(null)
+  const [showLogoutModal, setShowLogoutModal] = useState(false)
 
   // Cerrar al hacer clic fuera
   useEffect(() => {
@@ -31,6 +35,16 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [])
+
+  const handleLogoutClick = () => {
+    setIsOpen(false)
+    setShowLogoutModal(true)
+  }
+
+  const handleConfirmLogout = () => {
+    logout()
+    setShowLogoutModal(false)
+  }
 
   // Items comunes a todos los roles
   const commonMenuItems = [
@@ -91,14 +105,24 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
           ))}
 
           <hr className='border-t border-gray-100' />
-          <MenuItem to='/logout'>
-            <div className='flex items-center gap-3'>
+          <li>
+            <button 
+              onClick={handleLogoutClick}
+              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-3"
+            >
               <span>Cerrar sesión</span>
               <FiLogOut className='w-4 h-4' />
-            </div>
-          </MenuItem>
+            </button>
+          </li>
         </ul>
       </div>
+
+      {/* Modal de confirmación de cierre de sesión */}
+      <LogoutModal
+        isOpen={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onLogout={handleConfirmLogout}
+      />
     </div>
   );
 };

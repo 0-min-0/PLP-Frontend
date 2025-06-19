@@ -2,15 +2,15 @@ import { useState } from 'react'
 import { FiEdit } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSettings } from '../../Context/SettingsContext'
-import { NameModal } from '../../UI/NameModal'
+import { NameModal } from '../../UI/Modals/NameModal'
 import { useLocation } from 'react-router-dom'
 import { HiOutlineX } from 'react-icons/hi'
 
 export const Avatar = () => {
   const {
     currentRole,
+    user,
     userAvatar,
-    userName,
     avatarOptions,
     handleAvatarChange,
     handleNameChange
@@ -20,7 +20,6 @@ export const Avatar = () => {
   const [isEditingName, setIsEditingName] = useState(false)
   const location = useLocation()
 
-  // Función para determinar el rol basado en la ruta
   const getRoleFromPath = () => {
     const path = location.pathname
     if (path.includes('/configuraciones-contratista')) return 'Contratista'
@@ -28,6 +27,18 @@ export const Avatar = () => {
     if (path.includes('/configuraciones-contratante')) return 'Contratante'
     return ''
   }
+
+  const getDisplayName = () => {
+    const config = {
+      Contratista: user.contractorName || 'Usuario',
+      Contratante: user.employerName || 'Usuario',
+      Empresa: user.companyName || 'Usuario'
+    }
+    return config[currentRole] || 'Usuario'
+  }
+
+  const userName = getDisplayName()
+  const currentDisplayRole = getRoleFromPath()
 
   const backdropVariants = {
     hidden: { opacity: 0 },
@@ -59,8 +70,6 @@ export const Avatar = () => {
       }
     }
   }
-
-  const currentDisplayRole = getRoleFromPath()
 
   return (
     <div className='max-w-5xl mx-auto flex items-center relative'>
@@ -126,7 +135,7 @@ export const Avatar = () => {
 
                 <div className='grid grid-cols-3 gap-3 max-h-60 overflow-y-auto custom-scrollbar'>
                   {avatarOptions.map((avatar, index) => (
-                    <button
+                    <motion.button
                       key={index}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -135,8 +144,8 @@ export const Avatar = () => {
                           ? 'bg-[#60efdb]/20 border-2 border-[#60efdb]'
                           : 'hover:bg-gray-100'}`}
                       onClick={() => {
-                        handleAvatarChange(avatar);
-                        setAvatarSelector(false);
+                        handleAvatarChange(avatar)
+                        setAvatarSelector(false)
                       }}
                       aria-label={`Seleccionar avatar ${index + 1}`}
                     >
@@ -145,7 +154,7 @@ export const Avatar = () => {
                         alt={`avatar-${index}`}
                         className="w-16 h-16 rounded-full object-cover"
                       />
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </motion.div>
@@ -157,7 +166,7 @@ export const Avatar = () => {
       <div className='ml-6 relative group'>
         <div className='flex items-center'>
           <h2 className='text-3xl font-bold text-[#405e7f]'>
-            {userName}
+            {getDisplayName()}
           </h2>
           <button
             onClick={() => setIsEditingName(true)}

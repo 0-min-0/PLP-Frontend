@@ -10,20 +10,15 @@ export const VacancyForm = () => {
     const { vacancy, errors, handleChange, handleSelectChange, handleFormSubmit } = useVacancy()
 
     return (
-        <div className='rounded-xl px-20 py-12 mx-30 mt-4 bg-[#405e7f]'>
-            <form onSubmit={handleFormSubmit} className='w-full'>
+        <div className=' max-w-5xl rounded-xl px-20 py-12 mx-30 mt-4 mb-8 bg-[#405e7f]'>
+            <form onSubmit={handleFormSubmit} className=''>
                 <div className='flex justify-between items-start mb-8'>
-                    <h2 className='text-white text-2xl font-semibold'>
+                    <h2 className='text-white text-xl font-semibold'>
                         Crea una nueva vacante, al terminar de llenar todos los campos, haz click en "publicar vacante"
                     </h2>
-                    <Button
-                        btnName='Publicar vacante'
-                        btnType='submit'
-                        btnStyle='w-[12%] bg-[#60efdb] text-[#405e7f] font-semibold text-lg rounded-full hover:bg-[#60efdb]/90 transition-all duration-300'
-                    />
                 </div>
-                <div className='w-full flex gap-12'>
-                    <div className='w-1/2 flex flex-col gap-2'>
+                <div className='w'>
+                    <div className=' flex flex-col gap-2'>
                         <Input
                             labelTitle='Nombre de la vacante'
                             labelColor='white'
@@ -81,7 +76,7 @@ export const VacancyForm = () => {
                             errColor='text-[#60efdb]'
                         />
                     </div>
-                    <div className='w-1/2 flex flex-col gap-5'>
+                    <div className=' flex flex-col gap-5 mt-4 mb-8'>
                         <Desc
                             nameDesc='Responsabilidades y especificaciones'
                             holderDesc='Escribe las responsabilidades que tendrá la persona que ocupe la vacante'
@@ -89,7 +84,7 @@ export const VacancyForm = () => {
                             value={vacancy.responsibilities}
                             onChange={handleChange}
                             error={errors.responsibilities}
-                            height='h-50'
+                            height='h-30'
                             color='text-white'
                             errColor='text-[#60efdb]'
                         />
@@ -115,6 +110,11 @@ export const VacancyForm = () => {
                             errColor='text-[#60efdb]'
                         />
                     </div>
+                    <Button
+                        btnName='Publicar vacante'
+                        btnType='submit'
+                        btnStyle='w-[25%] bg-[#60efdb] text-[#405e7f] font-semibold text-lg rounded-full transition-all duration-300'
+                    />
                 </div>
             </form>
         </div>

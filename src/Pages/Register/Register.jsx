@@ -10,7 +10,7 @@ export const Register = () => {
         <div className='w-full p-6'>
             <Header
                 middleObject={
-                    <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                    <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
                         Registrarse
                     </h1>
                 }
@@ -22,7 +22,7 @@ export const Register = () => {
                     </div>
                 }
             />
-            <div className='flex justify-center items-start mt-6 gap-20'>
+            <div className='flex justify-center items-start gap-20'>
                 <RegisterUser />
                 <WelcomeText
                     text={<p> Nos alegra tener nuevos usuarios como tú en

@@ -1,20 +1,14 @@
 import React from 'react'
 import { IoClose } from 'react-icons/io5'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from './button'
-import { NavLink } from 'react-router-dom'
+import { Button } from '../button'
+// import { useAuth } from '../../Context/AuthContext' 
 
-export const AuthModal = ({
+export const LogoutModal = ({
     isOpen,
     onClose,
-    onLogin,
-    onRegister,
-    itemType
+    onLogout
 }) => {
-    const getItemTypeName = () => {
-        return itemType === 'vacancy' ? 'esta vacante' : 'este contratista'
-    }
-
     // Animaciones
     const backdropVariants = {
         hidden: { opacity: 0 },
@@ -58,7 +52,7 @@ export const AuthModal = ({
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className="bg-white rounded-xl p-12 max-w-md w-full mx-4 relative"
+                        className="bg-white rounded-xl p-8 max-w-md w-full mx-4 relative"
                         variants={modalVariants}
                         initial="hidden"
                         animate="visible"
@@ -73,28 +67,27 @@ export const AuthModal = ({
                             </div>
                         </button>
 
-                        <h2 className="text-2xl font-bold text-[#405e7f] mb-4">
-                            ¿Deseas conocer más sobre {getItemTypeName()}?
-                        </h2>
+                        <div className="text-center">
+                            <h2 className="text-2xl font-bold text-[#405e7f] mb-4">
+                                ¿Estás seguro de que quieres cerrar sesión?
+                            </h2>
 
-                        <p className="mb-6 text-gray-700">
-                            Regístrate o inicia sesión para que puedas tener más conocimiento de las vacantes y los
-                            contratistas que se registran diariamente en PLP.
-                        </p>
+                            <p className="mb-6 text-gray-700">
+                                Serás redirigido a la página de inicio y tendrás que iniciar sesión nuevamente para acceder a tu cuenta.
+                            </p>
 
-                        <div className='flex flex-col space-y-4'>
-                            <NavLink to='/acceder'>
+                            <div className='flex flex-col space-y-4'>
                                 <Button
-                                    btnName='Iniciar sesión'
-                                    btnStyle='w-full bg-[#60efdb] text-[#405e7f]'
+                                    btnName='Confirmar'
+                                    btnStyle='w-full bg-red-500 hover:bg-red-600 text-white'
+                                    onClick={onLogout}
                                 />
-                            </NavLink>
-                             <NavLink to='/crear-cuenta'>
                                 <Button
-                                    btnName='Registrarse'
-                                    btnStyle='w-full bg-[#405e7f] text-white'
+                                    btnName='Cancelar'
+                                    btnStyle='w-full bg-gray-200 hover:bg-gray-300 text-gray-800'
+                                    onClick={onClose}
                                 />
-                            </NavLink>
+                            </div>
                         </div>
                     </motion.div>
                 </motion.div>

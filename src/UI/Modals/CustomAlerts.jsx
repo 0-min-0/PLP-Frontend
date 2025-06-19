@@ -1,8 +1,8 @@
 import Swal from 'sweetalert2'
-import successImage from '../assets/images/maletin.gif'
-import errorImage from '../assets/images/no-hay-datos.gif'
-import companyLogo from '../assets/images/plpLogo.png'
-import '../Style/custom-alerts.css'
+import successImage from '../../assets/images/maletin.gif'
+import errorImage from '../../assets/images/no-hay-datos.gif'
+import companyLogo from '../../assets/images/plpLogo.png'
+import '../../Style/custom-alerts.css'
 
 export const showSuccessAlert = (navigate, formData) => {
     return Swal.fire({
