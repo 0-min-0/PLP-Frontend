@@ -17,6 +17,7 @@ export const RegisterProvider = ({ children }) => {
     description: '',
     town: '',
     genre: '',
+    category: '',
     // Campos para JobSeeker
     skillOne: '',
     skillTwo: '',
@@ -237,7 +238,8 @@ export const RegisterProvider = ({ children }) => {
       email: validateEmail(form.email),
       description: validateNotEmpty(form.description, 'descripción'),
       town: validateSelect(form.town, 'municipio'),
-      genre: validateSelect(form.genre, 'género')
+      genre: validateSelect(form.genre, 'género'),
+      category: validateSelect(form.category, 'categoría')
     }
 
     setErrors(newErrors)

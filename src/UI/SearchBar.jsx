@@ -36,36 +36,40 @@ export const SearchBar = ({
     !item.type || item.type === searchType
   )
 
+  const handleItemClick = (item) => {
+    const clickedItem = typeof item === 'string' ? { text: item } : item
+    handleSuggestionClick(clickedItem)
+    onSuggestionClick(clickedItem)
+    setShowSuggestions(false)
+  }
+
   const renderSuggestionItem = (item, index, isRecent = false) => {
     const isActive = activeSuggestion === index
     const baseClass = 'm-2 rounded-lg px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200'
     const activeClass = isActive ? 'bg-gray-50' : ''
+    const itemText = typeof item === 'string' ? item : item.text
+    const originalData = typeof item === 'string' ? null : item.originalData
 
     return (
       <li
         key={isRecent ? `recent-${index}` : index}
         className={`${baseClass} ${activeClass} flex justify-between items-center`}
         onMouseEnter={() => setActiveSuggestion(index)}
+        onClick={() => handleItemClick(item)}
       >
-        <div
-          className="flex-1"
-          onClick={() => {
-            handleSuggestionClick(item)
-            onSuggestionClick(item)
-          }}
-        >
+        <div className="flex-1">
           <div className="font-medium text-[#405e7f]">
-            {highlightMatch(typeof item === 'string' ? item : item.text)}
+            {highlightMatch(itemText)}
           </div>
-          {!isRecent && item.originalData && (
+          {originalData && (
             <div className="text-sm text-gray-500 mt-1">
               {searchType === 'people' ? (
                 <>
-                  {item.originalData.occupation} • {item.originalData.town}
+                  {originalData.occupation} • {originalData.town}
                 </>
               ) : (
                 <>
-                  {item.originalData.company} • {item.originalData.location}
+                  {originalData.company} • {originalData.location}
                 </>
               )}
             </div>
@@ -166,9 +170,10 @@ export const SearchBar = ({
           onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              handleSuggestionClick(query.trim())
-              onSuggestionClick(query.trim())
-              setShowSuggestions(false)
+              const selectedItem = activeSuggestion >= 0 && filteredByType[activeSuggestion] 
+                ? filteredByType[activeSuggestion] 
+                : query.trim()
+              handleItemClick(selectedItem)
             } else {
               handleKeyDown(e)
             }

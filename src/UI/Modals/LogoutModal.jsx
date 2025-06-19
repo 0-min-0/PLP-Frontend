@@ -80,12 +80,12 @@ export const LogoutModal = ({
                                 <Button
                                     btnName='Confirmar'
                                     btnStyle='w-full bg-red-500 hover:bg-red-600 text-white'
-                                    onClick={onLogout}
+                                    clicked={onLogout}
                                 />
                                 <Button
                                     btnName='Cancelar'
                                     btnStyle='w-full bg-gray-200 hover:bg-gray-300 text-gray-800'
-                                    onClick={onClose}
+                                    clicked={onClose}
                                 />
                             </div>
                         </div>

@@ -39,7 +39,7 @@ export const RegisterUser = () => {
                 changeForm={
                     <div className=''>
                         <Button
-                            btnType='submit'
+                            clicked={localHandleSubmit}
                             btnStyle='w-[30%] bg-[#405e7f] text-white font-bold mt-2'
                             btnName='Continuar'
                         />

@@ -6,11 +6,12 @@ import { useMenu } from '../../Context/MenuContext'
 import { useSettings } from '../../Context/SettingsContext'
 // import { useAuth } from '../../Context/AuthContext' // Asume que tienes un contexto de autenticación
 import { LogoutModal } from '../../UI/Modals/LogoutModal' // Ajusta la ruta según tu estructura
+import { useNavigate } from 'react-router-dom'
 
 export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
+  const navigate = useNavigate()
   const { isOpen, setIsOpen } = useMenu()
   const { userAvatar, currentRoleName } = useSettings() 
-  // const { logout } = useAuth() // Función para cerrar sesión
   const menuRef = useRef(null)
   const [showLogoutModal, setShowLogoutModal] = useState(false)
 
@@ -18,7 +19,7 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsOpen(false);
+        setIsOpen(false)
       }
     }
 
@@ -44,6 +45,7 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
   const handleConfirmLogout = () => {
     logout()
     setShowLogoutModal(false)
+    navigate('/')
   }
 
   // Items comunes a todos los roles
@@ -108,7 +110,7 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
           <li>
             <button 
               onClick={handleLogoutClick}
-              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-3"
+              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-3 cursor-pointer"
             >
               <span>Cerrar sesión</span>
               <FiLogOut className='w-4 h-4' />

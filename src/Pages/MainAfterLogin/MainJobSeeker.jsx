@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
 import { SearchBar } from '../../UI/SearchBar'
 import { ProfileMenu } from '../../Components/ProfileMenu/ProfileMenu'
 import { HiOutlineInbox } from 'react-icons/hi2'
 import { VacanciesLayout } from '../../Layouts/VacanciesLayout/VacanciesLayout'
 import { vacanciesExample } from '../../Utils/objectsExample'
+import { VacancyView } from '../../UI/Vacancy/VacancyView'
 
 export const MainJobSeeker = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearching, setIsSearching] = useState(false)
-  const navigate = useNavigate()
+  const [selectedVacancy, setSelectedVacancy] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const formatVacancySuggestions = (vacancies) => {
     return vacancies.map(vacancy => ({
@@ -29,11 +31,15 @@ export const MainJobSeeker = () => {
   }
 
   const handleSuggestionClick = (suggestion) => {
-    if (suggestion.originalData) {
-      navigate(`/vacante/${suggestion.originalData.id}`, { 
-        state: { vacancy: suggestion.originalData } 
-      })
+    if (suggestion.originalData && suggestion.type === 'vacancy') {
+      setSelectedVacancy(suggestion.originalData)
+      setIsModalOpen(true)
     }
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedVacancy(null)
   }
 
   return (
@@ -61,9 +67,21 @@ export const MainJobSeeker = () => {
           </NavLink>
         }
       />
+
       <VacanciesLayout 
         searchQuery={searchQuery}
         isSearching={isSearching}
+      />
+
+      {/* Modal centralizado */}
+      <VacancyView
+        vacancy={selectedVacancy}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onApply={(vac) => {
+          console.log('Postulación enviada a:', vac)
+          closeModal()
+        }}
       />
     </div>
   )
