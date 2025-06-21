@@ -9,6 +9,7 @@ import { Header } from '../Header/Header'
 import { WelcomeText } from '../../UI/WelcomeText'
 import registerIlustration from '../../assets/images/register-ilustration.png'
 import { useRegister } from '../../Context/RegisterContext'
+import { motion } from 'framer-motion'
 
 export const RegisterRolType = () => {
   const navigate = useNavigate()
@@ -43,11 +44,18 @@ export const RegisterRolType = () => {
           <div className='flex gap-2 mb-8'>
             <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Terminos y condiciones</NavLink>
+            <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
           </div>
         }
       />
-      <div className='flex justify-center items-start mt-6 gap-20'>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className='flex justify-center items-start mt-6 gap-20'
+      >
         <div className='w-[35%]'>
           <FormsContainer
             width='w-full'
@@ -59,7 +67,8 @@ export const RegisterRolType = () => {
                 <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
                   Iniciar sesión
                 </NavLink>
-              </p>}
+              </p>
+            }
             form={
               <form onSubmit={localHandleSubmit} className='w-full flex flex-col items-center gap-6 my-6'>
                 <div className='w-full'>
@@ -116,18 +125,19 @@ export const RegisterRolType = () => {
                   />
                 </div>
               </form>
-            } />
+            }
+          />
         </div>
+
         <WelcomeText
           text={<p> Nos alegra tener nuevos usuarios como tú en
             <br /> nuestro aplicativo, esperamos que tu
-            <br /> experiencia sea agradable en PLP. </p>
-          }
+            <br /> experiencia sea agradable en PLP. </p>}
           ilustration={registerIlustration}
           imgDesc='Ilustración de inicio de sesión'
           imgStyle='w-[450px] h-[450px]'
         />
-      </div>
+      </motion.div>
     </div>
   )
 }

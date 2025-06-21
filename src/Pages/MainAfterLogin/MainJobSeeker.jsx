@@ -13,16 +13,14 @@ export const MainJobSeeker = () => {
   const [isSearching, setIsSearching] = useState(false)
   const [selectedVacancy, setSelectedVacancy] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [hasNotifications, setHasNotifications] = useState(true)
 
-  const formatVacancySuggestions = (vacancies) => {
-    return vacancies.map(vacancy => ({
-      id: vacancy.id,
-      text: `${vacancy.title} - ${vacancy.company}`,
-      category: vacancy.category,
-      originalData: vacancy,
-      type: 'vacancy'
-    }))
-  }
+  // Si más adelante conectas con backend:
+  // useEffect(() => {
+  //   fetch('/api/notificaciones-nuevas')
+  //     .then(res => res.json())
+  //     .then(data => setHasNotifications(data.hayNuevas))
+  // }, [])
 
   const handleSearch = (query) => {
     setIsSearching(true)
@@ -31,8 +29,8 @@ export const MainJobSeeker = () => {
   }
 
   const handleSuggestionClick = (suggestion) => {
-    if (suggestion.originalData && suggestion.type === 'vacancy') {
-      setSelectedVacancy(suggestion.originalData)
+    if (suggestion.type === 'vacancy') {
+      setSelectedVacancy(suggestion.originalData) 
       setIsModalOpen(true)
     }
   }
@@ -46,9 +44,8 @@ export const MainJobSeeker = () => {
     <div className='p-6'>
       <Header
         middleObject={
-          <SearchBar 
+          <SearchBar
             placeholder="Buscar vacantes por título, empresa o habilidades..."
-            suggestions={formatVacancySuggestions(vacanciesExample)}
             searchType="vacancies"
             onSearch={handleSearch}
             onSuggestionClick={handleSuggestionClick}
@@ -62,20 +59,29 @@ export const MainJobSeeker = () => {
           />
         }
         buttons={
-          <NavLink to='/centro-de-notificaciones' title='Centro de notificaciones'>
+          <NavLink
+            to='/centro-de-notificaciones'
+            title='Centro de notificaciones'
+            className=' relative'
+          >
             <HiOutlineInbox className='w-8 h-8 text-[#405e7f] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
+            {hasNotifications && (
+              <>
+                <span className='absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full animate-ping border-2 border-white' />
+                <span className='absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full border-2 border-white' />
+              </>
+            )}
           </NavLink>
         }
       />
 
-      <VacanciesLayout 
+      <VacanciesLayout
         searchQuery={searchQuery}
         isSearching={isSearching}
       />
 
-      {/* Modal centralizado */}
       <VacancyView
-        vacancy={selectedVacancy}
+        vacancy={selectedVacancy} 
         isOpen={isModalOpen}
         onClose={closeModal}
         onApply={(vac) => {

@@ -11,7 +11,6 @@ export const VacancyView = ({ vacancy, onClose, onApply, isOpen }) => {
         }
     }
 
-    // Animaciones idénticas a NameModal
     const backdropVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 }
@@ -61,7 +60,7 @@ export const VacancyView = ({ vacancy, onClose, onApply, isOpen }) => {
                         exit="exit"
                     >
                         <div className='flex justify-between items-center mb-6'>
-                            <h2 className='text-3xl font-bold text-[#405e7f]'>{vacancy.vacancyName}</h2>
+                            <h2 className='text-3xl font-bold text-[#405e7f] ml-6'>{vacancy.vacancyName}</h2>
                             <button
                                 onClick={onClose}
                                 className='text-[#405e7f] hover:bg-gray-100 transition-colors duration-300 cursor-pointer p-2 rounded-md'

@@ -1,10 +1,9 @@
-import { useSearchBar } from '../Context/SearchBarContext'
-import { MagnifyingGlassIcon, XMarkIcon, ClockIcon, ArrowPathIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { MagnifyingGlassIcon, XMarkIcon, ClockIcon, ArrowPathIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { useSearchBar } from '../Context/SearchBarContext';
 
 export const SearchBar = ({
   placeholder = 'Buscar...',
   className = '',
-  suggestions = [],
   searchType = 'vacancies',
   onSearch = () => {},
   onSuggestionClick = () => {},
@@ -22,33 +21,34 @@ export const SearchBar = ({
     recentSearches,
     inputRef,
     suggestionsRef,
-    handleSuggestionClick,
+    handleSuggestionClick: contextHandleSuggestionClick,
     handleKeyDown,
     highlightMatch,
     handleClear,
     removeRecentSearch,
     groupByCategory,
     showRecentSearches
-  } = useSearchBar()
+  } = useSearchBar();
 
-  // Filtrado adicional por tipo
-  const filteredByType = filteredSuggestions.filter(item => 
+  const filteredByType = filteredSuggestions.filter(item =>
     !item.type || item.type === searchType
-  )
+  );
 
   const handleItemClick = (item) => {
-    const clickedItem = typeof item === 'string' ? { text: item } : item
-    handleSuggestionClick(clickedItem)
-    onSuggestionClick(clickedItem)
-    setShowSuggestions(false)
-  }
+    const clickedItem = typeof item === 'string' 
+      ? { text: item, type: searchType } 
+      : item;
+    
+    contextHandleSuggestionClick(clickedItem);
+    onSuggestionClick(clickedItem);
+  };
 
   const renderSuggestionItem = (item, index, isRecent = false) => {
-    const isActive = activeSuggestion === index
-    const baseClass = 'm-2 rounded-lg px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200'
-    const activeClass = isActive ? 'bg-gray-50' : ''
-    const itemText = typeof item === 'string' ? item : item.text
-    const originalData = typeof item === 'string' ? null : item.originalData
+    const isActive = activeSuggestion === index;
+    const baseClass = 'm-2 rounded-lg px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200';
+    const activeClass = isActive ? 'bg-gray-50' : '';
+    const itemText = typeof item === 'string' ? item : item.text;
+    const originalData = typeof item === 'string' ? null : item.originalData;
 
     return (
       <li
@@ -63,13 +63,13 @@ export const SearchBar = ({
           </div>
           {originalData && (
             <div className="text-sm text-gray-500 mt-1">
-              {searchType === 'people' ? (
+              {searchType === 'vacancies' ? (
                 <>
-                  {originalData.occupation} • {originalData.town}
+                  {originalData.company} • {originalData.location}
                 </>
               ) : (
                 <>
-                  {originalData.company} • {originalData.location}
+                  {originalData.occupation} • {originalData.town}
                 </>
               )}
             </div>
@@ -79,8 +79,8 @@ export const SearchBar = ({
           <button
             className='text-gray-400 hover:text-gray-600 ml-2'
             onClick={(e) => {
-              e.stopPropagation()
-              removeRecentSearch(item)
+              e.stopPropagation();
+              removeRecentSearch(typeof item === 'string' ? item : { text: item.text });
             }}
             aria-label="Eliminar búsqueda reciente"
           >
@@ -88,8 +88,8 @@ export const SearchBar = ({
           </button>
         )}
       </li>
-    )
-  }
+    );
+  };
 
   const renderSuggestions = () => {
     if (query.length === 0 && showRecentSearches && recentSearches.length > 0) {
@@ -100,12 +100,12 @@ export const SearchBar = ({
             Búsquedas recientes
           </div>
           <ul>
-            {recentSearches.map((search, index) => 
+            {recentSearches.map((search, index) =>
               renderSuggestionItem(search, index, true)
             )}
           </ul>
         </div>
-      )
+      );
     }
 
     if (filteredByType.length > 0) {
@@ -117,20 +117,20 @@ export const SearchBar = ({
             </div>
             <ul>
               {items.map((item, index) => {
-                const globalIndex = filteredByType.indexOf(item)
-                return renderSuggestionItem(item, globalIndex)
+                const globalIndex = filteredByType.indexOf(item);
+                return renderSuggestionItem(item, globalIndex);
               })}
             </ul>
           </div>
-        ))
+        ));
       } else {
         return (
           <ul>
-            {filteredByType.map((item, index) => 
+            {filteredByType.map((item, index) =>
               renderSuggestionItem(item, index)
             )}
           </ul>
-        )
+        );
       }
     }
 
@@ -139,11 +139,11 @@ export const SearchBar = ({
         <div className='px-4 py-6 text-center text-gray-500'>
           No se encontraron resultados para "{query}"
         </div>
-      )
+      );
     }
 
-    return null
-  }
+    return null;
+  };
 
   return (
     <div className={`relative flex flex-col ${className}`}>
@@ -161,28 +161,28 @@ export const SearchBar = ({
           placeholder={placeholder}
           value={query}
           onChange={(e) => {
-            setQuery(e.target.value)
-            setShowSuggestions(true)
-            setActiveSuggestion(-1)
-            onSearch(e.target.value)
+            setQuery(e.target.value);
+            setShowSuggestions(true);
+            setActiveSuggestion(-1);
+            onSearch(e.target.value);
           }}
           onFocus={() => setShowSuggestions(true)}
           onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              const selectedItem = activeSuggestion >= 0 && filteredByType[activeSuggestion] 
-                ? filteredByType[activeSuggestion] 
-                : query.trim()
-              handleItemClick(selectedItem)
+              const selectedItem = activeSuggestion >= 0 && filteredByType[activeSuggestion]
+                ? filteredByType[activeSuggestion]
+                : { text: query.trim(), type: searchType };
+              handleItemClick(selectedItem);
             } else {
-              handleKeyDown(e)
+              handleKeyDown(e);
             }
           }}
           className='w-350 pl-12 pr-10 py-2.5 rounded-full bg-white border border-gray-300 focus:outline-none focus:ring-2 
                   focus:ring-[#60efdb] focus:border-transparent transition-all duration-300 input-no-clear'
         />
         {query && (
-          <button 
+          <button
             onClick={handleClear}
             className='absolute right-4 text-gray-400 hover:text-gray-600 cursor-pointer'
             aria-label='Limpiar búsqueda'
@@ -191,9 +191,9 @@ export const SearchBar = ({
           </button>
         )}
       </div>
-      
+
       {showSuggestions && (
-        <div 
+        <div
           ref={suggestionsRef}
           className='absolute top-full mt-2 w-full z-50 bg-white border border-gray-200 rounded-xl shadow-lg max-h-96 overflow-y-auto'
         >
@@ -201,5 +201,5 @@ export const SearchBar = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};

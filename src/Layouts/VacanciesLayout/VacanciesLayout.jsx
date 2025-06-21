@@ -25,7 +25,7 @@ export const VacanciesLayout = ({
         vacancy.category,
         vacancy.description,
         ...(vacancy.skills || [])
-      ].filter(Boolean) // Elimina campos undefined/null
+      ].filter(Boolean) 
 
       return searchFields.some(
         field => field.toString().toLowerCase().includes(lowerQuery)

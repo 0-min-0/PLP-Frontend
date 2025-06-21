@@ -3,7 +3,7 @@ import { IoPersonOutline } from 'react-icons/io5'
 import { Button } from '../button'
 import { PersonView } from './PersonView'
 
-export const Person = ({ onShowResume, occupation, name, town, phone, ...person }) => {
+export const Person = ({ onShowResume, occupation, name, town, category, ...person }) => {
   const [showDetail, setShowDetail] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -14,10 +14,6 @@ export const Person = ({ onShowResume, occupation, name, town, phone, ...person 
       setShowDetail(true)
       setIsOpen(true)
     }
-  }
-
-  const handleContact = (personData) => {
-    console.log('Contactando a:', personData)
   }
 
   const itemStyle = 'flex gap-2 mb-2';
@@ -38,8 +34,8 @@ export const Person = ({ onShowResume, occupation, name, town, phone, ...person 
             <p className='truncate'>{town}</p>
           </div>
           <div className={itemStyle}>
-            <h3 className='font-semibold'>Teléfono •</h3>
-            <p className='truncate'>{phone}</p>
+            <h3 className='font-semibold'>Categoría •</h3>
+            <p className='truncate'>{category}</p>
           </div>
         </div>
 
@@ -53,7 +49,7 @@ export const Person = ({ onShowResume, occupation, name, town, phone, ...person 
 
       {!onShowResume && showDetail && (
         <PersonView
-          person={{ ...person, occupation, name, town, phone }}
+          person={{ ...person, occupation, name, town, category }}
           isOpen={isOpen}
           onClose={() => {
             setShowDetail(false);

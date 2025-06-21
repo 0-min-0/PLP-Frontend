@@ -36,7 +36,7 @@ export const CardContainer = ({
   };
 
   return (
-    <div className={`mx-10 relative bg-[#dcfff6] ${getRoundedClass()}`}>
+    <div className={`mx-10 relative border-2 border-[#60efdb] ${getRoundedClass()}`}>
       <h2 className='text-2xl px-12 py-5 font-semibold text-[#405e7f]'>{title}</h2>
       <div className='relative group'>
         <button
@@ -49,7 +49,7 @@ export const CardContainer = ({
         </button>
 
         <div className='relative'>
-          <div className={`absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#dcfff6] to-transparent z-[5] pointer-events-none 
+          <div className={`absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-white to-transparent z-[5] pointer-events-none 
             ${rounded === 'top' ? 'rounded-t-xl' : ''}
             ${rounded === 'top-right' ? 'rounded-tr-xl' : ''}
             ${rounded === 'bottom' ? 'rounded-b-xl' : ''}
@@ -67,7 +67,7 @@ export const CardContainer = ({
             ))}
           </div>
 
-          <div className={`absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#dcfff6] to-transparent z-[5] pointer-events-none ${
+          <div className={`absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-white to-transparent z-[5] pointer-events-none ${
             rounded === 'bottom' ? 'rounded-b-xl' : ''
           }`} />
         </div>

@@ -30,9 +30,9 @@ export const Avatar = () => {
 
   const getDisplayName = () => {
     const config = {
-      Contratista: user.contractorName || 'Usuario',
-      Contratante: user.employerName || 'Usuario',
-      Empresa: user.companyName || 'Usuario'
+      Contratista: user?.nameJobSeeker || 'Usuario',
+      Contratante: user?.nameEmployer || 'Usuario',
+      Empresa: user?.companyName || 'Usuario'
     }
     return config[currentRole] || 'Usuario'
   }
@@ -76,7 +76,7 @@ export const Avatar = () => {
       <NameModal
         isOpen={isEditingName}
         onClose={() => setIsEditingName(false)}
-        currentName={userName}
+        currentName={getDisplayName()} // Usar la función que obtiene el nombre correcto
         onSave={(newName) => {
           handleNameChange(newName)
           setIsEditingName(false)

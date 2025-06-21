@@ -52,7 +52,7 @@ export const LogoutModal = ({
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className="bg-white rounded-xl p-8 max-w-md w-full mx-4 relative"
+                        className="bg-white rounded-xl p-10 max-w-md w-full mx-4 relative"
                         variants={modalVariants}
                         initial="hidden"
                         animate="visible"
@@ -67,7 +67,7 @@ export const LogoutModal = ({
                             </div>
                         </button>
 
-                        <div className="text-center">
+                        <div className="">
                             <h2 className="text-2xl font-bold text-[#405e7f] mb-4">
                                 ¿Estás seguro de que quieres cerrar sesión?
                             </h2>
@@ -79,12 +79,12 @@ export const LogoutModal = ({
                             <div className='flex flex-col space-y-4'>
                                 <Button
                                     btnName='Confirmar'
-                                    btnStyle='w-full bg-red-500 hover:bg-red-600 text-white'
+                                    btnStyle='w-full bg-[#405e7f] text-white'
                                     clicked={onLogout}
                                 />
                                 <Button
                                     btnName='Cancelar'
-                                    btnStyle='w-full bg-gray-200 hover:bg-gray-300 text-gray-800'
+                                    btnStyle='w-full bg-gray-200 text-gray-800'
                                     clicked={onClose}
                                 />
                             </div>

@@ -105,7 +105,7 @@ export const SkillsStudies = () => {
                   iValue={formData[fieldName] || ''}
                   iName={fieldName}
                   iChange={handleSkillChange}
-                  iHolder={`Ingresa tu habilidad ${num}${isRequired ? ' (requerido)' : ''}`}
+                  iHolder='Ingresa tu habilidad'
                   disabled={!editingSkills}
                   borderColor={
                     editingSkills
@@ -191,7 +191,7 @@ export const SkillsStudies = () => {
                   iValue={formData[fieldName] || ''}
                   iName={fieldName}
                   iChange={handleStudyChange}
-                  iHolder={`Ingresa tu estudio ${num}${isRequired ? ' (requerido)' : ''}`}
+                  iHolder='Ingresa tu estudio'
                   disabled={!editingStudies}
                   borderColor={
                     editingStudies

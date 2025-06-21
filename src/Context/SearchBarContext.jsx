@@ -2,17 +2,19 @@ import { createContext, useContext, useState, useEffect, useRef, useCallback } f
 
 const SearchBarContext = createContext()
 
-export const SearchBarProvider = ({ 
+export const SearchBarProvider = ({
   children,
-  onSearch = () => {},
+  onSearch = () => { },
+  onSuggestionClick = () => { },
   delay = 300,
   suggestions = [],
-  searchType = 'vacancies', // 'vacancies' o 'people'
+  searchType = '', // 'vacancies' o 'people'
   searchOnType = true,
   showRecentSearches = true,
   maxRecentSearches = 5,
   groupSuggestions = false
 }) => {
+
   const [query, setQuery] = useState('')
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [filteredSuggestions, setFilteredSuggestions] = useState([])
@@ -41,14 +43,14 @@ export const SearchBarProvider = ({
   const performSearch = useCallback(async (searchQuery) => {
     try {
       setIsLoading(true)
-      
+
       const filtered = suggestions.filter(item => {
         const searchText = typeof item === 'string' ? item : item.text
         const originalData = item.originalData || {}
-        
+
         // Campos de búsqueda según el tipo
         const searchFields = [searchText.toLowerCase()]
-        
+
         if (searchType === 'people') {
           // Campos para búsqueda de hojas de vida (contratistas)
           searchFields.push(
@@ -70,7 +72,7 @@ export const SearchBarProvider = ({
           )
         }
 
-        return searchFields.some(field => 
+        return searchFields.some(field =>
           field && field.includes(searchQuery.toLowerCase())
         )
       })
@@ -100,27 +102,32 @@ export const SearchBarProvider = ({
     return () => clearTimeout(timer)
   }, [query, delay, searchOnType, performSearch, onSearch])
 
-  // Añadir a recientes
-  const addToRecentSearches = useCallback((searchText) => {
-    if (!searchText.trim() || !showRecentSearches) return
-    
-    const updatedSearches = [
-      searchText,
-      ...recentSearches.filter(item => item !== searchText)
-    ].slice(0, maxRecentSearches)
-    
-    setRecentSearches(updatedSearches)
-  }, [recentSearches, showRecentSearches, maxRecentSearches])
+  // Añadir a busquedas recientes
+  const addToRecentSearches = useCallback((searchItem) => {
+    if (!searchItem || !showRecentSearches) return
+    const searchText = typeof searchItem === 'string' ? searchItem : searchItem.text
+    setRecentSearches(prev => {
+      const withoutDuplicates = prev.filter(item => {
+        if (typeof item === 'string') {
+          return item !== searchText
+        }
+        return item.text !== searchText
+      })
+
+      const newItem = typeof searchItem === 'string' ? searchText : { text: searchText }
+      return [newItem, ...withoutDuplicates].slice(0, maxRecentSearches)
+    })
+  }, [showRecentSearches, maxRecentSearches])
 
   // Manejar selección
   const handleSuggestionClick = useCallback((suggestion) => {
     const searchText = typeof suggestion === 'string' ? suggestion : suggestion.text
+    onSuggestionClick(suggestion)
     setQuery(searchText)
-    onSearch(searchText)
     setShowSuggestions(false)
     addToRecentSearches(searchText)
     inputRef.current?.focus()
-  }, [onSearch, addToRecentSearches])
+  }, [onSuggestionClick, addToRecentSearches])
 
   // Manejar teclado
   const handleKeyDown = useCallback((e) => {
@@ -128,7 +135,7 @@ export const SearchBarProvider = ({
 
     if (e.key === 'ArrowDown') {
       e.preventDefault()
-      setActiveSuggestion(prev => 
+      setActiveSuggestion(prev =>
         prev < filteredSuggestions.length - 1 ? prev + 1 : prev
       )
     } else if (e.key === 'ArrowUp') {
@@ -145,7 +152,7 @@ export const SearchBarProvider = ({
     if (!query) return text
 
     const parts = text.split(new RegExp(`(${query})`, 'gi'))
-    return parts.map((part, i) => 
+    return parts.map((part, i) =>
       part.toLowerCase() === query.toLowerCase() ? (
         <span key={i} className="font-bold text-[#60efdb]">
           {part}
@@ -166,8 +173,17 @@ export const SearchBarProvider = ({
   }, [onSearch])
 
   // Eliminar búsqueda reciente
-  const removeRecentSearch = useCallback((item) => {
-    setRecentSearches(prev => prev.filter(search => search !== item))
+  const removeRecentSearch = useCallback((itemToRemove) => {
+    setRecentSearches(prev =>
+      prev.filter(search => {
+        if (typeof search === 'string' && typeof itemToRemove === 'string') {
+          return search !== itemToRemove
+        }
+        if (typeof search === 'object' && typeof itemToRemove === 'object') {
+          return search.text !== itemToRemove.text
+        }
+        return true
+      }))
   }, [])
 
   // Agrupar por categoría

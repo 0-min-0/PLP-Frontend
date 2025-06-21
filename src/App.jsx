@@ -36,6 +36,8 @@ import { SearchBarProvider } from './Context/SearchBarContext'
 import { vacanciesExample } from './Utils/objectsExample'
 import { PostulatedPeople } from './Pages/Settings/SettingsEmployer/PostulatedPeople'
 import { Comments } from './Pages/Settings/SettingsJobSeeker/Comments'
+import { Notifications } from './Pages/NotificationsCenter/Notifications'
+import { AIChatBot } from './Pages/Chat/AIChatBot'
 
 function App() {
   const location = useLocation()
@@ -71,20 +73,6 @@ function App() {
     }
   }
 
-  // Formateamos las vacantes para el SearchBar
-  const formatVacancySuggestions = (vacancies) => {
-    return vacancies.map(vacancy => ({
-      id: vacancy.id,
-      text: `${vacancy.title} - ${vacancy.company}`,
-      category: vacancy.category,
-      originalData: vacancy
-    }))
-  }
-
-  const handleSearch = (query) => {
-    console.log('Búsqueda realizada:', query)
-  }
-
   return (
     <PasswordProvider>
       <RegisterProvider>
@@ -93,8 +81,6 @@ function App() {
             <SettingsProvider initialUser={getInitialUser()}>
               <ContactProvider>
                 <SearchBarProvider
-                  onSearch={handleSearch}
-                  suggestions={formatVacancySuggestions(vacanciesExample)}
                   groupSuggestions={true}
                   showRecentSearches={true}
                   delay={300}
@@ -143,6 +129,8 @@ function App() {
                       </Route>
                       <Route path='/verificar-cuenta' element={<VerifyAccount />} />
                       <Route path='/sobre-plp' element={<AboutUs />} />
+                      <Route path='/centro-de-notificaciones' element={<Notifications />} />
+                      <Route path='/chat-bot-ayuda' element={<AIChatBot />} />
                     </Routes>
                   </div>
                 </SearchBarProvider>

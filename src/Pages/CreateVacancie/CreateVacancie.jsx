@@ -12,7 +12,7 @@ export const CreateVacancie = () => {
         <div className='p-6'>
             <Header
                 middleObject={
-                    <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                    <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
                         Crear nueva vacante
                     </h1>
                 }
@@ -30,6 +30,7 @@ export const CreateVacancie = () => {
                     <ProfileMenu
                         avatar={avatar}
                         name={<span className='text-lg font-semibold'>Jasmin Esperanza Garcia Paez</span>}
+                        settingsRoute='/configuraciones-contratante'
                     />
                 }
             />

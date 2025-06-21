@@ -1,4 +1,4 @@
-import { HiOutlineMail, HiOutlinePhone, HiOutlineAcademicCap, HiOutlineUser, HiOutlineMap, HiOutlineBriefcase } from 'react-icons/hi'
+import { HiOutlineMail, HiOutlinePhone, HiOutlineAcademicCap, HiOutlineUser, HiOutlineMap, HiOutlineBriefcase, HiOutlineChatAlt } from 'react-icons/hi'
 
 export const PersonInfo = ({ person }) => {
     return (
@@ -80,6 +80,35 @@ export const PersonInfo = ({ person }) => {
                         <p>{person.studies}</p>
                     </div>
                 </div>
+            )}
+
+            {/* Sección de Comentarios */}
+            {person.comments?.length > 0 && (
+                <>
+                    <hr className='border-t border-gray-200 mb-6' />
+                    
+                    <div className='mb-6'>
+                        <h4 className='text-xl font-semibold text-[#405e7f] mb-4 flex items-center gap-2'>
+                            <HiOutlineChatAlt className='w-5 h-5 text-[#60efdb]' />
+                            Comentarios y Recomendaciones
+                        </h4>
+                        
+                        <div className='space-y-4'>
+                            {person.comments.map((comment, index) => (
+                                <div key={index} className='bg-[#f8fafc] p-4 rounded-lg border border-[#e2e8f0]'>
+                                    <div className='flex justify-between items-start mb-2'>
+                                        <div>
+                                            <p className='font-semibold text-[#405e7f]'>{comment.name}</p>
+                                            <p className='text-sm text-[#64748b] capitalize'>{comment.role}</p>
+                                        </div>
+                                        <span className='text-sm text-[#64748b]'>{comment.date}</span>
+                                    </div>
+                                    <p className='text-gray-700'>{comment.coment}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </>
             )}
         </div>
     )

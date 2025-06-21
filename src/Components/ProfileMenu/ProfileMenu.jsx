@@ -4,8 +4,7 @@ import { FiLogOut } from 'react-icons/fi'
 import { MenuItem } from '../../UI/MenuItem'
 import { useMenu } from '../../Context/MenuContext'
 import { useSettings } from '../../Context/SettingsContext'
-// import { useAuth } from '../../Context/AuthContext' // Asume que tienes un contexto de autenticación
-import { LogoutModal } from '../../UI/Modals/LogoutModal' // Ajusta la ruta según tu estructura
+import { LogoutModal } from '../../UI/Modals/LogoutModal'
 import { useNavigate } from 'react-router-dom'
 
 export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
@@ -43,7 +42,6 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
   }
 
   const handleConfirmLogout = () => {
-    logout()
     setShowLogoutModal(false)
     navigate('/')
   }
@@ -61,7 +59,7 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
     <div className='relative' ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='flex items-center gap-2 rounded-full hover:bg-[#60efdb] transition duration-300 ease-in-out'
+        className='flex items-center gap-2 rounded-full hover:bg-[#60efdb] transition duration-300 ease-in-out cursor-pointer'
         aria-label='Toggle profile menu'
       >
         <img
@@ -110,7 +108,7 @@ export const ProfileMenu = ({ settingsRoute, menuItems = [] }) => {
           <li>
             <button 
               onClick={handleLogoutClick}
-              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-3 cursor-pointer"
+              className="w-full px-4 py-3 text-left rounded-md text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-3 cursor-pointer"
             >
               <span>Cerrar sesión</span>
               <FiLogOut className='w-4 h-4' />

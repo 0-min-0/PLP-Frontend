@@ -1,6 +1,5 @@
 import { memo, useMemo } from 'react'
 import { CardContainer } from '../../Components/Container/CardContainer'
-import { SetPerfil } from '../../Components/SetPerfil/SetPerfil'
 import load from '../../assets/images/cargando.gif'
 
 export const BaseLayout = memo(({
@@ -10,7 +9,6 @@ export const BaseLayout = memo(({
   data = [],
   loading,
   ItemComponent,
-  showSidebar = true
 }) => {
   const timePeriods = useMemo(() => ['Hoy', 'Esta semana', 'Este mes'], [])
 
@@ -39,29 +37,17 @@ export const BaseLayout = memo(({
       </div>
 
       <div className='mb-10'>
-        <div className='flex w-full gap-4'>
-          <div className={showSidebar ? 'w-[70%]' : 'w-full'}>
-            <CardContainer
-              key={`container-0-${data.length}`}
-              title={timePeriods[0]}
-              items={data}
-              rounded='top'
-              ItemComponent={ItemComponent}
-            />
-          </div>
-
-          {showSidebar && (
-            <div className='w-[30%]'>
-              <SetPerfil />
-            </div>
-          )}
-        </div>
-
+        <CardContainer
+          key={`container-0-${data.length}`}
+          title={timePeriods[0]}
+          items={data}
+          rounded='top'
+          ItemComponent={ItemComponent}
+        />
         <CardContainer
           key={`container-1-${data.length}`}
           title={timePeriods[1]}
           items={data}
-          rounded={showSidebar ? 'top-right' : 'none'}
           ItemComponent={ItemComponent}
         />
 

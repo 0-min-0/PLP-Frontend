@@ -2,12 +2,15 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { FiX } from 'react-icons/fi'
 import { Button } from '../button'
 import { PersonInfo } from './PersonInfo'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { jsPDF } from 'jspdf'
 import html2canvas from 'html2canvas'
+import { CommentModal } from '../Modals/CommentModal'
 
 export const PersonView = ({ person, isOpen, onClose, onContact }) => {
   const contentRef = useRef(null)
+  const [isCommentModalOpen, setIsCommentModalOpen] = useState(false)
+  const [currentRole, setCurrentRole] = useState('contratante')
 
   const sanitizeColors = (element) => {
     try {
@@ -97,6 +100,22 @@ export const PersonView = ({ person, isOpen, onClose, onContact }) => {
     }
   }
 
+  const handleOpenCommentModal = () => {
+    setIsCommentModalOpen(true)
+  }
+
+  const handleCloseCommentModal = () => {
+    setIsCommentModalOpen(false)
+  }
+
+  const handleSaveComment = (newComment) => {
+    // Aquí puedes manejar el guardado del comentario
+    // Por ejemplo, enviarlo a una API o guardarlo en el estado
+    console.log('Nuevo comentario:', newComment)
+    // onContact podría ser modificado para manejar comentarios
+    // o podrías tener una prop específica para comentarios
+  }
+
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 }
@@ -112,56 +131,65 @@ export const PersonView = ({ person, isOpen, onClose, onContact }) => {
   }
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className='fixed inset-0 bg-black/40 flex items-center justify-center z-50'
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          variants={backdropVariants}
-        >
+    <>
+      <AnimatePresence>
+        {isOpen && (
           <motion.div
-            className='bg-white rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
-            variants={modalVariants}
+            className='fixed inset-0 bg-black/40 flex items-center justify-center z-50'
             initial="hidden"
             animate="visible"
-            exit="exit"
+            exit="hidden"
+            variants={backdropVariants}
           >
-            <div className='flex justify-between items-center mb-6'>
-              <h2 className='text-3xl font-bold text-[#405e7f]'>{person.occupation}</h2>
-              <button
-                onClick={onClose}
-                className='text-[#405e7f] hover:bg-gray-100 p-2 rounded-md transition-colors cursor-pointer'
-                aria-label="Cerrar ventana"
-              >
-                <FiX className='w-5 h-5' />
-              </button>
-            </div>
+            <motion.div
+              className='bg-white rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <div className='flex justify-between items-center mb-6'>
+                <h2 className='text-3xl font-bold text-[#405e7f] ml-6'>{person.occupation}</h2>
+                <button
+                  onClick={onClose}
+                  className='text-[#405e7f] hover:bg-gray-100 p-2 rounded-md transition-colors cursor-pointer'
+                  aria-label="Cerrar ventana"
+                >
+                  <FiX className='w-5 h-5' />
+                </button>
+              </div>
 
-            <div ref={contentRef}>
-              <PersonInfo person={person} />
-            </div>
+              <div ref={contentRef}>
+                <PersonInfo person={person} />
+              </div>
 
-            <div className='flex justify-center gap-4 mt-6'>
-              <Button
-                btnName='Descargar CV'
-                btnType='button'
-                btnStyle='border border-[#405e7f] text-[#405e7f] text-lg font-medium px-6 py-2 rounded-full'
-                clicked={handleDownloadPDF}
-                aria-label="Descargar currículum en PDF"
-              />
-              <Button
-                btnName='Contactar'
-                btnType='button'
-                btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full'
-                clicked={() => onContact(person)}
-                aria-label="Contactar a esta persona"
-              />
-            </div>
+              <div className='flex justify-center gap-4 mt-6'>
+                <Button
+                  btnName='Descargar CV'
+                  btnType='button'
+                  btnStyle='border border-[#405e7f] text-[#405e7f] text-lg font-medium px-6 py-2 rounded-full'
+                  clicked={handleDownloadPDF}
+                  aria-label="Descargar currículum en PDF"
+                />
+                <Button
+                  btnName='Dejar comentario'
+                  btnType='button'
+                  btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full'
+                  clicked={handleOpenCommentModal}
+                  aria-label="Dejar comentario sobre este profesional"
+                />
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        )}
+      </AnimatePresence>
+
+      <CommentModal
+        isOpen={isCommentModalOpen}
+        onClose={handleCloseCommentModal}
+        onSave={handleSaveComment}
+        currentRole={currentRole}
+      />
+    </>
   )
 }

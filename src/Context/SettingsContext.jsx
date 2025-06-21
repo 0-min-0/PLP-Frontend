@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect, useCallback } from 'react'
+import { createContext, useState, useContext, useEffect, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
 import { optionTown, optionGenre, optionId } from '../Utils/options';
 
@@ -810,32 +810,24 @@ export const SettingsProvider = ({ children, initialUser }) => {
 
   // Manejar cambio de nombre
   const roleConfig = {
-    Contratista: { nameKey: 'contractorName', default: 'Usuario' },
-    Contratante: { nameKey: 'employerName', default: 'Usuario' },
+    Contratista: { nameKey: 'nameJobSeeker', default: 'Usuario' },
+    Contratante: { nameKey: 'nameEmployer', default: 'Usuario' },
     Empresa: { nameKey: 'companyName', default: 'Usuario' }
   }
 
-  const handleNameChange = (newName) => {
-    if (!newName || typeof newName !== 'string') {
-      console.error('Nombre inválido:', newName)
-      return
-    }
-
-    const currentConfig = roleConfig[currentRole]
-    if (!currentConfig) {
-      console.error(`Configuración no encontrada para el rol: ${currentRole}`)
-      return
-    }
-
-    const updatedUser = {
-      ...user,
-      [currentConfig.nameKey]: newName.trim()
-    }
-
-    setUser(updatedUser)
-    setUserData(updatedUser)
-    localStorage.setItem('userData', JSON.stringify(updatedUser))
+ const handleNameChange = (newName) => {
+  if (!newName || typeof newName !== 'string') return
+  
+  const updatedUser = {
+    ...user,
+    [currentRole === 'Contratista' ? 'nameJobSeeker' : 
+     currentRole === 'Contratante' ? 'nameEmployer' : 
+     'companyName']: newName.trim()
   }
+  
+  setUser(updatedUser)
+  localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(updatedUser))
+}
 
 
   //-----------------------------------------CONTEXTO-----------------------------------------------//

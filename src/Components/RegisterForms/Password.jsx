@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Header } from '../Header/Header'
 import { WelcomeText } from '../../UI/WelcomeText'
@@ -8,6 +8,7 @@ import { FormsContainer } from '../../UI/FormsContainer'
 import { Input } from '../../UI/Input'
 import { Button } from '../../UI/button'
 import { useRegister } from '../../Context/RegisterContext'
+import { motion } from 'framer-motion'
 
 export const Password = () => {
   const {
@@ -19,9 +20,18 @@ export const Password = () => {
     handleSubmit
   } = useRegister()
 
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [termsError, setTermsError] = useState(false)
+
   const pStyle = 'text-red-400 text-sm mt-2 font-semibold'
 
   const localHandleSubmit = (e) => {
+    if (!termsAccepted) {
+      e.preventDefault()
+      setTermsError(true)
+      return
+    }
+    setTermsError(false)
     handleSubmit(e, 'password')
   }
 
@@ -29,7 +39,7 @@ export const Password = () => {
     <div className='p-6'>
       <Header
         middleObject={
-          <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
             Crear contraseña
           </h1>
         }
@@ -37,11 +47,18 @@ export const Password = () => {
           <div className='flex gap-2 mb-8'>
             <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Terminos y condiciones</NavLink>
+            <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
           </div>
         }
       />
-      <div className='flex justify-center items-start mt-14 gap-20'>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className='flex justify-center items-start mt-14 gap-20'
+      >
         <FormsContainer
           width='w-[35%]'
           bgColor='bg-[#dcfff6]'
@@ -56,10 +73,12 @@ export const Password = () => {
             </p>
           }
           form={
-            <form onSubmit={localHandleSubmit} className='w-full flex flex-col items-center gap-6 my-6'>
+            <form onSubmit={localHandleSubmit} className='w-full flex flex-col items-center gap-4 my-4'>
               <p className='text-[#405e7f] font-semibold text-left'>
-                Al crear tu contraseña debes tomar en cuenta que ésta debe contener almenos un número, una mayúscula y un caractér especial.
+                Al crear tu contraseña debes tomar en cuenta que ésta debe contener al menos un número, una mayúscula y un carácter especial.
               </p>
+
+              {/* Contraseña */}
               <div className='w-full'>
                 <div className='w-full relative'>
                   <Input
@@ -87,6 +106,7 @@ export const Password = () => {
                 )}
               </div>
 
+              {/* Confirmar contraseña */}
               <div className='w-full'>
                 <div className='w-full relative'>
                   <Input
@@ -114,7 +134,25 @@ export const Password = () => {
                 )}
               </div>
 
-              <div className='w-[35%]'>
+              {/* Aceptar términos y condiciones */}
+              <div className='w-full flex gap-3'>
+                <input
+                  type='checkbox'
+                  id='terms'
+                  checked={termsAccepted}
+                  onChange={() => setTermsAccepted(!termsAccepted)}
+                  className='w-5 h-5 cursor-pointer accent-[#405e7f]'
+                />
+                <label htmlFor='terms' className='text-[#405e7f] font-medium'>
+                  Acepto los <NavLink to="/terminos-y-condiciones" className='underline hover:text-[#254160]'>Términos y Condiciones</NavLink>
+                </label>
+              </div>
+              {termsError && (
+                <p className={pStyle}> ⓘ Debes aceptar los Términos y Condiciones para continuar.</p>
+              )}
+
+              {/* Botón */}
+              <div className='w-[35%] my-2'>
                 <Button
                   btnType='submit'
                   btnStyle='bg-[#405e7f] text-white font-bold px-4 py-2 rounded-full cursor-pointer w-full'
@@ -128,15 +166,17 @@ export const Password = () => {
 
         <WelcomeText
           text={
-            <p> Nos alegra tener nuevos usuarios como tú en
-            <br /> nuestro aplicativo, esperamos que tu
-            <br /> experiencia sea agradable en PLP. </p>
+            <p>
+              Nos alegra tener nuevos usuarios como tú en
+              <br /> nuestro aplicativo, esperamos que tu
+              <br /> experiencia sea agradable en PLP.
+            </p>
           }
           ilustration={registerIlustration}
           imgDesc='Ilustración de inicio de sesión'
           imgStyle='w-[400px] h-[400px]'
         />
-      </div>
+      </motion.div>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { IoBriefcaseOutline } from 'react-icons/io5'
 import { Button } from '../button'
 import { VacancyView } from './VacancyView'
 
-export const Vacancie = ({ onShowDetails, title, company, location, type, experience, ...vacancy }) => {
+export const Vacancie = ({ onShowDetails, title, company, location, category, experience, ...vacancy }) => {
   const [showDetail, setShowDetail] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -42,8 +42,8 @@ export const Vacancie = ({ onShowDetails, title, company, location, type, experi
           </div>
 
           <div className='flex items-start'>
-            <h3 className='font-semibold whitespace-nowrap'>Disponibilidad • </h3>
-            <p className='ml-1 line-clamp-1'>{type || 'No especificado'}</p>
+            <h3 className='font-semibold whitespace-nowrap'>Categoría • </h3>
+            <p className='ml-1 line-clamp-1'>{category || 'No especificado'}</p>
           </div>
         </div>
 

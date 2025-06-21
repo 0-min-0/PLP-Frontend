@@ -8,7 +8,8 @@ import { Button } from '../../UI/button'
 import { Input } from '../../UI/Input'
 import { Select } from '../../UI/Select'
 import { optionId } from '../../Utils/options'
-import { useRegister } from '../../Context/RegisterContext' 
+import { useRegister } from '../../Context/RegisterContext'
+import { motion } from 'framer-motion'
 
 export const JobSeeker = () => {
     const {
@@ -17,7 +18,7 @@ export const JobSeeker = () => {
         handleChange,
         handleSelectChange,
         handleSubmit
-    } = useRegister() 
+    } = useRegister()
 
     const errorStyle = 'text-[#405e7f] text-sm mt-1 font-semibold'
 
@@ -29,7 +30,7 @@ export const JobSeeker = () => {
         <div className='w-full p-6'>
             <Header
                 middleObject={
-                    <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                    <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
                         Registrarse como contratista
                     </h1>
                 }
@@ -37,32 +38,46 @@ export const JobSeeker = () => {
                     <div className='flex gap-2 mb-8'>
                         <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
                         <p>•</p>
-                        <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Terminos y condiciones</NavLink>
+                        <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
                     </div>
                 }
             />
-            <div className='flex justify-center items-start mt-6 gap-20'>
-                <div className='w-[60%]'>
+
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                className='flex justify-center items-start gap-20'
+            >
+                <div className='w-[35%]'>
                     <FormsContainer
                         width='w-full'
                         bgColor='bg-[#96aec9]'
                         textColor='#405e7f'
                         changeForm={
-                            <p className='text-white pt-4'>
-                                ¿Ya estás registrado en nuestra plataforma?{' '}
-                                <NavLink to='/acceder' className='text-white font-semibold hover:underline hover:text-gray-200'>
-                                    Iniciar sesión
-                                </NavLink>
-                            </p>
+                            <div className=''>
+                                <Button
+                                    clicked={localHandleSubmit}
+                                    btnStyle='w-[30%] bg-[#405e7f] text-white font-bold mt-2'
+                                    btnName='Continuar'
+                                />
+                                <p className='text-[#405e7f] pt-4'>
+                                    ¿Ya estás registrado en nuestra plataforma?{' '}
+                                    <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
+                                        Iniciar sesión
+                                    </NavLink>
+                                </p>
+                            </div>
                         }
                         form={
-                            <form className='w-full' onSubmit={localHandleSubmit}>
-                                <div>
+                            <form className='w-full h-115 overflow-y-auto scrollbar-custom mb-4' onSubmit={localHandleSubmit}>
+                                <div className='mr-4'>
                                     <h2 className='text-white font-semibold'>
                                         Documento de identidad
                                     </h2>
-                                    <div className='w-full flex mb-2'>
-                                        <div className='w-1/2 pr-5 mt-3'>
+                                    <div className='w-full mb-3'>
+                                        <div className=' mt-3'>
                                             <Select
                                                 name='documentType'
                                                 value={form.documentType}
@@ -71,7 +86,7 @@ export const JobSeeker = () => {
                                             />
                                             {errors.documentType && <p className={errorStyle}>{errors.documentType}</p>}
                                         </div>
-                                        <div className='w-1/2 pl-5'>
+                                        <div className=''>
                                             <Input
                                                 iName='documentNumber'
                                                 isFor='documentNumber'
@@ -84,8 +99,8 @@ export const JobSeeker = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='w-full flex'>
-                                    <div className='w-1/2 pr-5'>
+                                <div className='w-full'>
+                                    <div className='mb-3 mr-4'>
                                         <h2 className='text-white font-semibold'>
                                             Habilidades Técnicas y Sociales
                                         </h2>
@@ -130,7 +145,7 @@ export const JobSeeker = () => {
                                         />
                                         {errors.skillFour && <p className={errorStyle}>{errors.skillFour}</p>}
                                     </div>
-                                    <div className='w-1/2 pl-5'>
+                                    <div className='mr-4'>
                                         <h2 className='text-white font-semibold'>
                                             Estudios complementarios
                                         </h2>
@@ -171,25 +186,20 @@ export const JobSeeker = () => {
                                         />
                                     </div>
                                 </div>
-                                <Button
-                                    btnType='submit'
-                                    btnStyle='w-[25%] bg-[#405e7f] text-white font-bold my-6 mx-100'
-                                    btnName='Continuar'
-                                />
                             </form>
                         }
                     />
                 </div>
+
                 <WelcomeText
                     text={<p> Nos alegra tener nuevos usuarios como tú en
                         <br /> nuestro aplicativo, esperamos que tu
-                        <br /> experiencia sea agradable en PLP. </p>
-                    }
+                        <br /> experiencia sea agradable en PLP. </p>}
                     ilustration={registerIlustration}
                     imgDesc='Ilustración de inicio de sesión'
                     imgStyle='w-[450px] h-[450px]'
                 />
-            </div>
+            </motion.div>
         </div>
     )
 }

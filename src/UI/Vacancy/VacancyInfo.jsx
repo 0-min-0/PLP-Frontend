@@ -14,38 +14,11 @@ import {
 import { getCategoryLabel } from '../../Utils/options'
 
 export const VacancyInfo = ({ vacancy }) => {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2
-            }
-        }
-    }
-
-    const itemVariants = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                ease: "easeOut",
-                duration: 0.5
-            }
-        }
-    }
 
     return (
-        <motion.div
-            className='w-full px-12 max-h-[65vh] overflow-y-auto scrollbar-custom'
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-        >
+        <div className='w-full px-12 max-h-[65vh] overflow-y-auto scrollbar-custom'>
             {/* Información de la empresa */}
-            <motion.div variants={itemVariants}>
+            <div>
                 <div className='mb-6'>
                     <h5 className='font-bold text-xl text-[#405e7f] mb-4'>Información de la Empresa</h5>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -78,17 +51,12 @@ export const VacancyInfo = ({ vacancy }) => {
                         {vacancy.companyDescription || 'Somos una empresa de tecnología en busca de problemáticas alrededor para darles soluciones innovadoras y eficientes.'}
                     </p>
                 </div>
-            </motion.div>
+            </div>
 
-            <motion.hr
-                className='border-t border-gray-200 mb-6'
-                variants={itemVariants}
-            />
-
+            <hr className='border-t border-gray-200 mb-6' />
             {/* Información de la vacante */}
-            <motion.div variants={itemVariants}>
+            <div>
                 <h4 className='text-xl font-semibold text-[#405e7f] mb-4'>Detalles de la Vacante</h4>
-
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
                     <div className='flex items-start gap-3'>
                         <HiOutlineBriefcase className='w-5 h-5 text-[#60efdb] mt-1' />
@@ -143,15 +111,11 @@ export const VacancyInfo = ({ vacancy }) => {
                         </div>
                     </div>
                 </div>
-            </motion.div>
+            </div>
 
-            <motion.hr
-                className='border-t border-gray-200 mb-6'
-                variants={itemVariants}
-            />
-
+            <hr className='border-t border-gray-200 mb-6' />
             {/* Responsabilidades */}
-            <motion.div variants={itemVariants}>
+            <div>
                 <h4 className='text-xl font-semibold text-[#405e7f] mb-4'>Responsabilidades</h4>
                 <div className='flex items-start gap-3'>
                     <HiOutlineClipboardList className='w-5 h-5 text-[#60efdb] mt-1' />
@@ -161,7 +125,7 @@ export const VacancyInfo = ({ vacancy }) => {
                         ))}
                     </div>
                 </div>
-            </motion.div>
-        </motion.div>
+            </div>
+        </div>
     )
 }
