@@ -50,17 +50,21 @@ function App() {
     '/configuraciones-contratante/terminos-condiciones',
     '/configuraciones-contratante/ayuda-soporte',
     '/configuraciones-contratante/postulados',
+    '/configuraciones-contratante/chat-bot',
     '/configuraciones-contratista/general-contratista',
     '/configuraciones-contratista/postulaciones-contratista',
     '/configuraciones-contratista/terminos-condiciones',
     '/configuraciones-contratista/ayuda-soporte',
     '/configuraciones-contratista/comentarios-contratista',
+    '/configuraciones-contratista/chat-bot',
     '/configuraciones-empresa',
     '/configuraciones-empresa/general-empresa',
     '/configuraciones-empresa/publicaciones-empresa',
     '/configuraciones-empresa/terminos-condiciones',
     '/configuraciones-empresa/ayuda-soporte',
-    '/configuraciones-empresa/postulados'
+    '/configuraciones-empresa/postulados',
+    '/configuraciones-empresa/chat-bot'
+
   ]
 
   const isBgRoute = bgRoutes.includes(location.pathname)
@@ -108,6 +112,7 @@ function App() {
                         <Route path='postulados' element={<PostulatedPeople />} />
                         <Route path='terminos-condiciones' element={<Terms />} />
                         <Route path='ayuda-soporte' element={<Help />} />
+                        <Route path='chat-bot' element={<AIChatBot />} />
                       </Route>
                       { /* Configuraciones contratista */}
                       <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
@@ -117,6 +122,7 @@ function App() {
                         <Route path='comentarios-contratista' element={<Comments />} />
                         <Route path='terminos-condiciones' element={<Terms />} />
                         <Route path='ayuda-soporte' element={<Help />} />
+                        <Route path='chat-bot' element={<AIChatBot />} />
                       </Route>
                       { /* Configuraciones empresa */}
                       <Route path='/configuraciones-empresa' element={<SettingsCompany />}>
@@ -126,11 +132,11 @@ function App() {
                         <Route path='postulados' element={<PostulatedPeople />} />
                         <Route path='terminos-condiciones' element={<Terms />} />
                         <Route path='ayuda-soporte' element={<Help />} />
+                        <Route path='chat-bot' element={<AIChatBot />} />
                       </Route>
                       <Route path='/verificar-cuenta' element={<VerifyAccount />} />
                       <Route path='/sobre-plp' element={<AboutUs />} />
                       <Route path='/centro-de-notificaciones' element={<Notifications />} />
-                      <Route path='/chat-bot-ayuda' element={<AIChatBot />} />
                     </Routes>
                   </div>
                 </SearchBarProvider>

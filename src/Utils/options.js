@@ -59,20 +59,25 @@ export const menuConfig = {
     { to: 'postulaciones-contratista', label: 'Postulaciones' },
     { to: 'comentarios-contratista', label: 'Comentarios' },
     { to: 'terminos-condiciones', label: 'Términos y condiciones' },
-    { to: 'ayuda-soporte', label: 'Ayuda' }
+    { to: 'ayuda-soporte', label: 'Ayuda' },
+    { to: 'chat-bot', label: 'Chat IA (Soporte)' }
+
   ],
   employer: [
     { to: 'general-contratante', label: 'General' },
     { to: 'publicaciones-contratante', label: 'Publicaciones' },
     { to: 'postulados', label: 'Personas postuladas' },
     { to: 'terminos-condiciones', label: 'Términos y condiciones' },
-    { to: 'ayuda-soporte', label: 'Ayuda' }
+    { to: 'ayuda-soporte', label: 'Ayuda' },
+    { to: 'chat-bot', label: 'Chat IA (Soporte)' }
+
   ],
   company: [
     { to: 'general-empresa', label: 'General' },
     { to: 'publicaciones-empresa', label: 'Publicaciones' },
     { to: 'postulados', label: 'Personas postuladas' },
     { to: 'terminos-condiciones', label: 'Términos y condiciones' },
-    { to: 'ayuda-soporte', label: 'Ayuda' }
+    { to: 'ayuda-soporte', label: 'Ayuda' },
+    { to: 'chat-bot', label: 'Chat IA (Soporte)' }
   ]
 }
