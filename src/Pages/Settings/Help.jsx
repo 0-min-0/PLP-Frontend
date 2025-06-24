@@ -1,25 +1,59 @@
-
+import { motion } from 'framer-motion'
 import { Avatar } from '../../Components/Avatar/Avatar'
+import { NavLink } from 'react-router-dom'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut'
+    }
+  }
+}
 
 export const Help = () => {
   return (
     <>
-      <Avatar />
-      <hr className='border-t border-gray-100 my-8' />
-      <div className='w-full h-100 max-h-[500px] overflow-y-auto scrollbar-custom pr-4 '>
-        <div className="max-w-4xl mx-auto px-6 py-8 text-[#405e7f] leading-relaxed">
-          <h1 className="text-3xl font-bold mb-6 text-center border-b-2 border-[#405e7f] pb-4">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className='w-full h-150 max-h-[700px] overflow-y-auto scrollbar-custom pr-4'
+      >
+        <div className="max-w-5xl mx-auto px-6 py-8 text-[#405e7f] leading-relaxed">
+          <motion.h1 
+            className="text-3xl font-bold mb-6 text-center border-b-2 border-[#405e7f] pb-4"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
             AYUDA Y SOPORTE DE PLP
-          </h1>
+          </motion.h1>
 
-          <section className="mb-8">
+          <motion.p 
+            className="text-sm italic mb-8 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            Última actualización: 03/06/2025
+          </motion.p>
+
+          <motion.section 
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">1. Preguntas Frecuentes (FAQ)</h2>
 
             <h3 className="font-semibold mb-3 text-lg">Para Candidatos</h3>
             <ul className="space-y-4 mb-6">
               <li>
                 <p className="font-medium">¿Cómo creo un perfil en PLP?</p>
-                <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">Ve a <a href="#" className="text-[#60efdb] hover:underline">Registro</a>, completa tus datos personales, experiencia laboral y habilidades. Sube un currículum opcional para destacarte.</p>
+                <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">Ve a <NavLink to='/crear-cuenta' className='text-[#60efdb] hover:underline'>Registro</NavLink>, completa tus datos personales, experiencia laboral y habilidades. Sube un currículum opcional para destacarte.</p>
               </li>
               <li>
                 <p className="font-medium">¿Puedo usar PLP sin título profesional?</p>
@@ -43,25 +77,45 @@ export const Help = () => {
               </li>
               <li>
                 <p className="font-medium">¿Hay costos por usar PLP?</p>
-                <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">Consulta nuestros <a href="#" className="text-[#60efdb] hover:underline">Planes y Precios</a>. Algunas funciones básicas son gratuitas.</p>
+                <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">No, PLP es una plataforma completamente gratuita para cualquier tipo de usuario.</p>
               </li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div 
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section 
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">2. Guías y Tutoriales</h2>
             <ul className="space-y-3 list-disc pl-5">
               <li><a href="#" className="text-[#60efdb] hover:underline">Video tutorial: Cómo optimizar tu perfil para empleadores</a></li>
               <li><a href="#" className="text-[#60efdb] hover:underline">Guía PDF: Mejores prácticas para publicar vacantes</a></li>
               <li><a href="#" className="text-[#60efdb] hover:underline">Webinar: Cómo destacar habilidades sin título profesional</a></li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div 
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section 
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">3. Problemas Técnicos</h2>
             <ul className="space-y-4">
               <li>
@@ -73,11 +127,21 @@ export const Help = () => {
                 <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">Verifica tu carpeta de spam o añade contacto@plp.com a tus contactos.</p>
               </li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div 
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section 
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">4. Contacto Directo</h2>
             <ul className="space-y-3">
               <li className="flex items-baseline">
@@ -93,11 +157,21 @@ export const Help = () => {
                 <span>Disponible en la app/web (icono de burbuja en esquina inferior derecha)</span>
               </li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div 
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section 
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">5. Denuncias y Seguridad</h2>
             <ul className="space-y-4">
               <li>
@@ -109,16 +183,26 @@ export const Help = () => {
                 <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">Revisa nuestra <a href="#" className="text-[#60efdb] hover:underline">Política de Privacidad</a> para saber cómo cuidamos tu información.</p>
               </li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div 
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="bg-gray-50 p-4 rounded-lg">
+          <motion.section 
+            className="bg-gray-50 p-4 rounded-lg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.4 }}
+          >
             <h3 className="font-semibold">¿Cómo podemos mejorar PLP?</h3>
             <p className="mt-2">Déjanos tus sugerencias <a href="#" className="text-[#60efdb] hover:underline">en este formulario</a>.</p>
-          </section>
+          </motion.section>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }

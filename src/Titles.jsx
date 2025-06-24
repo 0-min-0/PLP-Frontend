@@ -20,7 +20,8 @@ export const DynamicTitle = () => {
     '/centro-de-notificaciones': 'Centro de notificaciones | PLP',
     '/configuraciones-contratante': 'Configuraciones | PLP',
     '/configuraciones-contratista': 'Configuraciones | PLP',
-    '/verificar-cuenta': 'Verifica tu cuenta | PLP'
+    '/configuraciones-empresa': 'Configuraciones | PLP',
+    '/verificar-cuenta': 'Verifica tu cuenta | PLP',
   }
 
   useEffect(() => {

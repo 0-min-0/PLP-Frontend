@@ -11,7 +11,7 @@ export const Register = () => {
     <div className='w-full p-6'>
       <Header
         middleObject={
-          <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
             Registrarse
           </h1>
         }
@@ -27,13 +27,12 @@ export const Register = () => {
           </div>
         }
       />
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='flex justify-center items-start gap-20'
+        className='flex justify-center items-start gap-20 mt-6'
       >
         <RegisterUser />
         <WelcomeText

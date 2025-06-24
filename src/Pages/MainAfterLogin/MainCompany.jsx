@@ -4,16 +4,14 @@ import { Header } from '../../Components/Header/Header'
 import { SearchBar } from '../../UI/SearchBar'
 import { ProfileMenu } from '../../Components/ProfileMenu/ProfileMenu'
 import { HiOutlineInbox } from 'react-icons/hi2'
-import { VacanciesLayout } from '../../Layouts/VacanciesLayout/VacanciesLayout'
-import { VacancyView } from '../../UI/Vacancy/VacancyView'
+import { IoBriefcaseOutline } from 'react-icons/io5'
+import { PeopleLayout } from '../../Layouts/PeopleLayout/PeopleLayout'
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5'
 
-export const MainJobSeeker = () => {
+export const MainCompany = () => {
+  const [hasNotifications, setHasNotifications] = useState(true)
   const [searchQuery, setSearchQuery] = useState('')
   const [isSearching, setIsSearching] = useState(false)
-  const [selectedVacancy, setSelectedVacancy] = useState(null)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [hasNotifications, setHasNotifications] = useState(true)
 
   const handleSearch = (query) => {
     setIsSearching(true)
@@ -21,24 +19,19 @@ export const MainJobSeeker = () => {
     setTimeout(() => setIsSearching(false), 300)
   }
 
-  const closeModal = () => {
-    setIsModalOpen(false)
-    setSelectedVacancy(null)
-  }
-
   return (
     <div className='p-6'>
       <Header
         middleObject={
           <SearchBar
-            placeholder="Buscar vacantes por título, empresa o habilidades..."
+            placeholder='Buscar hojas de vida por nombre, ocupación o habilidades...'
             onSearch={handleSearch}
           />
         }
         menu={
           <ProfileMenu
-            settingsRoute='/configuraciones-contratista'
-            categoriesRoute='/categorias-trabajo/contratista'
+            settingsRoute='/configuraciones-empresa'
+            categoriesRoute='/categorias-trabajo/empresa'
           />
         }
         buttons={
@@ -49,36 +42,28 @@ export const MainJobSeeker = () => {
             >
               <IoChatbubbleEllipsesOutline className='w-8 h-8 text-[#405e7f] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
             </NavLink>
+            <NavLink to='/crear-vacante' title='Crear vacante'>
+              <IoBriefcaseOutline className='w-8 h-8 text-[#405e7f] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
+            </NavLink>
             <NavLink
               to='/centro-de-notificaciones'
               title='Centro de notificaciones'
-              className=' relative'
+              className='relative'
             >
               <HiOutlineInbox className='w-8 h-8 text-[#405e7f] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
               {hasNotifications && (
                 <>
-                  <span className='absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full animate-ping border-2 border-white' />
-                  <span className='absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full border-2 border-white' />
+                  <span className="absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full animate-ping border-2 border-white" />
+                  <span className="absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full border-2 border-white" />
                 </>
               )}
             </NavLink>
           </div>
         }
       />
-
-      <VacanciesLayout
+      <PeopleLayout 
         searchQuery={searchQuery}
         isSearching={isSearching}
-      />
-
-      <VacancyView
-        vacancy={selectedVacancy}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onApply={(vac) => {
-          console.log('Postulación enviada a:', vac)
-          closeModal()
-        }}
       />
     </div>
   )

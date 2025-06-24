@@ -4,21 +4,21 @@ import { useData } from '../../Hooks/useData'
 import { Vacancie } from '../../UI/Vacancy/Vacancie'
 import { Button } from '../../UI/button'
 import { EmptyState } from '../../UI/EmptyState'
+import { useUser } from '../../Context/UserContext'
 
 export const VacanciesLayout = ({
   searchQuery = '',
   isSearching = false
 }) => {
   const { data, loading, error } = useData('vacancies')
+  const { user } = useUser() 
   
-  // Filtrado optimizado con useMemo
   const filteredData = useMemo(() => {
     if (!data) return []
     if (!searchQuery.trim()) return data
 
     const lowerQuery = searchQuery.toLowerCase()
     return data.filter(vacancy => {
-      // Búsqueda en campos relevantes
       const searchFields = [
         vacancy.title,
         vacancy.company,
@@ -33,17 +33,15 @@ export const VacanciesLayout = ({
     })
   }, [data, searchQuery])
 
-  // Textos del layout memoizados
   const [layoutTitle, layoutDescription] = useMemo(() => [
     searchQuery
       ? `Resultados para "${searchQuery}"`
-      : "¡Hola, Usuario! No te pierdas las vacantes más recientes.",
+      : `¡Hola, ${user.name}! No te pierdas las vacantes más recientes.`, 
     searchQuery
       ? `${filteredData.length} ${filteredData.length === 1 ? 'vacante encontrada' : 'vacantes encontradas'}`
       : "Busca ofertas laborales desde las más recientes (Hoy) hasta las más pasadas de fecha (Este mes)."
-  ], [searchQuery, filteredData.length])
+  ], [searchQuery, filteredData.length, user.name]) 
 
-  // Renderizado condicional
   const renderContent = () => {
     if (error) {
       return (

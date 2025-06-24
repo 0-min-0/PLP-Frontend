@@ -60,10 +60,10 @@ export const MainMenu = () => {
               Menú
             </h3>
           </div>
-            <MenuItem to='/categorias'>Categorias de trabajo</MenuItem>
+            <MenuItem to='/categorias-trabajo'>Categorias de trabajo</MenuItem>
             <MenuItem to='/contacto'>Sobre PLP</MenuItem>
             <MenuItem to='/tema'>Tema (Predeterminado)</MenuItem>
-            <MenuItem to='/ayuda'>Ayuda</MenuItem>
+            <MenuItem to='/chat-bot-ayuda'>Chat IA (Soporte)</MenuItem>
         </ul>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
 import { SearchBar } from '../../UI/SearchBar'
@@ -6,37 +6,17 @@ import { ProfileMenu } from '../../Components/ProfileMenu/ProfileMenu'
 import { HiOutlineInbox } from 'react-icons/hi2'
 import { IoBriefcaseOutline } from 'react-icons/io5'
 import { PeopleLayout } from '../../Layouts/PeopleLayout/PeopleLayout'
-import { peopleExample } from '../../Utils/objectsExample'
+import { IoChatbubbleEllipsesOutline } from 'react-icons/io5'
 
 export const MainEmployer = () => {
   const [hasNotifications, setHasNotifications] = useState(true)
-
-  // Si más adelante conectas con backend:
-  // useEffect(() => {
-  //   fetch('/api/notificaciones-nuevas')
-  //     .then(res => res.json())
-  //     .then(data => setHasNotifications(data.hayNuevas))
-  // }, [])
-
-  const formatPersonSuggestions = (people) => {
-    return people.map(person => ({
-      id: person.id,
-      text: `${person.name} - ${person.occupation}`,
-      category: person.occupation,
-      originalData: person,
-      type: 'person'
-    }))
-  }
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isSearching, setIsSearching] = useState(false)
 
   const handleSearch = (query) => {
-    console.log('Buscando contratistas:', query)
-  }
-
-  const handleSuggestionClick = (suggestion) => {
-    if (suggestion.originalData) {
-      console.log('Hoja de vida seleccionada:', suggestion.originalData)
-      // Redirigir al perfil: navigate(`/perfil/${suggestion.originalData.id}`)
-    }
+    setIsSearching(true)
+    setSearchQuery(query)
+    setTimeout(() => setIsSearching(false), 300)
   }
 
   return (
@@ -44,29 +24,31 @@ export const MainEmployer = () => {
       <Header
         middleObject={
           <SearchBar
-            placeholder="Buscar hojas de vida por nombre, ocupación o habilidades..."
-            suggestions={formatPersonSuggestions(peopleExample)}
-            searchType="people"
+            placeholder='Buscar hojas de vida por nombre, ocupación o habilidades...'
             onSearch={handleSearch}
-            onSuggestionClick={handleSuggestionClick}
-            groupSuggestions={true}
           />
         }
         menu={
           <ProfileMenu
-            name={<span className='text-lg font-semibold'>Jasmin Esperanza Garcia Paez</span>}
             settingsRoute='/configuraciones-contratante'
+            categoriesRoute='/categorias-trabajo/contratante'
           />
         }
         buttons={
-          <div className='w-full flex'>
+          <div className='w-full flex gap-6 items-center'>
+            <NavLink
+              to='/chat-bot-ayuda'
+              title='Chat IA de ayuda'
+            >
+              <IoChatbubbleEllipsesOutline className='w-8 h-8 text-[#405e7f] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
+            </NavLink>
             <NavLink to='/crear-vacante' title='Crear vacante'>
               <IoBriefcaseOutline className='w-8 h-8 text-[#405e7f] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
             </NavLink>
             <NavLink
               to='/centro-de-notificaciones'
               title='Centro de notificaciones'
-              className='ml-6 relative'
+              className='relative'
             >
               <HiOutlineInbox className='w-8 h-8 text-[#405e7f] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
               {hasNotifications && (
@@ -79,7 +61,10 @@ export const MainEmployer = () => {
           </div>
         }
       />
-      <PeopleLayout />
+      <PeopleLayout
+        searchQuery={searchQuery}
+        isSearching={isSearching}
+      />
     </div>
   )
 }

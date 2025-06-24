@@ -9,7 +9,12 @@ export let vacanciesExample = [ //array de vacantes
     category: 'Tecnología e informática',
     availability: 'Full-time',
     responsibilities: 'Desarrollo de interfaces con React',
-    salary: '3,000,000'
+    salary: '3,000,000',
+    postulations: [
+      {
+        
+      }
+    ]
   },
   {
     id: 2,
@@ -176,7 +181,7 @@ export let peopleExample = [
         date: '2025-03-25',
         coment: 'Mariana es una diseñadora UX/UI excepcional. Su capacidad para traducir requisitos complejos en interfaces intuitivas y hermosas es realmente notable.'
       }
-    ]
+    ] 
   },
   {
     id: 3,

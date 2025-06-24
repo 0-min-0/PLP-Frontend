@@ -7,11 +7,11 @@ import { menuConfig } from '../../../Utils/options'
 
 export const SettingsCompany = () => {
     return (
-        <div>
+        <div className='p-6'>
             <div className=''>
                 <Header
                     middleObject={
-                        <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                        <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
                             Configuraciones
                         </h1>
                     }

@@ -3,17 +3,21 @@ import { IoBriefcaseOutline } from 'react-icons/io5'
 import { Button } from '../button'
 import { VacancyView } from './VacancyView'
 
-export const Vacancie = ({ onShowDetails, title, company, location, category, experience, ...vacancy }) => {
+export const Vacancie = ({ 
+  onShowDetails, 
+  title, 
+  company, 
+  location, 
+  category, 
+  experience, 
+  ...vacancy 
+}) => {
   const [showDetail, setShowDetail] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleApply = (vacancyData) => {
-    console.log('Postulando a:', vacancyData)
-  }
-
   const handleClick = () => {
     if (onShowDetails) {
-      onShowDetails(vacancy)
+      onShowDetails() // Solo notifica que se hizo clic, sin pasar datos
     } else {
       setShowDetail(true)
       setIsOpen(true)

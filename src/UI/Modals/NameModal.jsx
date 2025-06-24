@@ -4,32 +4,49 @@ import { Button } from '../button'
 import { useState, useEffect } from 'react'
 import { Input } from '../Input'
 
-export const NameModal = ({ isOpen, onClose, currentName, onSave, currentRole }) => {
-  const [newName, setNewName] = useState(currentName)
+export const NameModal = ({ 
+  isOpen, 
+  onClose, 
+  currentName, 
+  onSave, 
+  currentRole 
+}) => {
+  const [newName, setNewName] = useState(currentName || 'Usuario')
+  const [error, setError] = useState('')
 
+  // Configuración dinámica según el rol
   const fieldConfig = {
     contratista: {
       label: 'Nombre del Contratista',
-      placeholder: 'Ingresa el nombre del contratista'
+      placeholder: 'Ingresa el nombre del contratista',
+      validation: (name) => name.length >= 3 || 'Mínimo 3 caracteres'
     },
     contratante: {
       label: 'Nombre del Contratante',
-      placeholder: 'Ingresa el nombre del contratante'
+      placeholder: 'Ingresa el nombre del contratante',
+      validation: (name) => name.length >= 3 || 'Mínimo 3 caracteres'
     },
     empresa: {
       label: 'Nombre de la Empresa',
-      placeholder: 'Ingresa el nombre de la empresa'
+      placeholder: 'Ingresa el nombre de la empresa',
+      validation: (name) => name.length >= 3 || 'Mínimo 3 caracteres'
     },
     default: {
       label: 'Nombre',
-      placeholder: 'Ingresa el nuevo nombre'
+      placeholder: 'Ingresa el nuevo nombre',
+      validation: (name) => name.length >= 2 || 'Mínimo 2 caracteres'
     }
   }
 
+  // Obtener configuración según el rol
   const currentConfig = fieldConfig[currentRole?.toLowerCase()] || fieldConfig.default
 
+  // Resetear el estado cuando se abre/cierra el modal
   useEffect(() => {
-    setNewName(currentName)
+    if (isOpen) {
+      setNewName(currentName || '')
+      setError('')
+    }
   }, [isOpen, currentName])
 
   const backdropVariants = {
@@ -65,8 +82,23 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave, currentRole })
 
   const handleSave = () => {
     const trimmedName = newName.trim()
+    
+    // Validación
+    const validationResult = currentConfig.validation(trimmedName)
+    if (validationResult !== true) {
+      setError(validationResult)
+      return
+    }
+
     if (trimmedName !== '') {
       onSave(trimmedName)
+      onClose()
+    }
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSave()
     }
   }
 
@@ -101,14 +133,21 @@ export const NameModal = ({ isOpen, onClose, currentName, onSave, currentRole })
               Editar {currentConfig.label.toLowerCase()}
             </h2>
 
-            <Input
-              iType="text"
-              iValue={newName}
-              iName="name"
-              iChange={(e) => setNewName(e.target.value)}
-              iHolder={currentConfig.placeholder}
-              padding="px-4 py-2"
-            />
+            <div className='mb-4'>
+              <Input
+                iType="text"
+                iValue={newName}
+                iName="name"
+                iChange={(e) => {
+                  setNewName(e.target.value)
+                  setError('') // Limpiar error al escribir
+                }}
+                iHolder={currentConfig.placeholder}
+                padding="px-4 py-2"
+                onKeyDown={handleKeyDown}
+              />
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            </div>
 
             <div className='flex justify-end space-x-3 mt-6'>
               <Button

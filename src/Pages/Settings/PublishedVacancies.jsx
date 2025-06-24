@@ -1,9 +1,9 @@
 import { FiEdit, FiTrash2 } from 'react-icons/fi'
-import { SearchBar } from '../../../UI/SearchBar'
-import { VacancyDetail } from '../../../UI/Vacancy/VacancyDetail'
+import { SearchBar } from '../../UI/SearchBar'
+import { VacancyDetail } from '../../UI/Vacancy/VacancyDetail'
 import { useOutletContext } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Avatar } from '../../../Components/Avatar/Avatar'
+import { Avatar } from '../../Components/Avatar/Avatar'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -11,7 +11,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       duration: 0.3,
-      ease: "easeOut"
+      ease: 'easeOut'
     }
   }
 }
@@ -23,13 +23,16 @@ const buttonVariants = {
 }
 
 export const PublishedVacancies = () => {
-  const { 
-    selectedVacancy, 
-    setSelectedVacancy, 
-    handleSaveVacancy, 
-    handleDeleteVacancy,
-    vacancies
-  } = useOutletContext()
+  const context = useOutletContext() || {}
+
+  // Proporciona valores por defecto para todas las propiedades del contexto
+  const {
+    selectedVacancy = null,
+    setSelectedVacancy = () => { },
+    handleSaveVacancy = () => { },
+    handleDeleteVacancy = () => { },
+    vacancies = []
+  } = context
 
   return (
     <>
@@ -45,7 +48,7 @@ export const PublishedVacancies = () => {
           <h2 className='text-3xl font-[afacadBold] text-[#405e7f] mb-4'>
             Publicaciones
           </h2>
-          
+
           {vacancies.length > 0 ? (
             <div className='w-full h-80 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {vacancies.map((vacancy) => (
@@ -101,7 +104,7 @@ export const PublishedVacancies = () => {
               ))}
             </div>
           ) : (
-            <motion.p 
+            <motion.p
               className='text-gray-500 py-8 text-center'
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -112,7 +115,7 @@ export const PublishedVacancies = () => {
           )}
         </motion.div>
       </div>
-      
+
       <AnimatePresence>
         {selectedVacancy && (
           <VacancyDetail

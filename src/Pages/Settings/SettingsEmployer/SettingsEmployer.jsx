@@ -84,7 +84,7 @@ export const SettingsEmployer = () => {
     <div className='p-6'>
       <Header
         middleObject={
-          <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
             Configuraciones
           </h1>
         }

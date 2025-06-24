@@ -58,7 +58,7 @@ export const VerifyAccount = () => {
     }
 
     return (
-        <div>
+        <div className='p-6'>
             <header className='w-[75%] flex items-end justify-between'>
                 <img
                     src={plpLogo}

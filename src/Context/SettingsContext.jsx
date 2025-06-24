@@ -1,8 +1,7 @@
 import { createContext, useState, useContext, useEffect, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
-import { optionTown, optionGenre, optionId } from '../Utils/options';
+import { optionTown, optionGenre, optionId } from '../Utils/options'
 
-const AVATAR_STORAGE_KEY = 'plp_user_avatar'
 const USER_DATA_STORAGE_KEY = 'plp_user_data'
 
 const SettingsContext = createContext()
@@ -81,47 +80,47 @@ export const SettingsProvider = ({ children, initialUser }) => {
   })
 
   // Configuración de roles
-  const [rolesConfig, setRolesConfig] = useState({
-    contratista: {
-      avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-      nameKey: 'nameJobSeeker',
-      defaultName: 'Contratista',
-      avatarOptions: [
-        'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-        'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-        'https://cdn-icons-png.flaticon.com/512/921/921071.png',
-        'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-        'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
-        'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
-      ]
-    },
-    contratante: {
-      avatar: 'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-      nameKey: 'nameEmployer',
-      defaultName: 'Contratante',
-      avatarOptions: [
-        'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-        'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-        'https://cdn-icons-png.flaticon.com/512/921/921071.png',
-        'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-        'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
-        'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
-      ],
-    },
-    empresa: {
-      avatar: 'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-      nameKey: 'companyName',
-      defaultName: 'Empresa',
-      avatarOptions: [
-        'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-        'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-        'https://cdn-icons-png.flaticon.com/512/921/921071.png',
-        'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-        'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
-        'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
-      ],
-    }
-  })
+  // const [rolesConfig, setRolesConfig] = useState({
+  //   contratista: {
+  //     avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+  //     nameKey: 'nameJobSeeker',
+  //     defaultName: 'Contratista',
+  //     avatarOptions: [
+  //       'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+  //       'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+  //       'https://cdn-icons-png.flaticon.com/512/921/921071.png',
+  //       'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+  //       'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
+  //       'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
+  //     ]
+  //   },
+  //   contratante: {
+  //     avatar: 'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+  //     nameKey: 'nameEmployer',
+  //     defaultName: 'Contratante',
+  //     avatarOptions: [
+  //       'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+  //       'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+  //       'https://cdn-icons-png.flaticon.com/512/921/921071.png',
+  //       'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+  //       'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
+  //       'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
+  //     ],
+  //   },
+  //   empresa: {
+  //     avatar: 'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+  //     nameKey: 'companyName',
+  //     defaultName: 'Empresa',
+  //     avatarOptions: [
+  //       'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+  //       'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
+  //       'https://cdn-icons-png.flaticon.com/512/921/921071.png',
+  //       'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
+  //       'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
+  //       'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
+  //     ],
+  //   }
+  // })
 
   // Campos por rol
   const roleFields = {
@@ -797,46 +796,46 @@ export const SettingsProvider = ({ children, initialUser }) => {
   }, [passwordErrors, localPasswordErrors])
 
   // Manejar cambio de avatar
-  const handleAvatarChange = (newAvatar) => {
-    setRolesConfig(prev => ({
-      ...prev,
-      [currentRole]: {
-        ...prev[currentRole],
-        avatar: newAvatar
-      }
-    }))
-    localStorage.setItem(AVATAR_STORAGE_KEY, newAvatar)
-  }
+//   const handleAvatarChange = (newAvatar) => {
+//     setRolesConfig(prev => ({
+//       ...prev,
+//       [currentRole]: {
+//         ...prev[currentRole],
+//         avatar: newAvatar
+//       }
+//     }))
+//     localStorage.setItem(AVATAR_STORAGE_KEY, newAvatar)
+//   }
 
-  // Manejar cambio de nombre
-  const roleConfig = {
-    Contratista: { nameKey: 'nameJobSeeker', default: 'Usuario' },
-    Contratante: { nameKey: 'nameEmployer', default: 'Usuario' },
-    Empresa: { nameKey: 'companyName', default: 'Usuario' }
-  }
+//   // Manejar cambio de nombre
+//   const roleConfig = {
+//     Contratista: { nameKey: 'nameJobSeeker', default: 'Usuario' },
+//     Contratante: { nameKey: 'nameEmployer', default: 'Usuario' },
+//     Empresa: { nameKey: 'companyName', default: 'Usuario' }
+//   }
 
- const handleNameChange = (newName) => {
-  if (!newName || typeof newName !== 'string') return
+//  const handleNameChange = (newName) => {
+//   if (!newName || typeof newName !== 'string') return
   
-  const updatedUser = {
-    ...user,
-    [currentRole === 'Contratista' ? 'nameJobSeeker' : 
-     currentRole === 'Contratante' ? 'nameEmployer' : 
-     'companyName']: newName.trim()
-  }
+//   const updatedUser = {
+//     ...user,
+//     [currentRole === 'Contratista' ? 'nameJobSeeker' : 
+//      currentRole === 'Contratante' ? 'nameEmployer' : 
+//      'companyName']: newName.trim()
+//   }
   
-  setUser(updatedUser)
-  localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(updatedUser))
-}
+//   setUser(updatedUser)
+//   localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(updatedUser))
+// }
 
 
   //-----------------------------------------CONTEXTO-----------------------------------------------//
 
   const currentRoleName = getCurrentRoleFromPath()
-  const currentConfig = rolesConfig[currentRole] || rolesConfig.user
-  const userName = user?.[currentConfig.nameKey] || currentConfig.defaultName
-  const userAvatar = currentConfig.avatar
-  const avatarOptions = currentConfig.avatarOptions
+  // const currentConfig = rolesConfig[currentRole] || rolesConfig.user
+  // const userName = user?.[currentConfig.nameKey] || currentConfig.defaultName
+  // const userAvatar = currentConfig.avatar
+  // const avatarOptions = currentConfig.avatarOptions
 
   const contextValue = {
     user,
@@ -851,9 +850,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     activeSection,
     roleFields,
     userData,
-    userAvatar,
-    userName,
-    avatarOptions,
     saveSuccess,
     fieldLabels,
     getActiveError,
@@ -872,8 +868,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     setPasswordErrors,
     validateSkill,
     validateStudy,
-    handleAvatarChange,
-    handleNameChange,
     setIsEditingName,
     optionTown,
     optionGenre,

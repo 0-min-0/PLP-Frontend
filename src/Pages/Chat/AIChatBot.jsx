@@ -1,9 +1,13 @@
 import { useState, useRef, useEffect } from 'react'
+import { useLocation, NavLink } from 'react-router-dom'
 import { FiSend, FiMessageSquare, FiCopy, FiEdit2, FiCheck, FiX } from 'react-icons/fi'
+import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2'
 import { FaRobot } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import styles from '../../Style/AIChatBot.module.css'
 
 export const AIChatBot = () => {
+  const location = useLocation()
   const [messages, setMessages] = useState([
     { id: 1, text: '¡Hola! Soy tu asistente de IA. ¿En qué puedo ayudarte hoy?', sender: 'bot' }
   ])
@@ -13,6 +17,20 @@ export const AIChatBot = () => {
   const [editingId, setEditingId] = useState(null)
   const [editValue, setEditValue] = useState('')
   const messagesEndRef = useRef(null)
+
+  const getHomeRoute = () => {
+    if (location.pathname.includes('configuraciones-contratista')) {
+      return '/inicio-contratista'
+    } else if (location.pathname.includes('configuraciones-contratante')) {
+      return '/inicio-contratante'
+    } else if (location.pathname.includes('configuraciones-empresa')) {
+      return '/inicio-empresa'
+    }
+    return '/'
+  }
+
+  const homeRoute = getHomeRoute()
+  const isFullscreen = location.pathname === '/chat-bot-ayuda'
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -86,15 +104,27 @@ export const AIChatBot = () => {
   }
 
   return (
-    <div className='flex flex-col h-full w-full mx-auto bg-white'>
+    <div className={`${styles.container} ${isFullscreen ? styles.fullscreenContainer : styles.normalContainer
+      }`}>
       {/* Header */}
-      <div className='bg-[#405e7f] text-white p-4 flex items-center space-x-3 rounded-xl'>
-        <FaRobot className='text-2xl text-[#60efdb]' />
-        <h2 className='text-2xl font-semibold'>Asistente de IA</h2>
+      <div className={`${styles.header} ${isFullscreen ? styles.fullscreenHeader : ''
+        }`}>
+        <div className='w-full flex justify-between'>
+          <div className='flex items-center gap-4'>
+            <FaRobot className='text-2xl text-[#60efdb]' />
+            <h2 className='text-2xl font-semibold'>Asistente de IA</h2>
+          </div>
+          <div>
+            <NavLink to={homeRoute}>
+              <HiMiniArrowUturnLeft className='w-8 h-8 text-white ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+            </NavLink>
+          </div>
+        </div>
       </div>
 
       {/* Contenedor de mensajes */}
-      <div className='flex-1 my-4 p-4 h-70 max-h-[380px] overflow-y-auto scrollbar-custom bg-white'>
+      <div className={`${styles.messagesContainer} ${isFullscreen ? styles.fullscreenMessages : ''
+        }`}>
         <div className='space-y-3'>
           {messages.map((message) => (
             <div
@@ -106,7 +136,7 @@ export const AIChatBot = () => {
                   initial="hidden"
                   animate="visible"
                   variants={botMessageVariants}
-                  className={`max-w-xs md:max-w-md lg:max-w-lg rounded-xl px-4 py-3 bg-white text-[#405e7f] border-1 border-[#405e7f]`}
+                  className={styles.botMessage}
                 >
                   <p className='whitespace-pre-wrap'>{message.text}</p>
                 </motion.div>
@@ -156,9 +186,7 @@ export const AIChatBot = () => {
                           <FiEdit2 className='w-5 h-5' />
                         </button>
                       </div>
-                      <div
-                        className={`max-w-xs md:max-w-md lg:max-w-lg rounded-xl px-4 py-3 bg-[#60efdb] text-[#405e7f]`}
-                      >
+                      <div className={styles.userMessage}>
                         <p className='whitespace-pre-wrap'>{message.text}</p>
                       </div>
                     </div>
@@ -188,7 +216,7 @@ export const AIChatBot = () => {
       </div>
 
       {/* Input area */}
-      <div className='border-t border-[#405e7f]/10 p-4 bg-white'>
+      <div className={styles.inputArea}>
         <div className='flex items-center space-x-2'>
           <div className='flex-1 relative'>
             <textarea

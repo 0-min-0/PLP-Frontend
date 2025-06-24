@@ -3,13 +3,20 @@ import { IoPersonOutline } from 'react-icons/io5'
 import { Button } from '../button'
 import { PersonView } from './PersonView'
 
-export const Person = ({ onShowResume, occupation, name, town, category, ...person }) => {
+export const Person = ({ 
+  onShowResume, 
+  occupation, 
+  name, 
+  town, 
+  category, 
+  ...person 
+}) => {
   const [showDetail, setShowDetail] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
- const handleClick = () => {
+  const handleClick = () => {
     if (onShowResume) {
-      onShowResume(person)
+      onShowResume() // Solo notifica que se hizo clic, sin pasar datos
     } else {
       setShowDetail(true)
       setIsOpen(true)
@@ -17,6 +24,7 @@ export const Person = ({ onShowResume, occupation, name, town, category, ...pers
   }
 
   const itemStyle = 'flex gap-2 mb-2';
+
   return (
     <>
       <div className='bg-white rounded-xl border border-[#60efdb] px-8 py-6 text-[#405e7f] w-75 h-60 flex flex-col'>

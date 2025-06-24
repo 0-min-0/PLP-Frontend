@@ -1,9 +1,9 @@
-import React from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
-import { Header } from '../../../Components/Header/Header';
-import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2';
-import { RightMenu } from '../../../Components/RightMenu/RightMenu';
-import { menuConfig } from '../../../Utils/options';
+import React from 'react'
+import { Outlet, NavLink } from 'react-router-dom'
+import { Header } from '../../../Components/Header/Header'
+import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2'
+import { RightMenu } from '../../../Components/RightMenu/RightMenu'
+import { menuConfig } from '../../../Utils/options'
 
 export const SettingsJobSeeker = () => {
     return (
@@ -11,7 +11,7 @@ export const SettingsJobSeeker = () => {
             <div className=''>
                 <Header
                     middleObject={
-                        <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                        <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
                             Configuraciones
                         </h1>
                     }

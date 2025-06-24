@@ -27,7 +27,7 @@ export const Notifications = () => {
     <div className='p-6'>
       <Header
         middleObject={
-          <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
             Centro de notificaciones
           </h1>
         }
@@ -38,7 +38,7 @@ export const Notifications = () => {
           />
         }
       />
-      <div className='max-w-7xl mx-auto'>
+      <div className='max-w-7xl mx-auto mt-4'>
         <h3 className='mb-4 text-xl text-[#405e7f]'>
           Aqui podras ver todas tus notificaciones y estar al pendiente tanto de lo que suceda con postulaciones, hojas de vida y demás.
         </h3>

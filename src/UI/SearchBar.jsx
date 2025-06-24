@@ -1,181 +1,35 @@
-import { MagnifyingGlassIcon, XMarkIcon, ClockIcon, ArrowPathIcon, TrashIcon } from '@heroicons/react/24/outline';
-import { useSearchBar } from '../Context/SearchBarContext';
+import { useState } from 'react'
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
 export const SearchBar = ({
   placeholder = 'Buscar...',
   className = '',
-  searchType = 'vacancies',
   onSearch = () => {},
-  onSuggestionClick = () => {},
-  groupSuggestions = false
 }) => {
-  const {
-    query,
-    setQuery,
-    showSuggestions,
-    setShowSuggestions,
-    filteredSuggestions,
-    activeSuggestion,
-    setActiveSuggestion,
-    isLoading,
-    recentSearches,
-    inputRef,
-    suggestionsRef,
-    handleSuggestionClick: contextHandleSuggestionClick,
-    handleKeyDown,
-    highlightMatch,
-    handleClear,
-    removeRecentSearch,
-    groupByCategory,
-    showRecentSearches
-  } = useSearchBar();
+  const [query, setQuery] = useState('')
 
-  const filteredByType = filteredSuggestions.filter(item =>
-    !item.type || item.type === searchType
-  );
-
-  const handleItemClick = (item) => {
-    const clickedItem = typeof item === 'string' 
-      ? { text: item, type: searchType } 
-      : item;
-    
-    contextHandleSuggestionClick(clickedItem);
-    onSuggestionClick(clickedItem);
-  };
-
-  const renderSuggestionItem = (item, index, isRecent = false) => {
-    const isActive = activeSuggestion === index;
-    const baseClass = 'm-2 rounded-lg px-4 py-3 hover:bg-gray-50 cursor-pointer transition-colors duration-200';
-    const activeClass = isActive ? 'bg-gray-50' : '';
-    const itemText = typeof item === 'string' ? item : item.text;
-    const originalData = typeof item === 'string' ? null : item.originalData;
-
-    return (
-      <li
-        key={isRecent ? `recent-${index}` : index}
-        className={`${baseClass} ${activeClass} flex justify-between items-center`}
-        onMouseEnter={() => setActiveSuggestion(index)}
-        onClick={() => handleItemClick(item)}
-      >
-        <div className="flex-1">
-          <div className="font-medium text-[#405e7f]">
-            {highlightMatch(itemText)}
-          </div>
-          {originalData && (
-            <div className="text-sm text-gray-500 mt-1">
-              {searchType === 'vacancies' ? (
-                <>
-                  {originalData.company} • {originalData.location}
-                </>
-              ) : (
-                <>
-                  {originalData.occupation} • {originalData.town}
-                </>
-              )}
-            </div>
-          )}
-        </div>
-        {isRecent && (
-          <button
-            className='text-gray-400 hover:text-gray-600 ml-2'
-            onClick={(e) => {
-              e.stopPropagation();
-              removeRecentSearch(typeof item === 'string' ? item : { text: item.text });
-            }}
-            aria-label="Eliminar búsqueda reciente"
-          >
-            <TrashIcon className='h-4 w-4' />
-          </button>
-        )}
-      </li>
-    );
-  };
-
-  const renderSuggestions = () => {
-    if (query.length === 0 && showRecentSearches && recentSearches.length > 0) {
-      return (
-        <div className='py-2'>
-          <div className='px-4 py-2 text-sm text-gray-500 flex items-center'>
-            <ClockIcon className='h-4 w-4 mr-2' />
-            Búsquedas recientes
-          </div>
-          <ul>
-            {recentSearches.map((search, index) =>
-              renderSuggestionItem(search, index, true)
-            )}
-          </ul>
-        </div>
-      );
-    }
-
-    if (filteredByType.length > 0) {
-      if (groupSuggestions) {
-        return groupByCategory(filteredByType).map(([category, items]) => (
-          <div key={category} className='py-2'>
-            <div className='px-4 py-2 text-sm text-gray-500 border-b border-gray-100'>
-              {category}
-            </div>
-            <ul>
-              {items.map((item, index) => {
-                const globalIndex = filteredByType.indexOf(item);
-                return renderSuggestionItem(item, globalIndex);
-              })}
-            </ul>
-          </div>
-        ));
-      } else {
-        return (
-          <ul>
-            {filteredByType.map((item, index) =>
-              renderSuggestionItem(item, index)
-            )}
-          </ul>
-        );
-      }
-    }
-
-    if (query.length > 0) {
-      return (
-        <div className='px-4 py-6 text-center text-gray-500'>
-          No se encontraron resultados para "{query}"
-        </div>
-      );
-    }
-
-    return null;
-  };
+  const handleClear = () => {
+    setQuery('')
+    onSearch('')
+  }
 
   return (
     <div className={`relative flex flex-col ${className}`}>
       <div className='relative flex items-center'>
         <div className='absolute left-4 text-gray-400'>
-          {isLoading ? (
-            <ArrowPathIcon className='h-5 w-5 animate-spin' />
-          ) : (
-            <MagnifyingGlassIcon className='h-5 w-5' />
-          )}
+          <MagnifyingGlassIcon className='h-5 w-5' />
         </div>
         <input
-          ref={inputRef}
           type='search'
           placeholder={placeholder}
           value={query}
           onChange={(e) => {
-            setQuery(e.target.value);
-            setShowSuggestions(true);
-            setActiveSuggestion(-1);
-            onSearch(e.target.value);
+            setQuery(e.target.value)
+            onSearch(e.target.value)
           }}
-          onFocus={() => setShowSuggestions(true)}
-          onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              const selectedItem = activeSuggestion >= 0 && filteredByType[activeSuggestion]
-                ? filteredByType[activeSuggestion]
-                : { text: query.trim(), type: searchType };
-              handleItemClick(selectedItem);
-            } else {
-              handleKeyDown(e);
+              onSearch(query.trim())
             }
           }}
           className='w-350 pl-12 pr-10 py-2.5 rounded-full bg-white border border-gray-300 focus:outline-none focus:ring-2 
@@ -191,15 +45,6 @@ export const SearchBar = ({
           </button>
         )}
       </div>
-
-      {showSuggestions && (
-        <div
-          ref={suggestionsRef}
-          className='absolute top-full mt-2 w-full z-50 bg-white border border-gray-200 rounded-xl shadow-lg max-h-96 overflow-y-auto'
-        >
-          {renderSuggestions()}
-        </div>
-      )}
     </div>
-  );
-};
+  )
+}

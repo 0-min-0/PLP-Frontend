@@ -1,21 +1,13 @@
 import { useState } from 'react'
 import { FiEdit } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useSettings } from '../../Context/SettingsContext'
 import { NameModal } from '../../UI/Modals/NameModal'
 import { useLocation } from 'react-router-dom'
 import { HiOutlineX } from 'react-icons/hi'
+import { useUser } from '../../Context/UserContext'
 
 export const Avatar = () => {
-  const {
-    currentRole,
-    user,
-    userAvatar,
-    avatarOptions,
-    handleAvatarChange,
-    handleNameChange
-  } = useSettings()
-
+  const { user, avatarOptions, handleNameChange, handleAvatarChange } = useUser()
   const [avatarSelector, setAvatarSelector] = useState(false)
   const [isEditingName, setIsEditingName] = useState(false)
   const location = useLocation()
@@ -28,16 +20,6 @@ export const Avatar = () => {
     return ''
   }
 
-  const getDisplayName = () => {
-    const config = {
-      Contratista: user?.nameJobSeeker || 'Usuario',
-      Contratante: user?.nameEmployer || 'Usuario',
-      Empresa: user?.companyName || 'Usuario'
-    }
-    return config[currentRole] || 'Usuario'
-  }
-
-  const userName = getDisplayName()
   const currentDisplayRole = getRoleFromPath()
 
   const backdropVariants = {
@@ -76,18 +58,15 @@ export const Avatar = () => {
       <NameModal
         isOpen={isEditingName}
         onClose={() => setIsEditingName(false)}
-        currentName={getDisplayName()} // Usar la función que obtiene el nombre correcto
-        onSave={(newName) => {
-          handleNameChange(newName)
-          setIsEditingName(false)
-        }}
-        currentRole={currentRole}
+        currentName={user.name}
+        onSave={handleNameChange}
+        currentRole={currentDisplayRole}
       />
 
       <div className="relative group">
         <div className="relative">
           <img
-            src={userAvatar}
+            src={user.avatar}
             alt='avatar'
             className='w-24 h-24 border-double border-8 border-[#60efdb] rounded-full 
                      transition-all duration-300 group-hover:brightness-95'
@@ -140,7 +119,7 @@ export const Avatar = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className={`p-1 rounded-lg transition-all duration-200 flex justify-center cursor-pointer
-                                ${userAvatar === avatar
+                                ${user.avatar === avatar
                           ? 'bg-[#60efdb]/20 border-2 border-[#60efdb]'
                           : 'hover:bg-gray-100'}`}
                       onClick={() => {
@@ -166,7 +145,7 @@ export const Avatar = () => {
       <div className='ml-6 relative group'>
         <div className='flex items-center'>
           <h2 className='text-3xl font-bold text-[#405e7f]'>
-            {getDisplayName()}
+            {user.name}
           </h2>
           <button
             onClick={() => setIsEditingName(true)}

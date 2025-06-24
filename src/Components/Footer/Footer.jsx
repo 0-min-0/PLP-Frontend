@@ -53,20 +53,20 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
 
         {/* Sección de enlaces legales */}
         <motion.div 
-          className="flex flex-col items-center"
+          className='flex flex-col items-center'
           variants={fadeInUp}
         >
-          <h3 className="text-xl font-bold mb-4">Legal</h3>
-          <div className="flex flex-col space-y-2">
+          <h3 className='text-xl font-bold mb-4'>Legal</h3>
+          <div className='flex flex-col space-y-2'>
             <NavLink
-              to="/politicas-de-privacidad"
-              className="hover:underline transition duration-200"
+              to='/politicas-de-privacidad'
+              className='hover:underline transition duration-200'
             >
               Políticas de privacidad
             </NavLink>
             <NavLink
-              to="/terminos-y-condiciones"
-              className="hover:underline transition duration-200"
+              to='/terminos-condiciones'
+              className='hover:underline transition duration-200'
             >
               Términos y condiciones
             </NavLink>

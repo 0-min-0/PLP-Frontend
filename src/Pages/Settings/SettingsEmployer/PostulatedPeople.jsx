@@ -1,14 +1,14 @@
-import { FiFileText, FiCheck, FiX, FiPhone } from 'react-icons/fi';
-import { SearchBar } from '../../../UI/SearchBar';
-import { useOutletContext } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Avatar } from '../../../Components/Avatar/Avatar';
-import { PersonView } from '../../../UI/Person/PersonView';
+import { FiFileText, FiCheck, FiX, FiPhone } from 'react-icons/fi'
+import { SearchBar } from '../../../UI/SearchBar'
+import { useOutletContext } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Avatar } from '../../../Components/Avatar/Avatar'
+import { PersonView } from '../../../UI/Person/PersonView'
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.3, ease: "easeOut" } }
-};
+}
 
 export const PostulatedPeople = () => {
   // Obtener contexto de manera segura
@@ -17,17 +17,17 @@ export const PostulatedPeople = () => {
     setSelectedPerson,
     handleContactPerson = () => {},
     handleRejectPerson = () => {
-      console.error('handleRejectPerson no fue proporcionado en el contexto');
+      console.error('handleRejectPerson no fue proporcionado en el contexto')
     },
     people = []
-  } = useOutletContext() || {};
+  } = useOutletContext() || {}
 
   // Manejo seguro del rechazo
   const handleSafeReject = (personId, e) => {
-    e.stopPropagation();
-    console.log('Rechazando postulación con ID:', personId);
-    handleRejectPerson(personId);
-  };
+    e.stopPropagation()
+    console.log('Rechazando postulación con ID:', personId)
+    handleRejectPerson(personId)
+  }
 
   return (
     <>
@@ -57,7 +57,7 @@ export const PostulatedPeople = () => {
                       <h3 className='font-bold text-lg text-[#405e7f] flex items-center gap-2'>
                         {person.name}
                       </h3>
-                      <p className='text-gray-600 mt-2 flex items-center gap-2'>
+                      <p className='text-gray-600 mt-1 flex items-center gap-2'>
                         {person.phone}
                       </p>
                       <p className='text-gray-600 mt-1 flex items-center gap-2'>
@@ -94,7 +94,6 @@ export const PostulatedPeople = () => {
           )}
         </motion.div>
       </div>
-
       <AnimatePresence>
         {selectedPerson && (
           <PersonView
@@ -106,5 +105,5 @@ export const PostulatedPeople = () => {
         )}
       </AnimatePresence>
     </>
-  );
-};
+  )
+}

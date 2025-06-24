@@ -1,30 +1,70 @@
-import React from 'react'
-import avatar from '../../assets/images/avatar.jpg'
+import { motion } from 'framer-motion'
 import { Avatar } from '../../Components/Avatar/Avatar'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut'
+    }
+  }
+}
 
 export const Terms = () => {
   return (
     <>
-      <Avatar />
-      <hr className='border-t border-gray-100 my-8' />
-      <div className='w-full h-100 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
-        <div className="max-w-4xl mx-auto px-6 py-8 text-[#405e7f] leading-relaxed">
-          <h1 className="text-3xl font-bold mb-6 text-center border-b-2 border-[#405e7f] pb-4">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className='w-full h-150 max-h-[700px] overflow-y-auto scrollbar-custom pr-4'
+      >
+        <div className="max-w-5xl mx-auto px-6 py-8 text-[#405e7f] leading-relaxed">
+          <motion.h1
+            className="text-3xl font-bold mb-6 text-center border-b-2 border-[#405e7f] pb-4"
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
             TÉRMINOS Y CONDICIONES DE USO DE PLP (PLATAFORMA LABORAL PROACTIVA)
-          </h1>
+          </motion.h1>
 
-          <p className="text-sm italic mb-8 text-center">Última actualización: 03/06/2025</p>
+          <motion.p
+            className="text-sm italic mb-8 text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            Última actualización: 03/06/2025
+          </motion.p>
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">1. Aceptación de los Términos</h2>
             <p className="mb-4">
               Al acceder y utilizar la plataforma <strong>PLP (Proactive Labor Platform)</strong> ("la Plataforma"), propiedad de <strong>[Nombre de la Empresa o Razón Social]</strong> ("nosotros", "nuestro", "PLP"), usted ("Usuario") acepta cumplir con estos <strong>Términos y Condiciones</strong> ("Términos"). Si no está de acuerdo con alguna parte de estos Términos, debe abstenerse de usar la Plataforma.
             </p>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">2. Definiciones</h2>
             <ul className="list-disc pl-6 space-y-2">
               <li><strong>Plataforma:</strong> Sitio web, aplicación móvil y servicios asociados ofrecidos por PLP.</li>
@@ -33,11 +73,21 @@ export const Terms = () => {
               <li><strong>Empleador:</strong> Empresa, reclutador o emprendedor que publica vacantes o busca talento en PLP.</li>
               <li><strong>Contenido:</strong> Información, textos, imágenes, datos de perfil, ofertas de trabajo y cualquier material compartido en la Plataforma.</li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">3. Uso de la Plataforma</h2>
 
             <h3 className="font-semibold mb-2">3.1. Funcionalidades principales</h3>
@@ -57,11 +107,21 @@ export const Terms = () => {
               <li>No suplantar identidades, difamar o violar derechos de terceros.</li>
               <li>No realizar actividades que dañen la infraestructura técnica de PLP (ej.: hacking, spam).</li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">4. Registro y Cuentas</h2>
 
             <h3 className="font-semibold mb-2">4.1. Creación de Perfil</h3>
@@ -75,11 +135,21 @@ export const Terms = () => {
               <li>El Usuario es responsable de mantener la confidencialidad de su contraseña.</li>
               <li>PLP no será responsable por accesos no autorizados debido a negligencia del Usuario.</li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">5. Privacidad y Protección de Datos</h2>
             <p>
               El tratamiento de datos personales se rige por nuestra <strong>Política de Privacidad</strong> [enlace], la cual describe:
@@ -89,11 +159,21 @@ export const Terms = () => {
               <li>Cómo usamos y protegemos la información.</li>
               <li>Derechos del Usuario (acceso, rectificación, eliminación de datos).</li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">6. Contenido y Propiedad Intelectual</h2>
 
             <h3 className="font-semibold mb-2">6.1. Derechos de PLP</h3>
@@ -107,11 +187,21 @@ export const Terms = () => {
               <li>Los <strong>Candidatos</strong> otorgan a PLP una licencia no exclusiva para mostrar su perfil a empleadores.</li>
               <li>Los <strong>Empleadores</strong> garantizan que las vacantes publicadas son reales y cumplen con las leyes laborales.</li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.9, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">7. Limitación de Responsabilidad</h2>
 
             <h3 className="font-semibold mb-2">7.1. Uso bajo su propio riesgo</h3>
@@ -127,11 +217,21 @@ export const Terms = () => {
 
             <h3 className="font-semibold mb-2">7.2. Enlaces a Terceros</h3>
             <p>Si la Plataforma incluye enlaces a sitios externos, PLP no controla ni respalda su contenido.</p>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.0, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">8. Modificaciones y Terminación</h2>
 
             <h3 className="font-semibold mb-2">8.1. Cambios en los Términos</h3>
@@ -146,32 +246,62 @@ export const Terms = () => {
               <li>Incumplan estos Términos.</li>
               <li>Publiquen información falsa o ofensiva.</li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.1, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">9. Ley Aplicable y Resolución de Conflictos</h2>
             <ul className="list-disc pl-6 space-y-2">
               <li>Estos Términos se rigen por las leyes de <strong>[País/Estado, ej.: México]</strong> y cualquier disputa se resolverá en los tribunales de <strong>[Ciudad, ej.: Ciudad de México]</strong>.</li>
               <li>Se fomenta la resolución amistosa de conflictos antes de acudir a vías legales.</li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="mb-8">
+          <motion.section
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.4 }}
+          >
             <h2 className="text-xl font-semibold mb-4">10. Contacto</h2>
             <p>Para preguntas o reclamos:</p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
               <li><strong>Email:</strong> legal@plp.com</li>
               <li><strong>Dirección:</strong> [Dirección física de la empresa, si aplica]</li>
             </ul>
-          </section>
+          </motion.section>
 
-          <div className="h-px bg-gray-300 my-6"></div>
+          <motion.div
+            className="h-px bg-gray-300 my-6"
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.3 }}
+          />
 
-          <section className="bg-gray-50 p-4 rounded-lg">
+          <motion.section
+            className="bg-gray-50 p-4 rounded-lg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3, duration: 0.4 }}
+          >
             <h3 className="font-semibold mb-3">Notas Clave</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
@@ -187,9 +317,9 @@ export const Terms = () => {
                 <span><strong>Claridad:</strong> Evita lenguaje ambiguo para reducir riesgos legales.</span>
               </li>
             </ul>
-          </section>
+          </motion.section>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }
