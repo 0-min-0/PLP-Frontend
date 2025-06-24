@@ -10,11 +10,7 @@ export let vacanciesExample = [ //array de vacantes
     availability: 'Full-time',
     responsibilities: 'Desarrollo de interfaces con React',
     salary: '3,000,000',
-    postulations: [
-      {
-        
-      }
-    ]
+    postulations: []
   },
   {
     id: 2,
