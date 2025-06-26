@@ -13,7 +13,7 @@ import {
   rejectPostulation
 } from '../../../Utils/objectsExample'
 import { menuConfig } from '../../../Utils/options'
-import { RejectionModal } from '../../../UI/Modals/RejectionModal' // Incluir cuando se desee usar
+import { RejectionModal } from '../../../UI/Modals/RejectionModal' 
 
 export const SettingsEmployer = () => {
   const { vacancies, setVacancies } = useVacancy()

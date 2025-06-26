@@ -1,15 +1,13 @@
 import { createContext, useState, useContext, useEffect, useCallback } from 'react'
 import { useLocation } from 'react-router-dom'
-import { optionTown, optionGenre, optionId } from '../Utils/options'
+import { optionTown, optionGenre, optionId, categories } from '../Utils/options'
 
 const USER_DATA_STORAGE_KEY = 'plp_user_data'
 
 const SettingsContext = createContext()
 
 export const SettingsProvider = ({ children, initialUser }) => {
-
-  //Nombre por defecto basado en la ruta
-
+  // Nombre por defecto basado en la ruta
   const location = useLocation()
 
   const getCurrentRoleFromPath = () => {
@@ -42,6 +40,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
     documentType: '',
     documentNumber: '',
     name: '',
+    occupation: '',
     phone: '',
     phoneSec: '',
     email: '',
@@ -58,7 +57,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     study2: '',
     study3: '',
     study4: '',
-    // Campos específicos para empresa
     nit: '',
     category: '',
     webSite: ''
@@ -79,52 +77,8 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return initialUser || null
   })
 
-  // Configuración de roles
-  // const [rolesConfig, setRolesConfig] = useState({
-  //   contratista: {
-  //     avatar: 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-  //     nameKey: 'nameJobSeeker',
-  //     defaultName: 'Contratista',
-  //     avatarOptions: [
-  //       'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-  //       'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-  //       'https://cdn-icons-png.flaticon.com/512/921/921071.png',
-  //       'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-  //       'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
-  //       'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
-  //     ]
-  //   },
-  //   contratante: {
-  //     avatar: 'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-  //     nameKey: 'nameEmployer',
-  //     defaultName: 'Contratante',
-  //     avatarOptions: [
-  //       'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-  //       'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-  //       'https://cdn-icons-png.flaticon.com/512/921/921071.png',
-  //       'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-  //       'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
-  //       'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
-  //     ],
-  //   },
-  //   empresa: {
-  //     avatar: 'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-  //     nameKey: 'companyName',
-  //     defaultName: 'Empresa',
-  //     avatarOptions: [
-  //       'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-  //       'https://cdn-icons-png.flaticon.com/512/4140/4140048.png',
-  //       'https://cdn-icons-png.flaticon.com/512/921/921071.png',
-  //       'https://cdn-icons-png.flaticon.com/512/4333/4333609.png',
-  //       'https://cdn-icons-png.flaticon.com/512/3667/3667339.png',
-  //       'https://cdn-icons-png.flaticon.com/512/3048/3048127.png'
-  //     ],
-  //   }
-  // })
-
   // Campos por rol
   const roleFields = {
-
     Contratante: {
       documentType: 'Tipo de documento',
       documentNumber: 'Número de documento',
@@ -139,6 +93,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
     Contratista: {
       documentType: 'Tipo de documento',
       documentNumber: 'Número de documento',
+      occupation: 'Ocupación',
       name: 'Nombre completo',
       phone: 'Teléfono principal',
       phoneSec: 'Teléfono secundario',
@@ -174,6 +129,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
     town: 'Ubicación',
     desc: 'Descripción',
     name: 'Nombre',
+    occupation: 'Ocupación',
     genre: 'Género',
     nit: 'NIT',
     category: 'Sector',
@@ -198,6 +154,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
       const data = {
         documentType: userData.documentType || '',
         documentNumber: userData.documentNumber || '',
+        occupation: currentRole === 'Contratista' ? userData.occupationJobSeeker || '' : '',
         name: currentRole === 'Contratante' ? userData.nameEmployer || '' :
           currentRole === 'Contratista' ? userData.nameJobSeeker || '' :
             currentRole === 'Empresa' ? userData.companyName || '' :
@@ -264,7 +221,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
   }, [userData])
 
   //--------------------------------------------VALIDACIONES-----------------------------------------//
-  // Validación de teléfono
   const validatePhone = useCallback((phone) => {
     if (!phone) return 'ⓘ El número de teléfono es requerido'
     if (!/^\d+$/.test(phone)) return 'ⓘ El número de teléfono solo puede contener dígitos (0-9)'
@@ -272,14 +228,12 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return null
   }, [])
 
-  // Validación de email
   const validateEmail = useCallback((email) => {
     if (!email) return 'ⓘ El correo electrónico es requerido'
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'ⓘ Ingresa un correo válido (ej. correo@ejemplo.com)'
     return null
   }, [])
 
-  // Validación de número de documento
   const validateDocumentNumber = useCallback((docNumber) => {
     if (!docNumber) return 'ⓘ El número de documento es requerido'
     if (docNumber.length < 6) return 'ⓘ El número de documento debe tener al menos 6 caracteres'
@@ -288,27 +242,23 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return null
   }, [])
 
-  // Validación de NIT
   const validateNit = useCallback((nit) => {
     if (!nit) return 'ⓘ El NIT es requerido'
     if (!/^\d{9}(-\d)?$/.test(nit)) return 'ⓘ El NIT debe tener el formato correcto (ej. 123456789-1)'
     return null
   }, [])
 
-  // Validación de nombre de empresa
   const validateCompanyName = useCallback((name) => {
     if (!name) return 'ⓘ El nombre de la empresa es requerido'
     if (name.length < 3) return 'ⓘ El nombre debe tener al menos 3 caracteres'
     return null
   }, [])
 
-  // Validación de categoría
   const validateCategory = useCallback((category) => {
     if (!category) return 'ⓘ La categoría es requerida'
     return null
   }, [])
 
-  // Validación de sitio web
   const validateWebsite = useCallback((url) => {
     if (url && !/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(url)) {
       return 'ⓘ Ingresa una URL válida (ej. https://ejemplo.com)'
@@ -316,7 +266,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return null
   }, [])
 
-  // Validación de habilidades
   const validateSkill = useCallback((value, fieldName) => {
     if (['skill1', 'skill2'].includes(fieldName)) {
       if (!value) return 'ⓘ Esta habilidad es requerida'
@@ -325,7 +274,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return null
   }, [])
 
-  // Validación de estudios
   const validateStudy = useCallback((value, fieldName) => {
     if (['study1', 'study2'].includes(fieldName)) {
       if (!value) return 'ⓘ Este estudio es requerido'
@@ -334,16 +282,14 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return null
   }, [])
 
-  // Validación de campo requerido genérico
   const validateRequiredField = useCallback((value, fieldName) => {
     if (!value) {
       const readableName = fieldLabels[fieldName] || fieldName
       return `ⓘ El campo ${readableName} es requerido`
     }
     return null
-  }, [])
+  }, [fieldLabels])
 
-  // Validación de fortaleza de contraseña
   const validatePasswordStrength = useCallback((password) => {
     if (!password) return 'ⓘ La contraseña es requerida'
     if (password.length < 8) return 'ⓘ La contraseña debe tener al menos 8 caracteres'
@@ -353,14 +299,12 @@ export const SettingsProvider = ({ children, initialUser }) => {
     return ''
   }, [])
 
-  // Validación de confirmación de contraseña
   const validateConfirmPassword = useCallback((password, confirmPassword) => {
     if (!confirmPassword) return 'ⓘ Por favor confirma tu nueva contraseña'
     if (password !== confirmPassword) return 'ⓘ Las contraseñas no coinciden'
     return ''
   }, [])
 
-  // Validación en tiempo real
   const validateFieldInRealTime = useCallback((name, value) => {
     if (name === 'phone' || name === 'phoneCompany') return validatePhone(value)
     if (name === 'phoneSec' || name === 'phoneSecCompany') return validatePhone(value)
@@ -391,113 +335,72 @@ export const SettingsProvider = ({ children, initialUser }) => {
   ])
 
   //-----------------------------------------VALIDACIONES POR SECCIÓN--------------------------------//
-  // Validación de campos personales
-  const validatePersonalFields = useCallback(() => {
-    const newErrors = {}
-    let isValid = true
 
-    // Campos requeridos básicos para todos los roles
-    const requiredFields = [
-      'documentType',
-      'documentNumber',
-      'name',
-      'phone',
-      'email',
-      'town',
-      'genre',
-      'desc',
-      'nit',
-      'category',
-      'webSite'
-    ]
+  const validatePersonalFields = () => {
+    const newErrors = {};
+    let requiredFields = [];
 
-    requiredFields.forEach(field => {
-      if (!formData[field]) {
-        newErrors[field] = `ⓘ El campo ${fieldLabels[field] || field} es requerido`
-        isValid = false
-      }
-    })
-
-    // Validaciones específicas por rol
-    if (currentRole === 'Empresa') {
-      if (!formData.nit) {
-        newErrors.nit = 'ⓘ El NIT es requerido'
-        isValid = false
-      } else if (!/^\d{9}(-\d)?$/.test(formData.nit)) {
-        newErrors.nit = 'ⓘ El NIT debe tener el formato correcto (ej. 123456789-1)'
-        isValid = false
-      }
-
-      if (!formData.category) {
-        newErrors.category = 'ⓘ La categoría es requerida'
-        isValid = false
-      }
+    if (currentRole === 'Contratante') {
+      requiredFields = [
+        'documentType', 'documentNumber', 'name',
+        'phone', 'email', 'town', 'genre', 'desc'
+      ];
+    } else if (currentRole === 'Contratista') {
+      requiredFields = [
+        'documentType', 'documentNumber', 'occupation', 'name',
+        'phone', 'email', 'town', 'genre', 'desc'
+      ];
+    } else if (currentRole === 'Empresa') {
+      requiredFields = [
+        'documentType', 'documentNumber', 'name', 'nit',
+        'category', 'phone', 'email', 'town', 'genre', 'desc'
+      ];
     }
 
-    // Validaciones comunes
-    if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
-      newErrors.phone = 'ⓘ El teléfono debe tener 10 dígitos'
-      isValid = false
-    }
+    requiredFields.forEach((field) => {
+      const error = validateRequiredField(formData[field], field);
+      if (error) newErrors[field] = error;
+    });
 
-    if (formData.phoneSec && !/^\d{10}$/.test(formData.phoneSec)) {
-      newErrors.phoneSec = 'ⓘ El teléfono secundario debe tener 10 dígitos'
-      isValid = false
-    }
+    setErrors(newErrors);
+    return newErrors;
+  };
 
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'ⓘ Ingresa un correo electrónico válido'
-      isValid = false
-    }
 
-    if (formData.documentNumber && (formData.documentNumber.length < 6 || formData.documentNumber.length > 15)) {
-      newErrors.documentNumber = 'ⓘ El documento debe tener entre 6 y 15 caracteres'
-      isValid = false
-    }
-
-    setErrors(newErrors)
-    return isValid
-  }, [formData, currentRole])
-
-  // Validación de habilidades
+  //Validar habilidades y estudios
   const validateSkills = useCallback(() => {
-    const newErrors = {}
-    let isValid = true
+    const newErrors = {};
+    let isValid = true;
 
     ['skill1', 'skill2'].forEach(field => {
-      if (!formData[field]) {
-        newErrors[field] = 'ⓘ Esta habilidad es requerida'
-        isValid = false
-      } else if (formData[field].length < 2) {
-        newErrors[field] = 'ⓘ La habilidad debe tener al menos 2 caracteres'
-        isValid = false
+      const error = validateSkill(formData[field], field);
+      if (error) {
+        newErrors[field] = error;
+        isValid = false;
       }
-    })
+    });
 
-    setErrors(newErrors)
-    return isValid
-  }, [formData])
+    setErrors(newErrors);
+    return isValid;
+  }, [formData, validateSkill]);
 
-  // Validación de estudios
   const validateStudies = useCallback(() => {
-    const newErrors = {}
-    let isValid = true
+    const newErrors = {};
+    let isValid = true;
 
     ['study1', 'study2'].forEach(field => {
-      if (!formData[field]) {
-        newErrors[field] = 'ⓘ Este estudio es requerido'
-        isValid = false
-      } else if (formData[field].length < 5) {
-        newErrors[field] = 'ⓘ El estudio debe tener al menos 5 caracteres'
-        isValid = false
+      const error = validateStudy(formData[field], field);
+      if (error) {
+        newErrors[field] = error;
+        isValid = false;
       }
-    })
+    });
 
-    setErrors(newErrors)
-    return isValid
-  }, [formData])
+    setErrors(newErrors);
+    return isValid;
+  }, [formData, validateStudy]);
 
-  // Validación de contraseña
+  //Validar contraseña
   const validatePassword = useCallback(() => {
     const newErrors = {}
     let isValid = true
@@ -507,26 +410,16 @@ export const SettingsProvider = ({ children, initialUser }) => {
       isValid = false
     }
 
-    if (!passwordData.newPassword) {
-      newErrors.newPassword = 'ⓘ La nueva contraseña es requerida'
+    const passwordError = validatePasswordStrength(passwordData.newPassword)
+    if (passwordError) {
+      newErrors.newPassword = passwordError
       isValid = false
-    } else {
-      const passwordError = validatePasswordStrength(passwordData.newPassword)
-      if (passwordError) {
-        newErrors.newPassword = passwordError
-        isValid = false
-      }
     }
 
-    if (!passwordData.confirmPassword) {
-      newErrors.confirmPassword = 'ⓘ Por favor confirma tu nueva contraseña'
+    const confirmError = validateConfirmPassword(passwordData.newPassword, passwordData.confirmPassword)
+    if (confirmError) {
+      newErrors.confirmPassword = confirmError
       isValid = false
-    } else {
-      const confirmError = validateConfirmPassword(passwordData.newPassword, passwordData.confirmPassword)
-      if (confirmError) {
-        newErrors.confirmPassword = confirmError
-        isValid = false
-      }
     }
 
     setPasswordErrors(newErrors)
@@ -535,7 +428,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
 
   //-----------------------------------------MANEJO DE EVENTOS--------------------------------------//
 
-  // Manejar cambios en el formulario
   const handleChange = useCallback((e) => {
     const { name, value, type, checked } = e.target
     const actualValue = type === 'checkbox' ? checked : value
@@ -549,7 +441,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     }
   }, [errors, validateFieldInRealTime])
 
-  // Manejar cambios en contraseña
   const handlePasswordChange = useCallback((e) => {
     const { name, value } = e.target
     setPasswordData(prev => ({ ...prev, [name]: value }))
@@ -566,7 +457,6 @@ export const SettingsProvider = ({ children, initialUser }) => {
     setPasswordErrors(prev => ({ ...prev, [name]: error }))
   }, [passwordData.newPassword, validatePasswordStrength, validateConfirmPassword])
 
-  // Manejar cambios en selects
   const handleSelectChange = useCallback((name, value) => {
     setFormData(prev => ({
       ...prev,
@@ -582,18 +472,17 @@ export const SettingsProvider = ({ children, initialUser }) => {
     }
   }, [errors])
 
-  // Manejar edición
   const handleEdit = useCallback((section) => {
     setActiveSection(section)
     setIsEditing(true)
   }, [])
 
-  // Manejar cancelación
   const handleCancel = useCallback(() => {
-    if (activeSection === 'personal' && userData) {
+    if (userData) {
       setFormData({
         documentType: userData.documentType || '',
         documentNumber: userData.documentNumber || '',
+        occupation: currentRole === 'Contratista' ? userData.occupationJobSeeker || '' : '',
         name: currentRole === 'Contratante' ? userData.nameEmployer || '' :
           currentRole === 'Contratista' ? userData.nameJobSeeker || '' :
             currentRole === 'Empresa' ? userData.companyName || '' :
@@ -633,22 +522,21 @@ export const SettingsProvider = ({ children, initialUser }) => {
         study3: currentRole === 'Contratista' ? userData.study3JobSeeker || '' : '',
         study4: currentRole === 'Contratista' ? userData.study4JobSeeker || '' : '',
         nit: currentRole === 'Empresa' ? userData.nit || '' : '',
-        category: currentRole === 'Empresa' ? userData.category || '' : '',
+        category: currentRole === 'Empresa' ? userData.category || '' :
+          currentRole === 'Contratista' ? userData.category || '' : '',
         webSite: currentRole === 'Empresa' ? userData.webSite || '' : ''
       })
-    } else if (activeSection === 'security') {
-      setPasswordData({
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-      })
     }
+    setPasswordData({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    })
     setErrors({})
     setPasswordErrors({})
     setIsEditing(false)
   }, [activeSection, userData, currentRole])
 
-  // Manejar cancelación con reset de errores locales
   const handleCancelWithReset = useCallback(() => {
     handleCancel()
     setLocalPasswordErrors({
@@ -657,66 +545,82 @@ export const SettingsProvider = ({ children, initialUser }) => {
     })
   }, [handleCancel])
 
-  //Validación en tiempo real para campos de habilidades y estudios
   const handleSkillChange = (e) => {
-    const { name, value } = e.target
-    handleChange(e)
-    if (name === 'skill1' || name === 'skill2') {
-      validateSkill(value, name)
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }))
+
+    const error = validateSkill(value, name)
+    setRealTimeErrors(prev => ({ ...prev, [name]: error }))
+
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }))
     }
   }
 
   const handleStudyChange = (e) => {
-    const { name, value } = e.target
-    handleChange(e)
-    if (name === 'study1' || name === 'study2') {
-      validateStudy(value, name)
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }))
+
+    const error = validateStudy(value, name)
+    setRealTimeErrors(prev => ({ ...prev, [name]: error }))
+
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }))
     }
   }
 
   const getCombinedError = (fieldName) => {
-    return realTimeErrors[fieldName] || getActiveError(fieldName)
+    return realTimeErrors[fieldName] || errors[fieldName] || null
   }
 
-
   //-----------------------------------------MANEJO DE GUARDADO-------------------------------------//
-  // Función de guardado principal
   const handleSave = useCallback(() => {
     if (!user) return
 
     const updatedUser = { ...user }
 
-    // Actualizar datos según la sección activa
     switch (activeSection) {
       case 'personal':
         updatedUser.documentType = formData.documentType
         updatedUser.documentNumber = formData.documentNumber
-        updatedUser[`${currentRole === 'Contratante' ? 'phoneEmployer' :
-          currentRole === 'Contratista' ? 'phoneJobSeeker' : 'phoneCompany'}`] = formData.phone
-        updatedUser[`${currentRole === 'Contratante' ? 'phoneSecEmployer' :
-          currentRole === 'Contratista' ? 'phoneSecJobSeeker' : 'phoneSecCompany'}`] = formData.phoneSec || null
-        updatedUser[`${currentRole === 'Contratante' ? 'emailEmployer' :
-          currentRole === 'Contratista' ? 'emailJobSeeker' : 'emailCompany'}`] = formData.email
-        updatedUser[`${currentRole === 'Contratante' ? 'townEmployer' :
-          currentRole === 'Contratista' ? 'townJobSeeker' : 'townCompany'}`] = formData.town
-        updatedUser[`${currentRole === 'Contratante' ? 'descEmployer' :
-          currentRole === 'Contratista' ? 'descJobSeeker' : 'descCompany'}`] = formData.desc || ''
-        updatedUser[`${currentRole === 'Contratante' ? 'genreEmployer' :
-          currentRole === 'Contratista' ? 'genreJobSeeker' : 'genreCompany'}`] = formData.genre || ''
         updatedUser.notificationsEnabled = formData.notificationsEnabled
         updatedUser.theme = formData.theme
 
-        // Actualizar nombre según el rol
         if (currentRole === 'Contratante') {
           updatedUser.nameEmployer = formData.name
-        } else if (currentRole === 'Contratista') {
+          updatedUser.phoneEmployer = formData.phone
+          updatedUser.phoneSecEmployer = formData.phoneSec
+          updatedUser.emailEmployer = formData.email
+          updatedUser.townEmployer = formData.town
+          updatedUser.descEmployer = formData.desc
+          updatedUser.genreEmployer = formData.genre
+        }
+
+        if (currentRole === 'Contratista') {
           updatedUser.nameJobSeeker = formData.name
-        } else if (currentRole === 'Empresa') {
+          updatedUser.occupationJobSeeker = formData.occupation
+          updatedUser.phoneJobSeeker = formData.phone
+          updatedUser.phoneSecJobSeeker = formData.phoneSec
+          updatedUser.emailJobSeeker = formData.email
+          updatedUser.townJobSeeker = formData.town
+          updatedUser.descJobSeeker = formData.desc
+          updatedUser.genreJobSeeker = formData.genre
+          updatedUser.category = formData.category
+        }
+
+        if (currentRole === 'Empresa') {
           updatedUser.companyName = formData.name
+          updatedUser.phoneCompany = formData.phone
+          updatedUser.phoneSecCompany = formData.phoneSec
+          updatedUser.emailCompany = formData.email
+          updatedUser.townCompany = formData.town
+          updatedUser.descCompany = formData.desc
+          updatedUser.genreCompany = formData.genre
           updatedUser.nit = formData.nit
           updatedUser.category = formData.category
           updatedUser.webSite = formData.webSite
         }
+
         break
 
       case 'skills':
@@ -738,7 +642,7 @@ export const SettingsProvider = ({ children, initialUser }) => {
         break
 
       case 'security':
-        // Aquí iría la lógica para actualizar la contraseña
+        // 
         break
     }
 
@@ -747,95 +651,55 @@ export const SettingsProvider = ({ children, initialUser }) => {
     setIsEditing(false)
   }, [activeSection, formData, user, currentRole])
 
-  // Función de guardado con validación
+  // Funcion de guardar con implementacion de las validaciones
   const handleSaveWithValidation = useCallback(() => {
-    let isValid = false
+    let validationErrors = {}
+    let isValid = true
 
     switch (activeSection) {
       case 'personal':
-        isValid = validatePersonalFields()
-        break
+        validationErrors = validatePersonalFields()
+        isValid = Object.keys(validationErrors).length === 0
+        break;
+
       case 'skills':
-        isValid = validateSkills()
-        break
+        isValid = validateSkills();
+        break;
+
       case 'studies':
-        isValid = validateStudies()
-        break
+        isValid = validateStudies();
+        break;
+
       case 'security':
-        isValid = validatePassword()
-        break
-      default:
-        isValid = true
+        isValid = validatePassword();
+        break;
     }
 
     if (isValid) {
-      handleSave()
-      setSaveSuccess(true)
-      setTimeout(() => setSaveSuccess(false), 3000)
+      handleSave();
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 3000);
     } else {
-      // Enfocar el primer campo con error
-      const errorObject = activeSection === 'security' ? passwordErrors : errors
-      const firstErrorField = Object.keys(errorObject).find(key => errorObject[key])
+      const firstErrorField = Object.keys(validationErrors).find((key) => validationErrors[key]);
       if (firstErrorField) {
-        const element = document.querySelector(`[name="${firstErrorField}"]`)
-        if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        const element = document.querySelector(`[name="${firstErrorField}"]`);
+        if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
-  }, [activeSection, validatePersonalFields, validateSkills, validateStudies, validatePassword, handleSave, passwordErrors, errors])
+  }, [activeSection, formData, handleSave, validateSkills, validateStudies, validatePassword]);
 
   //-----------------------------------------FUNCIONES AUXILIARES-----------------------------------//
 
-  // Obtener error activo
   const getActiveError = useCallback((field) => {
     return errors[field] || realTimeErrors[field] || null
   }, [errors, realTimeErrors])
 
-  // Combinar errores de contraseña
   const getCombinedPasswordError = useCallback((field) => {
     return passwordErrors[field] || localPasswordErrors[field] || null
   }, [passwordErrors, localPasswordErrors])
 
-  // Manejar cambio de avatar
-//   const handleAvatarChange = (newAvatar) => {
-//     setRolesConfig(prev => ({
-//       ...prev,
-//       [currentRole]: {
-//         ...prev[currentRole],
-//         avatar: newAvatar
-//       }
-//     }))
-//     localStorage.setItem(AVATAR_STORAGE_KEY, newAvatar)
-//   }
-
-//   // Manejar cambio de nombre
-//   const roleConfig = {
-//     Contratista: { nameKey: 'nameJobSeeker', default: 'Usuario' },
-//     Contratante: { nameKey: 'nameEmployer', default: 'Usuario' },
-//     Empresa: { nameKey: 'companyName', default: 'Usuario' }
-//   }
-
-//  const handleNameChange = (newName) => {
-//   if (!newName || typeof newName !== 'string') return
-  
-//   const updatedUser = {
-//     ...user,
-//     [currentRole === 'Contratista' ? 'nameJobSeeker' : 
-//      currentRole === 'Contratante' ? 'nameEmployer' : 
-//      'companyName']: newName.trim()
-//   }
-  
-//   setUser(updatedUser)
-//   localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(updatedUser))
-// }
-
-
   //-----------------------------------------CONTEXTO-----------------------------------------------//
-
   const currentRoleName = getCurrentRoleFromPath()
-  // const currentConfig = rolesConfig[currentRole] || rolesConfig.user
-  // const userName = user?.[currentConfig.nameKey] || currentConfig.defaultName
-  // const userAvatar = currentConfig.avatar
-  // const avatarOptions = currentConfig.avatarOptions
 
   const contextValue = {
     user,

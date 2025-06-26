@@ -1,7 +1,7 @@
 export const users = [
     {
         id: 1,
-        documentType: 'Cédula',
+        documentType: 'C.C (Cédula de ciudadania)',
         documentNumber: '189123456',
         nameEmployer: 'Carolina Sanchez Torres',
         phoneEmployer: '3030120982',
@@ -16,6 +16,7 @@ export const users = [
         id: 2,
         documentType: 'Cédula',
         documentNumber: '123456789',
+        occupation: 'Desarrolladora Full Stack',
         nameJobSeeker: 'Ana López',
         phoneJobSeeker: '3101234567',
         phoneSecJobSeeker: '3101234568',

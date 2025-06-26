@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { FiEdit, FiSave, FiX } from 'react-icons/fi'
 import { SearchBar } from '../../../UI/SearchBar'
 import { Input } from '../../../UI/Input'
@@ -28,59 +28,21 @@ const containerVariants = {
 }
 
 export const GeneralEmployer = () => {
-  const [saveSuccess, setSaveSuccess] = useState(false);
   const {
-    userData,
     isEditing,
     activeSection,
     formData = {},
-    errors,
     handleEdit,
     handleSaveWithValidation,
     handleCancel,
     handleChange,
     handleSelectChange,
-    validateFields,
-    roleFields,
-    currentRole,
     optionTown,
     optionId,
     getActiveError,
     fieldLabels,
-    saveSuccess: contextSaveSuccess,
-    setSaveSuccess: setContextSaveSuccess
+    saveSuccess
   } = useSettings()
-
-  // Efecto para mostrar mensaje de éxito
-  useEffect(() => {
-    if (contextSaveSuccess) {
-      setSaveSuccess(true)
-      const timer = setTimeout(() => {
-        setSaveSuccess(false)
-        setContextSaveSuccess(false)
-      }, 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [contextSaveSuccess, setContextSaveSuccess])
-
-  // Manejo mejorado del guardado
-  const handleSave = async () => {
-    if (activeSection === 'personal') {
-      const isValid = await validateFields()
-      if (isValid) {
-        handleSaveWithValidation()
-      } else {
-        // Enfocar el primer campo con error
-        const firstErrorField = Object.keys(errors).find(key => errors[key])
-        if (firstErrorField) {
-          const element = document.querySelector(`[name="${firstErrorField}"]`)
-          if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        }
-      }
-    } else {
-      handleSaveWithValidation()
-    }
-  }
 
   return (
     <>
@@ -91,6 +53,7 @@ export const GeneralEmployer = () => {
           Información General
         </h2>
       </div>
+
       <motion.div
         initial="hidden"
         animate="visible"
@@ -112,7 +75,7 @@ export const GeneralEmployer = () => {
                   variants={buttonVariants}
                 >
                   <button
-                    onClick={handleSave}
+                    onClick={handleSaveWithValidation}
                     className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
                   >
                     <FiSave className='w-5 h-5' /> Guardar
@@ -137,127 +100,108 @@ export const GeneralEmployer = () => {
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 space-x-2'>
-            {/* Campo Tipo de Documento */}
-            <div className=''>
-              <Select
-                label={fieldLabels.documentType || 'Tipo de documento'}
-                value={formData.documentType || ''}
-                onChange={(value) => handleSelectChange('documentType', value)}
-                options={optionId}
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('documentType') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('documentType') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('documentType')}
-                required={isEditing && activeSection === 'personal'}
-              />
-            </div>
+            <Select
+              label={fieldLabels.documentType || 'Tipo de documento'}
+              value={formData.documentType || ''}
+              onChange={(value) => handleSelectChange('documentType', value)}
+              options={optionId}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal'
+                ? (getActiveError('documentType') ? 'border-red-500' : 'border-[#60efdb]')
+                : 'border-gray-300'}
+              focusColor={getActiveError('documentType') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('documentType')}
+              required={isEditing && activeSection === 'personal'}
+            />
 
-            {/* Campo Número de Documento */}
-            <div className=''>
-              <Input
-                iType='text'
-                iValue={formData.documentNumber || ''}
-                iName='documentNumber'
-                iChange={handleChange}
-                labelTitle={fieldLabels.documentNumber || 'Número de documento'}
-                iHolder={`Ingrese su ${fieldLabels.documentNumber?.toLowerCase() || 'número de documento'}`}
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('documentNumber') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('documentNumber') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('documentNumber')}
-                required={isEditing && activeSection === 'personal'}
-              />
-            </div>
+            <Input
+              iType='text'
+              iValue={formData.documentNumber || ''}
+              iName='documentNumber'
+              iChange={handleChange}
+              labelTitle={fieldLabels.documentNumber}
+              iHolder={`Ingrese su ${fieldLabels.documentNumber?.toLowerCase()}`}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal'
+                ? (getActiveError('documentNumber') ? 'border-red-500' : 'border-[#60efdb]')
+                : 'border-gray-300'}
+              focusColor={getActiveError('documentNumber') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('documentNumber')}
+              required={isEditing && activeSection === 'personal'}
+            />
 
-            {/* Campo Teléfono Principal */}
-            <div className=''>
-              <Input
-                iType='tel'
-                iValue={formData.phone || ''}
-                iName='phone'
-                iChange={handleChange}
-                labelTitle={fieldLabels.phone || 'Teléfono principal'}
-                iHolder={`Ingrese su ${fieldLabels.phone?.toLowerCase() || 'teléfono principal'}`}
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('phone') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('phone') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('phone')}
-                required={isEditing && activeSection === 'personal'}
-              />
-            </div>
+            <Input
+              iType='tel'
+              iValue={formData.phone || ''}
+              iName='phone'
+              iChange={handleChange}
+              labelTitle={fieldLabels.phone}
+              iHolder={`Ingrese su ${fieldLabels.phone?.toLowerCase()}`}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal'
+                ? (getActiveError('phone') ? 'border-red-500' : 'border-[#60efdb]')
+                : 'border-gray-300'}
+              focusColor={getActiveError('phone') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('phone')}
+              required={isEditing && activeSection === 'personal'}
+            />
 
-            {/* Campo Teléfono Secundario */}
-            <div className=''>
-              <Input
-                iType='tel'
-                iValue={formData.phoneSec || ''}
-                iName='phoneSec'
-                iChange={handleChange}
-                labelTitle={fieldLabels.phoneSec || 'Teléfono secundario'}
-                iHolder={`Ingrese su ${fieldLabels.phoneSec?.toLowerCase() || 'teléfono secundario'}`}
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('phoneSec') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('phoneSec') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('phoneSec')}
-              />
-            </div>
+            <Input
+              iType='tel'
+              iValue={formData.phoneSec || ''}
+              iName='phoneSec'
+              iChange={handleChange}
+              labelTitle={fieldLabels.phoneSec}
+              iHolder={`Ingrese su ${fieldLabels.phoneSec?.toLowerCase()}`}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal'
+                ? (getActiveError('phoneSec') ? 'border-red-500' : 'border-[#60efdb]')
+                : 'border-gray-300'}
+              focusColor={getActiveError('phoneSec') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('phoneSec')}
+            />
 
-            {/* Campo Correo Electrónico */}
-            <div className=''>
-              <Input
-                iType='email'
-                iValue={formData.email || ''}
-                iName='email'
-                iChange={handleChange}
-                labelTitle={fieldLabels.email || 'Correo electrónico'}
-                iHolder={`Ingrese su ${fieldLabels.email?.toLowerCase() || 'correo electrónico'}`}
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('email') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('email') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('email')}
-                required={isEditing && activeSection === 'personal'}
-              />
-            </div>
+            <Input
+              iType='email'
+              iValue={formData.email || ''}
+              iName='email'
+              iChange={handleChange}
+              labelTitle={fieldLabels.email}
+              iHolder={`Ingrese su ${fieldLabels.email?.toLowerCase()}`}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal'
+                ? (getActiveError('email') ? 'border-red-500' : 'border-[#60efdb]')
+                : 'border-gray-300'}
+              focusColor={getActiveError('email') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('email')}
+              required={isEditing && activeSection === 'personal'}
+            />
 
-            {/* Campo Ubicación */}
-            <div className=''>
-              <Select
-                label={fieldLabels.town || 'Ubicación'}
-                value={formData.town || ''}
-                onChange={(value) => handleSelectChange('town', value)}
-                options={optionTown}
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('town') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('town') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('town')}
-                required={isEditing && activeSection === 'personal'}
-              />
-            </div>
+            <Select
+              label={fieldLabels.town}
+              value={formData.town || ''}
+              onChange={(value) => handleSelectChange('town', value)}
+              options={optionTown}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal'
+                ? (getActiveError('town') ? 'border-red-500' : 'border-[#60efdb]')
+                : 'border-gray-300'}
+              focusColor={getActiveError('town') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('town')}
+              required={isEditing && activeSection === 'personal'}
+            />
 
-            {/* Campo Descripción */}
             <div className='pr-2 col-span-1 md:col-span-2'>
               <Desc
-                nameDesc={fieldLabels.desc || 'Descripción personal'}
+                nameDesc={fieldLabels.desc}
                 holderDesc='Escribe una breve descripción sobre ti'
                 name='desc'
                 value={formData.desc || ''}
                 onChange={handleChange}
                 disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('desc') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
+                borderColor={isEditing && activeSection === 'personal'
+                  ? (getActiveError('desc') ? 'border-red-500' : 'border-[#60efdb]')
+                  : 'border-gray-300'}
                 error={getActiveError('desc')}
               />
             </div>
@@ -265,21 +209,17 @@ export const GeneralEmployer = () => {
         </div>
 
         <hr className='border-gray-200 mr-8' />
-
-        {/* Secciones de Seguridad y Preferencias */}
         <Security />
         <hr className='border-gray-200 mr-8' />
         <Preferences />
       </motion.div>
-
-      {/* Mensaje de éxito al guardar */}
       <AnimatePresence>
         {saveSuccess && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed top-4 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg z-50"
+            className='fixed top-50 right-170 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-md z-50'
           >
             ¡Datos guardados correctamente!
           </motion.div>

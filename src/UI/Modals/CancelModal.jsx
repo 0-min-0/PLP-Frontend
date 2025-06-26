@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../button'
 
-export const RejectionModal = ({ isOpen, onClose, onConfirm }) => {
+export const CancelModal = ({ isOpen, onClose, onConfirm }) => {
   const backdropVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 }
@@ -31,9 +31,9 @@ export const RejectionModal = ({ isOpen, onClose, onConfirm }) => {
             variants={modalVariants}
           >
             <h3 className="text-xl font-bold text-[#405e7f] mb-4">
-              Confirmar Rechazo
+              Cancelar Postulación
             </h3>
-            <p className="mb-6">¿Estás seguro de rechazar esta postulación?</p>
+            <p className="mb-6">¿Deseas retirar tu postulación para esta vacante?</p>
 
             <div className="flex justify-end gap-3">
               <Button
@@ -42,7 +42,7 @@ export const RejectionModal = ({ isOpen, onClose, onConfirm }) => {
                 clicked={onClose}
               />
               <Button
-                btnName='Rechazar'
+                btnName='Retirar'
                 btnStyle='bg-red-500 text-white'
                 clicked={onConfirm}
               />

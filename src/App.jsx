@@ -25,7 +25,6 @@ import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
 import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
 import { SettingsProvider } from './Context/SettingsContext'
-import { users } from './Utils/users'
 import { Postulations } from './Pages/Settings/SettingsJobSeeker/Postulations'
 import { GeneralEmployer } from './Pages/Settings/SettingsEmployer/GeneralEmployer'
 import { GeneralJobSeeker } from './Pages/Settings/SettingsJobSeeker/GeneralJobSeeker'
@@ -43,6 +42,7 @@ import { Jobs } from './Pages/Jobs/Jobs'
 import { VacanciesByCategory } from './Components/CategoriesContainer/VacanciesByCategory'
 import { PeopleByCategory } from './Components/CategoriesContainer/PeopleByCategory'
 import { MixedContent } from './Components/CategoriesContainer/MixedContent'
+import { users } from './Utils/users'
 
 function App() {
   const location = useLocation()
@@ -74,20 +74,12 @@ function App() {
 
   const isBgRoute = bgRoutes.includes(location.pathname)
 
-  const getInitialUser = () => {
-    const role = 'contratante'
-    return {
-      ...users.find(user => user.role === role),
-      role
-    }
-  }
-
   return (
     <PasswordProvider>
       <RegisterProvider>
         <MenuProvider>
           <VacancyProvider>
-            <SettingsProvider initialUser={getInitialUser()}>
+            <SettingsProvider initialUser={users[1]}>
               <ContactProvider>
                 <SearchBarProvider
                   groupSuggestions={true}

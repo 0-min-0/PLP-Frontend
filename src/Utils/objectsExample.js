@@ -1,7 +1,7 @@
-export let vacanciesExample = [ //array de vacantes
+export let vacanciesExample = [
   {
     id: 1,
-    title: 'Desarrollador Frontend',
+    title: 'Desarrollador Frontend Senior',
     company: 'Tech Solutions',
     contactPerson: 'Ana López',
     contact: 'ana@tech.com',
@@ -10,11 +10,18 @@ export let vacanciesExample = [ //array de vacantes
     availability: 'Full-time',
     responsibilities: 'Desarrollo de interfaces con React',
     salary: '3,000,000',
-    postulations: []
+    postulations: [
+      {
+        personId: 1,
+        personName: 'Juan Pérez',
+        appliedDate: '2025-06-10',
+        status: 'En revisión'
+      }
+    ]
   },
   {
     id: 2,
-    title: 'Diseñador Gráfico',
+    title: 'Diseñador UX/UI',
     company: 'Creative Agency',
     contactPerson: 'Carlos Gómez',
     contact: 'carlos@creative.com',
@@ -22,23 +29,39 @@ export let vacanciesExample = [ //array de vacantes
     category: 'Diseño web',
     availability: 'Part-time',
     responsibilities: 'Diseño de piezas gráficas para campañas digitales',
-    salary: '2,000,000'
+    salary: '2,000,000',
+    postulations: [
+      {
+        personId: 2,
+        personName: 'Mariana Gómez',
+        appliedDate: '2025-06-11',
+        status: 'Entrevista programada'
+      }
+    ]
   },
   {
     id: 3,
-    title: 'Gerente de Proyectos',
-    company: 'Business Corp',
-    contactPerson: 'Lucía Martínez',
-    contact: 'lucia@businesscorp.com',
-    location: 'Av. Bolívar #20N-30, Armenia, Quindío',
-    category: 'Administracion y oficina',
+    title: 'Desarrollador React',
+    company: 'Web Solutions',
+    contactPerson: 'Sofía Herrera',
+    contact: 'sofia@websolutions.com',
+    location: 'Calle 10 #15-08, Armenia, Quindío',
+    category: 'Tecnología e informática',
     availability: 'Full-time',
-    responsibilities: 'Gestión integral de proyectos, liderazgo de equipos y coordinación estratégica',
-    salary: '5,500,000'
+    responsibilities: 'Desarrollo de interfaces con React y TypeScript',
+    salary: '3,500,000',
+    postulations: [
+      {
+        personId: 1,
+        personName: 'Juan Pérez',
+        appliedDate: '2025-06-12',
+        status: 'En revisión'
+      }
+    ]
   },
   {
     id: 4,
-    title: 'Analista de Datos',
+    title: 'Analista de Datos Senior',
     company: 'Data Insights',
     contactPerson: 'Pedro Ramírez',
     contact: 'pedro@datainsights.com',
@@ -46,35 +69,39 @@ export let vacanciesExample = [ //array de vacantes
     category: 'Ciencia e investigación',
     availability: 'Medio tiempo',
     responsibilities: 'Análisis de datos con Python y Power BI',
-    salary: '1,200,000'
+    salary: '4,200,000',
+    postulations: [
+      {
+        personId: 3,
+        personName: 'Carlos Ramírez',
+        appliedDate: '2025-06-09',
+        status: 'Prueba técnica enviada'
+      }
+    ]
   },
   {
     id: 5,
-    title: 'Desarrollador Backend',
-    company: 'Web Solutions',
-    contactPerson: 'Sofía Herrera',
-    contact: 'sofia@websolutions.com',
-    location: 'Calle 10 #15-08, Armenia, Quindío',
-    category: 'Tecnología e informática',
+    title: 'Diseñador de Producto',
+    company: 'Innovation Design',
+    contactPerson: 'Laura Fernández',
+    contact: 'laura@innovation.com',
+    location: 'Cra. 22 #15-30, Armenia, Quindío',
+    category: 'Diseño web',
     availability: 'Full-time',
-    responsibilities: 'Desarrollo de APIs REST con Node.js',
-    salary: '3,200,000'
+    responsibilities: 'Diseño de interfaces y experiencia de usuario',
+    salary: '3,800,000',
+    postulations: [
+      {
+        personId: 2,
+        personName: 'Mariana Gómez',
+        appliedDate: '2025-06-15',
+        status: 'En revisión'
+      }
+    ]
   },
   {
     id: 6,
-    title: 'Especialista en Marketing Digital',
-    company: 'Marketing Agency',
-    contactPerson: 'Esteban Ruiz',
-    contact: 'esteban@marketingagency.com',
-    location: 'Cra. 17 #25-90, Armenia, Quindío',
-    category: 'Marketing y ventas',
-    availability: 'Part-time',
-    responsibilities: 'Planificación de campañas en redes sociales',
-    salary: '2,500,000'
-  },
-  {
-    id: 7,
-    title: 'Ingeniero de Software',
+    title: 'Ingeniero Backend Java',
     company: 'Tech Innovations',
     contactPerson: 'Valeria Torres',
     contact: 'valeria@techinnovations.com',
@@ -82,19 +109,155 @@ export let vacanciesExample = [ //array de vacantes
     category: 'Tecnología e informática',
     availability: 'Full-time',
     responsibilities: 'Desarrollo de soluciones escalables con Java',
-    salary: '4,800,000'
+    salary: '4,800,000',
+    postulations: [
+      {
+        personId: 4,
+        personName: 'Laura Torres',
+        appliedDate: '2025-06-14',
+        status: 'En revisión'
+      }
+    ]
+  },
+  {
+    id: 7,
+    title: 'Arquitecto de Software',
+    company: 'Enterprise Solutions',
+    contactPerson: 'Oscar Mendoza',
+    contact: 'oscar@enterprise.com',
+    location: 'Cra. 25 #12-45, Armenia, Quindío',
+    category: 'Tecnología e informática',
+    availability: 'Full-time',
+    responsibilities: 'Diseño de arquitecturas de software',
+    salary: '6,500,000',
+    postulations: [
+      {
+        personId: 4,
+        personName: 'Laura Torres',
+        appliedDate: '2025-06-16',
+        status: 'En revisión'
+      }
+    ]
   },
   {
     id: 8,
-    title: 'Asistente Administrativo',
-    company: 'Office Solutions',
-    contactPerson: 'Diego Castro',
-    contact: 'diego@officesolutions.com',
+    title: 'Técnico de Soporte IT',
+    company: 'IT Support Solutions',
+    contactPerson: 'Mario Rodríguez',
+    contact: 'mario@itsupport.com',
+    location: 'Calle 18 #20-15, Armenia, Quindío',
+    category: 'Tecnología e informática',
+    availability: 'Full-time',
+    responsibilities: 'Soporte técnico a usuarios',
+    salary: '2,200,000',
+    postulations: [
+      {
+        personId: 5,
+        personName: 'Andrés Castillo',
+        appliedDate: '2025-06-13',
+        status: 'Entrevista inicial completada'
+      }
+    ]
+  },
+  {
+    id: 9,
+    title: 'Especialista en SEO',
+    company: 'Digital Marketing Agency',
+    contactPerson: 'Carolina Díaz',
+    contact: 'carolina@digital.com',
+    location: 'Cra. 17 #25-90, Armenia, Quindío',
+    category: 'Marketing y ventas',
+    availability: 'Part-time',
+    responsibilities: 'Optimización de motores de búsqueda',
+    salary: '2,800,000',
+    postulations: [
+      {
+        personId: 6,
+        personName: 'Valentina Ríos',
+        appliedDate: '2025-06-12',
+        status: 'En revisión'
+      }
+    ]
+  },
+  {
+    id: 10,
+    title: 'Gerente de Marketing Digital',
+    company: 'Marketing Agency',
+    contactPerson: 'Esteban Ruiz',
+    contact: 'esteban@marketingagency.com',
+    location: 'Cra. 17 #25-90, Armenia, Quindío',
+    category: 'Marketing y ventas',
+    availability: 'Full-time',
+    responsibilities: 'Planificación de estrategias digitales',
+    salary: '5,500,000',
+    postulations: [
+      {
+        personId: 6,
+        personName: 'Valentina Ríos',
+        appliedDate: '2025-06-18',
+        status: 'En revisión'
+      }
+    ]
+  },
+  {
+    id: 11,
+    title: 'Contador Senior',
+    company: 'Financial Advisory',
+    contactPerson: 'Roberto Galán',
+    contact: 'roberto@financial.com',
     location: 'Calle 16 #14-21, Armenia, Quindío',
     category: 'Administración y oficina',
-    availability: 'Medio tiempo',
-    responsibilities: 'Gestión documental y soporte administrativo',
-    salary: '1,000,000'
+    availability: 'Full-time',
+    responsibilities: 'Gestión contable y financiera',
+    salary: '4,000,000',
+    postulations: [
+      {
+        personId: 7,
+        personName: 'Santiago Mejía',
+        appliedDate: '2025-06-11',
+        status: 'Prueba contable completada'
+      }
+    ]
+  },
+  {
+    id: 12,
+    title: 'Profesor de Inglés',
+    company: 'Language Institute',
+    contactPerson: 'Patricia Sánchez',
+    contact: 'patricia@language.com',
+    location: 'Calle 20 #12-45, Armenia, Quindío',
+    category: 'Educación y formación',
+    availability: 'Part-time',
+    responsibilities: 'Enseñanza de inglés a adultos',
+    salary: '1,800,000',
+    postulations: [
+      {
+        personId: 8,
+        personName: 'Camila Herrera',
+        appliedDate: '2025-06-15',
+        status: 'Clase de demostración programada'
+      }
+    ]
+  },
+  {
+    id: 13,
+    title: 'Coordinador Académico',
+    company: 'Global Education Center',
+    contactPerson: 'Luisa Fernanda Vargas',
+    contact: 'luisa@globaleducation.com',
+    location: 'Av. Bolívar #30-20, Armenia, Quindío',
+    category: 'Educación y formación',
+    availability: 'Full-time',
+    responsibilities: 'Coordinación de programas académicos',
+    salary: '3,500,000',
+    postulations: [
+      {
+        personId: 8,
+        personName: 'Camila Herrera',
+        appliedDate: '2025-06-17',
+        status: 'En revisión'
+      }
+    ]
   }
 ]
 
@@ -113,7 +276,20 @@ export let peopleExample = [
     skills: ['React', 'JavaScript', 'CSS', 'Redux'],
     studies: 'Ingeniería de Sistemas - Universidad Nacional',
     category: 'Educación y formación',
-    postulations: ['Desarrollador Backend'],
+    appliedTo: [
+      {
+        vacancyId: 1,
+        vacancyTitle: 'Desarrollador Frontend Senior',
+        appliedDate: '2025-06-10',
+        status: 'En revisión'
+      },
+      {
+        vacancyId: 3,
+        vacancyTitle: 'Desarrollador React',
+        appliedDate: '2025-06-12',
+        status: 'En revisión'
+      }
+    ],
     type: 'person',
     comments: [
       {
@@ -150,7 +326,20 @@ export let peopleExample = [
     skills: ['Figma', 'Adobe XD', 'Sketch', 'HTML'],
     studies: 'Diseño Gráfico - Universidad de Medellín',
     category: 'Educación y formación',
-    postulations: ['Desarrollador Backend'],
+    appliedTo: [
+      {
+        vacancyId: 2,
+        vacancyTitle: 'Diseñador UX/UI',
+        appliedDate: '2025-06-11',
+        status: 'Entrevista programada'
+      },
+      {
+        vacancyId: 5,
+        vacancyTitle: 'Diseñador de Producto',
+        appliedDate: '2025-06-15',
+        status: 'En revisión'
+      }
+    ],
     type: 'person',
     comments: [
       {
@@ -177,7 +366,7 @@ export let peopleExample = [
         date: '2025-03-25',
         coment: 'Mariana es una diseñadora UX/UI excepcional. Su capacidad para traducir requisitos complejos en interfaces intuitivas y hermosas es realmente notable.'
       }
-    ] 
+    ]
   },
   {
     id: 3,
@@ -193,7 +382,14 @@ export let peopleExample = [
     skills: ['Python', 'SQL', 'Power BI', 'Excel'],
     studies: 'Estadística - Universidad del Valle',
     category: 'Educación y formación',
-    postulations: ['Desarrollador Backend'],
+    appliedTo: [
+      {
+        vacancyId: 4,
+        vacancyTitle: 'Analista de Datos Senior',
+        appliedDate: '2025-06-09',
+        status: 'Prueba técnica enviada'
+      }
+    ],
     type: 'person',
     comments: [
       {
@@ -236,7 +432,20 @@ export let peopleExample = [
     skills: ['Java', 'Spring Boot', 'Docker', 'Kubernetes'],
     studies: 'Ingeniería de Software - Universidad del Norte',
     category: 'Educación y formación',
-    postulations: ['Desarrollador Backend'],
+    appliedTo: [
+      {
+        vacancyId: 6,
+        vacancyTitle: 'Ingeniero Backend Java',
+        appliedDate: '2025-06-14',
+        status: 'En revisión'
+      },
+      {
+        vacancyId: 7,
+        vacancyTitle: 'Arquitecto de Software',
+        appliedDate: '2025-06-16',
+        status: 'En revisión'
+      }
+    ],
     type: 'person',
     comments: [
       {
@@ -273,7 +482,14 @@ export let peopleExample = [
     skills: ['Windows', 'Linux', 'Networking', 'Atención al cliente'],
     studies: 'Tecnología en Sistemas - SENA',
     category: 'Educación y formación',
-    postulations: ['Desarrollador Backend'],
+    appliedTo: [
+      {
+        vacancyId: 8,
+        vacancyTitle: 'Técnico de Soporte IT',
+        appliedDate: '2025-06-13',
+        status: 'Entrevista inicial completada'
+      }
+    ],
     type: 'person',
     comments: [
       {
@@ -316,7 +532,20 @@ export let peopleExample = [
     skills: ['SEO', 'Google Ads', 'Meta Ads', 'Canva'],
     studies: 'Comunicación Social - Universidad del Quindío',
     category: 'Educación y formación',
-    postulations: ['Desarrollador Backend'],
+    appliedTo: [
+      {
+        vacancyId: 9,
+        vacancyTitle: 'Especialista en SEO',
+        appliedDate: '2025-06-12',
+        status: 'En revisión'
+      },
+      {
+        vacancyId: 10,
+        vacancyTitle: 'Gerente de Marketing Digital',
+        appliedDate: '2025-06-18',
+        status: 'En revisión'
+      }
+    ],
     type: 'person',
     comments: [
       {
@@ -353,7 +582,14 @@ export let peopleExample = [
     skills: ['Contabilidad', 'Excel', 'Normas NIIF', 'Tributación'],
     studies: 'Contaduría Pública - Universidad Libre',
     category: 'Administracion y oficina',
-    postulations: ['Asistente administrativo'],
+    appliedTo: [
+      {
+        vacancyId: 11,
+        vacancyTitle: 'Contador Senior',
+        appliedDate: '2025-06-11',
+        status: 'Prueba contable completada'
+      }
+    ],
     type: 'person',
     comments: [
       {
@@ -396,7 +632,20 @@ export let peopleExample = [
     skills: ['Inglés', 'Didáctica', 'Evaluación', 'Herramientas TIC'],
     studies: 'Licenciatura en Lenguas Extranjeras - UIS',
     category: 'Educación y formación',
-    postulations: ['Desarrollador Backend'],
+    appliedTo: [
+      {
+        vacancyId: 12,
+        vacancyTitle: 'Profesor de Inglés',
+        appliedDate: '2025-06-15',
+        status: 'Clase de demostración programada'
+      },
+      {
+        vacancyId: 13,
+        vacancyTitle: 'Coordinador Académico',
+        appliedDate: '2025-06-17',
+        status: 'En revisión'
+      }
+    ],
     type: 'person',
     comments: [
       {

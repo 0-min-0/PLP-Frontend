@@ -59,13 +59,13 @@ export const SkillsStudies = () => {
               >
                 <button
                   onClick={handleSaveWithValidation}
-                  className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                  className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 duration-200 cursor-pointer'
                 >
                   <FiSave className='w-5 h-5' /> Guardar
                 </button>
                 <button
                   onClick={handleCancel}
-                  className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                  className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 duration-200 cursor-pointer'
                 >
                   <FiX className='w-5 h-5' /> Cancelar
                 </button>
@@ -74,7 +74,7 @@ export const SkillsStudies = () => {
               <motion.button
                 key='skills-edit'
                 onClick={() => handleEdit('skills')}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 duration-200 cursor-pointer'
                 initial='hidden'
                 animate='visible'
                 exit='exit'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FiEdit, FiSave, FiX } from 'react-icons/fi'
 import { SearchBar } from '../../../UI/SearchBar'
 import { Input } from '../../../UI/Input'
@@ -28,20 +28,18 @@ const containerVariants = {
 }
 
 export const GeneralCompany = () => {
-  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false)
+  const [localSaveSuccess, setLocalSaveSuccess] = useState(false)
+
   const {
-    userData,
     isEditing,
     activeSection,
     formData = {},
-    errors,
     handleEdit,
     handleSaveWithValidation,
     handleCancel,
     handleChange,
     handleSelectChange,
-    roleFields,
-    currentRole,
     optionTown,
     optionCategory,
     getActiveError,
@@ -50,14 +48,16 @@ export const GeneralCompany = () => {
     setSaveSuccess: setContextSaveSuccess
   } = useSettings()
 
-  // Sincronizar el mensaje de éxito con el contexto
-  if (contextSaveSuccess && !saveSuccess) {
-    setSaveSuccess(true);
-    setTimeout(() => {
-      setSaveSuccess(false);
-      setContextSaveSuccess(false);
-    }, 3000);
-  }
+  useEffect(() => {
+    if (contextSaveSuccess && !localSaveSuccess) {
+      setLocalSaveSuccess(true)
+      const timer = setTimeout(() => {
+        setLocalSaveSuccess(false)
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [contextSaveSuccess, localSaveSuccess])
+
 
   return (
     <>

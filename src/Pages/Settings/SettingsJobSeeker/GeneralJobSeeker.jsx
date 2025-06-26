@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { FiEdit, FiSave, FiX } from 'react-icons/fi'
 import { SearchBar } from '../../../UI/SearchBar'
 import { Input } from '../../../UI/Input'
@@ -10,6 +10,7 @@ import { Avatar } from '../../../Components/Avatar/Avatar'
 import { Security } from '../Security'
 import { Preferences } from '../Preferences'
 import { SkillsStudies } from './SkillsStudies'
+import { optionTown, optionId, optionGenre, categories } from '../../../Utils/options'
 
 const buttonVariants = {
   hidden: { opacity: 0, y: -10 },
@@ -30,25 +31,17 @@ const containerVariants = {
 
 export const GeneralJobSeeker = () => {
   const {
-    userData,
     isEditing,
     activeSection,
     formData,
-    errors,
     handleEdit,
     handleCancel,
     handleChange,
     handleSelectChange,
-    roleFields,
-    currentRole,
-    optionTown,
-    optionId,
     getActiveError,
     handleSaveWithValidation,
     saveSuccess
   } = useSettings()
-
-  // Remove the local saveSuccess state since it's now coming from context
 
   return (
     <>
@@ -65,7 +58,7 @@ export const GeneralJobSeeker = () => {
         variants={containerVariants}
         className='max-w-5xl mx-auto h-85 bg-white rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'
       >
-        {/* Personal Information Section */}
+        {/* Sección de Información Personal */}
         <div className='space-y-4 pr-6'>
           <div className='flex justify-between items-center'>
             <h3 className='text-xl font-semibold text-[#405e7f]'>Información Personal</h3>
@@ -97,7 +90,6 @@ export const GeneralJobSeeker = () => {
                   key='edit'
                   onClick={() => handleEdit('personal')}
                   className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
-                  data-testid="edit-personal-info-button"
                 >
                   <FiEdit className='w-5 h-5' /> Editar información
                 </button>
@@ -106,103 +98,133 @@ export const GeneralJobSeeker = () => {
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 space-x-2'>
-            <div className=''>
-              <Select
-                label='Tipo de documento'
-                value={formData.documentType || ''}
-                onChange={(value) => handleSelectChange('documentType', value)}
-                options={optionId}
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('documentType') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('documentType') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('documentType')}
-              />
-            </div>
+            <Select
+              label='Tipo de documento'
+              value={formData.documentType || ''}
+              onChange={(value) => handleSelectChange('documentType', value)}
+              options={optionId}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('documentType') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('documentType') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('documentType')}
+            />
 
-            <div className=''>
-              <Input
-                iType='text'
-                iValue={formData.documentNumber || ''}
-                iName='documentNumber'
-                iChange={handleChange}
-                labelTitle='Número de documento'
-                iHolder='Ingrese su número de documento'
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('documentNumber') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('documentNumber') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('documentNumber')}
-              />
-            </div>
+            <Input
+              iType='text'
+              iValue={formData.documentNumber || ''}
+              iName='documentNumber'
+              iChange={handleChange}
+              labelTitle='Número de documento'
+              iHolder='Ingrese su número de documento'
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('documentNumber') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('documentNumber') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('documentNumber')}
+            />
 
-            <div className=''>
-              <Input
-                iType='tel'
-                iValue={formData.phone || ''}
-                iName='phone'
-                iChange={handleChange}
-                labelTitle='Teléfono principal'
-                iHolder='Ingrese su teléfono principal'
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('phone') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('phone') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('phone')}
-              />
-            </div>
+            <Input
+              iType='text'
+              iValue={formData.occupation || ''}
+              iName='occupation'
+              iChange={handleChange}
+              labelTitle='Ocupación'
+              iHolder='Ingrese su ocupación'
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('occupation') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('occupation') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('occupation')}
+            />
 
-            <div className=''>
-              <Input
-                iType='tel'
-                iValue={formData.phoneSec || ''}
-                iName='phoneSec'
-                iChange={handleChange}
-                labelTitle='Teléfono secundario'
-                iHolder='Ingrese su teléfono secundario'
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('phoneSec') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('phoneSec') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('phoneSec')}
-              />
-            </div>
+            <Input
+              iType='tel'
+              iValue={formData.phone || ''}
+              iName='phone'
+              iChange={handleChange}
+              labelTitle='Teléfono principal'
+              iHolder='Ingrese su teléfono principal'
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('phone') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('phone') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('phone')}
+            />
 
-            <div className=''>
-              <Input
-                iType='email'
-                iValue={formData.email || ''}
-                iName='email'
-                iChange={handleChange}
-                labelTitle='Correo electrónico'
-                iHolder='Ingrese su correo electrónico'
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('email') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('email') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('email')}
-              />
-            </div>
+            <Input
+              iType='tel'
+              iValue={formData.phoneSec || ''}
+              iName='phoneSec'
+              iChange={handleChange}
+              labelTitle='Teléfono secundario'
+              iHolder='Ingrese su teléfono secundario'
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('phoneSec') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('phoneSec') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('phoneSec')}
+            />
 
-            <div className=''>
-              <Select
-                label='Ubicación'
-                value={formData.town || ''}
-                onChange={(value) => handleSelectChange('town', value)}
-                options={optionTown}
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={isEditing && activeSection === 'personal' ?
-                  (getActiveError('town') ? 'border-red-500' : 'border-[#60efdb]') :
-                  'border-gray-300'}
-                focusColor={getActiveError('town') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('town')}
-              />
-            </div>
+            <Input
+              iType='email'
+              iValue={formData.email || ''}
+              iName='email'
+              iChange={handleChange}
+              labelTitle='Correo electrónico'
+              iHolder='Ingrese su correo electrónico'
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('email') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('email') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('email')}
+            />
+
+            <Select
+              label='Ubicación'
+              value={formData.town || ''}
+              onChange={(value) => handleSelectChange('town', value)}
+              options={optionTown}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('town') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('town') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('town')}
+            />
+            
+            <Select
+              label='Género'
+              value={formData.genre || ''}
+              onChange={(value) => handleSelectChange('genre', value)}
+              options={optionGenre}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('genre') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('genre') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('genre')}
+            />
+
+            <Select
+              label='Categoría'
+              value={formData.category || ''}
+              onChange={(value) => handleSelectChange('category', value)}
+              options={categories}
+              disabled={!isEditing || activeSection !== 'personal'}
+              borderColor={isEditing && activeSection === 'personal' ?
+                (getActiveError('category') ? 'border-red-500' : 'border-[#60efdb]') :
+                'border-gray-300'}
+              focusColor={getActiveError('category') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
+              error={getActiveError('category')}
+            />
+
             <div className='pr-2 col-span-1 md:col-span-2'>
               <Desc
                 nameDesc='Descripción personal'
@@ -219,24 +241,24 @@ export const GeneralJobSeeker = () => {
             </div>
           </div>
         </div>
+
         <hr className=' border-gray-200 mr-8' />
         <div className='mr-8'>
           <SkillsStudies />
         </div>
         <hr className='border-gray-200 mr-8' />
-        {/* Seguridad y preferencias */}
         <Security />
         <hr className='border-gray-200 mr-8' />
         <Preferences />
       </motion.div>
-      {/* Mensaje de éxito al guardar */}
+
       <AnimatePresence>
         {saveSuccess && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed top-4 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg"
+            className="fixed top-50 right-170 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg"
           >
             ¡Datos guardados correctamente!
           </motion.div>
