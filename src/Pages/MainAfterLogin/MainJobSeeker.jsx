@@ -7,6 +7,7 @@ import { HiOutlineInbox } from 'react-icons/hi2'
 import { VacanciesLayout } from '../../Layouts/VacanciesLayout/VacanciesLayout'
 import { VacancyView } from '../../UI/Vacancy/VacancyView'
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5'
+import { InteractiveLogoMain } from '../../UI/InteractiveLogo'
 
 export const MainJobSeeker = () => {
   const [searchQuery, setSearchQuery] = useState('')
@@ -29,6 +30,11 @@ export const MainJobSeeker = () => {
   return (
     <div className='p-6'>
       <Header
+        logo={
+          <InteractiveLogoMain
+            mainRoute='/inicio-contratista'
+          />
+        }
         middleObject={
           <SearchBar
             placeholder="Buscar vacantes por título, empresa o habilidades..."

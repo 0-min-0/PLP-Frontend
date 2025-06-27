@@ -35,7 +35,7 @@ export const Desc = ({
                     rows={5}
                     className={descStyle}
                     placeholder={holderDesc}
-                    maxLength={maxLength + 1}
+                    maxLength={maxLength} 
                     disabled={disabled}
                 />
                 <span className='absolute bottom-3 right-4 text-[#405e7f]/60'>

@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { NavLink } from 'react-router-dom'
+import { ReportModal } from '../../UI/Modals/ReportModal'
 import styles from '../../Style/AIChatBot.module.css'
 
 const containerVariants = {
@@ -14,6 +16,21 @@ const containerVariants = {
 }
 
 export const Help = () => {
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false)
+
+  const handleOpenReportModal = () => {
+    setIsReportModalOpen(true)
+  }
+
+  const handleCloseReportModal = () => {
+    setIsReportModalOpen(false)
+  }
+
+  const handleSubmitReport = (reportData) => {
+    console.log('Report submitted:', reportData)
+    alert(`Gracias por tu ${reportData.type === 'suggestion' ? 'sugerencia' : 'reporte'}. Haremos lo posible por atenderlo.`)
+  }
+
   return (
     <motion.div
       initial="hidden"
@@ -132,7 +149,10 @@ export const Help = () => {
             <li>
               <p className="font-medium">La app/web no carga</p>
               <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
-                Revisa tu conexión a internet o actualiza tu navegador/app. Si persiste, repórtalo <a href="#" className={styles.helpLink}>aquí</a>.
+                Revisa tu conexión a internet o actualiza tu navegador/app. Si persiste, repórtalo
+                <button onClick={handleOpenReportModal} className={`${styles.helpLink} ml-1`}>
+                  aquí
+                </button>.
               </p>
             </li>
             <li>
@@ -188,9 +208,18 @@ export const Help = () => {
           transition={{ delay: 0.8, duration: 0.4 }}
         >
           <h3 className="font-semibold">¿Cómo podemos mejorar PLP?</h3>
-          <p className="mt-2">Déjanos tus sugerencias <a href="#" className={styles.helpLink}>en este formulario</a>.</p>
+          <p className="mt-2">Déjanos tus sugerencias
+            <button onClick={handleOpenReportModal} className={`${styles.helpLink} ml-1`}>
+              en este formulario
+            </button>.
+          </p>
         </motion.section>
       </div>
+      <ReportModal
+        isOpen={isReportModalOpen}
+        onClose={handleCloseReportModal}
+        onSubmit={handleSubmitReport}
+      />
     </motion.div>
   )
 }

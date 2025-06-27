@@ -13,7 +13,8 @@ import {
   rejectPostulation
 } from '../../../Utils/objectsExample'
 import { menuConfig } from '../../../Utils/options'
-import { RejectionModal } from '../../../UI/Modals/RejectionModal' 
+import { RejectionModal } from '../../../UI/Modals/RejectionModal'
+import { InteractiveLogoMain } from '../../../UI/InteractiveLogo'
 
 export const SettingsEmployer = () => {
   const { vacancies, setVacancies } = useVacancy()
@@ -83,6 +84,11 @@ export const SettingsEmployer = () => {
   return (
     <div className='p-6'>
       <Header
+        logo={
+          <InteractiveLogoMain
+            mainRoute='/inicio-contratante'
+          />
+        }
         middleObject={
           <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
             Configuraciones

@@ -7,6 +7,7 @@ import { HiOutlineInbox } from 'react-icons/hi2'
 import { IoBriefcaseOutline } from 'react-icons/io5'
 import { PeopleLayout } from '../../Layouts/PeopleLayout/PeopleLayout'
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5'
+import { InteractiveLogoMain } from '../../UI/InteractiveLogo'
 
 export const MainEmployer = () => {
   const [hasNotifications, setHasNotifications] = useState(true)
@@ -22,6 +23,11 @@ export const MainEmployer = () => {
   return (
     <div className='p-6'>
       <Header
+        logo={
+          <InteractiveLogoMain
+            mainRoute='/inicio-contratante'
+          />
+        }
         middleObject={
           <SearchBar
             placeholder='Buscar hojas de vida por nombre, ocupación o habilidades...'

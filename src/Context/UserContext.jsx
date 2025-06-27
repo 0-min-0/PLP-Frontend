@@ -1,21 +1,20 @@
 import { createContext, useContext, useState } from 'react'
 import Avatar1 from '../assets/icons/icon1.jpg'
+import Avatar2 from '../assets/icons/icon2.jpg'
+import Avatar3 from '../assets/icons/icon3.jpg'
+import Avatar4 from '../assets/icons/icon4.jpg'
+import Avatar5 from '../assets/icons/icon5.jpg'
+
 const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({
-    name: 'Usuario',
-    avatar: {Avatar1} 
-  })
+ const [user, setUser] = useState({
+  name: 'Usuario',
+  avatar: Avatar1,
+})
 
-  const avatarOptions = [
-    'https://via.placeholder.com/150/FF5733/FFFFFF',
-    'https://via.placeholder.com/150/C70039/FFFFFF',
-    'https://via.placeholder.com/150/900C3F/FFFFFF',
-    'https://via.placeholder.com/150/581845/FFFFFF',
-    'https://via.placeholder.com/150/1A5276/FFFFFF',
-    'https://via.placeholder.com/150/148F77/FFFFFF'
-  ]
+const avatarOptions = [Avatar1, Avatar2, Avatar3, Avatar4, Avatar5]
+
 
   const handleNameChange = (newName) => {
     setUser(prev => ({ ...prev, name: newName }))

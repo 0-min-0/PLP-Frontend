@@ -36,7 +36,7 @@ export const GeneralCompany = () => {
     activeSection,
     formData = {},
     handleEdit,
-    handleSaveWithValidation,
+    handleSave,
     handleCancel,
     handleChange,
     handleSelectChange,
@@ -89,7 +89,7 @@ export const GeneralCompany = () => {
                   variants={buttonVariants}
                 >
                   <button
-                    onClick={handleSaveWithValidation}
+                    onClick={handleSave}
                     className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
                   >
                     <FiSave className='w-5 h-5' /> Guardar

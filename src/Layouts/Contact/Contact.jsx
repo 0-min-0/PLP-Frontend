@@ -103,7 +103,6 @@ export const Contact = () => {
                                     />
                                 </div>
                             </div>
-
                             <div className='mb-4'>
                                 <Desc
                                     nameDesc='Comentario/Sugerencia'

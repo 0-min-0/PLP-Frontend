@@ -4,12 +4,18 @@ import { Header } from '../../../Components/Header/Header'
 import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2'
 import { RightMenu } from '../../../Components/RightMenu/RightMenu'
 import { menuConfig } from '../../../Utils/options'
+import { InteractiveLogoMain } from '../../../UI/InteractiveLogo'
 
 export const SettingsCompany = () => {
     return (
         <div className='p-6'>
             <div className=''>
                 <Header
+                    logo={
+                        <InteractiveLogoMain
+                            mainRoute='/inicio-empresa'
+                        />
+                    }
                     middleObject={
                         <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
                             Configuraciones
@@ -26,14 +32,14 @@ export const SettingsCompany = () => {
                         </div>
                     }
                 />
-                
+
                 <div className='w-[90%] flex justify-center gap-6 mx-30 mt-4'>
                     {/* Contenedor principal de configuraciones */}
                     <div className='w-[70%] bg-white px-10 py-8 rounded-xl'>
                         {/* Outlet renderizará GeneralSettings u otros componentes según la ruta */}
                         <Outlet />
                     </div>
-                    
+
                     {/* Menú lateral derecho */}
                     <div className='w-[30%]'>
                         <RightMenu

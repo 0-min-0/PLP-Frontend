@@ -4,12 +4,18 @@ import { Header } from '../../../Components/Header/Header'
 import { HiOutlineInbox, HiMiniArrowUturnLeft } from 'react-icons/hi2'
 import { RightMenu } from '../../../Components/RightMenu/RightMenu'
 import { menuConfig } from '../../../Utils/options'
+import { InteractiveLogoMain } from '../../../UI/InteractiveLogo'
 
 export const SettingsJobSeeker = () => {
     return (
         <div className='p-6'>
             <div className=''>
                 <Header
+                    logo={
+                        <InteractiveLogoMain
+                            mainRoute='/inicio-contratista'
+                        />
+                    }
                     middleObject={
                         <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
                             Configuraciones

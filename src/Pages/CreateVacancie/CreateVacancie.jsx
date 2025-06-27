@@ -12,7 +12,7 @@ export const CreateVacancie = () => {
         <div className='p-6'>
             <Header
                 middleObject={
-                    <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                    <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
                         Crear nueva vacante
                     </h1>
                 }
@@ -34,7 +34,7 @@ export const CreateVacancie = () => {
                     />
                 }
             />
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center mt-6'>
                 <VacancyProvider>
                     <VacancyForm />
                 </VacancyProvider>

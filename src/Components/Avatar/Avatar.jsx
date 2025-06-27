@@ -114,7 +114,7 @@ export const Avatar = () => {
 
                 <div className='grid grid-cols-3 gap-3 max-h-60 overflow-y-auto custom-scrollbar'>
                   {avatarOptions.map((avatar, index) => (
-                    <motion.button
+                    <button
                       key={index}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -133,7 +133,7 @@ export const Avatar = () => {
                         alt={`avatar-${index}`}
                         className="w-16 h-16 rounded-full object-cover"
                       />
-                    </motion.button>
+                    </button>
                   ))}
                 </div>
               </motion.div>
