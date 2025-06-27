@@ -1,138 +1,99 @@
-import { createContext, useState, useContext, useEffect, useCallback } from 'react'
-import { useLocation } from 'react-router-dom'
-import { optionTown, optionGenre, optionId, categories } from '../Utils/options'
+import React, {
+  createContext,
+  useState,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo
+} from 'react'
+import {
+  useLocation
+} from 'react-router-dom' // Asume react-router-dom está instalado
 
-const USER_DATA_STORAGE_KEY = 'plp_user_data'
-
-const SettingsContext = createContext()
-
-export const SettingsProvider = ({ children, initialUser }) => {
-  // Nombre por defecto basado en la ruta
-  const location = useLocation()
-
-  const getCurrentRoleFromPath = () => {
-    const path = location.pathname
-    if (path.includes('configuraciones-contratista')) return 'contratista'
-    if (path.includes('configuraciones-empresa')) return 'empresa'
-    if (path.includes('configuraciones-contratante')) return 'contratante'
-    return ''
-  }
-
-  //-----------------------------------------------ESTADOS--------------------------------------------//
-
-  // Estados principales
-  const [user, setUser] = useState(initialUser)
-  const [currentRole, setCurrentRole] = useState((initialUser?.role || 'contratante').toLowerCase())
-  const [isEditingName, setIsEditingName] = useState(false)
-  const [isEditing, setIsEditing] = useState(false)
-  const [errors, setErrors] = useState({})
-  const [passwordErrors, setPasswordErrors] = useState({})
-  const [activeSection, setActiveSection] = useState('personal')
-  const [realTimeErrors, setRealTimeErrors] = useState({})
-  const [saveSuccess, setSaveSuccess] = useState(false)
-  const [localPasswordErrors, setLocalPasswordErrors] = useState({
-    newPassword: '',
-    confirmPassword: ''
-  })
-
-  // Datos del formulario
-  const [formData, setFormData] = useState({
-    documentType: '',
-    documentNumber: '',
-    name: '',
-    occupation: '',
-    phone: '',
-    phoneSec: '',
-    email: '',
-    desc: '',
-    town: '',
-    genre: '',
-    notificationsEnabled: false,
-    theme: 'system',
-    skill1: '',
-    skill2: '',
+// Datos iniciales de ejemplo para los tres roles
+const initialUsers = {
+  contratista: {
+    documentType: 'CC',
+    documentNumber: '1234567890',
+    phone: '3001234567',
+    phoneSec: '3120091746',
+    email: 'contratista@example.com',
+    town: 'Armenia',
+    desc: 'Descripción del contratista.',
+    genre: 'Masculino',
+    occupation: 'Desarrollador',
+    skill1: 'JavaScript',
+    skill2: 'React',
     skill3: '',
     skill4: '',
-    study1: '',
+    study1: 'Ingeniería de Sistemas',
     study2: '',
     study3: '',
     study4: '',
-    nit: '',
-    category: '',
-    webSite: ''
-  })
+    password: 'Password123!',
+    confirmPassword: 'Password123!',
+    notificationsEnabled: true,
+    theme: 'system'
+  },
+  empresa: {
+    nit: '900123456-1',
+    name: 'Empresa Ejemplo S.A.S',
+    phone: '6011234567',
+    phoneSec: '6017654321',
+    email: 'empresa@example.com',
+    town: 'Bogotá',
+    category: 'Tecnología',
+    webSite: 'https://www.empresa.com',
+    desc: 'Descripción de la empresa ejemplo.',
+    password: 'Password123!',
+    confirmPassword: 'Password123!',
+    notificationsEnabled: true,
+    theme: 'system'
+  },
+  contratante: {
+    documentType: 'CE',
+    documentNumber: '1098765432',
+    phone: '3109876543',
+    phoneSec: '',
+    email: 'contratante@example.com',
+    town: 'Medellín',
+    desc: 'Descripción del contratante.',
+    genre: 'Femenino',
+    occupation: 'Gerente de Proyectos',
+    password: 'Password123!',
+    confirmPassword: 'Password123!',
+    notificationsEnabled: true,
+    theme: 'system'
+  },
+}
 
-  // Datos de contraseña
+export const SettingsContext = createContext()
+
+export const SettingsProvider = ({
+  children
+}) => {
+  const location = useLocation()
+  const [isEditing, setIsEditing] = useState(false)
+  const [activeSection, setActiveSection] = useState(null)
+  const [formData, setFormData] = useState({})
+  const [initialFormData, setInitialFormData] = useState({}) // Para revertir cambios
+  const [errors, setErrors] = useState({})
+  const [saveSuccess, setSaveSuccess] = useState(false)
+  const [currentRole, setCurrentRole] = useState('')
   const [passwordData, setPasswordData] = useState({
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
   })
 
-  const [userData, setUserData] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const savedData = localStorage.getItem(USER_DATA_STORAGE_KEY)
-      return savedData ? JSON.parse(savedData) : initialUser || null
-    }
-    return initialUser || null
-  })
-
-  // Campos por rol
-  const roleFields = {
-    Contratante: {
-      documentType: 'Tipo de documento',
-      documentNumber: 'Número de documento',
-      name: 'Nombre completo',
-      phone: 'Teléfono principal',
-      phoneSec: 'Teléfono secundario',
-      email: 'Correo electrónico',
-      desc: 'Descripción',
-      town: 'Municipio',
-      genre: 'Género'
-    },
-    Contratista: {
-      documentType: 'Tipo de documento',
-      documentNumber: 'Número de documento',
-      occupation: 'Ocupación',
-      name: 'Nombre completo',
-      phone: 'Teléfono principal',
-      phoneSec: 'Teléfono secundario',
-      email: 'Correo electrónico',
-      desc: 'Descripción',
-      town: 'Municipio',
-      genre: 'Género',
-      skills: 'Habilidades',
-      studies: 'Estudios'
-    },
-    Empresa: {
-      documentType: 'Tipo de documento',
-      documentNumber: 'NIT',
-      name: 'Nombre de la empresa',
-      phone: 'Teléfono principal',
-      phoneSec: 'Teléfono secundario',
-      email: 'Correo electrónico',
-      desc: 'Descripción',
-      town: 'Municipio',
-      genre: 'Tipo de empresa',
-      nit: 'NIT',
-      category: 'Categoría',
-      webSite: 'Sitio web'
-    }
-  }
-
-  const fieldLabels = {
-    documentType: 'Tipo de documento',
-    documentNumber: 'Número de documento',
-    phone: 'Teléfono principal',
-    phoneSec: 'Teléfono secundario',
+  // Etiquetas de campo para mensajes de error
+  const fieldLabels = useMemo(() => ({
+    phone: 'Teléfono',
     email: 'Correo electrónico',
-    town: 'Ubicación',
-    desc: 'Descripción',
-    name: 'Nombre',
-    occupation: 'Ocupación',
-    genre: 'Género',
+    documentNumber: 'Número de documento',
     nit: 'NIT',
-    category: 'Sector',
+    name: 'Nombre de la empresa',
+    category: 'Categoría',
     webSite: 'Sitio web',
     skill1: 'Habilidad 1',
     skill2: 'Habilidad 2',
@@ -142,89 +103,46 @@ export const SettingsProvider = ({ children, initialUser }) => {
     study2: 'Estudio 2',
     study3: 'Estudio 3',
     study4: 'Estudio 4',
-    currentPassword: 'Contraseña actual',
-    newPassword: 'Nueva contraseña',
-    confirmPassword: 'Confirmar contraseña'
-  };
+    documentType: 'Tipo de documento',
+    town: 'Ubicación',
+    desc: 'Descripción',
+    genre: 'Género',
+    occupation: 'Ocupación',
+    password: 'Contraseña',
+    confirmPassword: 'Confirmar contraseña',
+    notificationsEnabled: 'Notificaciones',
+    theme: 'Tema'
+  }), [])
 
-  //--------------------------------------------EFECTOS--------------------------------------------//
-  // Inicializar datos del formulario
+  // Función para obtener el rol actual de la URL
+  const getCurrentRoleFromPath = useCallback(() => {
+    const path = location.pathname
+    if (path.includes('configuraciones-contratista')) return 'contratista'
+    if (path.includes('configuraciones-empresa')) return 'empresa'
+    if (path.includes('configuraciones-contratante')) return 'contratante'
+    return ''
+  }, [location.pathname])
+
   useEffect(() => {
-    if (userData) {
-      const data = {
-        documentType: userData.documentType || '',
-        documentNumber: userData.documentNumber || '',
-        occupation: currentRole === 'Contratista' ? userData.occupationJobSeeker || '' : '',
-        name: currentRole === 'Contratante' ? userData.nameEmployer || '' :
-          currentRole === 'Contratista' ? userData.nameJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.companyName || '' :
-              '',
-        phone: currentRole === 'Contratante' ? userData.phoneEmployer || '' :
-          currentRole === 'Contratista' ? userData.phoneJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.phoneCompany || '' :
-              '',
-        phoneSec: currentRole === 'Contratante' ? userData.phoneSecEmployer || '' :
-          currentRole === 'Contratista' ? userData.phoneSecJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.phoneSecCompany || '' :
-              '',
-        email: currentRole === 'Contratante' ? userData.emailEmployer || '' :
-          currentRole === 'Contratista' ? userData.emailJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.emailCompany || '' :
-              '',
-        desc: currentRole === 'Contratante' ? userData.descEmployer || '' :
-          currentRole === 'Contratista' ? userData.descJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.descCompany || '' :
-              '',
-        town: currentRole === 'Contratante' ? userData.townEmployer || '' :
-          currentRole === 'Contratista' ? userData.townJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.townCompany || '' :
-              '',
-        genre: currentRole === 'Contratante' ? userData.genreEmployer || '' :
-          currentRole === 'Contratista' ? userData.genreJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.genreCompany || '' :
-              '',
-        notificationsEnabled: userData.notificationsEnabled || false,
-        theme: userData.theme || 'system',
-        skill1: currentRole === 'Contratista' ? userData.skill1JobSeeker || '' : '',
-        skill2: currentRole === 'Contratista' ? userData.skill2JobSeeker || '' : '',
-        skill3: currentRole === 'Contratista' ? userData.skill3JobSeeker || '' : '',
-        skill4: currentRole === 'Contratista' ? userData.skill4JobSeeker || '' : '',
-        study1: currentRole === 'Contratista' ? userData.study1JobSeeker || '' : '',
-        study2: currentRole === 'Contratista' ? userData.study2JobSeeker || '' : '',
-        study3: currentRole === 'Contratista' ? userData.study3JobSeeker || '' : '',
-        study4: currentRole === 'Contratista' ? userData.study4JobSeeker || '' : '',
-        nit: currentRole === 'Empresa' ? userData.nit || '' : '',
-        category: currentRole === 'Empresa' ? userData.category || '' : '',
-        webSite: currentRole === 'Empresa' ? userData.webSite || '' : ''
-      }
-      setFormData(data)
+    const role = getCurrentRoleFromPath()
+    setCurrentRole(role)
+    // Cargar datos iniciales según el rol
+    if (initialUsers[role]) {
+      setFormData(initialUsers[role])
+      setInitialFormData(initialUsers[role])
+    } else {
+      setFormData({})
+      setInitialFormData({})
     }
-  }, [userData, currentRole])
+    setErrors({})
+  }, [getCurrentRoleFromPath])
 
-  // Persistencia de datos
-  useEffect(() => {
-    if (user) {
-      try {
-        localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(user))
-        setUserData(user)
-      } catch (error) {
-        console.error('Error al guardar en localStorage:', error)
-      }
-    }
-  }, [user])
+  // --------------------------------------------VALIDACIONES-----------------------------------------//
 
-  // Actualizar rol cuando cambia userData
-  useEffect(() => {
-    if (userData?.role) {
-      setCurrentRole(userData.role)
-    }
-  }, [userData])
-
-  //--------------------------------------------VALIDACIONES-----------------------------------------//
-  const validatePhone = useCallback((phone) => {
-    if (!phone) return 'ⓘ El número de teléfono es requerido'
-    if (!/^\d+$/.test(phone)) return 'ⓘ El número de teléfono solo puede contener dígitos (0-9)'
-    if (phone.length !== 10) return 'ⓘ El número de teléfono debe contener 10 dígitos'
+  const validatePhone = useCallback((value, isRequired = true) => {
+    if (isRequired && !value) return 'ⓘ El número de teléfono es requerido'
+    if (value && !/^\d+$/.test(value)) return 'ⓘ El número de teléfono solo puede contener digitos (0-9)'
+    if (value && value.length !== 10) return 'ⓘ El número de teléfono debe contener almenos 10 digitos'
     return null
   }, [])
 
@@ -304,497 +222,298 @@ export const SettingsProvider = ({ children, initialUser }) => {
     if (password !== confirmPassword) return 'ⓘ Las contraseñas no coinciden'
     return ''
   }, [])
-  
 
-const validateFieldInRealTime = useCallback((name, value) => {
-  // Validaciones comunes
-  if (name === 'phone' || name === 'phoneCompany' || name === 'phoneSec' || name === 'phoneSecCompany') {
-    return value ? validatePhone(value) : null
-  }
-  if (name === 'email' || name === 'emailCompany') return validateEmail(value)
-  if (name === 'documentNumber') return validateDocumentNumber(value)
-  if (name.startsWith('skill')) return validateSkill(value, name)
-  if (name.startsWith('study')) return validateStudy(value, name)
-  
-  // Validaciones específicas por rol
-  if (currentRole === 'Empresa') {
-    if (name === 'nit') return validateNit(value)
-    if (name === 'name') return validateCompanyName(value)
-    if (name === 'category') return validateCategory(value)
-    if (name === 'webSite') return validateWebsite(value)
-  }
-  
-  // Validaciones de campos requeridos
-  if (['documentType', 'town', 'desc', 'name', 'genre', 'occupation'].includes(name)) {
-    return validateRequiredField(value, name)
-  }
-  
-  return null
-}, [
-  validatePhone,
-  validateEmail,
-  validateNit,
-  validateDocumentNumber,
-  validateRequiredField,
-  validateSkill,
-  validateStudy,
-  validateCompanyName,
-  validateCategory,
-  validateWebsite,
-  currentRole
-])
+  // Validación en tiempo real para campos específicos
+  const validateFieldInRealTime = useCallback((name, value) => {
+    let error = null
 
-  //-----------------------------------------VALIDACIONES POR SECCIÓN--------------------------------//
-
-  const validatePersonalFields = () => {
-    const newErrors = {}
-
-    // Validaciones comunes a todos los roles
-    const commonValidations = {
-      documentType: validateRequiredField(formData.documentType, 'documentType'),
-      documentNumber: validateDocumentNumber(formData.documentNumber),
-      phone: validatePhone(formData.phone),
-      email: validateEmail(formData.email),
-      town: validateRequiredField(formData.town, 'town'),
-      desc: validateRequiredField(formData.desc, 'desc'),
-      genre: validateRequiredField(formData.genre, 'genre')
+    if (name === 'phoneSec') {
+      if (value) { // Solo validar si tiene valor
+        error = validatePhone(value, false); // No es requerido
+      }
     }
-
-    // Aplicar validaciones comunes
-    Object.entries(commonValidations).forEach(([field, error]) => {
-      if (error) newErrors[field] = error
-    })
+    // Validaciones comunes
+    if (['phone', 'phoneCompany'].includes(name)) {
+      error = validatePhone(value)
+    } else if (['email', 'emailCompany'].includes(name)) {
+      error = validateEmail(value)
+    } else if (name === 'documentNumber') {
+      error = validateDocumentNumber(value)
+    } else if (name.startsWith('skill')) {
+      error = validateSkill(value, name)
+    } else if (name.startsWith('study')) {
+      error = validateStudy(value, name)
+    } else if (name === 'password') {
+      error = validatePasswordStrength(value)
+    } else if (name === 'confirmPassword') {
+      error = validateConfirmPassword(formData.password, value)
+    }
 
     // Validaciones específicas por rol
-    if (currentRole === 'Contratante') {
-      const contratanteValidations = {
-        name: validateRequiredField(formData.name, 'name'),
-        phoneSec: formData.phoneSec ? validatePhone(formData.phoneSec) : null
+    if (currentRole === 'empresa') {
+      if (name === 'nit') error = validateNit(value)
+      if (name === 'name') error = validateCompanyName(value)
+      if (name === 'category') error = validateCategory(value)
+      if (name === 'webSite') error = validateWebsite(value)
+    }
+
+    // Validaciones de campos requeridos (excluyendo phoneSec)
+    const requiredFields = {
+      contratista: ['documentType', 'town', 'desc', 'genre', 'occupation', 'email', 'phone', 'password', 'confirmPassword', 'skill1', 'skill2', 'study1', 'study2'],
+      empresa: ['nit', 'name', 'phone', 'email', 'town', 'category', 'desc', 'password', 'confirmPassword'],
+      contratante: ['documentType', 'town', 'desc', 'genre', 'occupation', 'email', 'phone', 'password', 'confirmPassword'],
+    }
+
+    if (requiredFields[currentRole] && requiredFields[currentRole].includes(name) && name !== 'phoneSec') {
+      if (!value && typeof value !== 'boolean') {
+        error = validateRequiredField(value, name)
       }
-      Object.entries(contratanteValidations).forEach(([field, error]) => {
-        if (error) newErrors[field] = error
-      })
-    }
-    else if (currentRole === 'Contratista') {
-      const contratistaValidations = {
-        name: validateRequiredField(formData.name, 'name'),
-        occupation: validateRequiredField(formData.occupation, 'occupation'),
-        phoneSec: formData.phoneSec ? validatePhone(formData.phoneSec) : null
-      }
-      Object.entries(contratistaValidations).forEach(([field, error]) => {
-        if (error) newErrors[field] = error
-      })
-    }
-    else if (currentRole === 'Empresa') {
-      const empresaValidations = {
-        name: validateCompanyName(formData.name),
-        nit: validateNit(formData.nit),
-        category: validateCategory(formData.category),
-        webSite: validateWebsite(formData.webSite),
-        phoneSec: formData.phoneSec ? validatePhone(formData.phoneSec) : null
-      }
-      Object.entries(empresaValidations).forEach(([field, error]) => {
-        if (error) newErrors[field] = error
-      })
     }
 
-    setErrors(newErrors)
-    return newErrors
-  }
+    return error
+  }, [
+    validatePhone,
+    validateEmail,
+    validateNit,
+    validateDocumentNumber,
+    validateRequiredField,
+    validateSkill,
+    validateStudy,
+    validateCompanyName,
+    validateCategory,
+    validateWebsite,
+    validatePasswordStrength,
+    validateConfirmPassword,
+    currentRole,
+    formData.password,
+  ])
 
-  //Validar habilidades y estudios
-  const validateSkills = useCallback(() => {
-    const newErrors = {};
-    let isValid = true;
-
-    ['skill1', 'skill2'].forEach(field => {
-      const error = validateSkill(formData[field], field);
-      if (error) {
-        newErrors[field] = error;
-        isValid = false;
-      }
-    });
-
-    setErrors(newErrors);
-    return isValid;
-  }, [formData, validateSkill]);
-
-  const validateStudies = useCallback(() => {
-    const newErrors = {};
-    let isValid = true;
-
-    ['study1', 'study2'].forEach(field => {
-      const error = validateStudy(formData[field], field);
-      if (error) {
-        newErrors[field] = error;
-        isValid = false;
-      }
-    });
-
-    setErrors(newErrors);
-    return isValid;
-  }, [formData, validateStudy]);
-
-  //Validar contraseña
-  const validatePassword = useCallback(() => {
-    const newErrors = {}
-    let isValid = true
-
-    if (!passwordData.currentPassword) {
-      newErrors.currentPassword = 'ⓘ La contraseña actual es requerida'
-      isValid = false
-    }
-
-    const passwordError = validatePasswordStrength(passwordData.newPassword)
-    if (passwordError) {
-      newErrors.newPassword = passwordError
-      isValid = false
-    }
-
-    const confirmError = validateConfirmPassword(passwordData.newPassword, passwordData.confirmPassword)
-    if (confirmError) {
-      newErrors.confirmPassword = confirmError
-      isValid = false
-    }
-
-    setPasswordErrors(newErrors)
-    return isValid
-  }, [passwordData, validatePasswordStrength, validateConfirmPassword])
-
-  //-----------------------------------------MANEJO DE EVENTOS--------------------------------------//
+  const handleEdit = useCallback((section) => {
+    setIsEditing(true)
+    setActiveSection(section)
+    setErrors({}) // Limpiar errores al iniciar edición
+  }, [])
 
   const handleChange = useCallback((e) => {
-    const { name, value, type, checked } = e.target
-    const actualValue = type === 'checkbox' ? checked : value
-    setFormData(prev => ({ ...prev, [name]: actualValue }))
-    setRealTimeErrors(prev => ({
+    const {
+      name,
+      value,
+      type,
+      checked
+    } = e.target
+    const newValue = type === 'checkbox' ? checked : value
+    setFormData((prev) => ({
       ...prev,
-      [name]: validateFieldInRealTime(name, actualValue)
+      [name]: newValue
     }))
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }))
-    }
-  }, [errors, validateFieldInRealTime])
 
-  const handlePasswordChange = useCallback((e) => {
-    const { name, value } = e.target
-    setPasswordData(prev => ({ ...prev, [name]: value }))
-
-    let error = null
-    if (name === 'newPassword') {
-      error = validatePasswordStrength(value)
-      setLocalPasswordErrors(prev => ({ ...prev, newPassword: error || '' }))
-    } else if (name === 'confirmPassword') {
-      error = validateConfirmPassword(passwordData.newPassword, value)
-      setLocalPasswordErrors(prev => ({ ...prev, confirmPassword: error || '' }))
-    }
-
-    setPasswordErrors(prev => ({ ...prev, [name]: error }))
-  }, [passwordData.newPassword, validatePasswordStrength, validateConfirmPassword])
+    // Validar en tiempo real
+    const error = validateFieldInRealTime(name, newValue)
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error
+    }))
+  }, [validateFieldInRealTime])
 
   const handleSelectChange = useCallback((name, value) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }))
 
-    if (errors[name]) {
-      setErrors(prev => {
-        const newErrors = { ...prev }
-        delete newErrors[name]
-        return newErrors
-      })
-    }
-  }, [errors])
+    // Validar en tiempo real
+    const error = validateFieldInRealTime(name, value)
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error
+    }))
+  }, [validateFieldInRealTime])
 
-  const handleEdit = useCallback((section) => {
-    setActiveSection(section)
-    setIsEditing(true)
-  }, [])
-
-  const handleCancel = useCallback(() => {
-    if (userData) {
-      setFormData({
-        documentType: userData.documentType || '',
-        documentNumber: userData.documentNumber || '',
-        occupation: currentRole === 'Contratista' ? userData.occupationJobSeeker || '' : '',
-        name: currentRole === 'Contratante' ? userData.nameEmployer || '' :
-          currentRole === 'Contratista' ? userData.nameJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.companyName || '' :
-              '',
-        phone: currentRole === 'Contratante' ? userData.phoneEmployer || '' :
-          currentRole === 'Contratista' ? userData.phoneJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.phoneCompany || '' :
-              '',
-        phoneSec: currentRole === 'Contratante' ? userData.phoneSecEmployer || '' :
-          currentRole === 'Contratista' ? userData.phoneSecJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.phoneSecCompany || '' :
-              '',
-        email: currentRole === 'Contratante' ? userData.emailEmployer || '' :
-          currentRole === 'Contratista' ? userData.emailJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.emailCompany || '' :
-              '',
-        desc: currentRole === 'Contratante' ? userData.descEmployer || '' :
-          currentRole === 'Contratista' ? userData.descJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.descCompany || '' :
-              '',
-        town: currentRole === 'Contratante' ? userData.townEmployer || '' :
-          currentRole === 'Contratista' ? userData.townJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.townCompany || '' :
-              '',
-        genre: currentRole === 'Contratante' ? userData.genreEmployer || '' :
-          currentRole === 'Contratista' ? userData.genreJobSeeker || '' :
-            currentRole === 'Empresa' ? userData.genreCompany || '' :
-              '',
-        notificationsEnabled: userData.notificationsEnabled || false,
-        theme: userData.theme || 'system',
-        skill1: currentRole === 'Contratista' ? userData.skill1JobSeeker || '' : '',
-        skill2: currentRole === 'Contratista' ? userData.skill2JobSeeker || '' : '',
-        skill3: currentRole === 'Contratista' ? userData.skill3JobSeeker || '' : '',
-        skill4: currentRole === 'Contratista' ? userData.skill4JobSeeker || '' : '',
-        study1: currentRole === 'Contratista' ? userData.study1JobSeeker || '' : '',
-        study2: currentRole === 'Contratista' ? userData.study2JobSeeker || '' : '',
-        study3: currentRole === 'Contratista' ? userData.study3JobSeeker || '' : '',
-        study4: currentRole === 'Contratista' ? userData.study4JobSeeker || '' : '',
-        nit: currentRole === 'Empresa' ? userData.nit || '' : '',
-        category: currentRole === 'Empresa' ? userData.category || '' :
-          currentRole === 'Contratista' ? userData.category || '' : '',
-        webSite: currentRole === 'Empresa' ? userData.webSite || '' : ''
-      })
-    }
-    setPasswordData({
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: ''
-    })
-    setErrors({})
-    setPasswordErrors({})
-    setIsEditing(false)
-  }, [activeSection, userData, currentRole])
-
-  const handleCancelWithReset = useCallback(() => {
-    handleCancel()
-    setLocalPasswordErrors({
-      newPassword: '',
-      confirmPassword: ''
-    })
-  }, [handleCancel])
-
-  const handleSkillChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }))
-
+  const handleSkillChange = useCallback((e) => {
+    const {
+      name,
+      value
+    } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }))
     const error = validateSkill(value, name)
-    setRealTimeErrors(prev => ({ ...prev, [name]: error }))
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error
+    }))
+  }, [validateSkill])
 
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }))
-    }
-  }
-
-  const handleStudyChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }))
-
+  const handleStudyChange = useCallback((e) => {
+    const {
+      name,
+      value
+    } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }))
     const error = validateStudy(value, name)
-    setRealTimeErrors(prev => ({ ...prev, [name]: error }))
-
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }))
-    }
-  }
-
-  const getCombinedError = (fieldName) => {
-    return realTimeErrors[fieldName] || errors[fieldName] || null
-  }
-
-  //-----------------------------------------MANEJO DE GUARDADO-------------------------------------//
-  const handleSave = useCallback(() => {
-    if (!user) return
-
-    const updatedUser = { ...user }
-
-    // Guardar campos comunes a todos
-    updatedUser.documentType = formData.documentType
-    updatedUser.documentNumber = formData.documentNumber
-    updatedUser.notificationsEnabled = formData.notificationsEnabled
-    updatedUser.theme = formData.theme
-
-    // Guardar según sección activa y rol
-    if (activeSection === 'personal') {
-      switch (currentRole) {
-        case 'Contratista':
-          Object.assign(updatedUser, {
-            nameJobSeeker: formData.name,
-            occupationJobSeeker: formData.occupation,
-            phoneJobSeeker: formData.phone,
-            phoneSecJobSeeker: formData.phoneSec,
-            emailJobSeeker: formData.email,
-            townJobSeeker: formData.town,
-            descJobSeeker: formData.desc,
-            genreJobSeeker: formData.genre,
-            category: formData.category,
-          })
-          break
-        case 'Contratante':
-          Object.assign(updatedUser, {
-            nameEmployer: formData.name,
-            phoneEmployer: formData.phone,
-            phoneSecEmployer: formData.phoneSec,
-            emailEmployer: formData.email,
-            townEmployer: formData.town,
-            descEmployer: formData.desc,
-            genreEmployer: formData.genre,
-          })
-          break
-        case 'Empresa':
-          Object.assign(updatedUser, {
-            companyName: formData.name,
-            nit: formData.nit,
-            category: formData.category,
-            phoneCompany: formData.phone,
-            phoneSecCompany: formData.phoneSec,
-            emailCompany: formData.email,
-            townCompany: formData.town,
-            descCompany: formData.desc,
-            genreCompany: formData.genre,
-            webSite: formData.webSite,
-          })
-          break
-      }
-    }
-
-    // Guardar habilidades (solo para contratista)
-    if (activeSection === 'skills' && currentRole === 'Contratista') {
-      Object.assign(updatedUser, {
-        skill1JobSeeker: formData.skill1,
-        skill2JobSeeker: formData.skill2,
-        skill3JobSeeker: formData.skill3,
-        skill4JobSeeker: formData.skill4,
-      })
-    }
-
-    // Guardar estudios (solo para contratista)
-    if (activeSection === 'studies' && currentRole === 'Contratista') {
-      Object.assign(updatedUser, {
-        study1JobSeeker: formData.study1,
-        study2JobSeeker: formData.study2,
-        study3JobSeeker: formData.study3,
-        study4JobSeeker: formData.study4,
-      })
-    }
-
-    setUser(updatedUser)
-    localStorage.setItem(USER_DATA_STORAGE_KEY, JSON.stringify(updatedUser))
-    setIsEditing(false)
-  }, [activeSection, formData, user, currentRole])
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error
+    }))
+  }, [validateStudy])
 
 
   const handleSaveWithValidation = useCallback(() => {
+    let newErrors = {}
     let isValid = true
-    let validationErrors = {}
 
-    switch (activeSection) {
-      case 'personal':
-        validationErrors = validatePersonalFields()
-        isValid = Object.keys(validationErrors).length === 0
-
-        break
-
-      case 'skills':
-        isValid = currentRole === 'Contratista' ? validateSkills() : true
-        break
-
-      case 'studies':
-        isValid = currentRole === 'Contratista' ? validateStudies() : true
-        break
-
-      case 'security':
-        isValid = validatePassword()
-        break
+    // Definir los campos requeridos para cada rol (excluyendo phoneSec)
+    const requiredFieldsByRole = {
+      contratista: ['documentType', 'documentNumber', 'phone', 'email', 'town', 'desc', 'genre', 'occupation', 'skill1', 'skill2', 'study1', 'study2', 'password', 'confirmPassword'],
+      empresa: ['nit', 'name', 'phone', 'email', 'town', 'category', 'webSite', 'desc', 'password', 'confirmPassword'],
+      contratante: ['documentType', 'documentNumber', 'phone', 'email', 'town', 'desc', 'genre', 'occupation', 'password', 'confirmPassword'],
     }
 
-    if (isValid) {
-      handleSave()
-      setSaveSuccess(true)
-      setTimeout(() => setSaveSuccess(false), 3000)
-    } else {
-      const firstErrorField = Object.keys(validationErrors).find((key) => validationErrors[key])
-      if (firstErrorField) {
-        const element = document.querySelector(`[name="${firstErrorField}"]`)
-        if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    const fieldsToValidate = requiredFieldsByRole[currentRole] || []
+
+    console.log(fieldsToValidate)
+    console.log(formData)
+
+    // Validar todos los campos requeridos y los campos con validaciones específicas
+    for (const key in formData) {
+      if (formData.hasOwnProperty(key)) {
+        const value = formData[key]
+        let error = null
+
+        // Validar campos requeridos específicos de cada rol (excluyendo phoneSec)
+        if (fieldsToValidate.includes(key) && key !== 'phoneSec') {
+          error = validateRequiredField(value, key)
+          if (error) {
+            newErrors[key] = error
+            isValid = false
+          }
+        }
+
+        // Validaciones generales para todos los campos presentes en formData
+        const generalError = validateFieldInRealTime(key, value)
+        if (generalError) {
+          newErrors[key] = generalError
+          isValid = false
+        }
       }
     }
-  }, [
-    activeSection,
-    formData,
-    handleSave,
-    validateSkills,
-    validateStudies,
-    validatePassword,
-    validatePersonalFields
-  ])
+
+    // Validaciones adicionales para campos específicos si no están en formData (excluyendo phoneSec)
+    fieldsToValidate.forEach(field => {
+      if (!formData[field] && field !== 'phoneSec') {
+        const error = validateRequiredField(formData[field], field)
+        if (error) {
+          newErrors[field] = error
+          isValid = false
+        }
+      }
+    })
 
 
-  //-----------------------------------------FUNCIONES AUXILIARES-----------------------------------//
+    // // Validar contraseñas si están presentes
+    // if (formData.password) {
+    //   const passwordError = validatePasswordStrength(formData.password)
+    //   if (passwordError) {
+    //     newErrors.password = passwordError
+    //     isValid = false
+    //   }
+    //   if (formData.confirmPassword) {
+    //     const confirmPasswordError = validateConfirmPassword(formData.password, formData.confirmPassword)
+    //     if (confirmPasswordError) {
+    //       newErrors.confirmPassword = confirmPasswordError
+    //       isValid = false
+    //     }
+    //   } else {
+    //     newErrors.confirmPassword = 'ⓘ Por favor confirma tu nueva contraseña'
+    //     isValid = false
+    //   }
+    // }
+    // else if (currentRole === 'security') {
+    //   newErrors.password = 'ⓘ La contraseña es requerida'
+    //   isValid = false
+    // }
 
-  const getActiveError = useCallback((field) => {
-    return errors[field] || realTimeErrors[field] || null
-  }, [errors, realTimeErrors])
 
-  const getCombinedPasswordError = useCallback((field) => {
-    return passwordErrors[field] || localPasswordErrors[field] || null
-  }, [passwordErrors, localPasswordErrors])
+    setErrors(newErrors)
 
-  //-----------------------------------------CONTEXTO-----------------------------------------------//
-  const currentRoleName = getCurrentRoleFromPath()
+    if (isValid) {
+      console.log('Datos guardados localmente:', formData) // Guardar información localmente [cite: 259]
+      setInitialFormData(formData) // Actualizar el estado inicial después de guardar
+      setIsEditing(false)
+      setActiveSection(null)
+      setSaveSuccess(true) // Mostrar mensaje de éxito [cite: 269, 295]
+      setTimeout(() => setSaveSuccess(false), 3000)
+    } else {
+      setSaveSuccess(false)
+      console.log('Errores de validación:', newErrors)
+    }
+  }, [formData, currentRole, validateFieldInRealTime, validatePasswordStrength, validateConfirmPassword, validateRequiredField])
 
-  const contextValue = {
-    user,
-    currentRole,
-    currentRoleName,
-    formData,
-    errors,
-    passwordData,
-    passwordErrors,
+
+  const handleCancel = useCallback(() => {
+    setFormData(initialFormData) // Revertir a los datos iniciales 
+    setIsEditing(false)
+    setActiveSection(null)
+    setErrors({}) // Limpiar errores al cancelar
+  }, [initialFormData])
+
+  // Obtener el error activo para un campo específico
+  const getActiveError = useCallback((fieldName) => {
+    return errors[fieldName]
+  }, [errors])
+
+  // Combinar errores para campos como skills y studies
+  const getCombinedError = useCallback((fieldName) => {
+    return errors[fieldName]
+  }, [errors])
+
+  const contextValue = useMemo(() => ({
     isEditing,
-    isEditingName,
     activeSection,
-    roleFields,
-    userData,
+    formData,
+    passwordData,
+    initialFormData,
+    errors,
     saveSuccess,
     fieldLabels,
-    getActiveError,
-    handleChange,
-    handlePasswordChange,
-    handleSelectChange,
+    currentRole,
     handleEdit,
-    handleSave,
+    handleSaveWithValidation,
     handleCancel,
+    handleChange,
+    handleSelectChange,
+    getActiveError,
+    getCombinedError,
     handleSkillChange,
     handleStudyChange,
-    validateFields: validatePersonalFields,
-    validatePasswordFields: validatePassword,
-    setCurrentRole,
-    setPasswordData,
-    setPasswordErrors,
-    validateSkill,
-    validateStudy,
-    setIsEditingName,
-    optionTown,
-    optionGenre,
-    optionId,
-    validatePasswordStrength,
-    validateConfirmPassword,
-    handlePasswordChangeWithValidation: handlePasswordChange,
+    setSaveSuccess,
+  }), [
+    isEditing,
+    activeSection,
+    formData,
+    initialFormData,
+    errors,
+    saveSuccess,
+    fieldLabels,
+    currentRole,
+    handleEdit,
     handleSaveWithValidation,
-    handleCancelWithReset,
-    getCombinedPasswordError,
+    handleCancel,
+    handleChange,
+    handleSelectChange,
+    getActiveError,
     getCombinedError,
-  }
+    handleSkillChange,
+    handleStudyChange,
+    setSaveSuccess,
+  ])
 
   return (
-    <SettingsContext.Provider value={contextValue}>
+    <SettingsContext.Provider value={contextValue} >
       {children}
     </SettingsContext.Provider>
   )
@@ -803,7 +522,7 @@ const validateFieldInRealTime = useCallback((name, value) => {
 export const useSettings = () => {
   const context = useContext(SettingsContext)
   if (!context) {
-    throw new Error('useSettings debe usarse dentro de un SettingsProvider')
+    throw new Error('useSettings debe ser usado dentro de un SettingsProvider')
   }
   return context
 }

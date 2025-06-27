@@ -79,7 +79,7 @@ function App() {
       <RegisterProvider>
         <MenuProvider>
           <VacancyProvider>
-            <SettingsProvider initialUser={users[1]}>
+            <SettingsProvider initialData={users[1]}>
               <ContactProvider>
                 <SearchBarProvider
                   groupSuggestions={true}

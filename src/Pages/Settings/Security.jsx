@@ -32,15 +32,19 @@ const passwordFieldsVariants = {
 
 export const Security = () => {
   const {
-    isEditing,
-    activeSection,
-    passwordData,
-    passwordErrors,
-    handleEdit,
-    handleSaveWithValidation,
-    handleCancelWithReset,
-    handlePasswordChangeWithValidation,
-    getCombinedPasswordError
+    isEditing = false,
+    activeSection = '',
+    passwordData = {
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    },
+    passwordErrors = {},
+    handleEdit = () => console.warn('handleEdit no implementado'),
+    handleSaveWithValidation = () => console.warn('handleSaveWithValidation no implementado'),
+    handleCancelWithReset = () => console.warn('handleCancelWithReset no implementado'),
+    handlePasswordChangeWithValidation = () => console.warn('handlePasswordChangeWithValidation no implementado'),
+    getCombinedPasswordError = () => null
   } = useSettings();
 
   return (
