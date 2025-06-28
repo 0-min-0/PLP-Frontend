@@ -51,9 +51,9 @@ export const SuccessModal = ({ isOpen, onClose, title, message, children }) => {
             exit="exit"
           >
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-[#60efdb]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
-                  className="w-10 h-10 text-green-500"
+                  className='w-10 h-10 text-[#60efdb]'
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

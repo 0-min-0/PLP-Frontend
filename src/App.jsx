@@ -37,6 +37,7 @@ import { PostulatedPeople } from './Pages/Settings/SettingsEmployer/PostulatedPe
 import { Comments } from './Pages/Settings/SettingsJobSeeker/Comments'
 import { Notifications } from './Pages/NotificationsCenter/Notifications'
 import { AIChatBot } from './Pages/Chat/AIChatBot'
+import { ChatIAProvider } from './Context/ChatIAContext'
 import { UserProvider } from './Context/UserContext'
 import { Jobs } from './Pages/Jobs/Jobs'
 import { VacanciesByCategory } from './Components/CategoriesContainer/VacanciesByCategory'
@@ -87,76 +88,80 @@ function App() {
                   delay={300}
                 >
                   <UserProvider>
-                    <div className={`w-full h-screen p- font-[afacad] 
+                    <ChatIAProvider>
+                      <div className={`w-full h-screen p- font-[afacad] 
                     ${isBgRoute ? 'bg-[#dcfff6]' : 'bg-white'}`}>
-                      <DynamicTitle />
-                      <Routes>
-                        <Route path='/' element={<MainPage />} />
-                        <Route path='/acceder' element={<Login />} />
-                        <Route path='/crear-cuenta' element={<Register />} />
-                        <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
-                        <Route path='/crear-cuenta/contratista' element={<JobSeeker />} />
-                        <Route path='/crear-cuenta/contratante' element={<Employer />} />
-                        <Route path='/crear-cuenta/empresa' element={<Company />} />
-                        <Route path='/crear-contraseña' element={<Password />} />
-                        <Route path='/inicio-contratista' element={<MainJobSeeker />} />
-                        <Route path='/inicio-contratante' element={<MainEmployer />} />
-                        <Route path='/inicio-empresa' element={<MainCompany />} />
-                        <Route path='/crear-vacante' element={<CreateVacancie />} />
-                        { /* Configuraciones contratante */}
-                        <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
-                          <Route index element={<GeneralEmployer />} />
-                          <Route path='general-contratante' element={<GeneralEmployer />} />
-                          <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
-                          <Route path='postulados' element={<PostulatedPeople />} />
-                          <Route path='terminos-condiciones' element={<Terms />} />
-                          <Route path='ayuda-soporte' element={<Help />} />
-                          <Route path='chat-bot' element={<AIChatBot />} />
-                        </Route>
-                        { /* Configuraciones contratista */}
-                        <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
-                          <Route index element={<GeneralJobSeeker />} />
-                          <Route path='general-contratista' element={<GeneralJobSeeker />} />
-                          <Route path='postulaciones-contratista' element={<Postulations />} />
-                          <Route path='comentarios-contratista' element={<Comments />} />
-                          <Route path='terminos-condiciones' element={<Terms />} />
-                          <Route path='ayuda-soporte' element={<Help />} />
-                          <Route path='chat-bot' element={<AIChatBot />} />
-                        </Route>
-                        { /* Configuraciones empresa */}
-                        <Route path='/configuraciones-empresa' element={<SettingsCompany />}>
-                          <Route index element={<GeneralCompany />} />
-                          <Route path='general-empresa' element={<GeneralCompany />} />
-                          <Route path='publicaciones-empresa' element={<PublishedVacancies />} />
-                          <Route path='postulados' element={<PostulatedPeople />} />
-                          <Route path='terminos-condiciones' element={<Terms />} />
-                          <Route path='ayuda-soporte' element={<Help />} />
-                          <Route path='chat-bot' element={<AIChatBot />} />
-                        </Route>
-                        <Route path='/verificar-cuenta' element={<VerifyAccount />} />
-                        <Route path='/sobre-plp' element={<AboutUs />} />
-                        <Route path='/centro-de-notificaciones' element={<Notifications />} />
-                        <Route path='/chat-bot-ayuda' element={<AIChatBot />} />
-                        <Route path='/categorias-trabajo' element={<Jobs />}>
-                          <Route index element={<MixedContent />} />
-                          <Route path='categorias' element={<MixedContent />} />
-                          <Route path=':categoria' element={<MixedContent />} />
-                        </Route>
-                        <Route path='/categorias-trabajo' element={<Jobs />}>
-                          <Route index element={<VacanciesByCategory />} />
-                          <Route path='contratista' element={<VacanciesByCategory />} />
-                        </Route>
-                        <Route path='/categorias-trabajo' element={<Jobs />}>
-                          <Route index element={<PeopleByCategory />} />
-                          <Route path='contratante' element={<PeopleByCategory />} />
-                        </Route>
-                        <Route path='/categorias-trabajo' element={<Jobs />}>
-                          <Route index element={<PeopleByCategory />} />
-                          <Route path='empresa' element={<PeopleByCategory />} />
-                        </Route>
-                        <Route path='/terminos-condiciones' element={<Terms />} />
-                      </Routes>
-                    </div>
+                        <DynamicTitle />
+                        <Routes>
+                          <Route path='/' element={<MainPage />} />
+                          <Route path='/acceder' element={<Login />} />
+                          <Route path='/crear-cuenta' element={<Register />} />
+                          <Route path='/crear-cuenta/rol' element={<RegisterRolType />} />
+                          <Route path='/crear-cuenta/contratista' element={<JobSeeker />} />
+                          <Route path='/crear-cuenta/contratante' element={<Employer />} />
+                          <Route path='/crear-cuenta/empresa' element={<Company />} />
+                          <Route path='/crear-contraseña' element={<Password />} />
+                          <Route path='/inicio-contratista' element={<MainJobSeeker />} />
+                          <Route path='/inicio-contratante' element={<MainEmployer />} />
+                          <Route path='/inicio-empresa' element={<MainCompany />} />
+                          <Route path='/crear-vacante' element={<CreateVacancie />} />
+                          { /* Configuraciones contratante */}
+                          <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
+                            <Route index element={<GeneralEmployer />} />
+                            <Route path='general-contratante' element={<GeneralEmployer />} />
+                            <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
+                            <Route path='postulados' element={<PostulatedPeople />} />
+                            <Route path='terminos-condiciones' element={<Terms />} />
+                            <Route path='ayuda-soporte' element={<Help />} />
+                            <Route path='chat-bot' element={<AIChatBot />} />
+                          </Route>
+                          { /* Configuraciones contratista */}
+                          <Route path='/configuraciones-contratista' element={<SettingsJobSeeker />}>
+                            <Route index element={<GeneralJobSeeker />} />
+                            <Route path='general-contratista' element={<GeneralJobSeeker />} />
+                            <Route path='postulaciones-contratista' element={<Postulations />} />
+                            <Route path='comentarios-contratista' element={<Comments />} />
+                            <Route path='terminos-condiciones' element={<Terms />} />
+                            <Route path='ayuda-soporte' element={<Help />} />
+                            <Route path='chat-bot' element={<AIChatBot />} />
+                          </Route>
+                          { /* Configuraciones empresa */}
+                          <Route path='/configuraciones-empresa' element={<SettingsCompany />}>
+                            <Route index element={<GeneralCompany />} />
+                            <Route path='general-empresa' element={<GeneralCompany />} />
+                            <Route path='publicaciones-empresa' element={<PublishedVacancies />} />
+                            <Route path='postulados' element={<PostulatedPeople />} />
+                            <Route path='terminos-condiciones' element={<Terms />} />
+                            <Route path='ayuda-soporte' element={<Help />} />
+                            <Route path='chat-bot' element={<AIChatBot />} />
+                          </Route>
+                          <Route path='/verificar-cuenta' element={<VerifyAccount />} />
+                          <Route path='/sobre-plp' element={<AboutUs />} />
+                          <Route path='/centro-de-notificaciones' element={<Notifications />} />
+                          <Route path='/chat-bot-ayuda-contratista' element={<AIChatBot />} />
+                          <Route path='/chat-bot-ayuda-contratante' element={<AIChatBot />} />
+                          <Route path='/chat-bot-ayuda-empresa' element={<AIChatBot />} />
+                          <Route path='/categorias-trabajo' element={<Jobs />}>
+                            <Route index element={<MixedContent />} />
+                            <Route path='categorias' element={<MixedContent />} />
+                            <Route path=':categoria' element={<MixedContent />} />
+                          </Route>
+                          <Route path='/categorias-trabajo' element={<Jobs />}>
+                            <Route index element={<VacanciesByCategory />} />
+                            <Route path='contratista' element={<VacanciesByCategory />} />
+                          </Route>
+                          <Route path='/categorias-trabajo' element={<Jobs />}>
+                            <Route index element={<PeopleByCategory />} />
+                            <Route path='contratante' element={<PeopleByCategory />} />
+                          </Route>
+                          <Route path='/categorias-trabajo' element={<Jobs />}>
+                            <Route index element={<PeopleByCategory />} />
+                            <Route path='empresa' element={<PeopleByCategory />} />
+                          </Route>
+                          <Route path='/terminos-condiciones' element={<Terms />} />
+                        </Routes>
+                      </div>
+                    </ChatIAProvider>
                   </UserProvider>
                 </SearchBarProvider>
               </ContactProvider>

@@ -7,7 +7,7 @@ import { jsPDF } from 'jspdf'
 import html2canvas from 'html2canvas'
 import { CommentModal } from '../Modals/CommentModal'
 
-export const PersonView = ({ person, isOpen, onClose, onContact }) => {
+export const PersonView = ({ person, isOpen, onClose, showCommentButton = false }) => {
   const contentRef = useRef(null)
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false)
   const [currentRole, setCurrentRole] = useState('contratante')
@@ -171,25 +171,28 @@ export const PersonView = ({ person, isOpen, onClose, onContact }) => {
                   clicked={handleDownloadPDF}
                   aria-label="Descargar currículum en PDF"
                 />
-                <Button
-                  btnName='Dejar comentario'
-                  btnType='button'
-                  btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full'
-                  clicked={handleOpenCommentModal}
-                  aria-label="Dejar comentario sobre este profesional"
-                />
+                {showCommentButton && (
+                  <Button
+                    btnName='Dejar comentario'
+                    btnType='button'
+                    btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full'
+                    clicked={handleOpenCommentModal}
+                    aria-label="Dejar comentario sobre este profesional"
+                  />
+                )}
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <CommentModal
-        isOpen={isCommentModalOpen}
-        onClose={handleCloseCommentModal}
-        onSave={handleSaveComment}
-        currentRole={currentRole}
-      />
+      {showCommentButton && (
+        <CommentModal
+          isOpen={isCommentModalOpen}
+          onClose={handleCloseCommentModal}
+          onSave={handleSaveComment}
+          currentRole={currentRole}
+        />
+      )}
     </>
   )
 }

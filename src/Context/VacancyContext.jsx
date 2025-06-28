@@ -28,6 +28,7 @@ export const VacancyProvider = ({ children }) => {
     const [showConfirm, setShowConfirm] = useState(false)
     const [editedVacancy, setEditedVacancy] = useState(null)
     const [errors, setErrors] = useState({})
+    const [appliedVacancies, setAppliedVacancies] = useState([])
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -104,7 +105,7 @@ export const VacancyProvider = ({ children }) => {
             ...prev,
             [name]: value
         }))
-        
+
         // Actualizar el estado de edición si existe
         if (editedVacancy) {
             setEditedVacancy(prev => ({
@@ -112,12 +113,12 @@ export const VacancyProvider = ({ children }) => {
                 [name]: value
             }))
         }
-        
+
         // Validación inmediata
-        const validation = validateVacancyForm({ 
-            ...vacancy, 
+        const validation = validateVacancyForm({
+            ...vacancy,
             ...editedVacancy,
-            [name]: value 
+            [name]: value
         })
         setErrors(prev => ({
             ...prev,
@@ -214,6 +215,15 @@ export const VacancyProvider = ({ children }) => {
         }
     }
 
+    const handleApplyToVacancy = async (vacancy) => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                setAppliedVacancies(prev => [...prev, vacancy.id])
+                resolve()
+            }, 500)
+        })
+    }
+
     const handleFormSubmit = (e) => {
         const onSuccess = () => {
             try {
@@ -226,6 +236,8 @@ export const VacancyProvider = ({ children }) => {
 
         handleSubmit(e, 'vacancy', onSuccess)
     }
+
+    const isVacancyApplied = (id) => appliedVacancies.includes(id)
 
     return (
         <VacancyContext.Provider value={{
@@ -250,7 +262,9 @@ export const VacancyProvider = ({ children }) => {
             handleSubmit,
             handleFormSubmit,
             handleSaveVacancy,
-            handleDeleteConfirmVacancy
+            handleDeleteConfirmVacancy,
+            handleApplyToVacancy,
+            isVacancyApplied
         }}>
             {children}
         </VacancyContext.Provider>
@@ -264,3 +278,4 @@ export const useVacancy = () => {
     }
     return context
 }
+

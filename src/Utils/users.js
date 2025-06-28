@@ -49,3 +49,66 @@ export const users = [
         role: 'Empresa',
     }
 ]
+
+export const vacanciesExampleTest = [
+  {
+    id: 1,
+    title: 'Desarrollador Frontend',
+    company: 'Tech Corp',
+    location: 'Armenia, Quindío',
+    category: 'Tecnología',
+    availability: 'Full-time',
+    responsibilities: 'Desarrollar interfaces modernas con React',
+    salary: '3,000,000',
+    contactPerson: 'Ana López',
+    contact: 'ana@techcorp.com',
+    postulations: [
+      {
+        personId: 1,
+        personName: 'Juan Pérez',
+        appliedDate: '2025-06-10',
+        status: 'En revisión'
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Diseñador UX/UI',
+    company: 'Creative Studio',
+    location: 'Salento, Quindío',
+    category: 'Diseño',
+    availability: 'Part-time',
+    responsibilities: 'Diseño de interfaces y prototipos de usuario',
+    salary: '2,500,000',
+    contactPerson: 'Carlos Gómez',
+    contact: 'carlos@creative.com',
+    postulations: [
+      {
+        personId: 2,
+        personName: 'Mariana Gómez',
+        appliedDate: '2025-06-11',
+        status: 'Entrevista programada'
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Backend Developer',
+    company: 'Data Systems',
+    location: 'Armenia, Quindío',
+    category: 'Tecnología',
+    availability: 'Full-time',
+    responsibilities: 'Desarrollar APIs REST con Node.js',
+    salary: '4,000,000',
+    contactPerson: 'Pedro Torres',
+    contact: 'pedro@datasystems.com',
+    postulations: [
+      {
+        personId: 1,
+        personName: 'Juan Pérez',
+        appliedDate: '2025-06-12',
+        status: 'Entrevista técnica agendada'
+      }
+    ]
+  }
+]

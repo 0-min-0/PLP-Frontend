@@ -50,7 +50,7 @@ export const MainJobSeeker = () => {
         buttons={
           <div className='w-full flex gap-6 items-center'>
             <NavLink
-              to='/chat-bot-ayuda'
+              to='/chat-bot-ayuda-contratista'
               title='Chat IA de ayuda'
             >
               <IoChatbubbleEllipsesOutline className='w-8 h-8 text-[#405e7f] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />

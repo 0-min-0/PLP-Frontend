@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react'
 import { FiEye, FiTrash2 } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Avatar } from '../../../Components/Avatar/Avatar'
-import { SearchBar } from '../../../UI/SearchBar'
 import { CancelModal } from '../../../UI/Modals/CancelModal'
 import { VacancyView } from '../../../UI/Vacancy/VacancyView'
-import { peopleExample, vacanciesExample } from '../../../Utils/objectsExample'
+import { vacanciesExampleTest } from '../../../Utils/users'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -20,22 +19,19 @@ export const Postulations = () => {
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false)
 
   useEffect(() => {
-    const user = peopleExample.find(p => p.id === currentUserId)
-    if (user && user.appliedTo) {
-      const apps = user.appliedTo.map(post => {
-        const normalize = str => str.toLowerCase().replace(/\s|-/g, '')
-
-        const fullVacancy = vacanciesExample.find(v =>
-          normalize(v.title) === normalize(post.vacancyTitle)
-        )
+    const apps = vacanciesExampleTest
+      .filter(vacancy =>
+        vacancy.postulations?.some(post => post.personId === currentUserId)
+      )
+      .map(vacancy => {
+        const post = vacancy.postulations.find(p => p.personId === currentUserId)
         return {
           ...post,
-          vacancy: fullVacancy,
-          applicationId: `${user.id}-${post.vacancyTitle}`
+          vacancy,
+          applicationId: `${currentUserId}-${vacancy.id}`
         }
       })
-      setApplications(apps)
-    }
+    setApplications(apps)
   }, [])
 
   const handleCancel = (applicationId) => {
@@ -63,41 +59,41 @@ export const Postulations = () => {
           {applications.length > 0 ? (
             <div className='grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {applications.map(app => (
-                <motion.div
+                <div
                   key={app.applicationId}
                   className='border-2 border-[#60efdb] rounded-xl p-6'
                   whileHover={{ y: -2 }}
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
-                      <h3 className='font-bold text-lg text-[#405e7f]'>{app.vacancyTitle}</h3>
+                      <h3 className='font-bold text-lg text-[#405e7f]'>
+                        {app.vacancy.title}
+                      </h3>
                       <p className='text-gray-600'>Estado: {app.status}</p>
                     </div>
 
                     <div className='flex gap-2 ml-2'>
                       <button
-                        onClick={() => {
-                          console.log('Vacancy to view:', app.vacancy) // Agrega esto para depurar
-                          setVacancyToView(app.vacancy)
-                        }}
-                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full'
+                        onClick={() => setVacancyToView(app.vacancy)}
+                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Ver detalles'
                       >
-                        <FiEye className='w-5 h-5' />
+                        <FiEye className='w-6 h-6' />
                       </button>
+
                       <button
                         onClick={() => {
                           setVacancyToCancel(app.applicationId)
                           setIsCancelModalOpen(true)
                         }}
-                        className='text-red-500 p-2 hover:bg-red-100 rounded-full'
+                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Retirar postulación'
                       >
                         <FiTrash2 className='w-5 h-5' />
                       </button>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           ) : (
@@ -113,6 +109,7 @@ export const Postulations = () => {
         isOpen={!!vacancyToView}
         vacancy={vacancyToView}
         onClose={() => setVacancyToView(null)}
+        showApplyButton={false}
       />
 
       {/* Modal para cancelar postulación */}

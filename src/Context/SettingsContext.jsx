@@ -1,14 +1,5 @@
-import React, {
-  createContext,
-  useState,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo
-} from 'react'
-import {
-  useLocation
-} from 'react-router-dom' // Asume react-router-dom está instalado
+import React, { createContext, useState, useCallback, useContext, useEffect, useMemo } from 'react'
+import { useLocation } from 'react-router-dom'
 
 // Datos iniciales de ejemplo para los tres roles
 const initialUsers = {
@@ -76,7 +67,7 @@ export const SettingsProvider = ({
   const [isEditing, setIsEditing] = useState(false)
   const [activeSection, setActiveSection] = useState(null)
   const [formData, setFormData] = useState({})
-  const [initialFormData, setInitialFormData] = useState({}) // Para revertir cambios
+  const [initialFormData, setInitialFormData] = useState({})
   const [errors, setErrors] = useState({})
   const [saveSuccess, setSaveSuccess] = useState(false)
   const [currentRole, setCurrentRole] = useState('')

@@ -4,6 +4,7 @@ export const PasswordContext = createContext()
 
 export const PasswordProvider = ({ children }) => {
   const [visibility, setVisibility] = useState({
+    currentPassword: false,
     createPassword: false,
     confirmPassword: false,
     loginPassword: false

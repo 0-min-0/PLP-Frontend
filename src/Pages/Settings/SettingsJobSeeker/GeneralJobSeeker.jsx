@@ -61,7 +61,7 @@ export const GeneralJobSeeker = () => {
         initial='hidden'
         animate='visible'
         variants={containerVariants}
-        className='max-w-5xl mx-auto h-100 bg-white rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'
+        className='max-w-5xl mx-auto h-95 bg-white rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'
       >
         {/* Sección de Información Personal */}
         <div className='space-y-4 pr-6'>

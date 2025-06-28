@@ -2,22 +2,25 @@ import React, { useState } from 'react'
 import { IoBriefcaseOutline } from 'react-icons/io5'
 import { Button } from '../button'
 import { VacancyView } from './VacancyView'
+import { useVacancy } from '../../Context/VacancyContext'
 
-export const Vacancie = ({ 
-  onShowDetails, 
-  title, 
-  company, 
-  location, 
-  category, 
-  experience, 
-  ...vacancy 
+export const Vacancie = ({
+  onShowDetails,
+  title,
+  company,
+  location,
+  category,
+  experience,
+  selectedVacancy,
+  ...vacancy
 }) => {
   const [showDetail, setShowDetail] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const { isVacancyApplied } = useVacancy()
 
   const handleClick = () => {
     if (onShowDetails) {
-      onShowDetails() // Solo notifica que se hizo clic, sin pasar datos
+      onShowDetails()
     } else {
       setShowDetail(true)
       setIsOpen(true)
@@ -67,6 +70,7 @@ export const Vacancie = ({
             setShowDetail(false)
             setIsOpen(false)
           }}
+          isApplied={isVacancyApplied(vacancy.id)} 
         />
       )}
     </>

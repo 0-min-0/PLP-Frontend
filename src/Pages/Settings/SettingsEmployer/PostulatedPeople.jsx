@@ -118,6 +118,7 @@ export const PostulatedPeople = () => {
             isOpen={!!selectedPerson}
             onClose={() => setSelectedPerson(null)}
             onContact={handleContactPerson}
+            showCommentButton={true}
           />
         )}
       </AnimatePresence>
