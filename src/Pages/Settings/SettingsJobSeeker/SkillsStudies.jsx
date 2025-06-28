@@ -58,7 +58,7 @@ export const SkillsStudies = () => {
               onClick={() => handleEdit('skillsStudies')}
               className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
             >
-              <FiEdit className='w-5 h-5' /> Editar
+              <FiEdit className='w-5 h-5' /> Editar habilidades y estudios
             </button>
           )}
         </AnimatePresence>
@@ -67,14 +67,13 @@ export const SkillsStudies = () => {
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 space-x-2'>
         {/* Habilidades */}
         <div>
-          <h4 className='font-semibold text-[#405e7f] mb-2'>Habilidades</h4>
+          <h4 className='text-lg font-semibold text-[#405e7f] mb-2'>Habilidades</h4>
           <Input 
             iType='text'
             iValue={formData.skill1 || ''}
             iName='skill1'
             iChange={handleSkillChange}
-            labelTitle={fieldLabels.skill1 || 'Habilidad 1'}
-            iHolder='Habilidad Principal'
+            iHolder='Ingresa tu habilidad'
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
@@ -90,8 +89,7 @@ export const SkillsStudies = () => {
             iValue={formData.skill2 || ''}
             iName='skill2'
             iChange={handleSkillChange}
-            labelTitle={fieldLabels.skill2 || 'Habilidad 2'}
-            iHolder='Habilidad Secundaria'
+            iHolder='Ingresa tu habilidad'
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
@@ -107,8 +105,7 @@ export const SkillsStudies = () => {
             iValue={formData.skill3 || ''}
             iName='skill3'
             iChange={handleSkillChange}
-            labelTitle={fieldLabels.skill3 || 'Habilidad 3'}
-            iHolder='Habilidad Opcional'
+            iHolder='Ingresa tu habilidad (opcional)'
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
@@ -123,8 +120,7 @@ export const SkillsStudies = () => {
             iValue={formData.skill4 || ''}
             iName='skill4'
             iChange={handleSkillChange}
-            labelTitle={fieldLabels.skill4 || 'Habilidad 4'}
-            iHolder='Habilidad Opcional'
+            iHolder='Ingresa tu habilidad (opcional)'
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
@@ -138,14 +134,13 @@ export const SkillsStudies = () => {
 
         {/* Estudios */}
         <div>
-          <h4 className='font-semibold text-[#405e7f] mb-2'>Estudios</h4>
+          <h4 className='text-lg font-semibold text-[#405e7f] mb-2'>Estudios</h4>
           <Input 
             iType='text'
             iValue={formData.study1 || ''}
             iName='study1'
             iChange={handleStudyChange}
-            labelTitle={fieldLabels.study1 || 'Estudio 1'}
-            iHolder='Estudio Principal'
+            iHolder='Ingresa tu estudio'
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
@@ -161,8 +156,7 @@ export const SkillsStudies = () => {
             iValue={formData.study2 || ''}
             iName='study2'
             iChange={handleStudyChange}
-            labelTitle={fieldLabels.study2 || 'Estudio 2'}
-            iHolder='Estudio Secundario'
+            iHolder='Ingresa tu estudio'
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
@@ -178,8 +172,7 @@ export const SkillsStudies = () => {
             iValue={formData.study3 || ''}
             iName='study3'
             iChange={handleStudyChange}
-            labelTitle={fieldLabels.study3 || 'Estudio 3'}
-            iHolder='Estudio Opcional'
+            iHolder='Ingresa tu estudio (opcional)'
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
@@ -194,8 +187,7 @@ export const SkillsStudies = () => {
             iValue={formData.study4 || ''}
             iName='study4'
             iChange={handleStudyChange}
-            labelTitle={fieldLabels.study4 || 'Estudio 4'}
-            iHolder='Estudio Opcional'
+            iHolder='Ingresa tu estudio (opcional)'
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 

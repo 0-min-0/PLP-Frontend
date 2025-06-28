@@ -85,6 +85,11 @@ export const SettingsProvider = ({
     newPassword: '',
     confirmPassword: ''
   })
+  const [passwordErrors, setPasswordErrors] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  })
 
   // Etiquetas de campo para mensajes de error
   const fieldLabels = useMemo(() => ({
@@ -288,6 +293,40 @@ export const SettingsProvider = ({
     formData.password,
   ])
 
+  const validatePasswordForm = useCallback(() => {
+    let isValid = true
+    const newErrors = {}
+
+    // Validar contraseña actual
+    if (!passwordData.currentPassword) {
+      newErrors.currentPassword = 'ⓘ La contraseña actual es requerida'
+      isValid = false
+    }
+
+    // Validar nueva contraseña
+    const newPasswordError = validatePasswordStrength(passwordData.newPassword)
+    if (newPasswordError) {
+      newErrors.newPassword = newPasswordError
+      isValid = false
+    }
+
+    // Validar confirmación
+    const confirmError = validateConfirmPassword(
+      passwordData.newPassword,
+      passwordData.confirmPassword
+    )
+    if (confirmError) {
+      newErrors.confirmPassword = confirmError
+      isValid = false
+    }
+
+    setPasswordErrors(newErrors)
+    return isValid
+  }, [passwordData, validatePasswordStrength, validateConfirmPassword])
+
+
+
+
   const handleEdit = useCallback((section) => {
     setIsEditing(true)
     setActiveSection(section)
@@ -361,7 +400,7 @@ export const SettingsProvider = ({
     }))
   }, [validateStudy])
 
-
+  //Guardar datos validados
   const handleSaveWithValidation = useCallback(() => {
     let newErrors = {}
     let isValid = true
@@ -413,31 +452,6 @@ export const SettingsProvider = ({
       }
     })
 
-
-    // // Validar contraseñas si están presentes
-    // if (formData.password) {
-    //   const passwordError = validatePasswordStrength(formData.password)
-    //   if (passwordError) {
-    //     newErrors.password = passwordError
-    //     isValid = false
-    //   }
-    //   if (formData.confirmPassword) {
-    //     const confirmPasswordError = validateConfirmPassword(formData.password, formData.confirmPassword)
-    //     if (confirmPasswordError) {
-    //       newErrors.confirmPassword = confirmPasswordError
-    //       isValid = false
-    //     }
-    //   } else {
-    //     newErrors.confirmPassword = 'ⓘ Por favor confirma tu nueva contraseña'
-    //     isValid = false
-    //   }
-    // }
-    // else if (currentRole === 'security') {
-    //   newErrors.password = 'ⓘ La contraseña es requerida'
-    //   isValid = false
-    // }
-
-
     setErrors(newErrors)
 
     if (isValid) {
@@ -453,12 +467,74 @@ export const SettingsProvider = ({
     }
   }, [formData, currentRole, validateFieldInRealTime, validatePasswordStrength, validateConfirmPassword, validateRequiredField])
 
+  //Guardar contraseña validada
+  const handlePasswordChangeWithValidation = useCallback((e) => {
+    const { name, value } = e.target
 
-  const handleCancel = useCallback(() => {
-    setFormData(initialFormData) // Revertir a los datos iniciales 
+    setPasswordData(prev => {
+      const updated = { ...prev, [name]: value }
+
+      let error = ''
+      if (name === 'currentPassword') {
+        if (!value) error = 'ⓘ La contraseña actual es requerida'
+      } else if (name === 'newPassword') {
+        error = validatePasswordStrength(value)
+        const confirmError = validateConfirmPassword(value, updated.confirmPassword)
+        setPasswordErrors(prevErrors => ({
+          ...prevErrors,
+          confirmPassword: confirmError,
+        }))
+      } else if (name === 'confirmPassword') {
+        error = validateConfirmPassword(updated.newPassword, value)
+      }
+      setPasswordErrors(prevErrors => ({
+        ...prevErrors,
+        [name]: error
+      }))
+
+      return updated
+    })
+  }, [validatePasswordStrength, validateConfirmPassword])
+
+
+  const handleSavePassword = useCallback(() => {
+    const isValid = validatePasswordForm()
+
+    if (!isValid) {
+      console.log("Errores en la validación de contraseña:", passwordErrors)
+      return
+    }
+
+    console.log('Contraseña cambiada exitosamente:', {
+      currentPassword: passwordData.currentPassword,
+      newPassword: passwordData.newPassword
+    })
+
+    setPasswordData({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    })
+
+    setPasswordErrors({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    })
+
+    setSaveSuccess(true)
+    setTimeout(() => setSaveSuccess(false), 3000)
     setIsEditing(false)
     setActiveSection(null)
-    setErrors({}) // Limpiar errores al cancelar
+  }, [validatePasswordForm, passwordData, passwordErrors])
+
+
+  //Cancelar edicion
+  const handleCancel = useCallback(() => {
+    setFormData(initialFormData)
+    setIsEditing(false)
+    setActiveSection(null)
+    setErrors({})
   }, [initialFormData])
 
   // Obtener el error activo para un campo específico
@@ -471,13 +547,33 @@ export const SettingsProvider = ({
     return errors[fieldName]
   }, [errors])
 
+  const getCombinedPasswordError = useCallback((fieldName) => {
+    return passwordErrors[fieldName] || ''
+  }, [passwordErrors])
+
+  const handleCancelPasswoord = useCallback(() => {
+    setPasswordData({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    })
+    setPasswordErrors({
+      currentPassword: '',
+      newPassword: '',
+      confirmPassword: ''
+    })
+    setIsEditing(false)
+    setActiveSection(null)
+  }, [])
+
   const contextValue = useMemo(() => ({
     isEditing,
     activeSection,
     formData,
-    passwordData,
     initialFormData,
     errors,
+    passwordData,
+    passwordErrors,
     saveSuccess,
     fieldLabels,
     currentRole,
@@ -491,12 +587,18 @@ export const SettingsProvider = ({
     handleSkillChange,
     handleStudyChange,
     setSaveSuccess,
+    handlePasswordChangeWithValidation,
+    handleSavePassword,
+    handleCancelPasswoord,
+    getCombinedPasswordError,
   }), [
     isEditing,
     activeSection,
     formData,
     initialFormData,
     errors,
+    passwordData,
+    passwordErrors,
     saveSuccess,
     fieldLabels,
     currentRole,
@@ -510,6 +612,10 @@ export const SettingsProvider = ({
     handleSkillChange,
     handleStudyChange,
     setSaveSuccess,
+    handlePasswordChangeWithValidation,
+    handleSavePassword,
+    handleCancelPasswoord,
+    getCombinedPasswordError
   ])
 
   return (

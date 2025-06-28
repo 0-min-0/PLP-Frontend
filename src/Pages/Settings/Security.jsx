@@ -41,9 +41,9 @@ export const Security = () => {
     },
     passwordErrors = {},
     handleEdit = () => console.warn('handleEdit no implementado'),
-    handleSaveWithValidation = () => console.warn('handleSaveWithValidation no implementado'),
-    handleCancelWithReset = () => console.warn('handleCancelWithReset no implementado'),
+    handleCancelPasswoord = () => console.warn('handleCancelPasswoord no implementado'),
     handlePasswordChangeWithValidation = () => console.warn('handlePasswordChangeWithValidation no implementado'),
+    handleSavePassword = () => console.warn('handleSavePassword no implementado'),
     getCombinedPasswordError = () => null
   } = useSettings();
 
@@ -62,13 +62,13 @@ export const Security = () => {
               variants={buttonVariants}
             >
               <button
-                onClick={handleSaveWithValidation}
+                onClick={handleSavePassword}
                 className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
               >
                 <FiSave className='w-5 h-5' /> Guardar
               </button>
               <button
-                onClick={handleCancelWithReset}
+                onClick={handleCancelPasswoord}
                 className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
               >
                 <FiX className='w-5 h-5' /> Cancelar

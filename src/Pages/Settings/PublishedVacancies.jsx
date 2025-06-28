@@ -38,7 +38,7 @@ export const PublishedVacancies = () => {
     <>
       <Avatar />
       <div className='max-w-5xl mx-auto pt-8 pb-4'>
-        <SearchBar />
+        <hr className='border-gray-200 mr-8' />
         <motion.div
           initial="hidden"
           animate="visible"
@@ -50,7 +50,7 @@ export const PublishedVacancies = () => {
           </h2>
 
           {vacancies.length > 0 ? (
-            <div className='w-full h-80 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
+            <div className='w-full h-90 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {vacancies.map((vacancy) => (
                 <div
                   key={vacancy.id}

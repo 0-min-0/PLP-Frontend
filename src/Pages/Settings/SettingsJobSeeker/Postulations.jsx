@@ -48,7 +48,7 @@ export const Postulations = () => {
     <>
       <Avatar />
       <div className='max-w-5xl mx-auto pt-8 pb-4'>
-        <SearchBar />
+        <hr className='border-gray-200 mr-8' />
 
         <motion.div
           initial="hidden"
