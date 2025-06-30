@@ -1,9 +1,9 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { Button } from '../../UI/button'
-import mainIlustration from '../../assets/images/home-ilustration.png'
-import { InfoContainer } from '../InfoContainer/InfoContainer'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Button } from '../../UI/button';
+import mainIlustration from '../../assets/images/home-ilustration.png';
+import { InfoContainer } from '../InfoContainer/InfoContainer'; 
+import { NavLink } from 'react-router-dom';
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 10 },
@@ -15,7 +15,7 @@ const fadeInUp = {
       ease: "easeOut"
     }
   }
-}
+};
 
 const fadeInLeft = {
   hidden: { opacity: 0, x: -20 },
@@ -27,7 +27,7 @@ const fadeInLeft = {
       ease: "easeOut"
     }
   }
-}
+};
 
 const fadeInRight = {
   hidden: { opacity: 0, x: 20 },
@@ -39,7 +39,7 @@ const fadeInRight = {
       ease: "easeOut"
     }
   }
-}
+};
 
 export const WelcomeTextHome = () => {
   return (
@@ -57,14 +57,14 @@ export const WelcomeTextHome = () => {
           }}
         >
           <motion.h1
-            className='text-6xl font-[afacadBold] font-extrabold text-[#254160] mb-8'
+            className='text-6xl font-[afacadBold] font-extrabold welcome-title mb-8'
             variants={fadeInUp}
           >
             Solo necesitas de tus <br />
             habilidades y tu experiencia
           </motion.h1>
           <motion.p
-            className='text-[#405e7f] text-xl mb-4'
+            className='welcome-paragraph text-xl mb-4'
             variants={fadeInUp}
           >
             La plataforma que te brinda numerosas oportunidades de trabajo
@@ -77,14 +77,14 @@ export const WelcomeTextHome = () => {
             <Button
               btnType='button'
               btnName='Continuar con Google'
-              btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]'
+              btnStyle='button flex items-center'
               btnIcon='google'
             />
             <NavLink to='/acceder'>
               <Button
                 btnType='button'
                 btnName='Iniciar Sesion con Correo'
-                btnStyle='flex items-center bg-[#405e7f] text-white rounded-full px-4 py-2 hover:bg-[#405e7f]'
+                btnStyle='button flex items-center'
                 btnIcon='email'
               />
             </NavLink>
@@ -101,5 +101,5 @@ export const WelcomeTextHome = () => {
       </div>
       <InfoContainer />
     </div>
-  )
-}
+  );
+};

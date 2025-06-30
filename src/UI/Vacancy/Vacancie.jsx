@@ -29,12 +29,14 @@ export const Vacancie = ({
 
   return (
     <>
-      <div className='bg-white rounded-xl border border-[#60efdb] px-8 py-6 text-[#405e7f] w-75 min-h-[240px] flex flex-col'>
+      <div className='rounded-xl px-8 py-6 w-75 min-h-[240px] flex flex-col border
+                      bg-white text-[#405e7f] border-[#60efdb]
+                      vacancy-card'>
         <div className='flex justify-between items-start mb-3'>
           <h2 className='font-semibold text-lg leading-tight truncate max-h-[3.6rem]'>
             {title}
           </h2>
-          <IoBriefcaseOutline className='w-5 h-5 flex-shrink-0 ml-2 mt-1' />
+          <IoBriefcaseOutline className='w-5 h-5 flex-shrink-0 ml-2 mt-1 vacancy-icon-dark' />
         </div>
 
         <div className='flex-grow space-y-2'>
@@ -57,7 +59,7 @@ export const Vacancie = ({
         <Button
           btnName='Ver detalles'
           btnType='button'
-          btnStyle='bg-[#405e7f] text-white font-semibold w-full mt-3 py-2'
+          btnStyle='bg-[#405e7f] text-white font-semibold w-full mt-3 py-2 card-button'
           clicked={handleClick}
         />
       </div>
@@ -70,7 +72,7 @@ export const Vacancie = ({
             setShowDetail(false)
             setIsOpen(false)
           }}
-          isApplied={isVacancyApplied(vacancy.id)} 
+          isApplied={isVacancyApplied(vacancy.id)}
         />
       )}
     </>

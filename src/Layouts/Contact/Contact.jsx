@@ -47,9 +47,9 @@ export const Contact = () => {
 
     return (
         <div className='bg-[#405e7f] px-24 py-16'>
-            <div className='bg-white rounded-xl'>
+            <div className='contact-inner-container rounded-xl'>
                 <motion.h2
-                    className='text-5xl font-[afacadBold] text-[#405e7f] mx-15 pt-12'
+                    className='text-5xl font-[afacadBold] mx-15 pt-12'
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
@@ -73,7 +73,7 @@ export const Contact = () => {
                         viewport={{ once: true, amount: 0.2 }}
                         variants={fadeInLeft}
                     >
-                        <div className='text-[#405e7f] text-lg'>
+                        <div className='text-lg'>
                             <p>Escribe tu nombre y tu correo electronico, dejanos un comentario y cuentanos tu
                                 experiencia en PLP o escribe tus dudas y sugerencias para hacer crecer nuestro
                                 aplicativo, hacerlo mas eficiente y cómodo para nuestros usuarios.</p>
@@ -112,10 +112,11 @@ export const Contact = () => {
                                     value={formData.comment}
                                     onChange={handleChange}
                                     error={errors.comment}
+                                    color='select-label-dark'
                                 />
                             </div>
                             {errors.general && (
-                                <div className='mb-2 font-semibold text-red-500 text-sm'>{errors.general}</div>
+                                <div className='mb-2 font-semibold error text-sm'>{errors.general}</div>
                             )}
                             <Button
                                 btnName={isLoading ? 'Enviando...' : 'Enviar'}

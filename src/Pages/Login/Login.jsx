@@ -9,18 +9,28 @@ import { motion } from 'framer-motion'
 
 export const Login = () => {
   return (
-    <div className='w-full h-full p-6'>
+    <div className='login-container w-full h-full p-6'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
+          <h1 className='login-title text-5xl font-[afacadBold]'>
             Iniciar sesión
           </h1>
         }
         buttons={
-          <div className='flex gap-2 mb-8'>
-            <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
-            <p>•</p>
-            <NavLink to='/terminos-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
+          <div className='login-title flex gap-2 mb-8'>
+            <NavLink
+              to='/politicas-de-privacidad'
+              className='font-semibold hover:underline'
+            >
+              Políticas de privacidad
+            </NavLink>
+            <p className=''>•</p>
+            <NavLink
+              to='/terminos-condiciones'
+              className='font-semibold hover:underline'
+            >
+              Términos y condiciones
+            </NavLink>
           </div>
         }
       />
@@ -37,7 +47,7 @@ export const Login = () => {
         </LoginProvider>
         <WelcomeText
           text={
-            <p>
+            <p className='welcome-paragraph'>
               Nos alegra tenerte denuevo en PLP, <br />
               no te pierdas las nuevas ofertas <br />
               laborales

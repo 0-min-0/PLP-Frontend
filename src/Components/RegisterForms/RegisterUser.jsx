@@ -20,7 +20,7 @@ export const RegisterUser = () => {
         validateRegisterUserForm
     } = useRegister()
 
-    const errorStyle = 'text-[#ff6b6b] text-sm mt-1 font-semibold'
+    const errorStyle = 'error text-sm mt-1 font-semibold'
 
     const localHandleSubmit = (e) => {
         e.preventDefault()
@@ -31,21 +31,21 @@ export const RegisterUser = () => {
     }
 
     return (
-        <div className='w-[35%]'>
+        <div className='w-[35%] register-form rounded-xl'>
             <FormsContainer
                 width='w-full'
-                bgColor='bg-[#dcfff6]'
-                textColor='#405e7f'
+                bgColor='register-form'
+                textColor='text-[color:var(--color-card-text)]'
                 changeForm={
-                    <div className=''>
+                    <div>
                         <Button
                             clicked={localHandleSubmit}
-                            btnStyle='w-[30%] bg-[#405e7f] text-white font-bold mt-2'
+                            btnStyle='w-[30%] bg-[color:var(--color-button-bg)] text-[color:var(--color-button-text)] font-bold mt-2'
                             btnName='Continuar'
                         />
-                        <p className='text-[#405e7f] pt-4'>
+                        <p className='text-[color:var(--color-card-text)] pt-4'>
                             ¿Ya estás registrado en nuestra plataforma?{' '}
-                            <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
+                            <NavLink to='/acceder' className='font-semibold hover:underline hover:text-[#60efdb]'>
                                 Iniciar sesión
                             </NavLink>
                         </p>
@@ -54,10 +54,11 @@ export const RegisterUser = () => {
                 form={
                     <form onSubmit={localHandleSubmit} className='w-full h-115 overflow-y-auto scrollbar-custom mb-5'>
                         <div className='w-full items-start'>
-                            <div className='w- pr-5 mb-3'>
+                            <div className='pr-5 mb-3'>
                                 <div>
                                     <Input
                                         labelTitle='Nombre completo/Nombre de la empresa'
+                                        labelColor='select-label-dark'
                                         iName='name'
                                         iType='text'
                                         isFor='name'
@@ -69,7 +70,8 @@ export const RegisterUser = () => {
                                 </div>
 
                                 <div className='mt-4'>
-                                    <h2 className='text-[#405e7f] font-semibold'>Contacto (Personal/Empresa)</h2>
+                                    <h2 className='select-label-dark font-semibold'>Contacto (Personal/Empresa)</h2>
+
                                     <div className='relative'>
                                         <Input
                                             iName='phone'
@@ -77,10 +79,10 @@ export const RegisterUser = () => {
                                             isFor='phoneOne'
                                             iValue={form.phone}
                                             iChange={handleChange}
-                                            iHolder='Ingresa numero de telefono'
+                                            iHolder='Ingresa número de teléfono'
                                             padding='pl-12 py-2'
                                         />
-                                        <HiOutlinePhone className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
+                                        <HiOutlinePhone className='absolute w-6 h-6 form-icon bottom-3 left-3' />
                                     </div>
                                     {errors.phone && <p className={errorStyle}>{errors.phone}</p>}
 
@@ -91,10 +93,10 @@ export const RegisterUser = () => {
                                             isFor='phoneSec'
                                             iValue={form.phoneSec}
                                             iChange={handleChange}
-                                            iHolder='Ingresa numero de telefono secundario (Opcional)'
+                                            iHolder='Ingresa número de teléfono secundario (Opcional)'
                                             padding='pl-12 py-2'
                                         />
-                                        <HiOutlinePhone className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
+                                        <HiOutlinePhone className='absolute w-6 h-6 form-icon bottom-3 left-3' />
                                     </div>
                                     {errors.phoneSec && <p className={errorStyle}>{errors.phoneSec}</p>}
 
@@ -105,10 +107,10 @@ export const RegisterUser = () => {
                                             isFor='emailAdress'
                                             iValue={form.email}
                                             iChange={handleChange}
-                                            iHolder='Ingresa direccion de correo electronico'
+                                            iHolder='Ingresa dirección de correo electrónico'
                                             padding='pl-12 py-2'
                                         />
-                                        <HiOutlineMail className='absolute w-6 h-6 text-[#405e7f]/70 bottom-3 left-3' />
+                                        <HiOutlineMail className='absolute w-6 h-6 form-icon bottom-3 left-3' />
                                     </div>
                                     {errors.email && <p className={errorStyle}>{errors.email}</p>}
                                 </div>
@@ -120,14 +122,19 @@ export const RegisterUser = () => {
                                     holderDesc='Escribe una breve descripción de la empresa o de ti mismo'
                                     name='description'
                                     value={form.description}
-                                    onChange={(e) => handleChange({
-                                        target: {
-                                            name: 'description',
-                                            value: e.target.value
-                                        }
-                                    })}
+                                    onChange={(e) =>
+                                        handleChange({
+                                            target: {
+                                                name: 'description',
+                                                value: e.target.value
+                                            }
+                                        })
+                                    }
+                                    color='select-label-dark'
                                     error={errors.description}
+                                    className='desc-dark'
                                 />
+
                                 <div className='w-full'>
                                     <div className='mt-2'>
                                         <Select
@@ -136,19 +143,25 @@ export const RegisterUser = () => {
                                             value={form.town}
                                             onChange={(value) => handleSelectChange('town', value)}
                                             options={optionTown}
+                                            color='select-label-dark'
+                                            borderColor='border-[#405e7f]/50'
                                         />
                                         {errors.town && <p className={errorStyle}>{errors.town}</p>}
                                     </div>
+
                                     <div className='mt-3'>
                                         <Select
-                                            label='Género (Si te estas registrando como empresa no aplica)'
+                                            label='Género (Si te estás registrando como empresa no aplica)'
                                             name='genre'
                                             value={form.genre}
                                             onChange={(value) => handleSelectChange('genre', value)}
                                             options={optionGenre}
+                                            color='select-label-dark'
+                                            borderColor='border-[#405e7f]/50'
                                         />
                                         {errors.genre && <p className={errorStyle}>{errors.genre}</p>}
                                     </div>
+
                                     <div className='mt-3'>
                                         <Select
                                             label='Categoría'
@@ -156,6 +169,8 @@ export const RegisterUser = () => {
                                             value={form.category}
                                             onChange={(value) => handleSelectChange('category', value)}
                                             options={categories}
+                                            color='select-label-dark'
+                                            borderColor='border-[#405e7f]/50'
                                         />
                                         {errors.category && <p className={errorStyle}>{errors.category}</p>}
                                     </div>

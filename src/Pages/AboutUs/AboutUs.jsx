@@ -3,15 +3,15 @@ import { Header } from '../../Components/Header/Header'
 
 export const AboutUs = () => {
   return (
-    <div className='p-6'>
+    <div className='p-6 aboutus'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Sobre PLP (Plataforma Laboral Proactiva)
           </h1>
         }
       />
-      <div className='max-w-7xl py-10 md:px-16 lg:px-24 mx-auto mt-15 text-gray-800'>
+      <div className='text-[color:var(--color-card-text)] max-w-7xl py-10 md:px-16 lg:px-24 mx-auto mt-15 '>
         <section className="grid lg:grid-cols-2 gap-10 mb-12 items-center">
           <div className="space-y-4">
             <p>

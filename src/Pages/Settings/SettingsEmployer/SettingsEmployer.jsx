@@ -82,7 +82,7 @@ export const SettingsEmployer = () => {
   }
 
   return (
-    <div className='p-6'>
+    <div className='h-full p-6 back-color-set'>
       <Header
         logo={
           <InteractiveLogoMain
@@ -90,24 +90,24 @@ export const SettingsEmployer = () => {
           />
         }
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Configuraciones
           </h1>
         }
         buttons={
           <div className='w-full flex mr-6 mb-6'>
             <NavLink to='/centro-de-notificaciones' title='Centro de notificaciones'>
-              <HiOutlineInbox className='w-8 h-8 text-[#405e7f]' />
+              <HiOutlineInbox className='w-8 h-8 text-[color:var(--color-card-text)]' />
             </NavLink>
             <NavLink to='/inicio-contratante' title='Volver a inicio'>
-              <HiMiniArrowUturnLeft className='w-8 h-8 text-[#405e7f] ml-6' />
+              <HiMiniArrowUturnLeft className='w-8 h-8 text-[color:var(--color-card-text)] ml-6' />
             </NavLink>
           </div>
         }
       />
 
       <div className='w-[90%] flex justify-center gap-6 mx-30 mt-4'>
-        <div className='w-[70%] bg-white px-10 py-8 rounded-xl'>
+        <div className='w-[70%] general px-10 py-8 rounded-xl'>
           <Outlet context={outletContext} />
         </div>
         <div className='w-[30%]'>

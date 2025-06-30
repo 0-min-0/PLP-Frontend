@@ -95,17 +95,17 @@ export const Avatar = () => {
               />
 
               <motion.div
-                className="absolute z-50 mt-3 w-80 bg-white rounded-xl shadow-lg border border-gray-100 p-6"
+                className="absolute z-50 mt-3 w-80 back-color rounded-xl shadow-lg border border-gray-100 p-6"
                 variants={selectorVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
               >
                 <div className='flex justify-between items-center mb-4'>
-                  <h4 className='text-[#405e7f] font-semibold text-lg'>Elige tu avatar</h4>
+                  <h4 className='text-[color:var(--color-card-text)] font-semibold text-lg'>Elige tu avatar</h4>
                   <button
                     onClick={() => setAvatarSelector(false)}
-                    className='text-gray-400 hover:bg-gray-100 p-1 rounded-md transition-colors cursor-pointer'
+                    className='text-[color:var(--color-card-text)] hover:bg-gray-100 p-1 rounded-md transition-colors cursor-pointer'
                     aria-label='Cerrar selector'
                   >
                     <HiOutlineX className='w-5 h-5' />
@@ -144,7 +144,7 @@ export const Avatar = () => {
 
       <div className='ml-6 relative group'>
         <div className='flex items-center'>
-          <h2 className='text-3xl font-bold text-[#405e7f]'>
+          <h2 className='text-3xl font-bold text-[color:var(--color-card-text)]'>
             {user.name}
           </h2>
           <button
@@ -152,10 +152,10 @@ export const Avatar = () => {
             className='ml-2 p-2 rounded-full hover:bg-[#60efdb]/20 transition-colors duration-300 cursor-pointer'
             title='Editar nombre'
           >
-            <FiEdit className='text-[#405e7f]' size={20} />
+            <FiEdit className='text-[color:var(--color-card-text)]' size={20} />
           </button>
         </div>
-        <h3 className='text-lg text-[#405e7f] opacity-80'>
+        <h3 className='text-lg text-[color:var(--color-card-text)] opacity-80'>
           {currentDisplayRole}
         </h3>
       </div>

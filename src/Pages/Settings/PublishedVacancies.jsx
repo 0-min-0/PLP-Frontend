@@ -45,7 +45,7 @@ export const PublishedVacancies = () => {
           variants={containerVariants}
           className='mt-6'
         >
-          <h2 className='text-3xl font-[afacadBold] text-[#405e7f] mb-4'>
+          <h2 className='text-3xl font-[afacadBold] text-[color:var(--color-card-text)] mb-4'>
             Publicaciones
           </h2>
 
@@ -59,20 +59,20 @@ export const PublishedVacancies = () => {
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
-                      <h3 className='font-bold text-lg text-[#405e7f]'>
+                      <h3 className='font-bold text-lg text-[color:var(--color-card-text)]'>
                         {vacancy.vacancyName || vacancy.title}
                       </h3>
-                      <p className='text-gray-600 mt-1'>
-                        <span className='font-semibold text-[#405e7f]'>Contacto  •</span> {vacancy.contactPerson}
+                      <p className='text-[color:var(--color-card-text)] mt-1'>
+                        <span className='font-semibold text-[color:var(--color-card-text)]'>Contacto  •</span> {vacancy.contactPerson}
                       </p>
-                      <p className='text-gray-600'>
-                        <span className='font-semibold text-[#405e7f]'>Teléfono/Email  •</span> {vacancy.contact}
+                      <p className='text-[color:var(--color-card-text)]'>
+                        <span className='font-semibold text-[color:var(--color-card-text)]'>Teléfono/Email  •</span> {vacancy.contact}
                       </p>
                     </div>
                     <div className="flex ml-4">
                       <button
                         title='Editar vacante'
-                        className='text-[#405e7f] cursor-pointer p-2
+                        className='text-[color:var(--color-card-text)] cursor-pointer p-2
                                 transition-all duration-300
                                 hover:bg-[#60efdb]/20 rounded-full'
                         onClick={(e) => {
@@ -85,7 +85,7 @@ export const PublishedVacancies = () => {
                       </button>
                       <button
                         title='Eliminar vacante'
-                        className='text-[#405e7f] cursor-pointer p-2
+                        className='text-[color:var(--color-card-text)] cursor-pointer p-2
                                 transition-all duration-300
                                 hover:bg-[#60efdb]/20 rounded-full'
                         onClick={(e) => {

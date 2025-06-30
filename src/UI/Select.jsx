@@ -48,7 +48,7 @@ export const Select = ({
             {label && <h2 className={`mb-3 ${color} font-semibold text-left`}>{label}</h2>}
             {desc && <p className='mb-3 text-[#405e7f] text-sm text-left'>{desc}</p>}
             <div
-                className={`w-full py-2 px-4 text-[#405e7f] text-lg bg-white border ${borderColor} rounded-xl 
+                className={`w-full py-2 px-4 select-container-dark text-lg border-1 ${borderColor} rounded-xl 
                     ${!disabled ? `focus:border-transparent focus:ring-2 ${focusColor}` : ''}
                     transition-all duration-500 flex justify-between items-center
                     ${disabled ? 'cursor-not-allowed bg-gray-100' : 'cursor-pointer'}`}
@@ -56,13 +56,13 @@ export const Select = ({
             >
                 <span>{displayText}</span>
                 <HiChevronDown
-                    className={`text-[#405e7f] w-5 h-5 transition-transform 
+                    className={`select-icon-dark w-5 h-5 transition-transform 
                     ${isOpen ? 'transform rotate-180' : ''}`}
                 />
             </div>
 
             <div
-                className={`absolute z-40 mt-2 w-full bg-white rounded-xl shadow-lg transition-all 
+                className={`absolute z-40 mt-2 w-full select-options rounded-xl shadow-lg transition-all 
                         duration-300 ease-in-out transform ${isOpen
                         ? 'opacity-100 scale-100 translate-y-0'
                         : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
@@ -71,7 +71,7 @@ export const Select = ({
                 {options.map((option) => (
                     <div
                         key={option.value}
-                        className={`m-2 px-4 py-2 rounded-lg hover:bg-gray-100 text-[#405e7f] text-left 
+                        className={`m-2 px-4 py-2 rounded-lg hover:bg-gray-100 select-option-dark text-left 
                         ${disabled ? 'cursor-not-allowed' : 'cursor-pointer'}`}
                         onClick={() => handleOptionClick(option.value)}
                     >
@@ -80,7 +80,7 @@ export const Select = ({
                 ))}
             </div>
             {error && (
-                <span className={`${errColor} font-semibold text-sm mt-1 block`}>
+                <span className={`${errColor} error font-semibold text-sm mt-1 block`}>
                     {error}
                 </span>
             )}

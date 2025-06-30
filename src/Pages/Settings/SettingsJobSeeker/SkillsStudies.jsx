@@ -28,7 +28,7 @@ export const SkillsStudies = () => {
   return (
     <div className='space-y-4 pr-6'>
       <div className='flex justify-between items-center'>
-        <h3 className='text-xl font-semibold text-[#405e7f]'>Habilidades y Estudios</h3>
+        <h3 className='text-xl font-semibold text-[color:var(--color-card-text)]'>Habilidades y Estudios</h3>
         <AnimatePresence mode='wait'>
           {activeSection === 'skillsStudies' && isEditing ? (
             <motion.div 
@@ -41,13 +41,13 @@ export const SkillsStudies = () => {
             >
               <button 
                 onClick={handleSaveWithValidation}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
               >
                 <FiSave className='w-5 h-5' /> Guardar
               </button>
               <button 
                 onClick={handleCancel}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
               >
                 <FiX className='w-5 h-5' /> Cancelar
               </button>
@@ -56,7 +56,7 @@ export const SkillsStudies = () => {
             <button 
               key='edit'
               onClick={() => handleEdit('skillsStudies')}
-              className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+              className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
             >
               <FiEdit className='w-5 h-5' /> Editar habilidades y estudios
             </button>
@@ -67,7 +67,7 @@ export const SkillsStudies = () => {
       <div className='grid grid-cols-1 md:grid-cols-2 gap-4 space-x-2'>
         {/* Habilidades */}
         <div>
-          <h4 className='text-lg font-semibold text-[#405e7f] mb-2'>Habilidades</h4>
+          <h4 className='text-lg font-semibold text-[color:var(--color-card-text)] mb-2'>Habilidades</h4>
           <Input 
             iType='text'
             iValue={formData.skill1 || ''}
@@ -134,7 +134,7 @@ export const SkillsStudies = () => {
 
         {/* Estudios */}
         <div>
-          <h4 className='text-lg font-semibold text-[#405e7f] mb-2'>Estudios</h4>
+          <h4 className='text-lg font-semibold text-[color:var(--color-card-text)] mb-2'>Estudios</h4>
           <Input 
             iType='text'
             iValue={formData.study1 || ''}

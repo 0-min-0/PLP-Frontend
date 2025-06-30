@@ -11,6 +11,7 @@ import { Security } from '../Security'
 import { Preferences } from '../Preferences'
 import { SkillsStudies } from './SkillsStudies'
 import { optionId, optionGenre, optionTown } from '../../../Utils/options'
+import { DisableAccount } from '../../../UI/DisableAccount'
 
 const buttonVariants = {
   hidden: { opacity: 0, y: -10 },
@@ -53,7 +54,7 @@ export const GeneralJobSeeker = () => {
       <Avatar />
       <div className='max-w-5xl mx-auto mt-8'>
         <hr className='border-gray-200 mr-8' />
-        <h2 className='text-3xl mb-4 mt-6 font-[afacadBold] text-[#405e7f]'>
+        <h2 className='text-3xl mb-4 mt-6 font-[afacadBold] text-[color:var(--color-card-text)]'>
           Información General
         </h2>
       </div>
@@ -61,12 +62,12 @@ export const GeneralJobSeeker = () => {
         initial='hidden'
         animate='visible'
         variants={containerVariants}
-        className='max-w-5xl mx-auto h-95 bg-white rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'
+        className='max-w-5xl mx-auto h-95 general rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'
       >
         {/* Sección de Información Personal */}
         <div className='space-y-4 pr-6'>
           <div className='flex justify-between items-center'>
-            <h3 className='text-xl font-semibold text-[#405e7f]'>Información Personal</h3>
+            <h3 className='text-xl font-semibold text-[color:var(--color-card-text)]'>Información Personal</h3>
             <AnimatePresence mode='wait'>
               {activeSection === 'personal' && isEditing ? (
                 <motion.div
@@ -79,13 +80,13 @@ export const GeneralJobSeeker = () => {
                 >
                   <button
                     onClick={handleSaveWithValidation}
-                    className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                    className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
                   >
                     <FiSave className='w-5 h-5' /> Guardar
                   </button>
                   <button
                     onClick={handleCancel}
-                    className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                    className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
                   >
                     <FiX className='w-5 h-5' /> Cancelar
                   </button>
@@ -94,7 +95,7 @@ export const GeneralJobSeeker = () => {
                 <button
                   key='edit'
                   onClick={() => handleEdit('personal')}
-                  className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                  className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
                 >
                   <FiEdit className='w-5 h-5' /> Editar información
                 </button>
@@ -295,6 +296,10 @@ export const GeneralJobSeeker = () => {
         <Security />
         <hr className='border-gray-200 mr-8' />
         <Preferences />
+        <hr className='border-gray-200 mr-8' />
+        <div className='mt-6'>
+          <DisableAccount />
+        </div>
       </motion.div>
 
       {/* Mensaje de éxito al guardar */}

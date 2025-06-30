@@ -21,7 +21,7 @@ export const Terms = () => {
         variants={containerVariants}
         className='w-full h-150 max-h-[700px] overflow-y-auto scrollbar-custom pr-4'
       >
-        <div className="max-w-5xl mx-auto px-6 py-8 text-[#405e7f] leading-relaxed">
+        <div className="max-w-5xl mx-auto px-6 py-8 text-[color:var(--color-card-text)] leading-relaxed">
           <motion.h1
             className="text-3xl font-bold mb-6 text-center border-b-2 border-[#405e7f] pb-4"
             initial={{ y: -20, opacity: 0 }}
@@ -297,7 +297,7 @@ export const Terms = () => {
           />
 
           <motion.section
-            className="bg-gray-50 p-4 rounded-lg"
+            className="terms-section p-4 rounded-lg"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.3, duration: 0.4 }}

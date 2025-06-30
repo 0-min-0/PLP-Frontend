@@ -44,7 +44,7 @@ export const Preferences = () => {
   return (
     <div className=''>
       <div className='flex justify-between items-center mr-8'>
-        <h3 className='text-xl font-semibold text-[#405e7f]'>Preferencias</h3>
+        <h3 className='text-xl font-semibold text-[color:var(--color-card-text)]'>Preferencias</h3>
         <AnimatePresence mode='wait'>
           {activeSection === 'preferences' && isEditing ? (
             <motion.div
@@ -57,13 +57,13 @@ export const Preferences = () => {
             >
               <button
                 onClick={handleSave}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
               >
                 <FiSave className='w-5 h-5' /> Guardar
               </button>
               <button
                 onClick={handleCancel}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
               >
                 <FiX className='w-5 h-5' /> Cancelar
               </button>
@@ -72,7 +72,7 @@ export const Preferences = () => {
             <button
               key='edit-preferences'
               onClick={() => handleEdit('preferences')}
-              className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+              className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
             >
               <FiEdit className='w-5 h-5' /> Editar Preferencias
             </button>
@@ -82,7 +82,7 @@ export const Preferences = () => {
       
       <div className='mt-4 mb-6 flex items-center'>
         <label className='flex flex-col gap-4'>
-          <span className='font-semibold text-[#405e7f]'>Notificaciones</span>
+          <span className='font-semibold text-[color:var(--color-card-text)]'>Notificaciones</span>
           <div className='flex items-center gap-3'>
             <label className="relative inline-flex items-center cursor-pointer">
               <input
@@ -95,7 +95,7 @@ export const Preferences = () => {
               />
               <div className="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#60efdb]"></div>
             </label>
-            <span className='text-gray-600'>
+            <span className='text-[color:var(--color-card-text)]'>
               {formData.notificationsEnabled ? 'Activadas' : 'Desactivadas'}
             </span>
           </div>
@@ -108,6 +108,7 @@ export const Preferences = () => {
         <div className='mt-4'>
           <Select
             label='Tema de la App'
+            color='text-[color:var(--color-card-text)]'
             value={formData.theme || 'system'}
             onChange={(value) => handleSelectChange('theme', value)}
             options={themeOptions}

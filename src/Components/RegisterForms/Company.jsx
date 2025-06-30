@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 
 export const Company = () => {
   const navigate = useNavigate()
-  const errorStyle = 'text-[#60efdb] text-sm mt-1 font-semibold'
+  const errorStyle = 'error-seeker text-sm mt-1 font-semibold'
 
   const {
     form,
@@ -34,18 +34,18 @@ export const Company = () => {
   }
 
   return (
-    <div className='p-6'>
+    <div className='h-full p-6 register-container'>
       <Header
         middleObject={
-          <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Registrarse como empresa
           </h1>
         }
         buttons={
           <div className='flex gap-2 mb-8'>
-            <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
+            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
           </div>
         }
       />
@@ -59,7 +59,8 @@ export const Company = () => {
       >
         <FormsContainer
           width='w-[35%]'
-          bgColor='bg-[#405e7f]'
+          bgColor='register-form-company'
+          textColor='text-[color:var(--color-card-text)]'
           changeForm={
             <div>
               <hr className='w-full border-t-2 border-white/9 mb-4' />
@@ -129,7 +130,7 @@ export const Company = () => {
 
         <WelcomeText
           text={
-            <p>
+            <p className='welcome-paragraph'>
               Nos alegra tener nuevos usuarios como tú en
               <br /> nuestro aplicativo, esperamos que tu
               <br /> experiencia sea agradable en PLP.

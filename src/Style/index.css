@@ -1,35 +1,565 @@
+/* src/index.css */
 @import 'tailwindcss';
 
-@tailwind utilities;
+/* Define tus colores base usando variables CSS */
+:root {
+  --color-text: #405e7f;
+  --color-bg-primary: #ffffff;
+  --color-card-bg: #ffffff;
+  --color-card-text: #405e7f;
+  --color-button-bg: #405e7f;
+  --color-button-text: #ffffff;
+  --color-modal-bg: #ffffff;
+  --color-modal-text: #4a5568;
+  --color-gray-text: #4b5563;
+  --color-welcome-bg: #dcfff6;
+  --color-welcome-title: #254160;
+  --color-welcome-text: #405e7f;
+  --color-card-title-text: #405e7f;
+  --color-card-info-text: #4b5563;
+  /* Colores para scrollbar si los manejas con variables */
+  --scrollbar-track-bg: #f1f1f1;
+  --scrollbar-thumb-bg: #60efdb;
+  --scrollbar-thumb-hover-bg: #5ae4d4;
 
-@font-face {
-  font-family: 'afacad';
-  src: url('../assets/fonts/Afacad-Regular.ttf');
+  @apply transition-colors duration-300;
+  /* Transición general */
 }
 
-@font-face {
+/* Sobrescribe las variables para el modo oscuro */
+.dark-mode {
+  --color-text-primary: #ffffff;
+  --color-dark-primary: #254160;
+  --color-dark-secundary: #405e7f;
+  --color-dark-other: #4b6582;
+  --color-card-bg: #254160;
+  --color-card-text: #ffffff;
+  --color-button-bg: #60efdb;
+  --color-button-text: #405e7f;
+  --color-modal-bg: #405e7f;
+  --color-modal-text: #ffffff;
+  --color-gray-text: #ffffff;
+  --color-welcome-bg: #405e7f;
+  --color-welcome-title: #ffffff;
+  --color-welcome-text: #f1f1f1;
+  --color-card-title-text: #ffffff;
+  --color-card-info-text: #f1f1f1;
+  --scrollbar-track-bg: #70879f;
+  --scrollbar-thumb-bg: #60efdb;
+  --scrollbar-thumb-hover-bg: #5ae4d4;
+}
+
+/* Aplica las variables a tus elementos */
+body {
+  background-color: var(--color-dark-primary);
+  color: var(--color-text-primary);
+  @apply font-[afacad];
+}
+
+/* Contenedor de info para pagina principal*/
+.card-container {
+  background-color: var(--color-card-bg);
+  color: var(--color-card-text);
+}
+
+.card-title {
+  color: var(--color-card-title-text);
+}
+
+.card-info-text {
+  color: var(--color-card-info-text);
+}
+
+/* Botones */
+.button {
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+  @apply rounded-full px-4 py-2;
+}
+
+.button-gg {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text);
+}
+
+.button-acc {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text);
+}
+
+.dark-mode .button-acc {
+  background-color: var(--color-dark-primary);
+  color: var(--color-text-primary);
+}
+
+/* Modal de cambio de tema */
+.theme-modal-container {
+  background-color: var(--color-modal-bg);
+  color: var(--color-modal-text);
+}
+
+/* Contenedor principal */
+.main-bg {
+  background-color: var(--color-dark-primary);
+}
+
+.main-layout-container {
+  background-color: var(--color-welcome-bg);
+}
+
+/* Contenedor de vacantes y personas */
+.jobs-layout-container {
+  background-color: var(--color-welcome-bg);
+  color: var(--color-text-primary);
+}
+
+.dark-mode .jobs-layout-container {
+  background-color: #254160;
+  color: white;
+}
+
+/* Items de pagina principal */
+.welcome-title {
+  color: var(--color-welcome-title);
+}
+
+.welcome-paragraph {
+  color: var(--color-welcome-text);
+}
+
+/* Barra de busqueda */
+.search {
+  background-color: var(--color-dark-primary);
+  color: var(--color-text-primary);
+}
+
+/* Menu principal */
+.menu-icon {
+  color: var(--color-button-bg);
+  transition: transform 0.2s ease;
+}
+
+.menu-icon:hover {
+  transform: scale(1.1);
+}
+
+.menu-bg {
+  background-color: var(--color-card-bg);
+}
+
+.menu-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu-title {
+  color: var(--color-card-text);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.menu-item {
+  color: var(--color-gray-text);
+  background-color: var(--color-card-bg);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: var(--color-dark-other);
+  color: var(--color-text-primary);
+}
+
+.menu-item-active {
+  background-color: var(--color-dark-other);
+  color: var(--color-text-primary);
+}
+
+/* Tarjeta de vacante */
+.vacancy-card {
+  background-color: var(--color-card-bg);
+  color: var(--color-card-text);
+  border: 1px solid #60efdb;
+}
+
+.dark-mode .vacancy-card {
+  background-color: var(--color-dark-primary);
+  color: var(--color-text-primary);
+}
+
+.vacancy-icon-dark {
+  color: var(--color-text-primary);
+}
+
+/* Tarjeta de persona */
+.person-card {
+  background-color: var(--color-card-bg);
+  color: var(--color-card-text);
+  border: 1px solid #60efdb;
+}
+
+.dark-mode .person-card {
+  background-color: var(--color-dark-primary);
+  color: var(--color-text-primary);
+}
+
+.person-icon-dark {
+  color: var(--color-text-primary);
+}
+
+/* Boton para ambas tarjetas */
+.card-button {
+  background-color: var(--color-button-bg);
+  color: var(--color-button-text);
+}
+
+.dark-mode .card-button {
+  background-color: #60efdb;
+  color: #405e7f;
+}
+
+/* About us en la pagina principal */
+.about-container {
+  background-color: #dcfff6;
+}
+
+.dark-mode .about-container {
+  background-color: #254160;
+}
+
+.about-card {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 0.75rem;
+}
+
+.dark-mode .about-card {
+  background-color: #405e7f;
+  color: white;
+}
+
+.about-title {
+  font-size: 3rem;
   font-family: 'afacadBold';
-  src: url('../assets/fonts/Afacad-Bold.ttf');
+  color: #405e7f;
+  margin-bottom: 1.5rem;
 }
 
-@layer utilities {
+.dark-mode .about-title {
+  color: white;
+}
 
+.about-text {
+  font-size: 1.125rem;
+  color: #405e7f;
+  text-align: center;
+}
+
+.dark-mode .about-text {
+  color: white;
+}
+
+/* Contacto */
+.contact-inner-container {
+  background-color: var(--color-card-bg);
+  color: var(--color-card-text);
+}
+
+.dark-mode .contact-inner-container {
+  background-color: var(--color-dark-primary);
+  color: var(--color-text-primary);
+}
+
+/* Input, Desc y Select */
+.dark-mode .input-dark,
+.dark-mode .desc-dark {
+  background-color: #405e7f;
+  color: white;
+  border: 1px solid #60efdb;
+}
+
+.dark-mode .desc-dark::placeholder,
+.dark-mode .input-dark::placeholder {
+  color: #60efdb;
+}
+
+.dark-mode .desc-counter {
+  color: #60efdb;
+}
+
+.input-label {
+  color: #405e7f;
+}
+
+.dark-mode .input-label {
+  color: white;
+}
+
+.select-container-dark {
+  background-color: var(--color-bg-primary);
+  border: 1px solid #405e7f7c;
+  color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .select-container-dark {
+  background-color: #405e7f;
+  border: 1px solid #60efdb;
+  color: #60efdb;
+  transition: all 0.3s ease;
+}
+
+.select-options {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+.dark-mode .select-options {
+  background-color: var(--color-dark-secundary);
+  color: #60efdb;
+  transition: all 0.3s ease;
+}
+
+.select-label-dark {
+  color: var(--color-text);
+}
+
+.dark-mode .select-label-dark {
+  color: var(--color-text-primary);
+}
+
+.select-option-dark {
+  color: #405e7f;
+}
+
+.select-option-dark:hover {
+  background-color: #f5f5f5;
+}
+
+.dark-mode .select-option-dark {
+  color: #60efdb;
+}
+
+.dark-mode .select-option-dark:hover {
+  background-color: var(--color-dark-other);
+}
+
+.select-icon-dark {
+  color: #405e7f;
+}
+
+.dark-mode .select-icon-dark {
+  color: #60efdb;
+}
+
+/* Fondo del contenedor externo de Login */
+.login-container {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .login-container {
+  background-color: #254160;
+}
+
+/* Fondo y texto del LoginForm */
+.forms-container-dark {
+  background-color: #254160;
+  color: white;
+}
+
+.login-form-dark {
+  background-color: #405e7f;
+  color: white;
+}
+
+.login-title {
+  color: var(--color-welcome-text);
+}
+
+.label-login {
+  color: white;
+}
+
+/* Iconos de LoginForm */
+.form-icon {
+  color: #7c92ab;
+  transition: color 0.3s ease;
+}
+
+.dark-mode .form-icon {
+  color: var(--scrollbar-thumb-bg);
+}
+
+/* Registro */
+.register-container {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text);
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .register-container {
+  background-color: var(--color-dark-secundary);
+  color: var(--color-text-primary);
+}
+
+.register-form {
+  background-color: var(--color-welcome-bg);
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .register-form {
+  background-color: var(--color-dark-primary);
+}
+
+.register-form-seeker {
+  background-color: #7c92ab;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .register-form-seeker {
+  background-color: var(--color-dark-primary);
+}
+
+.register-form-company {
+  background-color: #405e7f;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .register-form-company {
+  background-color: var(--color-dark-primary);
+}
+
+/* Errores */
+.error {
+  color: #ff6b6b;
+}
+
+.dark-mode .error {
+  color: var(--scrollbar-thumb-bg);
+}
+
+.error-seeker {
+  color: #60efdb;
+}
+
+.dark-mode .error-seeker {
+  color: var(--scrollbar-thumb-bg);
+}
+
+/* Rol de usuario */
+.card-user {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text);
+}
+
+.dark-mode .card-user {
+  background-color: var(--color-dark-secundary);
+  color: var(--color-text-primary);
+}
+
+.card-selected {
+  background-color: var(--color-dark-secundary);
+  color: var(--color-text-primary);
+}
+
+.dark-mode .card-selected {
+  background-color: var(--scrollbar-thumb-bg);
+  color: var(--color-text);
+}
+
+/* Aceptar terminos y condiciones*/
+.terms-acept {
+  accent-color: #405e7f;
+}
+
+.dark-mode .terms-acept {
+  accent-color: #60efdb;
+}
+
+.aboutus {
+  background-color: var(--color-bg-primary);
+  color: #405e7f;
+}
+
+.dark-mode .aboutus {
+  background-color: var(--color-dark-secundary);
+  color: white;
+}
+
+/* Inicios */
+.back-color {
+  background-color: var(--color-bg-primary);
+}
+
+.dark-mode .back-color {
+  background-color: var(--color-dark-secundary);
+}
+
+.back-color-set {
+  background-color: var(--color-welcome-bg);
+}
+
+.dark-mode .back-color-set {
+  background-color: var(--color-dark-secundary);
+}
+
+/* Configuraciones */
+.general {
+  background-color: var(--color-bg-primary);
+}
+
+.dark-mode .general {
+  background-color: var(--color-dark-primary);
+}
+
+/* Modales */
+.download-cv {
+  background-color: var(--color-bg-primary);
+  color: #405e7f;
+  border-color: #405e7f;
+}
+
+.dark-mode .download-cv {
+  background-color: var(--color-dark-primary);
+  color: white;
+  border-color: white;
+}
+
+.comments {
+  background-color: #f8fafc;
+}
+
+.dark-mode .comments {
+  background-color: var(--color-dark-secundary);
+}
+
+.terms-section {
+  background-color: #f1f1f1;
+}
+
+.dark-mode .terms-section {
+  background-color: #405e7f;
+}
+
+.chat-message {
+  
+}
+
+/* Clases específicas para el scrollbar */
+@layer utilities {
   .scrollbar-custom::-webkit-scrollbar {
     height: 8px;
-    background-color: #f1f1f1;
-    /* Fondo de la barra de scroll */
+    background-color: var(--scrollbar-track-bg);
     border-radius: 20px;
   }
 
   .scrollbar-custom::-webkit-scrollbar-thumb {
-    background-color: #60efdb;
-    /* Color del thumb (la parte móvil) */
+    background-color: var(--scrollbar-thumb-bg);
     border-radius: 20px;
   }
 
   .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-    background-color: #5ae4d4;
-    /* Color al hacer hover */
+    background-color: var(--scrollbar-thumb-hover-bg);
   }
 
   .input-no-clear::-webkit-search-decoration,
@@ -43,4 +573,15 @@
     -webkit-appearance: none;
     -moz-appearance: textfield;
   }
+}
+
+/* Mantén las reglas de @font-face */
+@font-face {
+  font-family: 'afacad';
+  src: url('../assets/fonts/Afacad-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'afacadBold';
+  src: url('../assets/fonts/Afacad-Bold.ttf');
 }

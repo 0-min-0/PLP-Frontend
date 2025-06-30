@@ -20,25 +20,25 @@ export const JobSeeker = () => {
         handleSubmit
     } = useRegister()
 
-    const errorStyle = 'text-[#405e7f] text-sm mt-1 font-semibold'
+    const errorStyle = 'error-seeker text-sm mt-1 font-semibold'
 
     const localHandleSubmit = (e) => {
         handleSubmit(e, 'jobSeeker')
     }
 
     return (
-        <div className='w-full p-6'>
+        <div className='w-full h-full p-6 register-container'>
             <Header
                 middleObject={
-                    <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
+                    <h1 className='text-5xl font-[afacadBold] text-primary-color'>
                         Registrarse como contratista
                     </h1>
                 }
                 buttons={
-                    <div className='flex gap-2 mb-8'>
-                        <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+                    <div className='flex gap-2'>
+                        <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
                         <p>•</p>
-                        <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
+                        <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
                     </div>
                 }
             />
@@ -48,23 +48,23 @@ export const JobSeeker = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, ease: 'easeOut' }}
-                className='flex justify-center items-start gap-20'
+                className='flex justify-center items-start gap-20 mt-6'
             >
                 <div className='w-[35%]'>
                     <FormsContainer
                         width='w-full'
-                        bgColor='bg-[#96aec9]'
-                        textColor='#405e7f'
+                        bgColor='register-form-seeker'
+                        textColor='text-[color:var(--color-card-text)]'
                         changeForm={
                             <div className=''>
                                 <Button
                                     clicked={localHandleSubmit}
-                                    btnStyle='w-[30%] bg-[#405e7f] text-white font-bold mt-2'
+                                    btnStyle='card-button w-[30%] bg-[#405e7f] text-white font-bold mt-2'
                                     btnName='Continuar'
                                 />
-                                <p className='text-[#405e7f] pt-4'>
+                                <p className='text-white pt-4'>
                                     ¿Ya estás registrado en nuestra plataforma?{' '}
-                                    <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
+                                    <NavLink to='/acceder' className='text-white font-semibold hover:underline hover:text-[#405e7f]/60'>
                                         Iniciar sesión
                                     </NavLink>
                                 </p>
@@ -192,7 +192,8 @@ export const JobSeeker = () => {
                 </div>
 
                 <WelcomeText
-                    text={<p> Nos alegra tener nuevos usuarios como tú en
+                    text={<p className='welcome-paragraph'>
+                        Nos alegra tener nuevos usuarios como tú en
                         <br /> nuestro aplicativo, esperamos que tu
                         <br /> experiencia sea agradable en PLP. </p>}
                     ilustration={registerIlustration}

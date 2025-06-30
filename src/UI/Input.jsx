@@ -35,13 +35,13 @@ export const Input = ({
                 type={iType}
                 name={iName}
                 value={iValue || ''}
-                className={iStyle}
+                className={`input-dark ${iStyle}`}
                 placeholder={iHolder}
                 onChange={iChange}
                 disabled={disabled}
             />
             {error && (
-                <span className={`${errColor} font-semibold text-sm mt-1 block`}>
+                <span className={`${errColor} error font-semibold text-sm mt-1 block`}>
                     {error}
                 </span>
             )}

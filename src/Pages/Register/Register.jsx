@@ -8,20 +8,20 @@ import { motion } from 'framer-motion'
 
 export const Register = () => {
   return (
-    <div className='w-full p-6'>
+    <div className='w-full h-full p-6 register-container'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Registrarse
           </h1>
         }
         buttons={
           <div className='flex gap-2 mb-8'>
-            <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>
+            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>
               Políticas de privacidad
             </NavLink>
-            <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>
+            <p className='text-primary-color'>•</p>
+            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>
               Términos y condiciones
             </NavLink>
           </div>
@@ -37,7 +37,7 @@ export const Register = () => {
         <RegisterUser />
         <WelcomeText
           text={
-            <p>
+            <p className='welcome-paragraph'>
               Nos alegra tener nuevos usuarios como tú en
               <br /> nuestro aplicativo, esperamos que tu
               <br /> experiencia sea agradable en PLP.

@@ -21,10 +21,10 @@ export const LoginForm = () => {
     const isEmail = form.emailOrPhone.includes('@')
 
     return (
-        <div className='w-[35%] text-white'>
+        <div className='w-[35%] login-form-dark rounded-xl'>
             <FormsContainer
                 width='w-full'
-                bgColor='bg-[#405e7f]'
+                bgColor='login-form-dark'
                 title='Acceder'
                 changeForm={
                     <div className='flex flex-col items-center w-full'>
@@ -61,8 +61,8 @@ export const LoginForm = () => {
                         )}
                         <div className='w-full'>
                             <div className='w-full relative'>
-                                <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
-                                    <HiOutlineMail className='w-6 h-6' /> 
+                                <div className='absolute left-3 bottom-3 form-icon'>
+                                    <HiOutlineMail className='w-6 h-6' />
                                 </div>
                                 <Input
                                     labelTitle='Correo electrónico o número de teléfono'
@@ -81,7 +81,7 @@ export const LoginForm = () => {
                         </div>
                         <div className='w-full mt-4'>
                             <div className='w-full relative'>
-                                <div className='absolute left-3 bottom-3 text-[#7c92ab]'>
+                                <div className='absolute left-3 bottom-3 form-icon'>
                                     <HiOutlineLockClosed className='w-6 h-6' />
                                 </div>
                                 <Input
@@ -97,7 +97,7 @@ export const LoginForm = () => {
                                 <button
                                     type='button'
                                     onClick={() => toggleVisibility('loginPassword')}
-                                    className='absolute right-4 bottom-2 text-[#405e7f]/70 hover:text-[#405e7f] font-semibold cursor-pointer'
+                                    className='absolute right-4 bottom-2 form-icon hover:text-white font-semibold cursor-pointer'
                                 >
                                     {visibility.loginPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
                                 </button>

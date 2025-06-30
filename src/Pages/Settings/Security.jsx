@@ -50,7 +50,7 @@ export const Security = () => {
   return (
     <div className='space-y-4'>
       <div className='flex justify-between items-center mr-8'>
-        <h3 className='text-xl font-semibold text-[#405e7f]'>Seguridad</h3>
+        <h3 className='text-xl font-semibold text-[color:var(--color-card-text)]'>Seguridad</h3>
         <AnimatePresence mode='wait'>
           {activeSection === 'security' && isEditing ? (
             <motion.div
@@ -63,13 +63,13 @@ export const Security = () => {
             >
               <button
                 onClick={handleSavePassword}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
               >
                 <FiSave className='w-5 h-5' /> Guardar
               </button>
               <button
                 onClick={handleCancelPasswoord}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
               >
                 <FiX className='w-5 h-5' /> Cancelar
               </button>
@@ -78,7 +78,7 @@ export const Security = () => {
             <button
               key='edit-security'
               onClick={() => handleEdit('security')}
-              className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[#405e7f] hover:bg-[#60efdb]/20 cursor-pointer'
+              className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
             >
               <FiEdit className='w-5 h-5' /> Cambiar contraseña
             </button>
@@ -110,13 +110,13 @@ export const Security = () => {
               <button
                 type='button'
                 onClick={() => toggleVisibility('currentPassword')}
-                className='absolute right-4 bottom-2 text-sm text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                className='absolute right-4 bottom-2 text-sm form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
               >
                 {visibility.currentPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
               </button>
             </div>
             {passwordErrors.currentPassword && (
-              <p className='text-sm text-red-500 ml-1 font-semibold'>{passwordErrors.currentPassword}</p>
+              <p className='text-sm error ml-1 font-semibold'>{passwordErrors.currentPassword}</p>
             )}
 
             {/* Nueva contraseña */}
@@ -134,13 +134,13 @@ export const Security = () => {
               <button
                 type='button'
                 onClick={() => toggleVisibility('createPassword')}
-                className='absolute right-4 bottom-2 text-sm text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                className='absolute right-4 bottom-2 text-sm form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
               >
                 {visibility.createPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
               </button>
             </div>
             {getCombinedPasswordError('newPassword') && (
-              <p className='text-sm text-red-500 ml-1 font-semibold'>{getCombinedPasswordError('newPassword')}</p>
+              <p className='text-sm error ml-1 font-semibold'>{getCombinedPasswordError('newPassword')}</p>
             )}
 
             {/* Confirmar contraseña */}
@@ -158,13 +158,13 @@ export const Security = () => {
               <button
                 type='button'
                 onClick={() => toggleVisibility('confirmPassword')}
-                className='absolute right-4 bottom-2 text-sm text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                className='absolute right-4 bottom-2 text-sm form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
               >
                 {visibility.confirmPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
               </button>
             </div>
             {getCombinedPasswordError('confirmPassword') && (
-              <p className='text-sm text-red-500 ml-1 font-semibold'>{getCombinedPasswordError('confirmPassword')}</p>
+              <p className='text-sm error ml-1 font-semibold'>{getCombinedPasswordError('confirmPassword')}</p>
             )}
           </motion.div>
         )}

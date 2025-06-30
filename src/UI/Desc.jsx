@@ -24,7 +24,7 @@ export const Desc = ({
 
     return (
         <div className='w-full'>
-            <label className={`${color} font-semibold`}>
+            <label className={`${color}  font-semibold`}>
                 {nameDesc}
             </label>
             <div className='relative'>
@@ -33,20 +33,20 @@ export const Desc = ({
                     value={value || ''}
                     onChange={onChange}
                     rows={5}
-                    className={descStyle}
+                    className={`desc-dark ${descStyle}`}
                     placeholder={holderDesc}
-                    maxLength={maxLength} 
+                    maxLength={maxLength}
                     disabled={disabled}
                 />
-                <span className='absolute bottom-3 right-4 text-[#405e7f]/60'>
+                <span className='desc-counter absolute bottom-3 right-4 text-[#405e7f]/60'>
                     {value?.length || 0}/{maxLength}
                 </span>
             </div>
             {error && (
-                <p className={`${errColor} text-sm mt-1 font-semibold`}>{error}</p>
+                <p className={`${errColor} error text-sm mt-1 font-semibold`}>{error}</p>
             )}
             {value && value.length === maxLength && !error && (
-                <p className={`${errColor} text-sm mt-1 font-semibold`}>ⓘ Límite alcanzado</p>
+                <p className={`${errColor} error text-sm mt-1 font-semibold`}>ⓘ Límite alcanzado</p>
             )}
         </div>
     )

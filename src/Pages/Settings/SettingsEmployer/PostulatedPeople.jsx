@@ -59,7 +59,7 @@ export const PostulatedPeople = () => {
           variants={containerVariants}
           className='mt-6'
         >
-          <h2 className='text-3xl font-bold text-[#405e7f] mb-4'>
+          <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] mb-4'>
             Candidatos Postulados
           </h2>
 
@@ -72,9 +72,9 @@ export const PostulatedPeople = () => {
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
-                      <h3 className='font-bold text-lg text-[#405e7f]'>{applicant.name}</h3>
-                      <p className='text-gray-600'>{applicant.phone}</p>
-                      <p className='text-gray-600'>{applicant.town}</p>
+                      <h3 className='font-bold text-lg text-[color:var(--color-card-text)]'>{applicant.name}</h3>
+                      <p className='text-[color:var(--color-card-text)]'>{applicant.phone}</p>
+                      <p className='text-[color:var(--color-card-text)]'>{applicant.town}</p>
                       <p className='text-[#60efdb] mt-2 font-medium'>
                         Vacante: {applicant.appliedVacancyTitle}
                       </p>
@@ -86,14 +86,14 @@ export const PostulatedPeople = () => {
                           e.stopPropagation()
                           setSelectedPerson(applicant)
                         }}
-                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Ver hoja de vida'
                       >
                         <FiFileText className='w-5 h-5' />
                       </button>
                       <button
                         onClick={(e) => handleSafeReject(applicant.applicationId, e)}
-                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Rechazar'
                       >
                         <FiX className='w-5 h-5' />

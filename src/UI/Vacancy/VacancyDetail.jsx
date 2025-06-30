@@ -67,7 +67,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
         variants={backdropVariants}
       >
         <motion.div
-          className='bg-white rounded-xl px-4 py-10 w-full max-w-2xl'
+          className='general rounded-xl px-4 py-10 w-full max-w-2xl'
           variants={modalVariants}
           initial="hidden"
           animate="visible"
@@ -75,7 +75,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
         >
           <div className='flex justify-between items-center mb-6 ml-10'>
             <motion.h2 
-              className='text-2xl font-bold text-[#405e7f]'
+              className='text-2xl font-bold text-[color:var(--color-card-text)]'
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -84,7 +84,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             </motion.h2>
             <motion.button
               onClick={onClose}
-              className='text-[#405e7f] hover:bg-gray-100 transition-colors duration-300 cursor-pointer p-2 rounded-md'
+              className='text-[color:var(--color-card-text)] hover:bg-gray-100 transition-colors duration-300 cursor-pointer p-2 rounded-md'
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

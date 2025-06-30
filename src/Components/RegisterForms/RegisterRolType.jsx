@@ -33,18 +33,18 @@ export const RegisterRolType = () => {
   }
 
   return (
-    <div className='p-6'>
+    <div className='h-full p-6 register-container'>
       <Header
         middleObject={
-          <h1 className='text-6xl mb-8 font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Registrarse
           </h1>
         }
         buttons={
-          <div className='flex gap-2 mb-8'>
-            <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+          <div className='flex gap-2'>
+            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
+            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
           </div>
         }
       />
@@ -54,17 +54,17 @@ export const RegisterRolType = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='flex justify-center items-start mt-6 gap-20'
+        className='flex justify-center items-start mt-8 gap-20'
       >
         <div className='w-[35%]'>
           <FormsContainer
             width='w-full'
-            bgColor='bg-[#dcfff6]'
-            textColor='#405e7f'
+            bgColor='register-form'
+            textColor='text-[color:var(--color-card-text)]'
             changeForm={
-              <p className='text-[#405e7f] pt-4'>
+              <p className='text-[color:var(--color-card-text)] pt-4'>
                 ¿Ya estás registrado en nuestra plataforma?{' '}
-                <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
+                <NavLink to='/acceder' className='font-semibold hover:underline hover:text-[#405e7f]/60'>
                   Iniciar sesión
                 </NavLink>
               </p>
@@ -84,7 +84,7 @@ export const RegisterRolType = () => {
                     iconDesc='Contratista Logo'
                     onChange={handleUserTypeChange}
                     error={errors.userType}
-                    setError={() => {}}
+                    setError={() => { }}
                     desc='Haga click en la tarjeta para seleccionar su rol como Contratista'
                   />
 
@@ -97,7 +97,7 @@ export const RegisterRolType = () => {
                     iconDesc='Contratante Logo'
                     onChange={handleUserTypeChange}
                     error={errors.userType}
-                    setError={() => {}}
+                    setError={() => { }}
                     desc='Haga click en la tarjeta para seleccionar su rol como Contratante'
                   />
 
@@ -110,16 +110,16 @@ export const RegisterRolType = () => {
                     iconDesc='Empresa/Emprendimiento Logo'
                     onChange={handleUserTypeChange}
                     error={errors.userType}
-                    setError={() => {}}
+                    setError={() => { }}
                     desc='Haga click en la tarjeta para seleccionar su rol como Empresa/Emprendimiento'
                   />
-                  {errors.userType && <p className='text-red-400 text-sm font-semibold w-full text-left'>{errors.userType}</p>}
+                  {errors.userType && <p className='error text-sm font-semibold w-full text-left'>{errors.userType}</p>}
                 </div>
 
                 <div className='w-[30%]'>
                   <Button
                     btnType='submit'
-                    btnStyle='bg-[#405e7f] text-white w-full'
+                    btnStyle='card-button bg-[#405e7f] text-white w-full'
                     btnId='btnRegister'
                     btnName='Continuar'
                   />
@@ -130,7 +130,8 @@ export const RegisterRolType = () => {
         </div>
 
         <WelcomeText
-          text={<p> Nos alegra tener nuevos usuarios como tú en
+          text={<p className='welcome-paragraph'>
+            Nos alegra tener nuevos usuarios como tú en
             <br /> nuestro aplicativo, esperamos que tu
             <br /> experiencia sea agradable en PLP. </p>}
           ilustration={registerIlustration}

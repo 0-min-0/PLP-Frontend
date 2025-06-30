@@ -142,14 +142,14 @@ export const PersonView = ({ person, isOpen, onClose, showCommentButton = false 
             variants={backdropVariants}
           >
             <motion.div
-              className='bg-white rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
+              className='general rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
               variants={modalVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
             >
               <div className='flex justify-between items-center mb-6'>
-                <h2 className='text-3xl font-bold text-[#405e7f] ml-6'>{person.occupation}</h2>
+                <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] ml-6'>{person.occupation}</h2>
                 <button
                   onClick={onClose}
                   className='text-[#405e7f] hover:bg-gray-100 p-2 rounded-md transition-colors cursor-pointer'
@@ -167,7 +167,7 @@ export const PersonView = ({ person, isOpen, onClose, showCommentButton = false 
                 <Button
                   btnName='Descargar CV'
                   btnType='button'
-                  btnStyle='border border-[#405e7f] text-[#405e7f] text-lg font-medium px-6 py-2 rounded-full'
+                  btnStyle='download-cv border border-[#405e7f] text-[#405e7f] text-lg font-medium px-6 py-2 rounded-full'
                   clicked={handleDownloadPDF}
                   aria-label="Descargar currículum en PDF"
                 />

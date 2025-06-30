@@ -23,7 +23,7 @@ export const Password = () => {
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [termsError, setTermsError] = useState(false)
 
-  const pStyle = 'text-red-400 text-sm mt-2 font-semibold'
+  const pStyle = 'error text-sm mt-2 font-semibold'
 
   const localHandleSubmit = (e) => {
     if (!termsAccepted) {
@@ -36,18 +36,18 @@ export const Password = () => {
   }
 
   return (
-    <div className='p-6'>
+    <div className='h-full p-6 register-container'>
       <Header
         middleObject={
-          <h1 className='text-5xl mb-8 font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Crear contraseña
           </h1>
         }
         buttons={
-          <div className='flex gap-2 mb-8'>
-            <NavLink to='/politicas-de-privacidad' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+          <div className='flex gap-2'>
+            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-[#254160] font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
+            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
           </div>
         }
       />
@@ -61,20 +61,19 @@ export const Password = () => {
       >
         <FormsContainer
           width='w-[35%]'
-          bgColor='bg-[#dcfff6]'
-          textColor='#405e7f'
+          bgColor='register-form'
           title='Registrarse'
           changeForm={
-            <p className='text-[#405e7f] pt-4'>
+            <p className='text-[color:var(--color-card-text)] pt-4'>
               ¿Ya estás registrado en nuestra plataforma?{' '}
-              <NavLink to='/acceder' className='text-[#405e7f] font-semibold hover:underline hover:text-[#405e7f]/60'>
+              <NavLink to='/acceder' className='text-[color:var(--color-card-text)] font-semibold hover:underline hover:text-[#405e7f]/60'>
                 Iniciar sesión
               </NavLink>
             </p>
           }
           form={
             <form onSubmit={localHandleSubmit} className='w-full flex flex-col items-center gap-4 my-4'>
-              <p className='text-[#405e7f] font-semibold text-left'>
+              <p className='text-[color:var(--color-card-text)] font-semibold text-left'>
                 Al crear tu contraseña debes tomar en cuenta que ésta debe contener al menos un número, una mayúscula y un carácter especial.
               </p>
 
@@ -83,6 +82,7 @@ export const Password = () => {
                 <div className='w-full relative'>
                   <Input
                     labelTitle='Crear contraseña'
+                    labelColor='select-label-dark'
                     isFor='createPassword'
                     iType={visibility.createPassword ? 'text' : 'password'}
                     iHolder='Ingresa una contraseña segura (mín. 8 caracteres)'
@@ -93,7 +93,7 @@ export const Password = () => {
                   <button
                     type='button'
                     onClick={() => toggleVisibility('createPassword')}
-                    className='absolute right-4 bottom-2 text-sm underline text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                    className='absolute right-4 bottom-2 text-sm underline form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
                   >
                     {visibility.createPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
                   </button>
@@ -111,6 +111,7 @@ export const Password = () => {
                 <div className='w-full relative'>
                   <Input
                     labelTitle='Confirmar contraseña'
+                    labelColor='select-label-dark'
                     isFor='confirmPassword'
                     iType={visibility.confirmPassword ? 'text' : 'password'}
                     iHolder='Ingresa nuevamente tu contraseña'
@@ -121,7 +122,7 @@ export const Password = () => {
                   <button
                     type='button'
                     onClick={() => toggleVisibility('confirmPassword')}
-                    className='absolute right-4 bottom-2 text-sm underline text-[#405e7f]/70 hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                    className='absolute right-4 bottom-2 text-sm underline form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
                   >
                     {visibility.confirmPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
                   </button>
@@ -141,9 +142,9 @@ export const Password = () => {
                   id='terms'
                   checked={termsAccepted}
                   onChange={() => setTermsAccepted(!termsAccepted)}
-                  className='w-5 h-5 cursor-pointer accent-[#405e7f]'
+                  className='w-5 h-5 cursor-pointer terms-acept'
                 />
-                <label htmlFor='terms' className='text-[#405e7f] font-medium'>
+                <label htmlFor='terms' className='text-[color:var(--color-card-text)] font-medium'>
                   Acepto los <NavLink to="/terminos-y-condiciones" className='underline hover:text-[#254160]'>Términos y Condiciones</NavLink>
                 </label>
               </div>
@@ -155,7 +156,7 @@ export const Password = () => {
               <div className='w-[35%] my-2'>
                 <Button
                   btnType='submit'
-                  btnStyle='bg-[#405e7f] text-white font-bold px-4 py-2 rounded-full cursor-pointer w-full'
+                  btnStyle='card-button bg-[#405e7f] text-white font-bold px-4 py-2 rounded-full cursor-pointer w-full'
                   btnId='btnPassword'
                   btnName='Terminar registro'
                 />
@@ -166,7 +167,7 @@ export const Password = () => {
 
         <WelcomeText
           text={
-            <p>
+            <p className='welcome-paragraph'>
               Nos alegra tener nuevos usuarios como tú en
               <br /> nuestro aplicativo, esperamos que tu
               <br /> experiencia sea agradable en PLP.
