@@ -61,19 +61,19 @@ export const VacancyView = ({ vacancy, onClose, isOpen, isApplied, showApplyButt
                         variants={backdropVariants}
                     >
                         <motion.div
-                            className='bg-white rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
+                            className='general rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
                             variants={modalVariants}
                             initial="hidden"
                             animate="visible"
                             exit="exit"
                         >
                             <div className='flex justify-between items-center mb-6'>
-                                <h2 className='text-3xl font-bold text-[#405e7f] ml-6'>
+                                <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] ml-6'>
                                     {vacancy.title || vacancy.vacancyName}
                                 </h2>
                                 <button
                                     onClick={onClose}
-                                    className='text-[#405e7f] hover:bg-gray-100 p-2 rounded-md cursor-pointer'
+                                    className='text-[color:var(--color-card-text)] hover:bg-gray-100 p-2 rounded-md cursor-pointer'
                                 >
                                     <FiX size={24} />
                                 </button>
@@ -95,7 +95,7 @@ export const VacancyView = ({ vacancy, onClose, isOpen, isApplied, showApplyButt
                                             )
                                         }
                                         btnType='button'
-                                        btnStyle={`${isApplied ? 'bg-green-100 text-green-800' : 'bg-[#60efdb] text-[#405e7f]'} text-lg font-semibold px-8 py-2 rounded-full`}
+                                        btnStyle={`${isApplied ? 'postulation' : 'bg-[#60efdb] text-[#405e7f]'} text-lg font-semibold px-8 py-2 rounded-full`}
                                         clicked={handleApply}
                                         disabled={isLoading}
                                     />

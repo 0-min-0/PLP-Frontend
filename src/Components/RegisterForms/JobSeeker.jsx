@@ -71,7 +71,7 @@ export const JobSeeker = () => {
                             </div>
                         }
                         form={
-                            <form className='w-full h-115 overflow-y-auto scrollbar-custom mb-4' onSubmit={localHandleSubmit}>
+                            <form onSubmit={localHandleSubmit} className='w-full h-115 overflow-y-auto scrollbar-custom mb-4'>
                                 <div className='mr-4'>
                                     <h2 className='text-white font-semibold'>
                                         Documento de identidad
@@ -134,7 +134,6 @@ export const JobSeeker = () => {
                                             iChange={handleChange}
                                             iHolder='Ingresa nombre de tu habilidad social'
                                         />
-                                        {errors.skillThree && <p className={errorStyle}>{errors.skillThree}</p>}
                                         <Input
                                             iName='skillFour'
                                             isFor='skillFour'
@@ -143,7 +142,6 @@ export const JobSeeker = () => {
                                             iChange={handleChange}
                                             iHolder='Ingresa nombre de tu habilidad social'
                                         />
-                                        {errors.skillFour && <p className={errorStyle}>{errors.skillFour}</p>}
                                     </div>
                                     <div className='mr-4'>
                                         <h2 className='text-white font-semibold'>

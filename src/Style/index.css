@@ -541,9 +541,53 @@ body {
   background-color: #405e7f;
 }
 
-.chat-message {
-  
+.notification {
+  background-color: var(--color-bg-primary);
+  border-color: #f1f1f1;
 }
+
+.dark-mode .notification {
+  background-color: var(--color-dark-secundary);
+  border-color: white;
+}
+
+.unread-notify {
+  background-color: #e0fdfa;
+  border-color: var(--scrollbar-thumb-bg);
+}
+
+.dark-mode .unread-notify {
+  background-color: #60efdc6c;
+  border-color: var(--scrollbar-thumb-bg);
+}
+
+.notify-icon {
+  color: #c2c2c2;
+}
+
+.dark-mode .notify-icon {
+  color: white;
+}
+
+.postulation {
+  background-color: #405e7f;
+  color: white;
+}
+
+.dark-mode .postulation {
+  background-color: #60efdc6c;
+  color: #60efdb;
+}
+
+.vacancy-back {
+  background-color: var(--color-bg-primary);
+}
+
+.dark-mode .vacancy-back {
+  background-color: var(--color-dark-primary);
+}
+
+
 
 /* Clases específicas para el scrollbar */
 @layer utilities {

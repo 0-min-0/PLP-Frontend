@@ -1,7 +1,12 @@
 import React from 'react'
 import { Header } from '../../Components/Header/Header'
+import { InteractiveLogoMain } from '../../UI/InteractiveLogo'
+import { useChatIA } from '../../Context/ChatIAContext'
 
 export const AboutUs = () => {
+
+  const { homeRoute } = useChatIA()
+
   return (
     <div className='p-6 aboutus'>
       <Header
@@ -9,6 +14,11 @@ export const AboutUs = () => {
           <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Sobre PLP (Plataforma Laboral Proactiva)
           </h1>
+        }
+        logo={
+          <InteractiveLogoMain
+            mainRoute={homeRoute}
+          />
         }
       />
       <div className='text-[color:var(--color-card-text)] max-w-7xl py-10 md:px-16 lg:px-24 mx-auto mt-15 '>

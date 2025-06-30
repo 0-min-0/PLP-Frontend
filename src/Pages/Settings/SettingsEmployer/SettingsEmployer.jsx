@@ -96,7 +96,7 @@ export const SettingsEmployer = () => {
         }
         buttons={
           <div className='w-full flex mr-6 mb-6'>
-            <NavLink to='/centro-de-notificaciones' title='Centro de notificaciones'>
+            <NavLink to='/centro-de-notificaciones-contratante' title='Centro de notificaciones'>
               <HiOutlineInbox className='w-8 h-8 text-[color:var(--color-card-text)]' />
             </NavLink>
             <NavLink to='/inicio-contratante' title='Volver a inicio'>

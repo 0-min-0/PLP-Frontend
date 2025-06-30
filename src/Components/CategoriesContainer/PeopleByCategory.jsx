@@ -28,16 +28,16 @@ export const PeopleByCategory = () => {
   }, {})
 
   return (
-    <div className='space-y-12'>
-      <h2 className='text-2xl font-bold text-[#405e7f] mb-6 ml-16'>
-        {category ? `Profesionales en ${categories.find(c => c.value === category)?.label}` : 'Profesionales por categoría'}
+    <div className='space-y-8'>
+      <h2 className='text-2xl font-bold text-[color:var(--color-card-text)] mb-6 ml-16'>
+        {category ? `Personas en ${categories.find(c => c.value === category)?.label}` : 'Personas por categoría'}
       </h2>
       
       {Object.entries(peopleByCategory).length > 0 ? (
         Object.entries(peopleByCategory).map(([category, people]) => (
           <div key={category} className="space-y-4">
             {!category && (
-              <h3 className='text-xl font-semibold text-[#405e7f] border-b-2 border-[#60efdb] pb-2'>
+              <h3 className='text-xl font-semibold text-[color:var(--color-card-text)] border-b-2 border-[#60efdb] pb-2'>
                 {category}
               </h3>
             )}
@@ -50,7 +50,7 @@ export const PeopleByCategory = () => {
         ))
       ) : (
         <div className="text-center py-10">
-          <p className="text-lg text-[#405e7f]">No se encontraron profesionales en esta categoría</p>
+          <p className="text-lg text-[color:var(--color-card-text)]">No se encontraron personas en esta categoría</p>
         </div>
       )}
     </div>

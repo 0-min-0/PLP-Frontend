@@ -1,15 +1,19 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
 import { notifications as initialNotifications } from '../../Utils/objectsExample'
 import { motion, AnimatePresence } from 'framer-motion'
 import { LuMail, LuMailOpen } from 'react-icons/lu'
-import { ProfileMenu } from '../../Components/ProfileMenu/ProfileMenu'
+import { HiMiniArrowUturnLeft } from 'react-icons/hi2'
+import { useChatIA } from '../../Context/ChatIAContext'
+import { InteractiveLogoMain } from '../../UI/InteractiveLogo'
 
 export const Notifications = () => {
   const [activeNotification, setActiveNotification] = useState(null)
   const [readStatus, setReadStatus] = useState(
     initialNotifications.map(() => false)
   )
+  const { homeRoute } = useChatIA()
 
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' }
@@ -24,22 +28,26 @@ export const Notifications = () => {
   }
 
   return (
-    <div className='p-6'>
+    <div className='h-full p-6 back-color'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Centro de notificaciones
           </h1>
         }
-        menu={
-          <ProfileMenu
-            name={<span className='text-lg font-semibold'>Usuario</span>}
-            settingsRoute='/configuraciones-contratante'
+        logo={
+          <InteractiveLogoMain
+            mainRoute={homeRoute}
           />
+        }
+        buttons={
+          <NavLink to={homeRoute}>
+            <HiMiniArrowUturnLeft className='w-8 h-8 text-white ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+          </NavLink>
         }
       />
       <div className='max-w-7xl mx-auto mt-4'>
-        <h3 className='mb-4 text-xl text-[#405e7f]'>
+        <h3 className='mb-4 text-xl text-[color:var(--color-card-text)]'>
           Aqui podras ver todas tus notificaciones y estar al pendiente tanto de lo que suceda con postulaciones, hojas de vida y demás.
         </h3>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
@@ -50,21 +58,21 @@ export const Notifications = () => {
                 key={index}
                 onClick={() => handleOpen(index)}
                 className={`p-4 border-2 rounded-xl cursor-pointer transition-all mr-2 ${readStatus[index]
-                  ? 'border-gray-300 bg-white'
-                  : 'border-[#60efdb] bg-[#e0fdfa]'
+                  ? 'notifications'
+                  : 'unread-notify'
                   }`}
               >
                 <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-[#405e7f] text-base">
+                  <h3 className="font-semibold text-[color:var(--color-card-text)] text-base">
                     {item.name}
                   </h3>
                   {readStatus[index] ? (
-                    <LuMailOpen className='w-6 h-6 text-gray-400' />
+                    <LuMailOpen className='w-6 h-6 notify-icon' />
                   ) : (
                     <LuMail className='w-6 h-6 text-[#60efdb]' />
                   )}
                 </div>
-                <p className='text-gray-500 text-sm mt-1'>
+                <p className='text-[color:var(--color-card-text)] text-sm mt-1'>
                   {formatDate(item.date)}
                 </p>
               </div>
@@ -82,13 +90,13 @@ export const Notifications = () => {
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                 >
-                  <h3 className="text-xl font-bold text-[#405e7f] mb-2">
+                  <h3 className="text-xl font-bold text-[color:var(--color-card-text)] mb-2">
                     {initialNotifications[activeNotification].name}
                   </h3>
-                  <p className="text-sm text-gray-500 mb-4">
+                  <p className="text-sm text-[color:var(--color-card-text)] mb-4">
                     {formatDate(initialNotifications[activeNotification].date)}
                   </p>
-                  <p className="text-gray-700 text-base leading-relaxed">
+                  <p className="text-[color:var(--color-card-text)] text-base leading-relaxed">
                     {initialNotifications[activeNotification].notification}
                   </p>
                 </motion.div>
@@ -99,7 +107,7 @@ export const Notifications = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  className="text-gray-400 text-center"
+                  className="text-[color:var(--color-card-text)] text-center"
                 >
                   Selecciona una notificación para verla en detalle
                 </motion.p>

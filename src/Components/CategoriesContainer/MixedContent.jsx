@@ -28,7 +28,7 @@ export const MixedContent = () => {
 
   return (
     <div className='space-y-8'>
-      <h2 className='ml-20 text-2xl font-bold text-[#405e7f] mb-6'>
+      <h2 className='ml-20 text-2xl font-bold text-[color:var(--color-card-text)] mb-6'>
         {category ? `Oportunidades en ${categoryObj?.label}` : 'Oportunidades destacadas'}
       </h2>
       
@@ -52,7 +52,7 @@ export const MixedContent = () => {
         </div>
       ) : (
         <div className="text-center py-10">
-          <p className="text-lg text-[#405e7f]">
+          <p className="text-lg text-[color:var(--color-card-text)]">
             No se encontraron oportunidades en esta categoría
           </p>
         </div>

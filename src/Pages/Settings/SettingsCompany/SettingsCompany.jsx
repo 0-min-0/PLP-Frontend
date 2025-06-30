@@ -23,7 +23,7 @@ export const SettingsCompany = () => {
                     }
                     buttons={
                         <div className='w-full flex mr-6 mb-6'>
-                            <NavLink to='/centro-de-notificaciones' title='Centro de notificaciones'>
+                            <NavLink to='/centro-de-notificaciones-empresa' title='Centro de notificaciones'>
                                 <HiOutlineInbox className='w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98]' />
                             </NavLink>
                             <NavLink to='/inicio-empresa' title='Volver a inicio'>

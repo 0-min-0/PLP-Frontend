@@ -8,7 +8,7 @@ import { LogoutModal } from '../../UI/Modals/LogoutModal'
 import { ThemeModal } from '../../UI/Modals/ThemeModal'
 import { useNavigate, useLocation } from 'react-router-dom'
 
-export const ProfileMenu = ({ settingsRoute, categoriesRoute, menuItems = [] }) => {
+export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuItems = [] }) => {
   const navigate = useNavigate()
   const location = useLocation()
   const { isOpen, setIsOpen } = useMenu()
@@ -62,9 +62,9 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, menuItems = [] }) 
   const commonMenuItems = [
     { to: settingsRoute, label: 'Configuraciones' },
     { to: categoriesRoute, label: 'Categorías de trabajo' },
-    { to: '/contacto', label: 'Contacto' },
+    { to: aboutRoute, label: 'Sobre PLP' },
     { to: '/tema', label: 'Tema (Predeterminado)', onClick: () => setShowThemeModal(true) },
-    { to: '/ayuda', label: 'Ayuda' }
+    { to: '/ayuda-soporte', label: 'Ayuda' }
   ]
 
   return (

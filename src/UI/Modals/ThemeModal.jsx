@@ -1,37 +1,56 @@
-import { HiOutlineX } from 'react-icons/hi';
-import { Switch } from '@headlessui/react';
-import { useTheme } from '../../Context/ThemeContext';
+import { HiOutlineX } from 'react-icons/hi'
+import { Switch } from '@headlessui/react'
+import { useTheme } from '../../Context/ThemeContext'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export const ThemeModal = ({ isOpen, onClose }) => {
-  const { isDarkMode, toggleTheme } = useTheme();
-
-  if (!isOpen) return null;
+  const { isDarkMode, toggleTheme } = useTheme()
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 dark:bg-black/60"> {/* Este bg-black/40 y dark:bg-black/60 puede ser problemático si no usas Tailwind dark */}
-      <div className="theme-modal-container rounded-xl p-6 w-80 shadow-lg relative"> {/* Usa la clase CSS para el contenedor del modal */}
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 hover:text-black dark:hover:text-white" // Aquí podrías usar una variable para el color del icono
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          <HiOutlineX size={20} />
-        </button>
-        <h2 className="text-lg font-bold text-gray-800 dark:text-white mb-4">Cambiar tema</h2> {/* Adapta estas clases también */}
-        <div className="flex items-center justify-between">
-          <span className="text-gray-700 dark:text-gray-300">Modo oscuro</span> {/* Adapta estas clases también */}
-          <Switch
-            checked={isDarkMode}
-            onChange={toggleTheme}
-            className={`${isDarkMode ? 'bg-[#60efdb]' : 'bg-gray-300'}
-              relative inline-flex h-6 w-11 items-center rounded-full transition`}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="general text-[color:var(--color-card-text)] rounded-2xl shadow-xl w-80 max-w-sm p-8 relative"
           >
-            <span
-              className={`${isDarkMode ? 'translate-x-6' : 'translate-x-1'
-                } inline-block h-4 w-4 transform bg-white rounded-full transition`}
-            />
-          </Switch>
-        </div>
-      </div>
-    </div>
-  );
+            {/* Botón de cerrar */}
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 text-gray-400 cursor-pointer"
+            >
+              <HiOutlineX size={22} />
+            </button>
+
+            {/* Título */}
+            <h2 className="text-xl font-semibold mb-4">CAMBIAR TEMA</h2>
+
+            {/* Switch con etiqueta */}
+            <div className="flex items-center justify-between">
+              <span className="text-lg font-medium">Modo oscuro</span>
+              <Switch
+                checked={isDarkMode}
+                onChange={toggleTheme}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 cursor-pointer
+                ${isDarkMode ? 'bg-[#60efdb]' : 'bg-gray-300'}`}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform duration-300
+                  ${isDarkMode ? 'translate-x-6' : 'translate-x-1'}`}
+                />
+              </Switch>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
 }

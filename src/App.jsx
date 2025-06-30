@@ -43,6 +43,7 @@ import { Jobs } from './Pages/Jobs/Jobs'
 import { VacanciesByCategory } from './Components/CategoriesContainer/VacanciesByCategory'
 import { PeopleByCategory } from './Components/CategoriesContainer/PeopleByCategory'
 import { MixedContent } from './Components/CategoriesContainer/MixedContent'
+import { Categories } from './Layouts/Categories/Categories'
 import { users } from './Utils/users'
 
 function App() {
@@ -104,15 +105,16 @@ function App() {
                           <Route path='/inicio-contratista' element={<MainJobSeeker />} />
                           <Route path='/inicio-contratante' element={<MainEmployer />} />
                           <Route path='/inicio-empresa' element={<MainCompany />} />
-                          <Route path='/crear-vacante' element={<CreateVacancie />} />
+                          <Route path='/crear-vacante-empresa' element={<CreateVacancie />} />
+                          <Route path='/crear-vacante-contratante' element={<CreateVacancie />} />
                           { /* Configuraciones contratante */}
                           <Route path='/configuraciones-contratante' element={<SettingsEmployer />}>
                             <Route index element={<GeneralEmployer />} />
                             <Route path='general-contratante' element={<GeneralEmployer />} />
                             <Route path='publicaciones-contratante' element={<PublishedVacancies />} />
                             <Route path='postulados' element={<PostulatedPeople />} />
-                            <Route path='terminos-condiciones' element={<Terms />} />
-                            <Route path='ayuda-soporte' element={<Help />} />
+                            <Route path='terminos-condiciones' element={<Terms embedded />} />
+                            <Route path='ayuda-soporte' element={<Help embedded />} />
                             <Route path='chat-bot' element={<AIChatBot />} />
                           </Route>
                           { /* Configuraciones contratista */}
@@ -121,8 +123,8 @@ function App() {
                             <Route path='general-contratista' element={<GeneralJobSeeker />} />
                             <Route path='postulaciones-contratista' element={<Postulations />} />
                             <Route path='comentarios-contratista' element={<Comments />} />
-                            <Route path='terminos-condiciones' element={<Terms />} />
-                            <Route path='ayuda-soporte' element={<Help />} />
+                            <Route path='terminos-condiciones' element={<Terms embedded />} />
+                            <Route path='ayuda-soporte' element={<Help embedded />} />
                             <Route path='chat-bot' element={<AIChatBot />} />
                           </Route>
                           { /* Configuraciones empresa */}
@@ -131,13 +133,18 @@ function App() {
                             <Route path='general-empresa' element={<GeneralCompany />} />
                             <Route path='publicaciones-empresa' element={<PublishedVacancies />} />
                             <Route path='postulados' element={<PostulatedPeople />} />
-                            <Route path='terminos-condiciones' element={<Terms />} />
-                            <Route path='ayuda-soporte' element={<Help />} />
+                            <Route path='terminos-condiciones' element={<Terms embedded />} />
+                            <Route path='ayuda-soporte' element={<Help embedded />} />
                             <Route path='chat-bot' element={<AIChatBot />} />
                           </Route>
                           <Route path='/verificar-cuenta' element={<VerifyAccount />} />
                           <Route path='/sobre-plp' element={<AboutUs />} />
-                          <Route path='/centro-de-notificaciones' element={<Notifications />} />
+                          <Route path='/sobre-plp-contratista' element={<AboutUs />} />
+                          <Route path='/sobre-plp-contratante' element={<AboutUs />} />
+                          <Route path='/sobre-plp-empresa' element={<AboutUs />} />
+                          <Route path='/centro-de-notificaciones-contratista' element={<Notifications />} />
+                          <Route path='/centro-de-notificaciones-contratante' element={<Notifications />} />
+                          <Route path='/centro-de-notificaciones-empresa' element={<Notifications />} />
                           <Route path='/chat-bot-ayuda-contratista' element={<AIChatBot />} />
                           <Route path='/chat-bot-ayuda-contratante' element={<AIChatBot />} />
                           <Route path='/chat-bot-ayuda-empresa' element={<AIChatBot />} />
@@ -147,18 +154,23 @@ function App() {
                             <Route path=':categoria' element={<MixedContent />} />
                           </Route>
                           <Route path='/categorias-trabajo' element={<Jobs />}>
-                            <Route index element={<VacanciesByCategory />} />
-                            <Route path='contratista' element={<VacanciesByCategory />} />
+                            <Route index element={<Categories />} />
+                            <Route path=':category' element={<Categories />} />
                           </Route>
-                          <Route path='/categorias-trabajo' element={<Jobs />}>
-                            <Route index element={<PeopleByCategory />} />
-                            <Route path='contratante' element={<PeopleByCategory />} />
+                          <Route path='/categorias-trabajo-contratista' element={<Jobs />}>
+                            <Route index element={<Categories />} />
+                            <Route path=':category' element={<Categories />} />
                           </Route>
-                          <Route path='/categorias-trabajo' element={<Jobs />}>
-                            <Route index element={<PeopleByCategory />} />
-                            <Route path='empresa' element={<PeopleByCategory />} />
+                          <Route path='/categorias-trabajo-contratante' element={<Jobs />}>
+                            <Route index element={<Categories />} />
+                            <Route path=':category' element={<Categories />} />
+                          </Route>
+                          <Route path='/categorias-trabajo-empresa' element={<Jobs />}>
+                            <Route index element={<Categories />} />
+                            <Route path=':category' element={<Categories />} />
                           </Route>
                           <Route path='/terminos-condiciones' element={<Terms />} />
+                          <Route path='/ayuda-soporte' element={<Help />} />
                         </Routes>
                       </div>
                     </ChatIAProvider>

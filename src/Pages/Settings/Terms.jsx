@@ -12,14 +12,16 @@ const containerVariants = {
   }
 }
 
-export const Terms = () => {
+export const Terms = ({ embedded = false }) => {
   return (
-    <>
+    <div className='general'>
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className='w-full h-150 max-h-[700px] overflow-y-auto scrollbar-custom pr-4'
+       className={`w-full overflow-y-auto scrollbar-custom pr-4
+          ${embedded ? 'h-[100%] max-h-[600px]' : 'h-screen'}
+        `}
       >
         <div className="max-w-5xl mx-auto px-6 py-8 text-[color:var(--color-card-text)] leading-relaxed">
           <motion.h1
@@ -320,6 +322,6 @@ export const Terms = () => {
           </motion.section>
         </div>
       </motion.div>
-    </>
+    </div>
   )
 }

@@ -37,14 +37,15 @@ export const MainJobSeeker = () => {
         }
         middleObject={
           <SearchBar
-            placeholder="Buscar vacantes por título, empresa o habilidades..."
+            placeholder='Buscar vacantes por título, empresa o habilidades...'
             onSearch={handleSearch}
           />
         }
         menu={
           <ProfileMenu
             settingsRoute='/configuraciones-contratista'
-            categoriesRoute='/categorias-trabajo/contratista'
+            categoriesRoute='/categorias-trabajo-contratista'
+            aboutRoute='/sobre-plp-contratista'
           />
         }
         buttons={
@@ -56,7 +57,7 @@ export const MainJobSeeker = () => {
               <IoChatbubbleEllipsesOutline className='w-8 h-8 text-[color:var(--color-card-text)] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
             </NavLink>
             <NavLink
-              to='/centro-de-notificaciones'
+              to='/centro-de-notificaciones-contratista'
               title='Centro de notificaciones'
               className=' relative'
             >

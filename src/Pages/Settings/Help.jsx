@@ -15,7 +15,7 @@ const containerVariants = {
   }
 }
 
-export const Help = () => {
+export const Help = ({ embedded = false }) => {
   const [isReportModalOpen, setIsReportModalOpen] = useState(false)
 
   const handleOpenReportModal = () => {
@@ -36,9 +36,11 @@ export const Help = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`${styles.helpContainer} scrollbar-custom`}
+      className={`w-full general overflow-y-auto scrollbar-custom pr-4
+          ${embedded ? 'h-[100%] max-h-[600px]' : 'h-screen'}
+        `}
     >
-      <div className={styles.helpContent}>
+      <div className="max-w-5xl mx-auto px-6 py-8 text-[color:var(--color-card-text)] leading-relaxed">
         <motion.h1
           className={styles.helpTitle}
           initial={{ y: -20, opacity: 0 }}
@@ -49,7 +51,7 @@ export const Help = () => {
         </motion.h1>
 
         <motion.p
-          className={styles.helpSubtitle}
+          className='text-sm italic mb-8 text-center text-[color:var(--color-card-text)]'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.4 }}
@@ -66,7 +68,7 @@ export const Help = () => {
           <h2>1. Preguntas Frecuentes (FAQ)</h2>
 
           <h3>Para Candidatos</h3>
-          <ul className={styles.helpList}>
+          <ul>
             <li>
               <p className="font-medium">¿Cómo creo un perfil en PLP?</p>
               <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
@@ -87,8 +89,8 @@ export const Help = () => {
             </li>
           </ul>
 
-          <h3>Para Empleadores</h3>
-          <ul className={styles.helpList}>
+          <h3 className='mt-4'>Para Empleadores</h3>
+          <ul>
             <li>
               <p className="font-medium">¿Cómo publico una vacante?</p>
               <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
@@ -111,7 +113,6 @@ export const Help = () => {
         </motion.section>
 
         <motion.div
-          className={styles.helpDivider}
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.3 }}
@@ -202,7 +203,7 @@ export const Help = () => {
         />
 
         <motion.section
-          className="bg-gray-50 p-4 rounded-lg"
+          className='terms-section p-4 rounded-lg'
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.4 }}

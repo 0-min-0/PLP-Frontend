@@ -4,11 +4,14 @@ import { categories } from '../../Utils/options'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { Header } from '../../Components/Header/Header'
 import { HiMiniArrowUturnLeft } from 'react-icons/hi2'
+import { useChatIA } from '../../Context/ChatIAContext'
+import { InteractiveLogoMain } from '../../UI/InteractiveLogo'
 
 export const Jobs = () => {
   const location = useLocation()
   const basePath = location.pathname.split('/').slice(0, 2).join('/')
   const menuRef = useRef(null)
+  const { homeRoute } = useChatIA()
 
   const scroll = (direction) => {
     if (menuRef.current) {
@@ -26,16 +29,21 @@ export const Jobs = () => {
       : baseItemStyle
 
   return (
-    <div className='w-full bg-white rounded-xl p-6'>
+    <div className='w-full h-full vacancy-back p-6'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-[#405e7f]'>
+          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
             Categorías de trabajo
           </h1>
         }
+        logo={
+          <InteractiveLogoMain
+            mainRoute={homeRoute}
+          />
+        }
         buttons={
-          <NavLink to='/'>
-            <HiMiniArrowUturnLeft className='w-8 h-8 text-[#405e7f] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+          <NavLink to={homeRoute}>
+            <HiMiniArrowUturnLeft className='w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
           </NavLink>
         }
       />
@@ -80,7 +88,7 @@ export const Jobs = () => {
       </div>
 
       {/* Contenido de la categoría seleccionada */}
-      <div className="mt-4 p-4">
+      <div>
         <Outlet />
       </div>
     </div>

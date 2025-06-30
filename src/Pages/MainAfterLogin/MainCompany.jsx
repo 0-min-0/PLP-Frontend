@@ -37,7 +37,8 @@ export const MainCompany = () => {
         menu={
           <ProfileMenu
             settingsRoute='/configuraciones-empresa'
-            categoriesRoute='/categorias-trabajo/empresa'
+            categoriesRoute='/categorias-trabajo-empresa'
+            aboutRoute='/sobre-plp-empresa'
           />
         }
         buttons={
@@ -48,11 +49,11 @@ export const MainCompany = () => {
             >
               <IoChatbubbleEllipsesOutline className='w-8 h-8 text-[color:var(--color-card-text)] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
             </NavLink>
-            <NavLink to='/crear-vacante' title='Crear vacante'>
+            <NavLink to='/crear-vacante-empresa' title='Crear vacante'>
               <IoBriefcaseOutline className='w-8 h-8 text-[color:var(--color-card-text)] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
             </NavLink>
             <NavLink
-              to='/centro-de-notificaciones'
+              to='/centro-de-notificaciones-empresa'
               title='Centro de notificaciones'
               className='relative'
             >
