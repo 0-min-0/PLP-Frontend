@@ -4,11 +4,11 @@ import { Button } from '../../UI/button'
 
 export const AccountButtons = () => {
     return (
-        <div>
+        <div className='buttons-responsive'>
             <NavLink to='/acceder'>
                 <Button
                     btnType='button'
-                    btnStyle='button-acc bg-white text-[#405e7f] font-bold px-4 py-2 rounded-full cursor-pointer mx-4'
+                    btnStyle='buttons-responsive button-acc bg-white text-[#405e7f] font-bold px-4 py-2 rounded-full cursor-pointer mx-4'
                     btnId='btnAccess'
                     btnName='Acceder'
                 />

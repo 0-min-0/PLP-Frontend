@@ -7,7 +7,7 @@ export const Input = ({
     iName,
     iChange,
     labelTitle = '',
-    labelColor = '[#405e7f]',
+    labelColor = '', // puede ser '', 'white', '#60efdb', etc.
     iHolder = '',
     padding = 'px-4 py-2',
     error = '',
@@ -20,12 +20,18 @@ export const Input = ({
                     focus:outline-none focus:ring-2 ${focusColor} focus:border-transparent transition-all 
                     duration-500 ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}`
 
+    // Definir color personalizado del label
+    const labelStyle = labelColor
+        ? { color: labelColor } // se usa color pasado por props
+        : undefined              // se aplicará desde la clase CSS (modo claro/oscuro)
+
     return (
-        <div className='w-full text-[#405e7f]'>
+        <div className='w-full'>
             {labelTitle && (
                 <label
                     htmlFor={isFor}
-                    className={`text-${labelColor} font-semibold`}
+                    className='input-label font-semibold'
+                    style={labelStyle}
                 >
                     {labelTitle}
                 </label>

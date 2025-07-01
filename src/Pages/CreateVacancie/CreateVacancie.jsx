@@ -14,13 +14,13 @@ export const CreateVacancie = () => {
         <div className='h-full p-6 vacancy-back'>
             <Header
                 middleObject={
-                    <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+                    <h1 className='text-5xl font-[afacadBold] text-[color:var(--color-card-text)]'>
                         Crear nueva vacante
                     </h1>
                 }
                 buttons={
                     <NavLink to={homeRoute}>
-                        <HiMiniArrowUturnLeft className='w-8 h-8 text-white ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+                        <HiMiniArrowUturnLeft className='text-[color:var(--color-card-text)] w-8 h-8 ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
                     </NavLink>
                 }
             />

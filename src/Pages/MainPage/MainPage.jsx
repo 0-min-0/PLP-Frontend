@@ -11,17 +11,17 @@ import { MainAboutUs } from '../../Layouts/MainAboutUs/MainAboutUs'
 
 export const MainPage = () => {
   return (
-    <div className='mt-6 main-bg transition-colors duration-300'> {/* Los colores se manejarán con body o clases específicas */}
+    <div className='mt-6 main-responsive main-bg transition-colors duration-300'> 
       <Header
         middleObject={<SearchBar />}
         buttons={<AccountButtons />}
         menu={<MainMenu />}
       />
-      <MainLayout /> {/* Si MainLayout tiene fondo, asegúrate de que use variables */}
+      <MainLayout /> 
       <JobsLayout />
       <MainAboutUs />
       <Contact />
       <Footer />
     </div>
-  );
-};
+  )
+}

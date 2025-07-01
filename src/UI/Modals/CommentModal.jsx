@@ -100,7 +100,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
               className="absolute top-4 right-4 text-[color:var(--color-card-text)] hover:text-gray-700"
               aria-label="Cerrar modal"
             >
-              <div className='p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
+              <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
                 <IoClose className='w-6 h-6' />
               </div>
             </button>

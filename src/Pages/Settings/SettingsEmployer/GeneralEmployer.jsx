@@ -113,7 +113,7 @@ export const GeneralEmployer = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('documentType') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('documentType') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('documentType') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -215,7 +215,7 @@ export const GeneralEmployer = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('town') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('town') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('town') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -234,7 +234,7 @@ export const GeneralEmployer = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('genre') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('genre') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('genre') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}

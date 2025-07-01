@@ -9,6 +9,8 @@ import { Input } from '../../UI/Input'
 import { Button } from '../../UI/button'
 import { useRegister } from '../../Context/RegisterContext'
 import { motion } from 'framer-motion'
+import { TermsModal } from '../../UI/Modals/TermsModal'
+import { useRef } from 'react'
 
 export const Password = () => {
   const {
@@ -22,8 +24,10 @@ export const Password = () => {
 
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [termsError, setTermsError] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const termsRef = useRef(null)
 
-  const pStyle = 'error text-sm mt-2 font-semibold'
+  const pStyle = 'error text-left text-sm mt- font-semibold'
 
   const localHandleSubmit = (e) => {
     if (!termsAccepted) {
@@ -79,7 +83,7 @@ export const Password = () => {
 
               {/* Contraseña */}
               <div className='w-full'>
-                <div className='w-full relative'>
+                <div className='w-full relative mb-1'>
                   <Input
                     labelTitle='Crear contraseña'
                     labelColor='select-label-dark'
@@ -108,7 +112,7 @@ export const Password = () => {
 
               {/* Confirmar contraseña */}
               <div className='w-full'>
-                <div className='w-full relative'>
+                <div className='w-full relative mb-1'>
                   <Input
                     labelTitle='Confirmar contraseña'
                     labelColor='select-label-dark'
@@ -138,6 +142,7 @@ export const Password = () => {
               {/* Aceptar términos y condiciones */}
               <div className='w-full flex gap-3'>
                 <input
+                  ref={termsRef}
                   type='checkbox'
                   id='terms'
                   checked={termsAccepted}
@@ -145,7 +150,13 @@ export const Password = () => {
                   className='w-5 h-5 cursor-pointer terms-acept'
                 />
                 <label htmlFor='terms' className='text-[color:var(--color-card-text)] font-medium'>
-                  Acepto los <NavLink to="/terminos-y-condiciones" className='underline hover:text-[#254160]'>Términos y Condiciones</NavLink>
+                  Acepto los
+                  <span
+                    className='ml-1 underline hover:text-[#254160] cursor-pointer'
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Términos y Condiciones
+                  </span>
                 </label>
               </div>
               {termsError && (
@@ -176,6 +187,14 @@ export const Password = () => {
           ilustration={registerIlustration}
           imgDesc='Ilustración de inicio de sesión'
           imgStyle='w-[400px] h-[400px]'
+        />
+        <TermsModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onAccept={() => {
+            setTermsAccepted(true)
+            if (termsRef.current) termsRef.current.checked = true
+          }}
         />
       </motion.div>
     </div>

@@ -117,7 +117,7 @@ export const Preferences = () => {
               isEditing && activeSection === 'preferences' 
                 ? getActiveError('theme') 
                   ? 'border-red-500' 
-                  : 'border-[#60efdb]' 
+                  : 'select-editing' 
                 : 'border-gray-300'
             }
             error={getActiveError('theme')}

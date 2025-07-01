@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { showSuccessAlert, showErrorAlert } from '../UI/Modals/CustomAlerts'
+import { useChatIA } from './ChatIAContext'
 import {
     getVacancies,
     addVacancyToExample,
@@ -29,6 +30,7 @@ export const VacancyProvider = ({ children }) => {
     const [editedVacancy, setEditedVacancy] = useState(null)
     const [errors, setErrors] = useState({})
     const [appliedVacancies, setAppliedVacancies] = useState([])
+    const { homeRoute } = useChatIA()
 
     useEffect(() => {
         const handleStorageChange = () => {
@@ -227,7 +229,7 @@ export const VacancyProvider = ({ children }) => {
     const handleFormSubmit = (e) => {
         const onSuccess = () => {
             try {
-                showSuccessAlert(navigate, vacancy)
+                showSuccessAlert(navigate, vacancy, homeRoute)
             } catch (error) {
                 console.error('Error al mostrar alerta:', error)
                 showErrorAlert()

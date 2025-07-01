@@ -30,7 +30,7 @@ export const InteractiveLogo = () => {
                     <img
                         src={isDark ? plpLogoDark : plpLogo}
                         alt='Logo de PLP'
-                        className='w-20 h-23 transition-transform duration-200'
+                        className='logo-plp w-20 h-23 transition-transform duration-200'
                         title='Haz click para volver al inicio'
                     />
                 </div>
@@ -67,7 +67,7 @@ export const InteractiveLogoMain = ({ mainRoute }) => {
                     <img
                         src={isDark ? plpLogoDark : plpLogo}
                         alt='Logo de PLP'
-                        className='w-20 h-23 transition-transform duration-200'
+                        className='logo-plp w-20 h-23 transition-transform duration-200'
                         title='Haz click para volver al inicio'
                     />
                 </div>

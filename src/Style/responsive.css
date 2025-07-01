@@ -1,0 +1,106 @@
+/* --- MainLayout: tamaño y espaciado del contenedor principal --- */
+
+.main-responsive {
+    margin-top: 24px;
+}
+
+.main-layout-responsive {
+  width: 90%;
+  padding-bottom: 3.5rem;
+  margin: 1rem auto 5rem auto;
+  border-radius: 0.6rem;
+}
+
+/* --- SearchBar --- */
+.search-responsive {
+  width: 1400px;
+  padding: 10px 40px 10px 48px ;
+  font-size: smaller;
+}
+
+/* --- AccountButtons (botones uno al lado del otro con separación) --- */
+.buttons-responsive {
+  display: flex;
+  gap: 12px;
+}
+
+.button {
+    padding: 8px 16px;
+}
+
+.logo-plp {
+    width: 80px;
+    height: 90px;
+}
+
+.icons-search {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 16;
+    left: 16;
+}
+
+/* --- Responsive breakpoints --- */
+
+/* --- Laptops y pantallas medianas (≤1024px) --- */
+@media screen and (max-width: 1280px) {
+  .main-layout-responsive {
+    width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 5rem;
+  }
+
+  .logo-plp {
+    width: 50px;
+    height: 60px;
+  }
+
+  .icons-search {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    right: 1px;
+    left: 16;
+    top: 10;
+  }
+
+  .buttons-responsive {
+    gap: 0px;
+  }
+
+  .main-responsive {
+    margin-top: 10px;
+  }
+
+  .search-responsive {
+    width: 880px;
+    padding: 3px 26px 3px 16px ;
+  }
+
+  .button {
+    padding: 6px 12px;
+    font-size: x-small;
+  }
+}
+
+/* --- Tablets (≤640px) --- */
+@media screen and (max-width: 640px) {
+  .main-layout-container {
+    width: 90%;
+  }
+
+  .main-bg {
+    padding: 20px;
+  }
+
+  .account-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .search {
+    max-width: 350px;
+  }
+}

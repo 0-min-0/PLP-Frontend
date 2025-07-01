@@ -80,16 +80,16 @@ function App() {
     <PasswordProvider>
       <RegisterProvider>
         <MenuProvider>
-          <VacancyProvider>
-            <SettingsProvider initialData={users[1]}>
-              <ContactProvider>
-                <SearchBarProvider
-                  groupSuggestions={true}
-                  showRecentSearches={true}
-                  delay={300}
-                >
-                  <UserProvider>
-                    <ChatIAProvider>
+          <SettingsProvider initialData={users[1]}>
+            <ContactProvider>
+              <SearchBarProvider
+                groupSuggestions={true}
+                showRecentSearches={true}
+                delay={300}
+              >
+                <UserProvider>
+                  <ChatIAProvider>
+                    <VacancyProvider>
                       <div className={`w-full h-screen p- font-[afacad] 
                     ${isBgRoute ? 'bg-[#dcfff6]' : 'bg-white'}`}>
                         <DynamicTitle />
@@ -173,12 +173,12 @@ function App() {
                           <Route path='/ayuda-soporte' element={<Help />} />
                         </Routes>
                       </div>
-                    </ChatIAProvider>
-                  </UserProvider>
-                </SearchBarProvider>
-              </ContactProvider>
-            </SettingsProvider>
-          </VacancyProvider>
+                    </VacancyProvider>
+                  </ChatIAProvider>
+                </UserProvider>
+              </SearchBarProvider>
+            </ContactProvider>
+          </SettingsProvider>
         </MenuProvider>
       </RegisterProvider>
     </PasswordProvider>
