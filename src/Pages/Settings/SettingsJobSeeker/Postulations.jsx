@@ -52,7 +52,7 @@ export const Postulations = () => {
           variants={containerVariants}
           className='mt-6'
         >
-          <h2 className='text-3xl font-bold text-[#405e7f] mb-4'>
+          <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] mb-4'>
             Mis Postulaciones
           </h2>
 
@@ -66,16 +66,16 @@ export const Postulations = () => {
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
-                      <h3 className='font-bold text-lg text-[#405e7f]'>
+                      <h3 className='font-bold text-lg text-[color:var(--color-card-text)]'>
                         {app.vacancy.title}
                       </h3>
-                      <p className='text-gray-600'>Estado: {app.status}</p>
+                      <p className='text-[color:var(--scrollbar-thumb-bg)]'>Estado: {app.status}</p>
                     </div>
 
                     <div className='flex gap-2 ml-2'>
                       <button
                         onClick={() => setVacancyToView(app.vacancy)}
-                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Ver detalles'
                       >
                         <FiEye className='w-6 h-6' />
@@ -86,7 +86,7 @@ export const Postulations = () => {
                           setVacancyToCancel(app.applicationId)
                           setIsCancelModalOpen(true)
                         }}
-                        className='text-[#405e7f] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Retirar postulación'
                       >
                         <FiTrash2 className='w-5 h-5' />

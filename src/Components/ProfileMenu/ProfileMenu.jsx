@@ -86,7 +86,7 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuIt
       )}
 
       <div
-        className={`absolute z-50 right-0 mt-2 w-64 origin-top-right bg-white rounded-lg shadow-lg focus:outline-none transition-all duration-300 ease-in-out transform ${isOpen
+        className={`absolute z-50 right-0 mt-2 w-64 origin-top-right menu-bg rounded-lg shadow-lg focus:outline-none transition-all duration-300 ease-in-out transform ${isOpen
           ? 'opacity-100 scale-100 translate-y-0'
           : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
           }`}
@@ -95,13 +95,13 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuIt
         <ul className='p-2'>
           <div className='flex justify-between items-center p-3 border-b border-gray-100'>
             <div className='flex flex-col'>
-              <h3 className='font-bold text-[#405e7f] truncate max-w-[180px]'>{user.name}</h3>
+              <h3 className='font-bold text-[color:var(--color-card-text)] truncate max-w-[180px]'>{user.name}</h3>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className='p-1 rounded-md hover:bg-gray-100 cursor-pointer'
+              className='icons p-1 rounded-md hover:bg-gray-100 cursor-pointer'
             >
-              <HiOutlineX className='h-5 w-5 text-gray-500' />
+              <HiOutlineX className='h-5 w-5' />
             </button>
           </div>
 
@@ -113,7 +113,7 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuIt
                   else navigate(item.to)
                   setIsOpen(false)
                 }}
-                className='w-full text-left px-4 py-3 rounded-md text-sm text-gray-700 hover:bg-gray-100 cursor-pointer'
+                className='w-full menu-item text-left px-4 py-3 rounded-md text-sm text-gray-700 hover:bg-gray-100 cursor-pointer'
               >
                 {item.label}
               </button>
@@ -130,7 +130,7 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuIt
           <li>
             <button
               onClick={handleLogoutClick}
-              className="w-full px-4 py-3 text-left rounded-md text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-3 cursor-pointer"
+              className="menu-item w-full px-4 py-3 text-left rounded-md text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-3 cursor-pointer"
             >
               <span>Cerrar sesión</span>
               <FiLogOut className='w-4 h-4' />

@@ -164,6 +164,11 @@ body {
 }
 
 .menu-item:hover {
+  background-color: #f1f1f1;
+  color: var(--color-dark-primary);
+}
+
+.dark-mode .menu-item:hover {
   background-color: var(--color-dark-other);
   color: var(--color-text-primary);
 }
@@ -295,9 +300,13 @@ body {
 
 .select-container-dark {
   background-color: var(--color-bg-primary);
-  border: 1px solid #405e7f7c;
+  border: 1px solid #405e7f55;
   color: var(--color-text);
   transition: all 0.3s ease;
+}
+
+.select-editing {
+  border-color: #60efdb;
 }
 
 .dark-mode .select-container-dark {
@@ -587,7 +596,25 @@ body {
   background-color: var(--color-dark-primary);
 }
 
+.icons {
+  color: var(--color-text);
+  background-color: var(--color-bg-primary);
+}
 
+.dark-mode .icons {
+  color: #60efdb;
+  background-color: #254160;
+}
+
+.icons:hover {
+  color: var(--color-dark-primary);
+  background-color: #f1f1f1;
+}
+
+.dark-mode .icons:hover {
+  color: #60efdb;
+  background-color: var(--color-dark-secundary);
+}
 
 /* Clases específicas para el scrollbar */
 @layer utilities {

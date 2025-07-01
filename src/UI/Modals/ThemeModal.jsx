@@ -25,7 +25,7 @@ export const ThemeModal = ({ isOpen, onClose }) => {
             {/* Botón de cerrar */}
             <button
               onClick={onClose}
-              className="absolute top-3 right-3 text-gray-400 cursor-pointer"
+              className="icons absolute p-1 rounded-lg top-3 right-3 text-gray-400 cursor-pointer"
             >
               <HiOutlineX size={22} />
             </button>

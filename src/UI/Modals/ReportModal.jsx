@@ -83,7 +83,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
           variants={backdropVariants}
         >
           <motion.div
-            className="bg-white rounded-xl p-8 max-w-lg w-full mx-4 relative max-h-[90vh] overflow-y-auto"
+            className="general rounded-xl p-8 max-w-lg w-full mx-4 relative max-h-[90vh] overflow-y-auto"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -94,17 +94,17 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
               aria-label="Cerrar modal"
             >
-              <div className='p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
+              <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
                 <IoClose className='w-6 h-6' />
               </div>
             </button>
 
-            <h2 className="text-2xl font-bold text-[#405e7f] mb-5">
+            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-5">
               Reportar un problema o sugerencia
             </h2>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-[#405e7f] mb-1">
+              <label className="block text-sm font-medium text-[color:var(--color-card-text)] mb-1">
                 Tipo de reporte:
               </label>
               <div className="flex flex-wrap gap-4">

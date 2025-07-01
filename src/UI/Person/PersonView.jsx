@@ -152,7 +152,7 @@ export const PersonView = ({ person, isOpen, onClose, showCommentButton = false 
                 <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] ml-6'>{person.occupation}</h2>
                 <button
                   onClick={onClose}
-                  className='text-[#405e7f] hover:bg-gray-100 p-2 rounded-md transition-colors cursor-pointer'
+                  className='icons hover:bg-gray-100 p-2 rounded-md transition-colors cursor-pointer'
                   aria-label="Cerrar ventana"
                 >
                   <FiX className='w-5 h-5' />

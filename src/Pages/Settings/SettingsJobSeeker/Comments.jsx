@@ -38,7 +38,7 @@ export const Comments = () => {
         variants={containerVariants}
         className='mt-6'
       >
-        <h2 className='text-3xl font-[afacadBold] text-[#405e7f] mb-4'>
+        <h2 className='text-3xl font-[afacadBold] text-[color:var(--color-card-text)] mb-4'>
           Comentarios
         </h2>
         
@@ -56,16 +56,16 @@ export const Comments = () => {
                 <div className='flex justify-between items-start'>
                   <div className='w-full'>
                     <div className='flex justify-between items-center'>
-                      <h3 className='font-bold text-lg text-[#405e7f]'>
+                      <h3 className='font-bold text-lg text-[color:var(--scrollbar-thumb-bg)]'>
                         {comment.name} <span className='font-normal text-sm'>({comment.role})</span>
                       </h3>
-                      <span className='text-gray-500 text-sm'>
+                      <span className='text-[color:var(--color-card-text)] text-sm'>
                         {formatDate(comment.date)}
                       </span>
                     </div>
                     
                     <div className='mt-3'>
-                      <p className={`text-gray-600 ${!expandedComments[index] ? 'line-clamp-1' : ''}`}>
+                      <p className={`text-[color:var(--color-card-text)] ${!expandedComments[index] ? 'line-clamp-1' : ''}`}>
                         {comment.coment}
                       </p>
                       {comment.coment.length > 100 && (
@@ -111,22 +111,22 @@ export const Comments = () => {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className='bg-white rounded-xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto'
+              className='general rounded-xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto'
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-start mb-4">
-                <h3 className='font-bold text-xl text-[#405e7f]'>
+                <h3 className='font-bold text-xl text-[color:var(--scrollbar-thumb-bg)]'>
                   {selectedComment.name} <span className='font-normal text-base'>({selectedComment.role})</span>
                 </h3>
                 <button
                   onClick={() => setSelectedComment(null)}
-                  className='p-1 text-gray-500 rounded-md hover:bg-gray-50 cursor-pointer'
+                  className='icons p-1 text-gray-500 rounded-md hover:bg-gray-50 cursor-pointer'
                 >
                   <FiX className='w-5 h-5' />
                 </button>
               </div>
-              <p className='text-gray-600 mb-2'>{formatDate(selectedComment.date)}</p>
-              <p className='text-gray-700 mt-4'>{selectedComment.coment}</p>
+              <p className='text-[color:var(--color-card-text)] mb-2'>{formatDate(selectedComment.date)}</p>
+              <p className='text-[color:var(--color-card-text)] mt-4'>{selectedComment.coment}</p>
             </motion.div>
           </motion.div>
         )}

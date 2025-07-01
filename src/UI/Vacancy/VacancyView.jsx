@@ -73,7 +73,7 @@ export const VacancyView = ({ vacancy, onClose, isOpen, isApplied, showApplyButt
                                 </h2>
                                 <button
                                     onClick={onClose}
-                                    className='text-[color:var(--color-card-text)] hover:bg-gray-100 p-2 rounded-md cursor-pointer'
+                                    className='icons hover:bg-gray-100 p-2 rounded-md cursor-pointer'
                                 >
                                     <FiX size={24} />
                                 </button>

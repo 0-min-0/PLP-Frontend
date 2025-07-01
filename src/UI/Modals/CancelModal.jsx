@@ -27,10 +27,10 @@ export const CancelModal = ({ isOpen, onClose, onConfirm }) => {
           variants={backdropVariants}
         >
           <motion.div
-            className="bg-white rounded-xl p-8 max-w-md w-full mx-4"
+            className="general rounded-xl p-8 max-w-md w-full mx-4"
             variants={modalVariants}
           >
-            <h3 className="text-xl font-bold text-[#405e7f] mb-4">
+            <h3 className="text-xl font-bold text-[color:var(--color-card-text)] mb-4">
               Cancelar Postulación
             </h3>
             <p className="mb-6">¿Deseas retirar tu postulación para esta vacante?</p>

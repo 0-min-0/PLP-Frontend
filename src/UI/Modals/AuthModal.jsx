@@ -68,7 +68,7 @@ export const AuthModal = ({
                             onClick={onClose}
                             className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
                         >
-                            <div className='p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
+                            <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
                                 <IoClose className='w-6 h-6' />
                             </div>
                         </button>

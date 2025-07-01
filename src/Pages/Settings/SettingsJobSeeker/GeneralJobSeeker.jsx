@@ -114,7 +114,7 @@ export const GeneralJobSeeker = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('documentType') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('documentType') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('documentType') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}

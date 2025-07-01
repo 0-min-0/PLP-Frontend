@@ -2,14 +2,12 @@ import React from 'react'
 import { IoClose } from 'react-icons/io5'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../button'
-// import { useAuth } from '../../Context/AuthContext' 
 
 export const LogoutModal = ({
     isOpen,
     onClose,
     onLogout
 }) => {
-    // Animaciones
     const backdropVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 }
@@ -52,7 +50,7 @@ export const LogoutModal = ({
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className="bg-white rounded-xl p-10 max-w-md w-full mx-4 relative"
+                        className="general rounded-xl p-10 max-w-md w-full mx-4 relative"
                         variants={modalVariants}
                         initial="hidden"
                         animate="visible"
@@ -62,17 +60,17 @@ export const LogoutModal = ({
                             onClick={onClose}
                             className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
                         >
-                            <div className='p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
+                            <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
                                 <IoClose className='w-6 h-6' />
                             </div>
                         </button>
 
                         <div className="">
-                            <h2 className="text-2xl font-bold text-[#405e7f] mb-4">
+                            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
                                 ¿Estás seguro de que quieres cerrar sesión?
                             </h2>
 
-                            <p className="mb-6 text-gray-700">
+                            <p className="mb-6 text-[color:var(--color-card-text)]">
                                 Serás redirigido a la página de inicio y tendrás que iniciar sesión nuevamente para acceder a tu cuenta.
                             </p>
 

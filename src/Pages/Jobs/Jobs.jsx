@@ -32,7 +32,7 @@ export const Jobs = () => {
     <div className='w-full h-full vacancy-back p-6'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+          <h1 className='text-5xl font-[afacadBold] text-[color:var(--color-card-text)]'>
             Categorías de trabajo
           </h1>
         }
