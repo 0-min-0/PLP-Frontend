@@ -46,7 +46,7 @@ export const InfoContainer = () => {
 
   return (
     <motion.div
-      className='bg-[#405e7f] w-360 flex justify-evenly px-6 py-6 items-center gap-6 rounded-2xl'
+      className='bg-[#405e7f] info-container w-360 flex justify-evenly p-6 items-center gap-6 rounded-2xl'
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}

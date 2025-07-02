@@ -1,21 +1,20 @@
 /* --- MainLayout: tamaño y espaciado del contenedor principal --- */
 
 .main-responsive {
-    margin-top: 24px;
+  margin-top: 24px;
 }
 
 .main-layout-responsive {
   width: 90%;
   padding-bottom: 3.5rem;
   margin: 1rem auto 5rem auto;
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
 }
 
 /* --- SearchBar --- */
 .search-responsive {
   width: 1400px;
-  padding: 10px 40px 10px 48px ;
-  font-size: smaller;
+  padding: 10px 40px 10px 48px;
 }
 
 /* --- AccountButtons (botones uno al lado del otro con separación) --- */
@@ -25,30 +24,89 @@
 }
 
 .button {
-    padding: 8px 16px;
+  padding: 8px 16px;
 }
 
 .logo-plp {
-    width: 80px;
-    height: 90px;
+  width: 80px;
+  height: 90px;
 }
 
 .icons-search {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    right: 16;
-    left: 16;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 16;
+  left: 16;
+}
+
+.icons-responsive {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-menu {
+  width: 28px;
+  height: 28px;
+}
+
+.main-text {
+  font-size: 4.2rem;
+  margin-bottom: 2rem;
+}
+
+.sub-text {
+  font-size: x-large;
+  margin: 1rem 0;
+}
+
+.space-welcome-text {
+  gap: 140px;
+}
+
+.ilustration-main {
+  width: 460px;
+  height: 460px;
+}
+
+.info-container {
+  width: 1440px;
+  padding: 1.5rem;
+  gap: 1.5rem;
+}
+
+.card-info-responsive {
+  padding: 3rem 48px;
+  border-radius: x-large;
+}
+
+.text-info {
+  font-size: medium;
+}
+
+.info-ilustration {
+  width: 96px;
+  height: 96px;
+}
+
+.menu-responsive {
+  width: 14rem;
+}
+
+.menu-responsive-title {
+  
 }
 
 /* --- Responsive breakpoints --- */
 
-/* --- Laptops y pantallas medianas (≤1024px) --- */
+/* --- Laptops y pantallas medianas (≤1280px) --- */
 @media screen and (max-width: 1280px) {
+
   .main-layout-responsive {
-    width: 90%;
+    width: 88%;
     margin-top: 1rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.6rem;
   }
 
   .logo-plp {
@@ -65,6 +123,16 @@
     top: 10;
   }
 
+  .icons-responsive {
+    width: 16px;
+    height: 16px;
+  }
+
+  .icon-menu {
+    width: 23px;
+    height: 23px;
+  }
+
   .buttons-responsive {
     gap: 0px;
   }
@@ -75,13 +143,58 @@
 
   .search-responsive {
     width: 880px;
-    padding: 3px 26px 3px 16px ;
+    padding: 3px 26px 3px 16px;
+    font-size: smaller;
   }
 
   .button {
-    padding: 6px 12px;
+    padding: 5px 12px;
     font-size: x-small;
   }
+
+  .main-text {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .sub-text {
+    font-size: medium;
+    margin: 0.4rem 0;
+  }
+
+  .space-welcome-text {
+    gap: 100px;
+  }
+
+  .ilustration-main {
+    width: 300px;
+    height: 300px;
+  }
+
+  .info-container {
+    width: 1000px;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .card-info-responsive {
+    padding: 1.5rem 30px;
+    border-radius: large;
+  }
+
+  .text-info {
+    font-size: small;
+  }
+
+  .info-ilustration {
+    width: 55px;
+    height: 55px;
+  }
+
+  .menu-responsive {
+    width: 10rem;
+  }
+
 }
 
 /* --- Tablets (≤640px) --- */

@@ -28,8 +28,8 @@ export const Button = ({
       onClick={clicked}
       disabled={disabled}
     >
-      {btnIcon === 'google' && <FcGoogle className='w-6 h-6 text-lg mr-2' />}
-      {btnIcon === 'email' && <HiOutlineMail className='w-6 h-6 text-lg mr-2' />}
+      {btnIcon === 'google' && <FcGoogle className='icons-responsive w-6 h-6 text-lg mr-2' />}
+      {btnIcon === 'email' && <HiOutlineMail className='icons-responsive w-6 h-6 text-lg mr-2' />}
       {btnName}
       {children}
     </button>

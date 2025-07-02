@@ -37,16 +37,15 @@ export const MainMenu = () => {
 
   return (
     <div className='relative' ref={menuRef}>
-      {/* Botón del menú (ícono hamburguesa o X) */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className='p-2 rounded-md transition-all duration-300 menu-toggle-btn'
         aria-label='Toggle menu'
       >
         {isOpen ? (
-          <HiOutlineX className='h-7 w-7 cursor-pointer menu-icon' />
+          <HiOutlineX className='icon-menu h-7 w-7 cursor-pointer menu-icon' />
         ) : (
-          <HiOutlineMenu className='h-7 w-7 cursor-pointer menu-icon' />
+          <HiOutlineMenu className='icon-menu h-7 w-7 cursor-pointer menu-icon' />
         )}
       </button>
 
@@ -60,7 +59,7 @@ export const MainMenu = () => {
 
       {/* Menú desplegable */}
       <div
-        className={`menu-bg absolute z-50 right-0 mt-2 w-56 origin-top-right rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${
+        className={`menu-responsive menu-bg absolute z-50 right-0 mt-2 w-56 origin-top-right rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${
           isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
         }`}
         role='menu'

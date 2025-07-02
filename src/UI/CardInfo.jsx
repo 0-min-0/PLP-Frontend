@@ -2,15 +2,15 @@ import React from 'react'
 
 export const CardInfo = ({ title, info, cardIcon, descIcon }) => {
   return (
-    <div className='card-container px-12 py-8 rounded-xl'>
-      <h2 className='font-bold card-title mb-2'>
+    <div className='card-info-responsive card-container px-12 py-8 rounded-xl'>
+      <h2 className='text-info font-bold card-title mb-2'>
         {title}
       </h2>
       <div className='flex items-center'>
-        <p className='card-info-text'>
+        <p className='text-info card-info-text'>
           {info}
         </p>
-        <img className='w-24 h-24 ml-10' src={cardIcon} alt={descIcon} />
+        <img className='info-ilustration w-24 h-24 ml-10' src={cardIcon} alt={descIcon} />
       </div>
     </div>
   )

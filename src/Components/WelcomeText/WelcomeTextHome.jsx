@@ -44,7 +44,7 @@ const fadeInRight = {
 export const WelcomeTextHome = () => {
   return (
     <div className='flex flex-col items-center'>
-      <div className='flex gap-40'>
+      <div className='space-welcome-text flex gap-34'>
         <motion.div
           className='flex flex-col text-center justify-center items-center'
           initial="hidden"
@@ -57,14 +57,14 @@ export const WelcomeTextHome = () => {
           }}
         >
           <motion.h1
-            className='text-6xl font-[afacadBold] font-extrabold welcome-title mb-8'
+            className='main-text text-6xl font-[afacadBold] font-extrabold welcome-title mb-8'
             variants={fadeInUp}
           >
             Solo necesitas de tus <br />
             habilidades y tu experiencia
           </motion.h1>
           <motion.p
-            className='welcome-paragraph text-xl mb-4'
+            className='sub-text welcome-paragraph text-xl mb-4'
             variants={fadeInUp}
           >
             La plataforma que te brinda numerosas oportunidades de trabajo
@@ -96,10 +96,10 @@ export const WelcomeTextHome = () => {
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeInRight}
         >
-          <img className='w-115 h-115 m-0 p-0' src={mainIlustration} alt='Ilustracion Principal' />
+          <img className='ilustration-main w-115 h-115 m-0 p-0' src={mainIlustration} alt='Ilustracion Principal' />
         </motion.div>
       </div>
       <InfoContainer />
     </div>
-  );
-};
+  )
+}
