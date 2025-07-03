@@ -59,23 +59,23 @@ export const PostulatedPeople = () => {
           variants={containerVariants}
           className='mt-6'
         >
-          <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] mb-4'>
+          <h2 className='info-title text-3xl font-bold text-[color:var(--color-card-text)] mb-4'>
             Candidatos Postulados
           </h2>
 
           {applications.length > 0 ? (
-            <div className='h-90 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
+            <div className='postulated-container h-90 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {applications.map((applicant) => (
                 <div
                   key={applicant.applicationId}
-                  className='border-2 border-[#60efdb] rounded-xl p-6'
+                  className='card-postulated border-2 border-[#60efdb] rounded-xl p-6'
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
-                      <h3 className='font-bold text-lg text-[color:var(--color-card-text)]'>{applicant.name}</h3>
-                      <p className='text-[color:var(--color-card-text)]'>{applicant.phone}</p>
-                      <p className='text-[color:var(--color-card-text)]'>{applicant.town}</p>
-                      <p className='text-[#60efdb] mt-2 font-medium'>
+                      <h3 className='text font-bold text-lg text-[color:var(--color-card-text)]'>{applicant.name}</h3>
+                      <p className='text text-[color:var(--color-card-text)]'>{applicant.phone}</p>
+                      <p className='text text-[color:var(--color-card-text)]'>{applicant.town}</p>
+                      <p className='text-vacancy-applied text-[#60efdb] mt-2 font-medium'>
                         Vacante: {applicant.appliedVacancyTitle}
                       </p>
                     </div>
@@ -89,14 +89,14 @@ export const PostulatedPeople = () => {
                         className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Ver hoja de vida'
                       >
-                        <FiFileText className='w-5 h-5' />
+                        <FiFileText className='icon-close-x w-5 h-5' />
                       </button>
                       <button
                         onClick={(e) => handleSafeReject(applicant.applicationId, e)}
                         className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Rechazar'
                       >
-                        <FiX className='w-5 h-5' />
+                        <FiX className='icon-close-x w-5 h-5' />
                       </button>
                     </div>
                   </div>

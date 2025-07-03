@@ -52,7 +52,7 @@ export const Postulations = () => {
           variants={containerVariants}
           className='mt-6'
         >
-          <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] mb-4'>
+          <h2 className='info-title text-3xl font-bold text-[color:var(--color-card-text)] mb-4'>
             Mis Postulaciones
           </h2>
 

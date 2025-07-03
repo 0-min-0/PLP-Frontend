@@ -32,8 +32,8 @@ export const SettingsJobSeeker = () => {
                         </div>
                     }
                 />
-                <div className='w-[90%] flex justify-center gap-6 mx-30 mt-4'>
-                    <div className='w-[70%] general px-10 py-8 rounded-xl'>
+                <div className='settings w-[90%] flex justify-center gap-6 mx-30 mt-4'>
+                    <div className='sub-settings w-[70%] general px-10 py-8 rounded-xl'>
                         <Outlet />
                     </div>
                     <div className='w-[30%]'>

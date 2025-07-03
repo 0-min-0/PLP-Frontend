@@ -97,17 +97,17 @@ export const SettingsEmployer = () => {
         buttons={
           <div className='w-full flex mr-6 mb-6'>
             <NavLink to='/centro-de-notificaciones-contratante' title='Centro de notificaciones'>
-              <HiOutlineInbox className='routes-icons w-8 h-8 text-[color:var(--color-card-text)]' />
+              <HiOutlineInbox className='routes-icons w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98]' />
             </NavLink>
             <NavLink to='/inicio-contratante' title='Volver a inicio'>
-              <HiMiniArrowUturnLeft className='routes-iconsw-8 h-8 text-[color:var(--color-card-text)] ml-6' />
+              <HiMiniArrowUturnLeft className='routes-icons w-8 h-8 text-[color:var(--color-card-text)] ml-6 ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98]' />
             </NavLink>
           </div>
         }
       />
 
-      <div className='w-[90%] flex justify-center gap-6 mx-30 mt-4'>
-        <div className='w-[70%] general px-10 py-8 rounded-xl'>
+      <div className='settings w-[90%] flex justify-center gap-6 mx-30 mt-4'>
+        <div className='sub-settings w-[70%] general px-10 py-8 rounded-xl'>
           <Outlet context={outletContext} />
         </div>
         <div className='w-[30%]'>

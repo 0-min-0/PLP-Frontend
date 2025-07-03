@@ -26,9 +26,9 @@ export const SkillsStudies = () => {
   } = useSettings()
 
   return (
-    <div className='space-y-4 pr-6'>
+    <div className='pr-6'>
       <div className='flex justify-between items-center'>
-        <h3 className='text-xl font-semibold text-[color:var(--color-card-text)]'>Habilidades y Estudios</h3>
+        <h3 className='sub-info-text text-xl font-semibold text-[color:var(--color-card-text)]'>Habilidades y Estudios</h3>
         <AnimatePresence mode='wait'>
           {activeSection === 'skillsStudies' && isEditing ? (
             <motion.div 
@@ -41,24 +41,24 @@ export const SkillsStudies = () => {
             >
               <button 
                 onClick={handleSaveWithValidation}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
               >
-                <FiSave className='w-5 h-5' /> Guardar
+                <FiSave className='edit-icon w-5 h-5' /> Guardar
               </button>
               <button 
                 onClick={handleCancel}
-                className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
               >
-                <FiX className='w-5 h-5' /> Cancelar
+                <FiX className='edit-icon w-5 h-5' /> Cancelar
               </button>
             </motion.div>
           ) : (
             <button 
               key='edit'
               onClick={() => handleEdit('skillsStudies')}
-              className='flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+              className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
             >
-              <FiEdit className='w-5 h-5' /> Editar habilidades y estudios
+              <FiEdit className='edit-icon w-5 h-5' /> Editar habilidades y estudios
             </button>
           )}
         </AnimatePresence>

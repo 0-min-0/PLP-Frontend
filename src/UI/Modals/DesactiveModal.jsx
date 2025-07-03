@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import { IoClose } from 'react-icons/io5';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '../button';
-import { Input } from '../Input';
+import React, { useState } from 'react'
+import { IoClose } from 'react-icons/io5'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Button } from '../button'
+import { Input } from '../Input'
 
-// Modal de confirmación inicial (¿Estás seguro?)
 export const DeactivateAccountModal = ({
     isOpen,
     onClose,
@@ -14,7 +13,7 @@ export const DeactivateAccountModal = ({
     const backdropVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 }
-    };
+    }
 
     const modalVariants = {
         hidden: { y: -20, opacity: 0, scale: 0.98 },
@@ -30,7 +29,7 @@ export const DeactivateAccountModal = ({
             scale: 0.98,
             transition: { ease: 'easeIn' }
         }
-    };
+    }
 
     return (
         <AnimatePresence>
@@ -43,20 +42,20 @@ export const DeactivateAccountModal = ({
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className="general rounded-xl p-10 max-w-md w-full mx-4 relative"
+                        className="modal-auth general rounded-xl p-10 max-w-md w-full mx-4 relative"
                         variants={modalVariants}
                     >
                         <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-                            <div className='text-[color:var(--color-card-text)] p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                                <IoClose className='w-6 h-6' />
+                            <div className='icons text-[color:var(--color-card-text)] p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
+                                <IoClose className='icon-close-x w-6 h-6' />
                             </div>
                         </button>
 
                         <div>
-                            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
+                            <h2 className="modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
                                 ¿Estás seguro de desactivar tu cuenta?
                             </h2>
-                            <p className="mb-6 text-[color:var(--color-card-text)]">
+                            <p className="modal-auth-text mb-6 text-[color:var(--color-card-text)]">
                                 Al desactivar tu cuenta, tu perfil como {rol} no será visible y no podrás realizar ninguna acción en la plataforma.
                             </p>
 
@@ -77,8 +76,8 @@ export const DeactivateAccountModal = ({
                 </motion.div>
             )}
         </AnimatePresence>
-    );
-};
+    )
+}
 
 // Modal para confirmar desactivación con contraseña
 export const DeactivateConfirmModal = ({
@@ -88,13 +87,13 @@ export const DeactivateConfirmModal = ({
     isLoading,
     isAccountActive
 }) => {
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
     const backdropVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1 }
-    };
+    }
 
     const modalVariants = {
         hidden: { y: -20, opacity: 0, scale: 0.98 },
@@ -110,15 +109,15 @@ export const DeactivateConfirmModal = ({
             scale: 0.98,
             transition: { ease: 'easeIn' }
         }
-    };
+    }
 
     const handleDeactivate = () => {
         if (!password.trim()) {
-            setError('Por favor ingresa tu contraseña');
-            return;
+            setError('Por favor ingresa tu contraseña')
+            return
         }
-        onDeactivate(password);
-    };
+        onDeactivate(password)
+    }
 
     return (
         <AnimatePresence>
@@ -131,20 +130,20 @@ export const DeactivateConfirmModal = ({
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className="general rounded-xl p-10 max-w-md w-full mx-4 relative"
+                        className="modal-auth general rounded-xl p-10 max-w-md w-full mx-4 relative"
                         variants={modalVariants}
                     >
                         <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-                            <div className='text-[color:var(--color-card-text)] p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                                <IoClose className='w-6 h-6' />
+                            <div className='icons text-[color:var(--color-card-text)] p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
+                                <IoClose className='icon-close-x w-6 h-6' />
                             </div>
                         </button>
 
                         <div>
-                            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
+                            <h2 className="modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
                                 Confirmar desactivación
                             </h2>
-                            <p className="mb-6 text-[color:var(--color-card-text)]">
+                            <p className="modal-auth-text mb-6 text-[color:var(--color-card-text)]">
                                 Si deseas activar tu cuenta de nuevo, vuelve a las configuraciones y da click en Activar.
                                 Se te pedirá nuevamente tu contraseña y tu cuenta estará activa de nuevo. Para desactivar 
                                 tu cuenta debes ingresar tu contraseña a continuación.
@@ -188,8 +187,8 @@ export const DeactivateConfirmModal = ({
                 </motion.div>
             )}
         </AnimatePresence>
-    );
-};
+    )
+}
 
 // Modal para reactivar la cuenta
 export const ActivateConfirmModal = ({
@@ -241,20 +240,20 @@ export const ActivateConfirmModal = ({
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className="general rounded-xl p-10 max-w-md w-full mx-4 relative"
+                        className="modal-auth general rounded-xl p-10 max-w-md w-full mx-4 relative"
                         variants={modalVariants}
                     >
                         <button onClick={onClose} className="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-                            <div className='text-[color:var(--color-card-text)] p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                                <IoClose className='w-6 h-6' />
+                            <div className='icons text-[color:var(--color-card-text)] p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
+                                <IoClose className='icon-close-x w-6 h-6' />
                             </div>
                         </button>
 
                         <div>
-                            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
+                            <h2 className="modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
                                 Confirmar activación
                             </h2>
-                            <p className="mb-6 text-[color:var(--color-card-text)]">
+                            <p className="modal-auth-text mb-6 text-[color:var(--color-card-text)]">
                                 Al activar tu cuenta, tu perfil volverá a ser visible y podrás realizar todas las acciones en la plataforma.
                             </p>
 
@@ -264,8 +263,8 @@ export const ActivateConfirmModal = ({
                                 isFor="activatePassword"
                                 iName="activatePassword"
                                 iChange={(e) => {
-                                    setPassword(e.target.value);
-                                    if (error) setError('');
+                                    setPassword(e.target.value)
+                                    if (error) setError('')
                                 }}
                                 labelTitle="Contraseña"
                                 labelColor="[#405e7f]"
@@ -296,5 +295,5 @@ export const ActivateConfirmModal = ({
                 </motion.div>
             )}
         </AnimatePresence>
-    );
-};
+    )
+}

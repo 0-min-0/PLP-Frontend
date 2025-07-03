@@ -34,9 +34,7 @@ export const SettingsCompany = () => {
                 />
 
                 <div className='settings w-[90%] flex justify-center gap-6 mx-30 mt-4'>
-                    {/* Contenedor principal de configuraciones */}
                     <div className='sub-settings w-[70%] general px-10 py-8 rounded-xl'>
-                        {/* Outlet renderizará GeneralSettings u otros componentes según la ruta */}
                         <Outlet />
                     </div>
 

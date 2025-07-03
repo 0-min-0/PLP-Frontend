@@ -147,27 +147,6 @@ export const GeneralCompany = () => {
               />
             </div>
 
-            {/* Campo Nombre de la Empresa */}
-            <div className=''>
-              <Input
-                iType='text'
-                iValue={formData.name || ''}
-                iName='name'
-                iChange={handleChange}
-                labelTitle={fieldLabels.name || 'Nombre de la empresa'}
-                iHolder='Ingrese el nombre de la empresa'
-                disabled={!isEditing || activeSection !== 'personal'}
-                borderColor={
-                  isEditing && activeSection === 'personal'
-                    ? (getActiveError('name') ? 'border-red-500' : 'border-[#60efdb]')
-                    : 'border-gray-300'
-                }
-                focusColor={getActiveError('name') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
-                error={getActiveError('name')}
-                required={isEditing && activeSection === 'personal'}
-              />
-            </div>
-
             {/* Campo Teléfono Principal */}
             <div className=''>
               <Input
@@ -289,11 +268,12 @@ export const GeneralCompany = () => {
             </div>
 
             {/* Campo Descripción */}
-            <div className='pr-2 col-span-1 md:col-span-2'>
+            <div className='pr-2 col-span-1 md:col-span-2 mb-4'>
               <Desc
                 nameDesc={fieldLabels.desc || 'Descripción de la empresa'}
                 holderDesc='Escribe una breve descripción sobre tu empresa'
                 name='desc'
+                color='text-[color:var(--color-card-text)]'
                 value={formData.desc || ''}
                 onChange={handleChange}
                 disabled={!isEditing || activeSection !== 'personal'}
@@ -327,7 +307,7 @@ export const GeneralCompany = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="exit-save fixed top-50 right-180 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg z-50"
+            className="success-message exit-save fixed top-50 right-180 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg z-50"
           >
             ¡Datos guardados correctamente!
           </motion.div>

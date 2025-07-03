@@ -105,7 +105,7 @@ export const Avatar = () => {
                   <h4 className='text text-[color:var(--color-card-text)] font-semibold text-lg'>Elige tu avatar</h4>
                   <button
                     onClick={() => setAvatarSelector(false)}
-                    className='text-[color:var(--color-card-text)] hover:bg-gray-100 p-1 rounded-md transition-colors cursor-pointer'
+                    className='icons text-[color:var(--color-card-text)] hover:bg-gray-100 p-1 rounded-md transition-colors cursor-pointer'
                     aria-label='Cerrar selector'
                   >
                     <HiOutlineX className='icon-close-x w-5 h-5' />

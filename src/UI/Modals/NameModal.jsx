@@ -113,7 +113,7 @@ export const NameModal = ({
           variants={backdropVariants}
         >
           <motion.div
-            className='back-color rounded-xl p-8 max-w-lg w-full mx-4 relative'
+            className='modal-auth back-color rounded-xl p-8 max-w-lg w-full mx-4 relative'
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -125,11 +125,11 @@ export const NameModal = ({
               aria-label="Cerrar modal"
             >
               <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                <IoClose className='w-6 h-6' />
+                <IoClose className='icon-close-x w-6 h-6' />
               </div>
             </button>
 
-            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-5">
+            <h2 className="modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-5">
               Editar {currentConfig.label.toLowerCase()}
             </h2>
 
@@ -140,7 +140,7 @@ export const NameModal = ({
                 iName="name"
                 iChange={(e) => {
                   setNewName(e.target.value)
-                  setError('') // Limpiar error al escribir
+                  setError('')
                 }}
                 iHolder={currentConfig.placeholder}
                 padding="px-4 py-2"

@@ -45,27 +45,27 @@ export const PublishedVacancies = () => {
           variants={containerVariants}
           className='mt-6'
         >
-          <h2 className='text-3xl font-[afacadBold] text-[color:var(--color-card-text)] mb-4'>
+          <h2 className='info-title text-3xl font-[afacadBold] text-[color:var(--color-card-text)] mb-4'>
             Publicaciones
           </h2>
 
           {vacancies.length > 0 ? (
-            <div className='w-full h-90 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
+            <div className='postulated-container w-full h-90 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {vacancies.map((vacancy) => (
                 <div
                   key={vacancy.id}
-                  className='border-2 border-[#60efdb] rounded-xl p-6'
+                  className='card-postulated border-2 border-[#60efdb] rounded-xl p-6'
                   onClick={() => setSelectedVacancy(vacancy)}
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
-                      <h3 className='font-bold text-lg text-[color:var(--color-card-text)]'>
+                      <h3 className='text font-bold text-lg text-[color:var(--color-card-text)]'>
                         {vacancy.vacancyName || vacancy.title}
                       </h3>
-                      <p className='text-[color:var(--color-card-text)] mt-1'>
+                      <p className='text-vacancy-applied text-[color:var(--color-card-text)] mt-1'>
                         <span className='font-semibold text-[color:var(--color-card-text)]'>Contacto  •</span> {vacancy.contactPerson}
                       </p>
-                      <p className='text-[color:var(--color-card-text)]'>
+                      <p className='text-vacancy-applied text-[color:var(--color-card-text)]'>
                         <span className='font-semibold text-[color:var(--color-card-text)]'>Teléfono/Email  •</span> {vacancy.contact}
                       </p>
                     </div>
@@ -81,7 +81,7 @@ export const PublishedVacancies = () => {
                         }}
                         variants={buttonVariants}
                       >
-                        <FiEdit className='w-5 h-5' />
+                        <FiEdit className='icon-close-x w-5 h-5' />
                       </button>
                       <button
                         title='Eliminar vacante'
@@ -96,7 +96,7 @@ export const PublishedVacancies = () => {
                         }}
                         variants={buttonVariants}
                       >
-                        <FiTrash2 className='w-5 h-5' />
+                        <FiTrash2 className='icon-close-x w-5 h-5' />
                       </button>
                     </div>
                   </div>
