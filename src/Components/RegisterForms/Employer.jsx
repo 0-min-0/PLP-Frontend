@@ -20,27 +20,27 @@ export const Employer = () => {
     handleSubmit
   } = useRegister()
 
-  const errorStyle = 'error text-sm mt-1 font-semibold'
+  const errorStyle = 'error error-responsive text-sm mt-1 font-semibold'
 
   const localHandleSubmit = (e) => {
     handleSubmit(e, 'employer')
   }
 
   return (
-    <div className='h-full p-6 register-container'>
+    <div className='h-full page p-6 register-container'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+          <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
             Registrarse como contratante
           </h1>
         }
         buttons={
-          <div className='flex gap-2'>
-            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>
+          <div className='flex links-page gap-2'>
+            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:underline'>
               Políticas de privacidad
             </NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>
+            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:underline'>
               Términos y condiciones
             </NavLink>
           </div>
@@ -52,14 +52,14 @@ export const Employer = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='flex items-center mt-14 gap-20 justify-center'
+        className='container-forms flex items-center mt-14 gap-20 justify-center'
       >
         <FormsContainer
           width='w-[35%]'
           bgColor='register-form'
           textColor='text-[color:var(--color-card-text)]'
           changeForm={
-            <p className='text-[color:var(--color-card-text)] pt-4'>
+            <p className='text-[color:var(--color-card-text)] login-form-register-text'>
               ¿Ya estás registrado en nuestra plataforma?{' '}
               <NavLink to='/acceder' className='text-[color:var(--color-card-text)] font-semibold hover:underline hover:text-[#405e7f]/60'>
                 Iniciar sesión
@@ -67,9 +67,9 @@ export const Employer = () => {
             </p>
           }
           form={
-            <div className='w-full my-6'>
-              <form onSubmit={localHandleSubmit} className='w-full'>
-                <h2 className='text-[color:var(--color-card-text)] font-semibold mb-4'>
+            <div className='w-full container-employer my-6'>
+              <form onSubmit={localHandleSubmit} className=' w-full'>
+                <h2 className='text-[color:var(--color-card-text)] label-responsive font-semibold mb-4'>
                   Completa la información y haz click en continuar.
                 </h2>
                 <div className='w-full mb-5'>
@@ -100,7 +100,7 @@ export const Employer = () => {
                 </div>
                 <Button
                   btnType='submit'
-                  btnStyle='card-button w-[25%] bg-[#405e7f] text-white font-bold mb-6 mx-50'
+                  btnStyle='button-employer card-button w-[25%] bg-[#405e7f] text-white font-bold mb-6 mx-50'
                   btnName='Continuar'
                 />
               </form>
@@ -118,7 +118,7 @@ export const Employer = () => {
           }
           ilustration={registerIlustration}
           imgDesc='Ilustración de inicio de sesión'
-          imgStyle='w-[400px] h-[400px]'
+          imgStyle='forms-ilustration w-[400px] h-[400px]'
         />
       </motion.div>
     </div>

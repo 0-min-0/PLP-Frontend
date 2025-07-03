@@ -20,25 +20,25 @@ export const JobSeeker = () => {
         handleSubmit
     } = useRegister()
 
-    const errorStyle = 'error-seeker text-sm mt-1 font-semibold'
+    const errorStyle = 'error-seeker error-responsive text-sm mt-1 font-semibold'
 
     const localHandleSubmit = (e) => {
         handleSubmit(e, 'jobSeeker')
     }
 
     return (
-        <div className='w-full h-full p-6 register-container'>
+        <div className='w-full h-full page p-6 register-container'>
             <Header
                 middleObject={
-                    <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+                    <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
                         Registrarse como contratista
                     </h1>
                 }
                 buttons={
-                    <div className='flex gap-2'>
-                        <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+                    <div className='flex gap-2 links-page'>
+                        <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:underline'>Políticas de privacidad</NavLink>
                         <p>•</p>
-                        <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
+                        <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:underline'>Términos y condiciones</NavLink>
                     </div>
                 }
             />
@@ -62,7 +62,7 @@ export const JobSeeker = () => {
                                     btnStyle='card-button w-[30%] bg-[#405e7f] text-white font-bold mt-2'
                                     btnName='Continuar'
                                 />
-                                <p className='text-white pt-4'>
+                                <p className='login-form-register-text text-white pt-4'>
                                     ¿Ya estás registrado en nuestra plataforma?{' '}
                                     <NavLink to='/acceder' className='text-white font-semibold hover:underline hover:text-[#405e7f]/60'>
                                         Iniciar sesión
@@ -71,9 +71,9 @@ export const JobSeeker = () => {
                             </div>
                         }
                         form={
-                            <form onSubmit={localHandleSubmit} className='w-full h-115 overflow-y-auto scrollbar-custom mb-4'>
+                            <form onSubmit={localHandleSubmit} className='register w-full h-115 overflow-y-auto scrollbar-custom mb-4'>
                                 <div className='mr-4'>
-                                    <h2 className='text-white font-semibold'>
+                                    <h2 className='label-responsive text-white font-semibold'>
                                         Documento de identidad
                                     </h2>
                                     <div className='w-full mb-3'>
@@ -101,10 +101,10 @@ export const JobSeeker = () => {
                                 </div>
                                 <div className='w-full'>
                                     <div className='mb-3 mr-4'>
-                                        <h2 className='text-white font-semibold'>
+                                        <h2 className='label-responsive text-white font-semibold'>
                                             Habilidades Técnicas y Sociales
                                         </h2>
-                                        <p className='text-white'>
+                                        <p className='login-form-register-text text-white'>
                                             Ingresa tus habilidades técnicas (Ej. Operación en maquinaria pesada.)
                                             <br /> Ingresa tus habilidades sociales (Ej. Buena comunicación y trabajo en equipo.)
                                         </p>
@@ -144,10 +144,10 @@ export const JobSeeker = () => {
                                         />
                                     </div>
                                     <div className='mr-4'>
-                                        <h2 className='text-white font-semibold'>
+                                        <h2 className='label-responsive text-white font-semibold'>
                                             Estudios complementarios
                                         </h2>
-                                        <p className='text-white'>Ej. Curso básico de programación. (En caso de tener estudios complementarios, agrega tus estudios básicos)</p>
+                                        <p className='login-form-register-text text-white'>Ej. Curso básico de programación. (En caso de tener estudios complementarios, agrega tus estudios básicos)</p>
                                         <Input
                                             iName='studiesOne'
                                             isFor='studiesOne'
@@ -196,7 +196,7 @@ export const JobSeeker = () => {
                         <br /> experiencia sea agradable en PLP. </p>}
                     ilustration={registerIlustration}
                     imgDesc='Ilustración de inicio de sesión'
-                    imgStyle='w-[450px] h-[450px]'
+                    imgStyle='forms-ilustration w-[450px] h-[450px]'
                 />
             </motion.div>
         </div>

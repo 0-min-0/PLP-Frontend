@@ -28,7 +28,7 @@ export const MainJobSeeker = () => {
   }
 
   return (
-    <div className='h-[160vh] p-6 back-color'>
+    <div className='h-[160vh] page p-6 back-color'>
       <Header
         logo={
           <InteractiveLogoMain
@@ -49,19 +49,19 @@ export const MainJobSeeker = () => {
           />
         }
         buttons={
-          <div className='w-full flex gap-6 items-center'>
+          <div className='w-full container-routes flex gap-6 items-center'>
             <NavLink
               to='/chat-bot-ayuda-contratista'
               title='Chat IA de ayuda'
             >
-              <IoChatbubbleEllipsesOutline className='w-8 h-8 text-[color:var(--color-card-text)] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
+              <IoChatbubbleEllipsesOutline className='routes-icons w-8 h-8 text-[color:var(--color-card-text)] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
             </NavLink>
             <NavLink
               to='/centro-de-notificaciones-contratista'
               title='Centro de notificaciones'
               className=' relative'
             >
-              <HiOutlineInbox className='w-8 h-8 text-[color:var(--color-card-text)] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
+              <HiOutlineInbox className='routes-icons w-8 h-8 text-[color:var(--color-card-text)] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
               {hasNotifications && (
                 <>
                   <span className='absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full animate-ping border-2 border-white' />

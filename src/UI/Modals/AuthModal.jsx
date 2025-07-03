@@ -58,7 +58,7 @@ export const AuthModal = ({
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className="general rounded-xl p-12 max-w-md w-full mx-4 relative"
+                        className='modal-auth general rounded-xl p-12 max-w-md w-full mx-4 relative'
                         variants={modalVariants}
                         initial="hidden"
                         animate="visible"
@@ -69,20 +69,20 @@ export const AuthModal = ({
                             className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
                         >
                             <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                                <IoClose className='w-6 h-6' />
+                                <IoClose className='icon-close-x -w-6 h-6' />
                             </div>
                         </button>
 
-                        <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
+                        <h2 className="modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
                             ¿Deseas conocer más sobre {getItemTypeName()}?
                         </h2>
 
-                        <p className="mb-6 text-[color:var(--color-card-text)]">
+                        <p className="modal-auth-text mb-6 text-[color:var(--color-card-text)]">
                             Regístrate o inicia sesión para que puedas tener más conocimiento de las vacantes y los
                             contratistas que se registran diariamente en PLP.
                         </p>
 
-                        <div className='flex flex-col space-y-4'>
+                        <div className='space-buttons flex flex-col gap-4'>
                             <NavLink to='/acceder'>
                                 <Button
                                     btnName='Iniciar sesión'

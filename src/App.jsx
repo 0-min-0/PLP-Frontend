@@ -145,6 +145,7 @@ function App() {
                           <Route path='/centro-de-notificaciones-contratista' element={<Notifications />} />
                           <Route path='/centro-de-notificaciones-contratante' element={<Notifications />} />
                           <Route path='/centro-de-notificaciones-empresa' element={<Notifications />} />
+                          <Route path='/chat-bot-ayuda' element={<AIChatBot />} />
                           <Route path='/chat-bot-ayuda-contratista' element={<AIChatBot />} />
                           <Route path='/chat-bot-ayuda-contratante' element={<AIChatBot />} />
                           <Route path='/chat-bot-ayuda-empresa' element={<AIChatBot />} />

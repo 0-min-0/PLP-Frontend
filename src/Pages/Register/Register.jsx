@@ -8,20 +8,20 @@ import { motion } from 'framer-motion'
 
 export const Register = () => {
   return (
-    <div className='w-full h-full p-6 register-container'>
+    <div className='w-full h-full page p-6 register-container'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+          <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
             Registrarse
           </h1>
         }
         buttons={
-          <div className='flex gap-2 mb-8'>
-            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>
+          <div className='links-page flex gap-2'>
+            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:underline'>
               Políticas de privacidad
             </NavLink>
             <p className='text-primary-color'>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>
+            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:underline'>
               Términos y condiciones
             </NavLink>
           </div>
@@ -32,7 +32,7 @@ export const Register = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='flex justify-center items-start gap-20 mt-6'
+        className='container-forms flex justify-center items-start gap-20 mt-6'
       >
         <RegisterUser />
         <WelcomeText
@@ -45,7 +45,7 @@ export const Register = () => {
           }
           ilustration={registerIlustration}
           imgDesc='Ilustración de inicio de sesión'
-          imgStyle='w-[450px] h-[450px]'
+          imgStyle='forms-ilustration w-[450px] h-[450px]'
         />
       </motion.div>
     </div>

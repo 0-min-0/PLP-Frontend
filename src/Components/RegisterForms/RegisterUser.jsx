@@ -20,7 +20,7 @@ export const RegisterUser = () => {
         validateRegisterUserForm
     } = useRegister()
 
-    const errorStyle = 'error text-sm mt-1 font-semibold'
+    const errorStyle = 'error error-responsive text-sm mt-1 font-semibold'
 
     const localHandleSubmit = (e) => {
         e.preventDefault()
@@ -43,7 +43,7 @@ export const RegisterUser = () => {
                             btnStyle='w-[30%] bg-[color:var(--color-button-bg)] text-[color:var(--color-button-text)] font-bold mt-2'
                             btnName='Continuar'
                         />
-                        <p className='text-[color:var(--color-card-text)] pt-4'>
+                        <p className='login-form-register-text text-[color:var(--color-card-text)] pt-4'>
                             ¿Ya estás registrado en nuestra plataforma?{' '}
                             <NavLink to='/acceder' className='font-semibold hover:underline hover:text-[#60efdb]'>
                                 Iniciar sesión
@@ -52,7 +52,7 @@ export const RegisterUser = () => {
                     </div>
                 }
                 form={
-                    <form onSubmit={localHandleSubmit} className='w-full h-115 overflow-y-auto scrollbar-custom mb-5'>
+                    <form onSubmit={localHandleSubmit} className='w-full register h-115 overflow-y-auto scrollbar-custom mb-5'>
                         <div className='w-full items-start'>
                             <div className='pr-5 mb-3'>
                                 <div>
@@ -69,8 +69,8 @@ export const RegisterUser = () => {
                                     {errors.name && <p className={errorStyle}>{errors.name}</p>}
                                 </div>
 
-                                <div className='mt-4'>
-                                    <h2 className='select-label-dark font-semibold'>Contacto (Personal/Empresa)</h2>
+                                <div className='forms-section mt-4'>
+                                    <h2 className='label-responsive select-label-dark font-semibold'>Contacto (Personal/Empresa)</h2>
 
                                     <div className='relative'>
                                         <Input
@@ -80,13 +80,13 @@ export const RegisterUser = () => {
                                             iValue={form.phone}
                                             iChange={handleChange}
                                             iHolder='Ingresa número de teléfono'
-                                            padding='pl-12 py-2'
+                                            padding='pl-12 py-2 login-form-input-padding'
                                         />
-                                        <HiOutlinePhone className='absolute w-6 h-6 form-icon bottom-3 left-3' />
+                                        <HiOutlinePhone className='absolute w-6 h-6 form-icon login-form-icon login-form-icon-size bottom-3 left-3' />
                                     </div>
                                     {errors.phone && <p className={errorStyle}>{errors.phone}</p>}
 
-                                    <div className='relative mt-4'>
+                                    <div className='relative forms-section mt-4'>
                                         <Input
                                             iName='phoneSec'
                                             iType='tel'
@@ -94,13 +94,13 @@ export const RegisterUser = () => {
                                             iValue={form.phoneSec}
                                             iChange={handleChange}
                                             iHolder='Ingresa número de teléfono secundario (Opcional)'
-                                            padding='pl-12 py-2'
+                                            padding='pl-12 py-2 login-form-input-padding'
                                         />
-                                        <HiOutlinePhone className='absolute w-6 h-6 form-icon bottom-3 left-3' />
+                                        <HiOutlinePhone className='absolute w-6 h-6 form-icon login-form-icon login-form-icon-size bottom-3 left-3' />
                                     </div>
                                     {errors.phoneSec && <p className={errorStyle}>{errors.phoneSec}</p>}
 
-                                    <div className='relative mt-4'>
+                                    <div className='relative forms-section mt-4'>
                                         <Input
                                             iName='email'
                                             iType='email'
@@ -108,9 +108,9 @@ export const RegisterUser = () => {
                                             iValue={form.email}
                                             iChange={handleChange}
                                             iHolder='Ingresa dirección de correo electrónico'
-                                            padding='pl-12 py-2'
+                                            padding='pl-12 py-2 login-form-input-padding'
                                         />
-                                        <HiOutlineMail className='absolute w-6 h-6 form-icon bottom-3 left-3' />
+                                        <HiOutlineMail className='absolute w-6 h-6 form-icon login-form-icon login-form-icon-size bottom-3 left-3' />
                                     </div>
                                     {errors.email && <p className={errorStyle}>{errors.email}</p>}
                                 </div>

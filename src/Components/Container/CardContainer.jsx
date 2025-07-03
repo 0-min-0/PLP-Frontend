@@ -36,8 +36,8 @@ export const CardContainer = ({
   };
 
   return (
-    <div className={`mx-10 relative border-2 border-[#60efdb] ${getRoundedClass()}`}>
-      <h2 className='text-2xl px-12 py-5 font-semibold text-[color:var(--color-card-text)]'>{title}</h2>
+    <div className={`jobs-main-container mx-10 relative border-2 border-[#60efdb] ${getRoundedClass()}`}>
+      <h2 className='jobs-subcontainer text-2xl px-12 py-5 font-semibold text-[color:var(--color-card-text)]'>{title}</h2>
       <div className='relative group'>
         <button
           onClick={() => scroll('left')}
@@ -62,7 +62,7 @@ export const CardContainer = ({
           <div
             ref={containerRef}
             onScroll={checkScrollPosition}
-            className='flex overflow-x-auto scroll-smooth space-x-6 px-10 pb-10 scrollbar-hide scrollbar-custom'
+            className='scroll-container flex overflow-x-auto scroll-smooth space-x-6 px-10 pb-10 scrollbar-hide scrollbar-custom'
           >
             {items.map((item) => (
               <div key={item.id} className='flex-shrink-0 px-2'>

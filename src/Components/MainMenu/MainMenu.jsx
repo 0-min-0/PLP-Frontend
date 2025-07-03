@@ -59,17 +59,17 @@ export const MainMenu = () => {
 
       {/* Menú desplegable */}
       <div
-        className={`menu-responsive menu-bg absolute z-50 right-0 mt-2 w-56 origin-top-right rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${
-          isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
-        }`}
+        className={`menu-responsive menu-bg absolute z-50 right-0 mt-2 w-56 origin-top-right rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+          }`}
         role='menu'
       >
-        <ul className='p-2'>
+        <ul className='menu-list p-2'>
           <div className='flex text-left p-3'>
-            <h3 className='menu-title'>Menú</h3>
+            <h3 className='mtitle-container menu-title menu-responsive-title'>Menú</h3>
           </div>
+          <hr className='border-t border-gray-100' />
           <MenuItem to='/categorias-trabajo'>Categorías de trabajo</MenuItem>
-          <MenuItem to='/contacto'>Sobre PLP</MenuItem>
+          <MenuItem to='/sobre-plp'>Sobre PLP</MenuItem>
           <MenuItem click={() => setShowThemeModal(true)}>Tema (Predeterminado)</MenuItem>
           <MenuItem to='/chat-bot-ayuda'>Chat IA (Soporte)</MenuItem>
         </ul>

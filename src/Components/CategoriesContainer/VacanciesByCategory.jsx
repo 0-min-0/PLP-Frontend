@@ -8,7 +8,6 @@ import { categories } from '../../Utils/options'
 export const VacanciesByCategory = () => {
   const { category } = useParams()
   
-  // Definir categoryObj fuera del if para que esté disponible en todo el componente
   const categoryObj = category ? categories.find(cat => cat.value === category) : null
   
   let filteredVacancies = vacanciesExample
@@ -27,15 +26,15 @@ export const VacanciesByCategory = () => {
   }, {})
 
   return (
-    <div className='space-y-12'>
-      <h2 className='text-2xl font-bold text-[color:var(--color-card-text)] mb-6 ml-16'>
+    <div className='space-y-8'>
+      <h2 className='title-categories text-2xl font-bold text-[color:var(--color-card-text)] mb-6 ml-16'>
         {category ? `Vacantes en ${categoryObj?.label}` : 'Vacantes por categoría'}
       </h2>
       
       {Object.entries(vacanciesByCategory).length > 0 ? (
         Object.entries(vacanciesByCategory).map(([category, vacancies]) => (
           <div key={category} className='space-y-4'>
-            <div className='p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#60efdb] rounded-xl'>
+            <div className='container-categories-jobs p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#60efdb] rounded-xl'>
               {vacancies.map((vacancy) => (
                 <Vacancie key={vacancy.id} {...vacancy} />
               ))}

@@ -46,10 +46,10 @@ export const Contact = () => {
     const { formData, errors, handleChange, handleSubmit, isLoading } = useContact()
 
     return (
-        <div className='bg-[#405e7f] px-24 py-16'>
-            <div className='contact-inner-container rounded-xl'>
+        <div className='about-responsive bg-[#405e7f] px-24 py-16'>
+            <div className='contact-responsive contact-inner-container rounded-xl'>
                 <motion.h2
-                    className='text-5xl font-[afacadBold] mx-15 pt-12'
+                    className='contact-title text-5xl font-[afacadBold] px-15 pt-12'
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
@@ -57,7 +57,7 @@ export const Contact = () => {
                 >
                     Contactanos y dejanos tus comentarios
                 </motion.h2>
-                <div className='w-full flex p-8 items-center pl-25 pr-40 py-12 gap-12'>
+                <div className='contact-content w-full flex items-center pl-25 pr-40 py-12 gap-12'>
                     <motion.img
                         src={contactIlustration}
                         alt='Ilustracion contacto'
@@ -65,6 +65,7 @@ export const Contact = () => {
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
                         variants={fadeInRight}
+                        className='contact-ilustration w-130 h-auto'
                     />
                     <motion.div
                         className='w-full'
@@ -73,13 +74,13 @@ export const Contact = () => {
                         viewport={{ once: true, amount: 0.2 }}
                         variants={fadeInLeft}
                     >
-                        <div className='text-lg'>
+                        <div className='contact-text text-lg'>
                             <p>Escribe tu nombre y tu correo electronico, dejanos un comentario y cuentanos tu
                                 experiencia en PLP o escribe tus dudas y sugerencias para hacer crecer nuestro
                                 aplicativo, hacerlo mas eficiente y cómodo para nuestros usuarios.</p>
                         </div>
-                        <form className='w-full mt-6' onSubmit={handleSubmit} noValidate>
-                            <div className='flex gap-4 mb-4'>
+                        <form className='comment-container w-full mt-6' onSubmit={handleSubmit} noValidate>
+                            <div className='contact-content-1 flex gap-4 mb-4'>
                                 <div className='flex-1'>
                                     <Input
                                         labelTitle='Nombre completo'
@@ -103,7 +104,7 @@ export const Contact = () => {
                                     />
                                 </div>
                             </div>
-                            <div className='mb-4'>
+                            <div className='contact-content-2 mb-4'>
                                 <Desc
                                     nameDesc='Comentario/Sugerencia'
                                     holderDesc='Ingresa tu comentario o sugerencia'
@@ -116,12 +117,12 @@ export const Contact = () => {
                                 />
                             </div>
                             {errors.general && (
-                                <div className='mb-2 font-semibold error text-sm'>{errors.general}</div>
+                                <div className='error-responsive mb-2 font-semibold error text-sm'>{errors.general}</div>
                             )}
                             <Button
                                 btnName={isLoading ? 'Enviando...' : 'Enviar'}
                                 btnType='submit'
-                                btnStyle='w-full mt-4 text-[#405e7f] bg-[#60efdb]'
+                                btnStyle='send-contact-button w-full mt-4 text-[#405e7f] bg-[#60efdb]'
                                 disabled={isLoading}
                             />
                         </form>

@@ -9,15 +9,15 @@ import { motion } from 'framer-motion'
 
 export const Login = () => {
   return (
-    <div className='login-container w-full h-full p-6'>
+    <div className='login-container page w-full h-full p-6'>
       <Header
         middleObject={
-          <h1 className='login-title text-5xl font-[afacadBold]'>
+          <h1 className='title-page login-title text-5xl font-[afacadBold]'>
             Iniciar sesión
           </h1>
         }
         buttons={
-          <div className='login-title flex gap-2 mb-8'>
+          <div className='links-page login-title flex gap-2'>
             <NavLink
               to='/politicas-de-privacidad'
               className='font-semibold hover:underline'
@@ -40,7 +40,7 @@ export const Login = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='w-full flex justify-center items-start mt-12 gap-20'
+        className='container-forms w-full flex justify-center items-start mt-12 gap-20'
       >
         <LoginProvider>
           <LoginForm />
@@ -55,7 +55,7 @@ export const Login = () => {
           }
           ilustration={loginIlustration}
           imgDesc='Ilustración de inicio de sesión'
-          imgStyle='w-[400px] h-[400px]'
+          imgStyle='forms-ilustration w-[400px] h-[400px]'
         />
       </motion.div>
     </div>

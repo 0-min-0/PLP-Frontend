@@ -48,14 +48,14 @@ export const JobsLayout = () => {
   }
 
   if (loadingVacancies || loadingPeople) {
-    return <div className="text-center py-10">Cargando información...</div>;
+    return <div className="text-center py-10">Cargando información...</div>
   }
 
   return (
     <motion.div
-      className='flex flex-col bg-[#405e7f] px-10 py-6'
-      initial="hidden"
-      whileInView="visible"
+      className='jobs-main flex flex-col bg-[#405e7f] px-10 py-6'
+      initial='hidden'
+      whileInView='visible'
       viewport={{ once: true, amount: 0.1 }}
       variants={{
         visible: {
@@ -63,9 +63,9 @@ export const JobsLayout = () => {
         }
       }}
     >
-      <motion.div className='text-white mx-10 mt-10 mb-5' variants={sectionAnimation}>
-        <h1 className='font-[afacadBold] text-4xl mb-2'>Vacantes y personas</h1>
-        <h3 className='text-lg'>
+      <motion.div className='text-jobs text-white mx-10 mt-10 mb-5' variants={sectionAnimation}>
+        <h1 className='font-[afacadBold] jobs-title text-4xl mb-2'>Vacantes y personas</h1>
+        <h3 className='text-lg jobs-subtitle'>
           Descubre las vacantes más recientes y postula tu hoja de vida o descubre personas a quienes
           darles una oportunidad laboral y puedan suplir tus necesidades.
         </h3>

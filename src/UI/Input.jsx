@@ -7,7 +7,7 @@ export const Input = ({
     iName,
     iChange,
     labelTitle = '',
-    labelColor = '', // puede ser '', 'white', '#60efdb', etc.
+    labelColor = '',
     iHolder = '',
     padding = 'px-4 py-2',
     error = '',
@@ -30,7 +30,7 @@ export const Input = ({
             {labelTitle && (
                 <label
                     htmlFor={isFor}
-                    className='input-label font-semibold'
+                    className='label-responsive input-label font-semibold'
                     style={labelStyle}
                 >
                     {labelTitle}
@@ -41,13 +41,13 @@ export const Input = ({
                 type={iType}
                 name={iName}
                 value={iValue || ''}
-                className={`input-dark ${iStyle}`}
+                className={`input input-dark ${iStyle}`}
                 placeholder={iHolder}
                 onChange={iChange}
                 disabled={disabled}
             />
             {error && (
-                <span className={`${errColor} error font-semibold text-sm mt-1 block`}>
+                <span className={`${errColor} error-responsive error font-semibold text-sm mt-1 block`}>
                     {error}
                 </span>
             )}

@@ -20,7 +20,7 @@ export const Jobs = () => {
     }
   }
 
-  const baseItemStyle = `text-lg px-4 py-2 my-1 mx-1 rounded-full whitespace-nowrap bg-[#60efdb] text-[#405e7f] hover:shadow-sm
+  const baseItemStyle = `button-responsive font-semibold text-lg px-4 py-2 my-1 mx-1 rounded-full whitespace-nowrap bg-[#60efdb] text-[#405e7f] hover:shadow-sm
                          ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]`
 
   const getNavLinkStyle = ({ isActive }) =>
@@ -29,10 +29,10 @@ export const Jobs = () => {
       : baseItemStyle
 
   return (
-    <div className='w-full h-full vacancy-back p-6'>
+    <div className='w-full h-full page vacancy-back p-6'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-[color:var(--color-card-text)]'>
+          <h1 className='title-page text-5xl font-[afacadBold] text-[color:var(--color-card-text)]'>
             Categorías de trabajo
           </h1>
         }
@@ -43,7 +43,7 @@ export const Jobs = () => {
         }
         buttons={
           <NavLink to={homeRoute}>
-            <HiMiniArrowUturnLeft className='w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+            <HiMiniArrowUturnLeft className='routes-icons w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
           </NavLink>
         }
       />
@@ -53,7 +53,7 @@ export const Jobs = () => {
           onClick={() => scroll('left')}
           className='p-2 rounded-full hover:bg-gray-100 z-10 bg-white shadow-md cursor-pointer'
         >
-          <FiChevronLeft className="text-[#405e7f] text-xl" />
+          <FiChevronLeft className="routes-icons text-[#405e7f] text-xl" />
         </button>
 
         <div

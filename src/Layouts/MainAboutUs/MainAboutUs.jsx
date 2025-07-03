@@ -50,13 +50,13 @@ const creativeImageAnimation = {
 }
 
 export const MainAboutUs = () => {
-  const imgStyle = 'w-100 h-100 rounded-xl object-cover cursor-pointer'
+  const imgStyle = 'about-image w-100 h-100 rounded-xl object-cover cursor-pointer'
 
   return (
-    <div className='about-container px-24 py-16'>
+    <div className='about-responsive px-24 py-16'>
       <div className='about-card flex flex-col items-center'>
         <motion.h2
-          className='about-title'
+          className='jobs-title about-title'
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -73,7 +73,7 @@ export const MainAboutUs = () => {
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeInUp}
           >
-            <p className='about-text'>
+            <p className='jobs-subtitle about-text'>
               PLP (Plataforma Laboral Proactiva) es una solución para personas con habilidades y experiencia que no tienen un título profesional. La plataforma les
               <br /> permite publicar su perfil y ser vistos por empresas y emprendedores que buscan talento, brindándoles oportunidades laborales dignas sin necesidad
               <br /> de un título. A su vez, estas empresas y emprendedores pueden publicar sus vacantes para que puedan ser vistas por aquellos que buscan un empleo.

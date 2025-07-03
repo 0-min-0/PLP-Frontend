@@ -50,7 +50,7 @@ export const LogoutModal = ({
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className="general rounded-xl p-10 max-w-md w-full mx-4 relative"
+                        className="modal-auth general rounded-xl p-10 max-w-md w-full mx-4 relative"
                         variants={modalVariants}
                         initial="hidden"
                         animate="visible"
@@ -61,16 +61,16 @@ export const LogoutModal = ({
                             className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
                         >
                             <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                                <IoClose className='w-6 h-6' />
+                                <IoClose className='icon-close-x w-6 h-6' />
                             </div>
                         </button>
 
                         <div className="">
-                            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
+                            <h2 className="modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-4">
                                 ¿Estás seguro de que quieres cerrar sesión?
                             </h2>
 
-                            <p className="mb-6 text-[color:var(--color-card-text)]">
+                            <p className="modal-auth-text mb-6 text-[color:var(--color-card-text)]">
                                 Serás redirigido a la página de inicio y tendrás que iniciar sesión nuevamente para acceder a tu cuenta.
                             </p>
 

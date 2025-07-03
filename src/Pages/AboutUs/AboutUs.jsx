@@ -8,10 +8,10 @@ export const AboutUs = () => {
   const { homeRoute } = useChatIA()
 
   return (
-    <div className='p-6 aboutus'>
+    <div className='p-6 page text aboutus'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+          <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
             Sobre PLP (Plataforma Laboral Proactiva)
           </h1>
         }
@@ -91,7 +91,7 @@ export const AboutUs = () => {
           </div>
         </section>
 
-        <section className="text-center bg-[#60efdb] rounded-2xl p-8 text-[#405e7f]">
+        <section className="text text-center bg-[#60efdb] rounded-2xl p-8 text-[#405e7f]">
           <h2 className="text-2xl font-bold mb-4">Únete al cambio</h2>
           <p className="max-w-3xl mx-auto mb-4">
             En PLP, no solo ofrecemos una plataforma, sino una comunidad comprometida con la transformación social y laboral. Ya seas un trabajador en busca de oportunidades o una empresa en búsqueda de talento genuino, aquí tienes un lugar.

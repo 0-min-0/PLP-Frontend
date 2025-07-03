@@ -29,7 +29,7 @@ export const PeopleByCategory = () => {
 
   return (
     <div className='space-y-8'>
-      <h2 className='text-2xl font-bold text-[color:var(--color-card-text)] mb-6 ml-16'>
+      <h2 className='title-categories text-2xl font-bold text-[color:var(--color-card-text)] mb-6 ml-16'>
         {category ? `Personas en ${categories.find(c => c.value === category)?.label}` : 'Personas por categoría'}
       </h2>
       
@@ -41,7 +41,7 @@ export const PeopleByCategory = () => {
                 {category}
               </h3>
             )}
-            <div className='p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#60efdb] rounded-xl'>
+            <div className='container-categories-jobs p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#60efdb] rounded-xl'>
               {people.map((person) => (
                 <Person key={person.id} {...person} />
               ))}

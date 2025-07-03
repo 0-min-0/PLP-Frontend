@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 
 export const Company = () => {
   const navigate = useNavigate()
-  const errorStyle = 'error-seeker text-sm mt-1 font-semibold'
+  const errorStyle = 'error-seeker error-responsive text-sm mt-1 font-semibold'
 
   const {
     form,
@@ -34,18 +34,18 @@ export const Company = () => {
   }
 
   return (
-    <div className='h-full p-6 register-container'>
+    <div className='h-full page p-6 register-container'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+          <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
             Registrarse como empresa
           </h1>
         }
         buttons={
-          <div className='flex gap-2 mb-8'>
-            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+          <div className='flex gap-2 links-page'>
+            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:underline'>Políticas de privacidad</NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
+            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:underline'>Términos y condiciones</NavLink>
           </div>
         }
       />
@@ -55,7 +55,7 @@ export const Company = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='flex items-center mt-14 gap-20 justify-center'
+        className='container-forms flex items-center mt-14 gap-20 justify-center'
       >
         <FormsContainer
           width='w-[35%]'
@@ -63,8 +63,7 @@ export const Company = () => {
           textColor='text-[color:var(--color-card-text)]'
           changeForm={
             <div>
-              <hr className='w-full border-t-2 border-white/9 mb-4' />
-              <p className='text-white pt-4'>
+              <p className='text-white login-form-register-text'>
                 ¿Ya estás registrado en nuestra plataforma?{' '}
                 <NavLink to='/acceder' className='text-white font-semibold hover:underline hover:text-gray-200'>
                   Iniciar sesión
@@ -75,11 +74,11 @@ export const Company = () => {
           form={
             <div className='w-full'>
               <form onSubmit={localHandleSubmit} className='w-full'>
-                <h2 className='text-white font-semibold mb-4'>
+                <h2 className='label-responsive text-white font-semibold mb-4'>
                   Completa la información y haz click en continuar.
                 </h2>
                 <div className='w-full mb-5'>
-                  <div className='mb-4'>
+                  <div className='mb-2'>
                     <Input
                       labelTitle='NIT (Número de identificación tributaria)'
                       labelColor='white'
@@ -92,7 +91,7 @@ export const Company = () => {
                     />
                     {errors.nit && <p className={errorStyle}>{errors.nit}</p>}
                   </div>
-                  <div className='mb-4'>
+                  <div className='mb-2'>
                     <Input
                       labelTitle='Sector de la empresa'
                       labelColor='white'
@@ -120,7 +119,7 @@ export const Company = () => {
                 </div>
                 <Button
                   btnType='submit'
-                  btnStyle='w-[25%] bg-[#60efdb] text-[#405e7f] font-bold mb-4 mx-50 hover:bg-[#4fd4c1]'
+                  btnStyle='button-employer w-[25%] bg-[#60efdb] text-[#405e7f] font-bold mb- mx-50 hover:bg-[#4fd4c1]'
                   btnName='Continuar'
                 />
               </form>
@@ -138,7 +137,7 @@ export const Company = () => {
           }
           ilustration={registerIlustration}
           imgDesc='Ilustración de inicio de sesión'
-          imgStyle='w-[400px] h-[400px]'
+          imgStyle='forms-ilustration w-[400px] h-[400px]'
         />
       </motion.div>
     </div>

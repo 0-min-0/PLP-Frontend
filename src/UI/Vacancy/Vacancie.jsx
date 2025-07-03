@@ -29,30 +29,30 @@ export const Vacancie = ({
 
   return (
     <>
-      <div className='rounded-xl px-8 py-6 w-75 min-h-[240px] flex flex-col border
+      <div className='job-card rounded-xl px-8 py-6 w-75 h-60 flex flex-col border
                       bg-white text-[#405e7f] border-[#60efdb]
                       vacancy-card'>
-        <div className='flex justify-between items-start mb-3'>
-          <h2 className='font-semibold text-lg leading-tight truncate max-h-[3.6rem]'>
+        <div className='flex justify-between items-start mb-1'>
+          <h2 className='job-card-title font-semibold text-lg leading-tight truncate max-h-[3.6rem]'>
             {title}
           </h2>
-          <IoBriefcaseOutline className='w-5 h-5 flex-shrink-0 ml-2 mt-1 vacancy-icon-dark' />
+          <IoBriefcaseOutline className='icon-close-x w-5 h-5 flex-shrink-0 ml-2 mt-1 vacancy-icon-dark' />
         </div>
 
         <div className='flex-grow space-y-2'>
           <div className='flex items-start'>
-            <h3 className='font-semibold whitespace-nowrap'>Empresa • </h3>
-            <p className='ml-1 line-clamp-1'>{company || 'Empresa no especificada'}</p>
+            <h3 className='job-text font-semibold whitespace-nowrap'>Empresa • </h3>
+            <p className='job-text ml-1 line-clamp-1'>{company || 'Empresa no especificada'}</p>
           </div>
 
           <div className='flex items-start'>
-            <h3 className='font-semibold whitespace-nowrap'>Ubicación • </h3>
-            <p className='ml-1 line-clamp-1'>{location || 'Ubicación no especificada'}</p>
+            <h3 className='job-text font-semibold whitespace-nowrap'>Ubicación • </h3>
+            <p className='job-text ml-1 line-clamp-1'>{location || 'Ubicación no especificada'}</p>
           </div>
 
           <div className='flex items-start'>
-            <h3 className='font-semibold whitespace-nowrap'>Categoría • </h3>
-            <p className='ml-1 line-clamp-1'>{category || 'No especificado'}</p>
+            <h3 className='job-text font-semibold whitespace-nowrap'>Categoría • </h3>
+            <p className='job-text ml-1 line-clamp-1'>{category || 'No especificado'}</p>
           </div>
         </div>
 

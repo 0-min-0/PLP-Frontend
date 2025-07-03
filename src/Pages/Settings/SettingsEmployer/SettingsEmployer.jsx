@@ -82,7 +82,7 @@ export const SettingsEmployer = () => {
   }
 
   return (
-    <div className='h-full p-6 back-color-set'>
+    <div className='h-full p-6 page back-color-set'>
       <Header
         logo={
           <InteractiveLogoMain
@@ -90,17 +90,17 @@ export const SettingsEmployer = () => {
           />
         }
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+          <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
             Configuraciones
           </h1>
         }
         buttons={
           <div className='w-full flex mr-6 mb-6'>
             <NavLink to='/centro-de-notificaciones-contratante' title='Centro de notificaciones'>
-              <HiOutlineInbox className='w-8 h-8 text-[color:var(--color-card-text)]' />
+              <HiOutlineInbox className='routes-icons w-8 h-8 text-[color:var(--color-card-text)]' />
             </NavLink>
             <NavLink to='/inicio-contratante' title='Volver a inicio'>
-              <HiMiniArrowUturnLeft className='w-8 h-8 text-[color:var(--color-card-text)] ml-6' />
+              <HiMiniArrowUturnLeft className='routes-iconsw-8 h-8 text-[color:var(--color-card-text)] ml-6' />
             </NavLink>
           </div>
         }
@@ -112,8 +112,6 @@ export const SettingsEmployer = () => {
         </div>
         <div className='w-[30%]'>
           <RightMenu
-            width='w-[80%]'
-            height='h-165'
             menuItems={menuConfig.employer}
             basePath='/configuraciones-contratante'
           />

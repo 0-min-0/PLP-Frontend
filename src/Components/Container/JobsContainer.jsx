@@ -64,8 +64,8 @@ export const JobsContainer = ({
   }
 
   return (
-    <div className={`mx-10 relative jobs-layout-container ${getRoundedClass()}`}>
-      <h2 className='text-2xl px-12 py-5 font-semibold welcome-title'>{title}</h2>
+    <div className={`jobs-main-container mx-10 relative jobs-layout-container ${getRoundedClass()}`}>
+      <h2 className='jobs-subcontainer text-2xl px-12 py-5 font-semibold welcome-title'>{title}</h2>
       <div className='relative group'>
         <button
           onClick={() => scroll('left')}
@@ -90,7 +90,7 @@ export const JobsContainer = ({
           <div
             ref={containerRef}
             onScroll={checkScrollPosition}
-            className='flex overflow-x-auto scroll-smooth space-x-6 px-10 pb-10 scrollbar-hide scrollbar-custom'
+            className='scroll-container flex overflow-x-auto scroll-smooth space-x-6 px-10 pb-10 scrollbar-hide scrollbar-custom'
           >
             {mixedItems.map((item, index) => (
               <div key={`${item.type}-${item.data.id || index}`} className='flex-shrink-0 px-2'>

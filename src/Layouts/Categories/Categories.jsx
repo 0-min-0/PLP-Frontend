@@ -1,4 +1,3 @@
-// Categories.jsx
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { VacanciesByCategory } from '../../Components/CategoriesContainer/VacanciesByCategory'
@@ -12,7 +11,7 @@ export const Categories = () => {
   const isEmployer = pathname.includes('contratante') || pathname.includes('empresa')
 
   return (
-    <div className="w-full mx-auto px-4 pb-8">
+    <div className="w-full container-categories mx-auto px-4 pb-8">
       {isContractor && <VacanciesByCategory />}
       {isEmployer && <PeopleByCategory />}
       {!isContractor && !isEmployer && <MixedContent />}

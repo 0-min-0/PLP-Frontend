@@ -33,15 +33,15 @@ export const RegisterRolType = () => {
   }
 
   return (
-    <div className='h-full p-6 register-container'>
+    <div className='h-full page p-6 register-container'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+          <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
             Registrarse
           </h1>
         }
         buttons={
-          <div className='flex gap-2'>
+          <div className='links-page flex gap-2'>
             <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
             <p>•</p>
             <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
@@ -54,7 +54,7 @@ export const RegisterRolType = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='flex justify-center items-start mt-8 gap-20'
+        className='container-forms flex justify-center items-start mt-8 gap-20'
       >
         <div className='w-[35%]'>
           <FormsContainer
@@ -62,7 +62,7 @@ export const RegisterRolType = () => {
             bgColor='register-form'
             textColor='text-[color:var(--color-card-text)]'
             changeForm={
-              <p className='text-[color:var(--color-card-text)] pt-4'>
+              <p className='login-form-register-text text-[color:var(--color-card-text)]'>
                 ¿Ya estás registrado en nuestra plataforma?{' '}
                 <NavLink to='/acceder' className='font-semibold hover:underline hover:text-[#405e7f]/60'>
                   Iniciar sesión
@@ -70,9 +70,9 @@ export const RegisterRolType = () => {
               </p>
             }
             form={
-              <form onSubmit={localHandleSubmit} className='w-full flex flex-col items-center gap-6 my-6'>
+              <form onSubmit={localHandleSubmit} className='container-user-type w-full flex flex-col items-center gap-6 my-6'>
                 <div className='w-full'>
-                  <p className='mb-4 font-semibold text-lg'>
+                  <p className='mb-4 font-semibold label-responsive text-lg'>
                     Selecciona el rol con el que utilizarás tu cuenta y luego presiona continuar.
                   </p>
                   <CardUserType
@@ -80,7 +80,7 @@ export const RegisterRolType = () => {
                     currentSelection={form.userType}
                     title='Soy una persona en busca de nuevas oportunidades laborales'
                     userType='Contratista'
-                    rolIcon={<HiOutlineBriefcase className='w-10 h-10' />}
+                    rolIcon={<HiOutlineBriefcase className='logo-user-2 w-10 h-10' />}
                     iconDesc='Contratista Logo'
                     onChange={handleUserTypeChange}
                     error={errors.userType}
@@ -93,7 +93,7 @@ export const RegisterRolType = () => {
                     currentSelection={form.userType}
                     title='Soy una persona que solicita servicios temporales'
                     userType='Contratante'
-                    rolIcon={<HiOutlineUserGroup className='w-12 h-12' />}
+                    rolIcon={<HiOutlineUserGroup className='logo-user w-12 h-12' />}
                     iconDesc='Contratante Logo'
                     onChange={handleUserTypeChange}
                     error={errors.userType}
@@ -106,14 +106,14 @@ export const RegisterRolType = () => {
                     currentSelection={form.userType}
                     title='Somos una empresa en busca de talento y experiencia'
                     userType='Empresa/Emprendimiento'
-                    rolIcon={<BiBuildings className='w-12 h-12' />}
+                    rolIcon={<BiBuildings className='logo-user w-12 h-12' />}
                     iconDesc='Empresa/Emprendimiento Logo'
                     onChange={handleUserTypeChange}
                     error={errors.userType}
                     setError={() => { }}
                     desc='Haga click en la tarjeta para seleccionar su rol como Empresa/Emprendimiento'
                   />
-                  {errors.userType && <p className='error text-sm font-semibold w-full text-left'>{errors.userType}</p>}
+                  {errors.userType && <p className='error-responsive error text-sm font-semibold w-full text-left'>{errors.userType}</p>}
                 </div>
 
                 <div className='w-[30%]'>
@@ -136,7 +136,7 @@ export const RegisterRolType = () => {
             <br /> experiencia sea agradable en PLP. </p>}
           ilustration={registerIlustration}
           imgDesc='Ilustración de inicio de sesión'
-          imgStyle='w-[450px] h-[450px]'
+          imgStyle='forms-ilustration w-[450px] h-[450px]'
         />
       </motion.div>
     </div>

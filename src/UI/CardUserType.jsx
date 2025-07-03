@@ -22,7 +22,7 @@ export const CardUserType = ({
         setError('')
       }}
 
-      className={`w-full p-5 rounded-xl cursor-pointer mb-4 transition-all duration-200 
+      className={`card-user-responsive w-full p-5 rounded-xl cursor-pointer mb-4 transition-all duration-200 
         ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform hover:-translate-y-0.5 hover:shadow-md active:scale-[0.98] 
         ${isSelected ? 'card-selected ring-2 ring-[#60efdb]/30' : 'card-user'}`}
     >
@@ -36,8 +36,8 @@ export const CardUserType = ({
             className='hidden'
           />
           <div className=''>
-            <h3 className='font-semibold'>{title}</h3>
-            <p className='text-sm'>{userType}</p>
+            <h3 className='text-card font-semibold'>{title}</h3>
+            <p className='text-rol text-sm'>{userType}</p>
           </div>
         </div>
         <div className='ml-4'>

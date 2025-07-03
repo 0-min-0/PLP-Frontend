@@ -27,26 +27,25 @@ export const Person = ({
 
   return (
     <>
-      <div className='rounded-xl px-8 py-6 w-75 h-60 flex flex-col border
+      <div className='job-card rounded-xl px-8 py-6 w-75 h-60 flex flex-col border
                       bg-white text-[#405e7f] border-[#60efdb]
                       person-card'>
         <div className='flex justify-between items-center'>
-          <h2 className='mb-2 font-semibold text-lg truncate max-w-[220px]'>{occupation}</h2>
-          <IoPersonOutline className='w-5 h-5 flex-shrink-0 ml-2 person-icon-dark' />
+          <h2 className='job-card-title mb-2 font-semibold text-lg truncate max-w-[220px]'>{occupation}</h2>
+          <IoPersonOutline className='icon-close-x w-5 h-5 flex-shrink-0 ml-2 person-icon-dark' />
         </div>
-
         <div className='flex-grow'>
           <div className={itemStyle}>
-            <h3 className='font-semibold'>Nombre • </h3>
-            <p className='truncate'>{name}</p>
+            <h3 className='job-text font-semibold'>Nombre • </h3>
+            <p className='job-text truncate'>{name}</p>
           </div>
           <div className={itemStyle}>
-            <h3 className='font-semibold'>Ubicación • </h3>
-            <p className='truncate'>{town}</p>
+            <h3 className='job-text font-semibold'>Ubicación • </h3>
+            <p className='job-text truncate'>{town}</p>
           </div>
           <div className={itemStyle}>
-            <h3 className='font-semibold'>Categoría •</h3>
-            <p className='truncate'>{category}</p>
+            <h3 className='job-text font-semibold'>Categoría •</h3>
+            <p className='job-text truncate'>{category}</p>
           </div>
         </div>
 

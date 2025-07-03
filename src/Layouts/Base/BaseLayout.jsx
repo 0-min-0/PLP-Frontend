@@ -31,9 +31,9 @@ export const BaseLayout = memo(({
 
   return (
     <div className='flex flex-col'>
-      <div className='text-[color:var(--color-card-text)] mx-10 mt-6 mb-5'>
-        <h1 className='font-[afacadBold] text-4xl mb-2'>{title}</h1>
-        <h3 className='text-lg'>{description}</h3>
+      <div className='container-text text-[color:var(--color-card-text)] mx-10 mt-6 mb-5'>
+        <h1 className='title font-[afacadBold] text-4xl mb-2 line-clamp-3 truncate max-w-[90%]'>{title}</h1>
+        <h3 className='text text-lg'>{description}</h3>
       </div>
 
       <div className='mb-10'>

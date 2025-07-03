@@ -31,7 +31,7 @@ const iconAnimation = {
 export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) => {
   return (
     <motion.footer 
-      className={`${bgColor} ${textColor} py-8 px-4`}
+      className={`${bgColor} ${textColor} footer-responsive py-6 px-4`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
@@ -41,32 +41,32 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
         }
       }}
     >
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="footer-grid-responsive max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Sección de derechos */}
         <motion.div 
-          className="flex flex-col items-center md:items-start"
+          className="footer-section-responsive flex flex-col items-center md:items-start"
           variants={fadeInUp}
         >
-          <h3 className="text-xl font-bold mb-4">Plataforma Laboral Proactiva</h3>
-          <p className="text-center md:text-left">© 2025 Todos los derechos reservados</p>
+          <h3 className="footer-title-responsive text-lg font-bold mb-3">Plataforma Laboral Proactiva</h3>
+          <p className="footer-link-responsive text-sm text-center md:text-left">© 2025 Todos los derechos reservados</p>
         </motion.div>
 
         {/* Sección de enlaces legales */}
         <motion.div 
-          className='flex flex-col text-center items-center'
+          className='footer-section-responsive flex flex-col text-center items-center'
           variants={fadeInUp}
         >
-          <h3 className='text-xl font-bold mb-4'>Legal</h3>
-          <div className='flex flex-col space-y-2'>
+          <h3 className='footer-title-responsive text-lg font-bold mb-3'>Legal</h3>
+          <div className='footer-links-responsive flex flex-col space-y-1'>
             <NavLink
               to='/ayuda-soporte'
-              className='hover:underline transition duration-200'
+              className='footer-link-responsive text-sm hover:underline transition duration-200'
             >
               Ayuda y soporte
             </NavLink>
             <NavLink
               to='/terminos-condiciones'
-              className='hover:underline transition duration-200'
+              className='footer-link-responsive text-sm hover:underline transition duration-200'
             >
               Términos y condiciones
             </NavLink>
@@ -75,12 +75,12 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
 
         {/* Sección de contacto */}
         <motion.div 
-          className="flex flex-col items-center md:items-end"
+          className="footer-section-responsive flex flex-col items-center md:items-end"
           variants={fadeInUp}
         >
-          <h3 className="text-xl font-bold mb-4">Contáctanos</h3>
+          <h3 className="footer-title-responsive text-lg font-bold mb-3">Contáctanos</h3>
 
-          <div className="flex space-x-4 mb-4">
+          <div className="footer-icons-responsive flex space-x-3 mb-3">
             <motion.a
               href="https://wa.me/123456789"
               target="_blank"
@@ -90,7 +90,7 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               variants={iconAnimation}
               whileHover="hover"
             >
-              <FaWhatsapp className="w-6 h-6" />
+              <FaWhatsapp className="footer-icon-responsive w-5 h-5" />
             </motion.a>
             <motion.a
               href="https://github.com/0-min-0/PLP-Frontend"
@@ -101,7 +101,7 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               variants={iconAnimation}
               whileHover="hover"
             >
-              <FaGithub className="w-6 h-6" />
+              <FaGithub className="footer-icon-responsive w-5 h-5" />
             </motion.a>
             <motion.a
               href="https://discord.com/"
@@ -112,7 +112,7 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               variants={iconAnimation}
               whileHover="hover"
             >
-              <FaDiscord className="w-6 h-6" />
+              <FaDiscord className="footer-icon-responsive w-5 h-5" />
             </motion.a>
             <motion.a
               href="https://linkedin.com"
@@ -123,26 +123,26 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               variants={iconAnimation}
               whileHover="hover"
             >
-              <FaLinkedin className="w-6 h-6" />
+              <FaLinkedin className="footer-icon-responsive w-5 h-5" />
             </motion.a>
           </div>
 
           <motion.a
             href="mailto:plataformalaboralproactiva@example.com"
-            className="flex items-center hover:underline transition duration-200"
+            className="footer-email-responsive flex items-center text-sm hover:underline transition duration-200"
             whileHover={{ x: 3 }}
           >
-            <SiGmail className="mr-2 w-5 h-5" />
+            <SiGmail className="footer-email-icon-responsive mr-1 w-4 h-4" />
             plataformalaboralproactiva@example.com
           </motion.a>
         </motion.div>
       </div>
 
       <motion.div 
-        className="max-w-7xl mx-auto mt-8 pt-4 border-t border-opacity-20 text-center"
+        className="footer-divider-responsive max-w-7xl mx-auto mt-6 pt-3 border-t border-opacity-20 text-center text-sm"
         variants={fadeInUp}
       >
-        <p>Construyendo el futuro del empleo profesional</p>
+        <p className='footer-link-responsive'>Construyendo el futuro del empleo profesional</p>
       </motion.div>
     </motion.footer>
   )

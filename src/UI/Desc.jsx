@@ -15,7 +15,7 @@ export const Desc = ({
     color = 'text-[#405e7f]',
     errColor = 'text-red-400'
 }) => {
-    const { errors } = useRegister()
+    
     const maxLength = 500
 
     const descStyle = `w-full ${height} bg-white px-4 py-2 resize-none text-lg mt-3 text-[#405e7f]/90 rounded-xl border 
@@ -24,7 +24,7 @@ export const Desc = ({
 
     return (
         <div className='w-full'>
-            <label className={`${color}  font-semibold`}>
+            <label className={`${color} label-responsive font-semibold`}>
                 {nameDesc}
             </label>
             <div className='relative'>
@@ -33,12 +33,12 @@ export const Desc = ({
                     value={value || ''}
                     onChange={onChange}
                     rows={5}
-                    className={`desc-dark ${descStyle}`}
+                    className={`desc desc-dark ${descStyle}`}
                     placeholder={holderDesc}
                     maxLength={maxLength}
                     disabled={disabled}
                 />
-                <span className='desc-counter absolute bottom-3 right-4 text-[#405e7f]/60'>
+                <span className='error-responsive desc-counter-responsive desc-counter absolute bottom-3 right-4 text-[#405e7f]/60'>
                     {value?.length || 0}/{maxLength}
                 </span>
             </div>

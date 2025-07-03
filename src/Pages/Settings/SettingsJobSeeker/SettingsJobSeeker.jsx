@@ -8,7 +8,7 @@ import { InteractiveLogoMain } from '../../../UI/InteractiveLogo'
 
 export const SettingsJobSeeker = () => {
     return (
-        <div className='h-full p-6 back-color-set'>
+        <div className='h-full p-6 page back-color-set'>
             <div className=''>
                 <Header
                     logo={
@@ -17,17 +17,17 @@ export const SettingsJobSeeker = () => {
                         />
                     }
                     middleObject={
-                        <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+                        <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
                             Configuraciones
                         </h1>
                     }
                     buttons={
                         <div className='w-full flex mr-6 mb-6'>
                             <NavLink to='/centro-de-notificaciones-contratista' title='Centro de notificaciones'>
-                                <HiOutlineInbox className='w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98]' />
+                                <HiOutlineInbox className='routes-icons w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98]' />
                             </NavLink>
                             <NavLink to='/inicio-contratista' title='Volver a inicio'>
-                                <HiMiniArrowUturnLeft className='w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+                                <HiMiniArrowUturnLeft className='routes-icons w-8 h-8 text-[color:var(--color-card-text)] ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
                             </NavLink>
                         </div>
                     }
@@ -38,8 +38,6 @@ export const SettingsJobSeeker = () => {
                     </div>
                     <div className='w-[30%]'>
                         <RightMenu
-                            width='w-[80%]'
-                            height='h-165'
                             menuItems={menuConfig.jobSeeker}
                             basePath='/configuraciones-contratista'
                         />
