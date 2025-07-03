@@ -649,6 +649,19 @@
 }
 
 .card-postulated {
+  height: 10.5rem;
+  padding: 24px;
+  border-radius: 0.8rem;
+}
+
+.card-postulation {
+  height: 6.5rem;
+  padding: 24px;
+  border-radius: 0.8rem;
+}
+
+.card-published {
+  height: 9.5rem;
   padding: 24px;
   border-radius: 0.8rem;
 }
@@ -656,6 +669,44 @@
 .text-vacancy-applied {
   font-size: medium;
   margin-top: 8px;
+}
+
+.comments-container {
+  border-radius: 0.8rem;
+  max-height: 500px;
+}
+
+.comment-card {
+  border-radius: 0.8rem;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.comment-name {
+  font-size: large;
+}
+
+.comment-rol {
+  font-size: smaller;
+}
+
+.comment-content {
+  margin-top: 12px;
+}
+
+.comment-content-1 {
+  margin-bottom: 16px;
+}
+
+.comment-date {
+  font-size: small;
+  margin-bottom: 8px;
+}
+
+.comment-modal {
+  width: 600px;
+  padding: 32px;
+  border-radius: 0.8rem;
 }
 
 /* --- Responsive breakpoints --- */
@@ -1312,6 +1363,19 @@
   }
 
   .card-postulated {
+    height: 7.2rem;
+    padding: 15px;
+    border-radius: 0.6rem;
+  }
+
+  .card-postulation {
+    height: 4.6rem;
+    padding: 15px;
+    border-radius: 0.6rem;
+  }
+
+  .card-published {
+    height: 6rem;
     padding: 15px;
     border-radius: 0.6rem;
   }
@@ -1319,6 +1383,44 @@
   .text-vacancy-applied {
     font-size: x-small;
     margin-top: 4px;
+  }
+
+  .comments-container {
+    border-radius: 0.6rem;
+    max-height: 360px;
+  }
+
+  .comment-card {
+    border-radius: 0.6rem;
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  .comment-name {
+    font-size: small;
+  }
+
+  .comment-rol {
+    font-size: x-small;
+  }
+
+  .comment-content {
+    margin-top: 2px;
+  }
+
+  .comment-content-1 {
+    margin-bottom: 0px;
+  }
+
+  .comment-date {
+    font-size: x-small;
+    margin-bottom: 4px;
+  }
+
+  .comment-modal {
+    width: 500px;
+    padding: 22px;
+    border-radius: 0.6rem;
   }
 
 }

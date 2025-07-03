@@ -62,7 +62,7 @@ export const GeneralJobSeeker = () => {
         initial='hidden'
         animate='visible'
         variants={containerVariants}
-        className='general-employer-container max-w-5xl mx-auto h-95 general rounded-xl space-y-6 max-h-[400px] overflow-y-auto scrollbar-custom'
+        className='general-employer-container max-w-5xl mx-auto h-95 general rounded-xl mt-6 max-h-[400px] overflow-y-auto scrollbar-custom'
       >
         {/* Sección de Información Personal */}
         <div className='container-info my-3 pr-6'>
@@ -309,7 +309,7 @@ export const GeneralJobSeeker = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className='fixed top-50 right-180 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg z-50'
+            className='success-message fixed top-50 right-180 bg-white text-[#405e7f] px-4 py-2 rounded-md shadow-lg z-50'
           >
             ¡Datos guardados correctamente!
           </motion.div>

@@ -26,7 +26,7 @@ export const SkillsStudies = () => {
   } = useSettings()
 
   return (
-    <div className='pr-6'>
+    <div className='general-employer-container pr-6'>
       <div className='flex justify-between items-center'>
         <h3 className='sub-info-text text-xl font-semibold text-[color:var(--color-card-text)]'>Habilidades y Estudios</h3>
         <AnimatePresence mode='wait'>

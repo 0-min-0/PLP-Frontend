@@ -61,28 +61,28 @@ export const VacancyView = ({ vacancy, onClose, isOpen, isApplied, showApplyButt
                         variants={backdropVariants}
                     >
                         <motion.div
-                            className='general rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
+                            className='container-info-user general rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
                             variants={modalVariants}
                             initial="hidden"
                             animate="visible"
                             exit="exit"
                         >
-                            <div className='flex justify-between items-center mb-6'>
-                                <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] ml-6'>
+                            <div className='container-title-info-user flex justify-between items-center mb-6'>
+                                <h2 className='info-user-title text-3xl font-bold text-[color:var(--color-card-text)] ml-6'>
                                     {vacancy.title || vacancy.vacancyName}
                                 </h2>
                                 <button
                                     onClick={onClose}
                                     className='icons hover:bg-gray-100 p-2 rounded-md cursor-pointer'
                                 >
-                                    <FiX size={24} />
+                                    <FiX className='icon-close-x' size={24} />
                                 </button>
                             </div>
 
                             <VacancyInfo vacancy={vacancy} />
 
                             {showApplyButton && (
-                                <div className='flex justify-center mt-6'>
+                                <div className='flex buttons-user-container justify-center mt-6'>
                                     <Button
                                         btnName={
                                             isApplied ? (

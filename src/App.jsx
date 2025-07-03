@@ -137,7 +137,7 @@ function App() {
                             <Route path='ayuda-soporte' element={<Help embedded />} />
                             <Route path='chat-bot' element={<AIChatBot />} />
                           </Route>
-                          <Route path='/verificar-cuenta' element={<VerifyAccount />} />
+                          <Route path='/recuperar-contraseña' element={<VerifyAccount />} />
                           <Route path='/sobre-plp' element={<AboutUs />} />
                           <Route path='/sobre-plp-contratista' element={<AboutUs />} />
                           <Route path='/sobre-plp-contratante' element={<AboutUs />} />

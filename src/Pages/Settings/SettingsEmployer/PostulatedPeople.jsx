@@ -68,7 +68,7 @@ export const PostulatedPeople = () => {
               {applications.map((applicant) => (
                 <div
                   key={applicant.applicationId}
-                  className='card-postulated border-2 border-[#60efdb] rounded-xl p-6'
+                  className='card-postulated h-42 border-2 border-[#60efdb] rounded-xl p-6'
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
@@ -104,7 +104,7 @@ export const PostulatedPeople = () => {
               ))}
             </div>
           ) : (
-            <p className='text-gray-500 py-8 text-center'>
+            <p className='text-[color:var(--color-card-text)] py-8 text-center'>
               No hay candidatos postulados actualmente
             </p>
           )}

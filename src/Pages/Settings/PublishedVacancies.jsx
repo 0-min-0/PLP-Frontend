@@ -54,7 +54,7 @@ export const PublishedVacancies = () => {
               {vacancies.map((vacancy) => (
                 <div
                   key={vacancy.id}
-                  className='card-postulated border-2 border-[#60efdb] rounded-xl p-6'
+                  className='card-published h-38 border-2 border-[#60efdb] rounded-xl p-6'
                   onClick={() => setSelectedVacancy(vacancy)}
                 >
                   <div className='flex justify-between items-start'>
@@ -105,7 +105,7 @@ export const PublishedVacancies = () => {
             </div>
           ) : (
             <motion.p
-              className='text-gray-500 py-8 text-center'
+              className='text-[color:var(--color-card-text)] py-8 text-center'
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}

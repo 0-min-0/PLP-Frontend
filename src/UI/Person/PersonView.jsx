@@ -142,20 +142,20 @@ export const PersonView = ({ person, isOpen, onClose, showCommentButton = false 
             variants={backdropVariants}
           >
             <motion.div
-              className='general rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
+              className='container-info-user general rounded-xl p-8 max-w-2xl w-full mx-4 relative max-h-[90vh] overflow-y-auto'
               variants={modalVariants}
               initial="hidden"
               animate="visible"
               exit="exit"
             >
-              <div className='flex justify-between items-center mb-6'>
-                <h2 className='text-3xl font-bold text-[color:var(--color-card-text)] ml-6'>{person.occupation}</h2>
+              <div className='container-title-info-user flex justify-between items-center mb-6'>
+                <h2 className='info-user-title text-3xl font-bold text-[color:var(--color-card-text)] ml-6'>{person.occupation}</h2>
                 <button
                   onClick={onClose}
                   className='icons hover:bg-gray-100 p-2 rounded-md transition-colors cursor-pointer'
                   aria-label="Cerrar ventana"
                 >
-                  <FiX className='w-5 h-5' />
+                  <FiX className='icon-close-x w-5 h-5' />
                 </button>
               </div>
 
@@ -163,7 +163,7 @@ export const PersonView = ({ person, isOpen, onClose, showCommentButton = false 
                 <PersonInfo person={person} />
               </div>
 
-              <div className='flex justify-center gap-4 mt-6'>
+              <div className='buttons-user-container flex justify-center gap-4 mt-6'>
                 <Button
                   btnName='Descargar CV'
                   btnType='button'

@@ -57,19 +57,19 @@ export const Postulations = () => {
           </h2>
 
           {applications.length > 0 ? (
-            <div className='grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
+            <div className='postulated-container h-90 grid grid-cols-2 gap-6 max-h-[500px] overflow-y-auto scrollbar-custom pr-4'>
               {applications.map(app => (
                 <div
                   key={app.applicationId}
-                  className='border-2 border-[#60efdb] rounded-xl p-6'
+                  className='card-postulation h-26 border-2 border-[#60efdb] rounded-xl p-6'
                   whileHover={{ y: -2 }}
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
-                      <h3 className='font-bold text-lg text-[color:var(--color-card-text)]'>
+                      <h3 className='text font-bold text-lg text-[color:var(--color-card-text)]'>
                         {app.vacancy.title}
                       </h3>
-                      <p className='text-[color:var(--scrollbar-thumb-bg)]'>Estado: {app.status}</p>
+                      <p className='text-vacancy-applied text-[color:var(--scrollbar-thumb-bg)]'>Estado: {app.status}</p>
                     </div>
 
                     <div className='flex gap-2 ml-2'>
@@ -78,7 +78,7 @@ export const Postulations = () => {
                         className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Ver detalles'
                       >
-                        <FiEye className='w-6 h-6' />
+                        <FiEye className='icon-close-x w-6 h-6' />
                       </button>
 
                       <button
@@ -89,7 +89,7 @@ export const Postulations = () => {
                         className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
                         title='Retirar postulación'
                       >
-                        <FiTrash2 className='w-5 h-5' />
+                        <FiTrash2 className='icon-close-x w-5 h-5' />
                       </button>
                     </div>
                   </div>
@@ -97,7 +97,7 @@ export const Postulations = () => {
               ))}
             </div>
           ) : (
-            <p className='text-gray-500 py-8 text-center'>
+            <p className='text-[color:var(--color-card-text)] py-8 text-center'>
               No tienes postulaciones activas.
             </p>
           )}
