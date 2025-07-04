@@ -43,6 +43,7 @@ import { Jobs } from './Pages/Jobs/Jobs'
 import { MixedContent } from './Components/CategoriesContainer/MixedContent'
 import { Categories } from './Layouts/Categories/Categories'
 import { users } from './Utils/users'
+import { NotFound } from './Pages/PageNotFound/NotFound'
 
 function App() {
   const location = useLocation()
@@ -170,6 +171,7 @@ function App() {
                           </Route>
                           <Route path='/terminos-condiciones' element={<Terms />} />
                           <Route path='/ayuda-soporte' element={<Help />} />
+                          <Route path='*' element={<NotFound />} />
                         </Routes>
                       </div>
                     </VacancyProvider>
