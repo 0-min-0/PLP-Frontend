@@ -9,7 +9,7 @@ export const TermsModal = ({ isOpen, onClose, onAccept }) => {
 
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/40 bg-opacity-50'>
-      <div className='general rounded-2xl shadow-lg max-w-3xl w-[90%] max-h-[90vh] overflow-hidden'>
+      <div className='terms-modal general rounded-xl shadow-lg max-w-3xl w-[90%] max-h-[90vh] overflow-hidden'>
         <div className='p-6 mb-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-600'>
           <h2 className='text-xl font-bold text-[color:var(--color-card-text)]'>Términos y Condiciones</h2>
           <button

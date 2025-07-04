@@ -21,7 +21,7 @@ export const Register = () => {
               Políticas de privacidad
             </NavLink>
             <p className='text-primary-color'>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:underline'>
+            <NavLink to='/terminos-condiciones' className='text-primary-color font-semibold hover:underline'>
               Términos y condiciones
             </NavLink>
           </div>

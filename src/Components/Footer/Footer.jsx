@@ -93,17 +93,6 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               <FaWhatsapp className="footer-icon-responsive w-5 h-5" />
             </motion.a>
             <motion.a
-              href="https://github.com/0-min-0/PLP-Frontend"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#60efdb] transition duration-200"
-              aria-label="GitHub"
-              variants={iconAnimation}
-              whileHover="hover"
-            >
-              <FaGithub className="footer-icon-responsive w-5 h-5" />
-            </motion.a>
-            <motion.a
               href="https://discord.com/"
               target="_blank"
               rel="noopener noreferrer"

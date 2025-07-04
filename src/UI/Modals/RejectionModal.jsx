@@ -27,13 +27,13 @@ export const RejectionModal = ({ isOpen, onClose, onConfirm }) => {
           variants={backdropVariants}
         >
           <motion.div
-            className='general rounded-xl p-8 max-w-md w-full mx-4'
+            className='modal-auth general rounded-xl p-8 max-w-md w-full mx-4'
             variants={modalVariants}
           >
-            <h3 className="text-xl font-bold text-[color:var(--color-card-text)] mb-4">
+            <h3 className="modal-auth-title text-xl font-bold text-[color:var(--color-card-text)] mb-4">
               Confirmar Rechazo
             </h3>
-            <p className="mb-6">¿Estás seguro de rechazar esta postulación?</p>
+            <p className="text mb-6">¿Estás seguro de rechazar esta postulación?</p>
 
             <div className="flex justify-end gap-3">
               <Button

@@ -89,7 +89,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
           variants={backdropVariants}
         >
           <motion.div
-            className="general rounded-xl p-8 max-w-lg w-full mx-4 relative"
+            className="modal-auth general rounded-xl p-8 max-w-lg w-full mx-4 relative"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -101,16 +101,16 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
               aria-label="Cerrar modal"
             >
               <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                <IoClose className='w-6 h-6' />
+                <IoClose className='icon-close-x w-6 h-6' />
               </div>
             </button>
 
-            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-5">
+            <h2 className="modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-5">
               Dejar Comentario
             </h2>
 
             <div className="mb-4">
-              <label className="block font-medium text-[color:var(--color-card-text)] mb-1">
+              <label className="text block font-medium text-[color:var(--color-card-text)] mb-1">
                 Eres:
               </label>
               <div className="flex gap-4">
@@ -123,7 +123,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
                     checked={role === 'contratante'}
                     onChange={() => setRole('contratante')}
                   />
-                  <span className="ml-2">Contratante</span>
+                  <span className="text ml-2">Contratante</span>
                 </label>
                 <label className="inline-flex items-center">
                   <input
@@ -134,7 +134,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
                     checked={role === 'empresa'}
                     onChange={() => setRole('empresa')}
                   />
-                  <span className="ml-2">Empresa</span>
+                  <span className="text ml-2">Empresa</span>
                 </label>
               </div>
             </div>

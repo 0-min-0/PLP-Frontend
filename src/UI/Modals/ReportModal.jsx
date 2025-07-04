@@ -83,7 +83,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
           variants={backdropVariants}
         >
           <motion.div
-            className="general rounded-xl p-8 max-w-lg w-full mx-4 relative max-h-[90vh] overflow-y-auto"
+            className="modal-auth general rounded-xl p-8 max-w-lg w-full mx-4 relative max-h-[90vh] overflow-y-auto"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -95,11 +95,11 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
               aria-label="Cerrar modal"
             >
               <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                <IoClose className='w-6 h-6' />
+                <IoClose className='icon-close-x w-6 h-6' />
               </div>
             </button>
 
-            <h2 className="text-2xl font-bold text-[color:var(--color-card-text)] mb-5">
+            <h2 className="modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-5">
               Reportar un problema o sugerencia
             </h2>
 
@@ -117,7 +117,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
                     checked={reportType === 'technical'}
                     onChange={() => setReportType('technical')}
                   />
-                  <span className="ml-2">Problema técnico</span>
+                  <span className="text ml-2">Problema técnico</span>
                 </label>
                 <label className="inline-flex items-center">
                   <input
@@ -128,7 +128,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
                     checked={reportType === 'suggestion'}
                     onChange={() => setReportType('suggestion')}
                   />
-                  <span className="ml-2">Sugerencia</span>
+                  <span className="text ml-2">Sugerencia</span>
                 </label>
                 <label className="inline-flex items-center">
                   <input
@@ -139,7 +139,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
                     checked={reportType === 'other'}
                     onChange={() => setReportType('other')}
                   />
-                  <span className="ml-2">Otro</span>
+                  <span className="text ml-2">Otro</span>
                 </label>
               </div>
             </div>

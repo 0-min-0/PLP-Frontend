@@ -36,13 +36,13 @@ export const Help = ({ embedded = false }) => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`w-full general overflow-y-auto scrollbar-custom pr-4
-          ${embedded ? 'h-[100%] max-h-[600px]' : 'h-screen'}
+      className={` text w-full general overflow-y-auto scrollbar-custom pr-4
+          ${embedded ? 'container-help-terms h-[100%] max-h-[600px]' : 'container-screen h-screen'}
         `}
     >
-      <div className="max-w-5xl mx-auto px-6 py-8 text-[color:var(--color-card-text)] leading-relaxed">
+      <div className="sub-help-terms max-w-5xl mx-auto px-6 py-8 text-[color:var(--color-card-text)] leading-relaxed">
         <motion.h1
-          className={styles.helpTitle}
+          className="text-3xl font-bold mb-6 text-center border-b-2 border-[#405e7f] pb-4"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}

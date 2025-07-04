@@ -2,6 +2,14 @@ import React from 'react'
 import { Header } from '../../Components/Header/Header'
 import { InteractiveLogoMain } from '../../UI/InteractiveLogo'
 import { useChatIA } from '../../Context/ChatIAContext'
+import Ilustration1 from '../../assets/images/reunion.png'
+import Ilustration2 from '../../assets/images/trabajo.png'
+import Ilustration3 from '../../assets/images/trabajo2.png'
+import Ilustration4 from '../../assets/images/reunion2.png'
+
+
+
+
 
 export const AboutUs = () => {
 
@@ -21,7 +29,7 @@ export const AboutUs = () => {
           />
         }
       />
-      <div className='text-[color:var(--color-card-text)] max-w-7xl py-10 md:px-16 lg:px-24 mx-auto mt-15 '>
+      <div className='aboutus-container text-[color:var(--color-card-text)] max-w-7xl py-10 md:px-16 lg:px-24 mx-auto mt-15 '>
         <section className="grid lg:grid-cols-2 gap-10 mb-12 items-center">
           <div className="space-y-4">
             <p>
@@ -35,7 +43,7 @@ export const AboutUs = () => {
             </p>
           </div>
           <img
-            src="/images/talento.png"
+            src={Ilustration1}
             alt="Personas colaborando"
             className="w-full max-h-80 object-contain"
           />
@@ -43,7 +51,7 @@ export const AboutUs = () => {
 
         <section className="grid lg:grid-cols-2 gap-10 mb-12 items-center">
           <img
-            src="/images/conexion-laboral.png"
+            src={Ilustration4}
             alt="Conexiones laborales"
             className="w-full max-h-80 object-contain order-2 lg:order-1"
           />
@@ -68,7 +76,7 @@ export const AboutUs = () => {
             <p>Porque creemos que el valor de una persona no se mide por un título, sino por su historia, su talento y su impacto.</p>
           </div>
           <img
-            src="/images/vision-plp.png"
+            src={Ilustration3}
             alt="Visión de futuro"
             className="w-full max-h-80 object-contain"
           />
@@ -76,7 +84,7 @@ export const AboutUs = () => {
 
         <section className="grid lg:grid-cols-2 gap-10 mb-12 items-center">
           <img
-            src="/images/mision-equipo.png"
+            src={Ilustration2}
             alt="Misión colaborativa"
             className="w-full max-h-80 object-contain order-2 lg:order-1"
           />

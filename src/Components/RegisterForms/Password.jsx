@@ -27,7 +27,7 @@ export const Password = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const termsRef = useRef(null)
 
-  const pStyle = 'error text-left text-sm mt- font-semibold'
+  const pStyle = 'error error-responsive text-left text-sm mt- font-semibold'
 
   const localHandleSubmit = (e) => {
     if (!termsAccepted) {
@@ -40,18 +40,18 @@ export const Password = () => {
   }
 
   return (
-    <div className='h-full p-6 register-container'>
+    <div className='h-full p-6 page register-container'>
       <Header
         middleObject={
-          <h1 className='text-5xl font-[afacadBold] text-primary-color'>
+          <h1 className='text-5xl title-page font-[afacadBold] text-primary-color'>
             Crear contraseña
           </h1>
         }
         buttons={
-          <div className='flex gap-2'>
-            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Políticas de privacidad</NavLink>
+          <div className='links-page flex gap-2'>
+            <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:underline'>Políticas de privacidad</NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:text-[#405e7f] hover:underline'>Términos y condiciones</NavLink>
+            <NavLink to='/terminos-condiciones' className='text-primary-color font-semibold hover:underline'>Términos y condiciones</NavLink>
           </div>
         }
       />
@@ -61,14 +61,14 @@ export const Password = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='flex justify-center items-start mt-14 gap-20'
+        className='container-forms flex justify-center items-start mt-14 gap-20'
       >
         <FormsContainer
           width='w-[35%]'
           bgColor='register-form'
           title='Registrarse'
           changeForm={
-            <p className='text-[color:var(--color-card-text)] pt-4'>
+            <p className='text text-[color:var(--color-card-text)] pt-4'>
               ¿Ya estás registrado en nuestra plataforma?{' '}
               <NavLink to='/acceder' className='text-[color:var(--color-card-text)] font-semibold hover:underline hover:text-[#405e7f]/60'>
                 Iniciar sesión
@@ -77,7 +77,7 @@ export const Password = () => {
           }
           form={
             <form onSubmit={localHandleSubmit} className='w-full flex flex-col items-center gap-4 my-4'>
-              <p className='text-[color:var(--color-card-text)] font-semibold text-left'>
+              <p className='text text-[color:var(--color-card-text)] font-semibold text-left'>
                 Al crear tu contraseña debes tomar en cuenta que ésta debe contener al menos un número, una mayúscula y un carácter especial.
               </p>
 
@@ -97,9 +97,9 @@ export const Password = () => {
                   <button
                     type='button'
                     onClick={() => toggleVisibility('createPassword')}
-                    className='absolute right-4 bottom-2 text-sm underline form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                    className='absolute right-4 bottom-2 text-sm underline form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer login-form-eye-icon'
                   >
-                    {visibility.createPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
+                    {visibility.createPassword ? <PiEye className='login-form-eye-icon-size w-7 h-7' /> : <PiEyeClosed className='login-form-eye-icon-size w-7 h-7' />}
                   </button>
                 </div>
                 {errors.errorCreatePassword && (
@@ -126,9 +126,9 @@ export const Password = () => {
                   <button
                     type='button'
                     onClick={() => toggleVisibility('confirmPassword')}
-                    className='absolute right-4 bottom-2 text-sm underline form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer'
+                    className='absolute right-4 bottom-2 text-sm underline form-icon hover:text-[#405e7f] font-semibold focus:outline-none cursor-pointer login-form-eye-icon'
                   >
-                    {visibility.confirmPassword ? <PiEye className='w-7 h-7' /> : <PiEyeClosed className='w-7 h-7' />}
+                    {visibility.confirmPassword ? <PiEye className='login-form-eye-icon-size w-7 h-7' /> : <PiEyeClosed className='login-form-eye-icon-size w-7 h-7' />}
                   </button>
                 </div>
                 {errors.errorConfirmPassword && (
@@ -147,12 +147,12 @@ export const Password = () => {
                   id='terms'
                   checked={termsAccepted}
                   onChange={() => setTermsAccepted(!termsAccepted)}
-                  className='w-5 h-5 cursor-pointer terms-acept'
+                  className='icon-close-x w-5 h-5 cursor-pointer terms-acept'
                 />
-                <label htmlFor='terms' className='text-[color:var(--color-card-text)] font-medium'>
+                <label htmlFor='terms' className='text text-[color:var(--color-card-text)] font-medium'>
                   Acepto los
                   <span
-                    className='ml-1 underline hover:text-[#254160] cursor-pointer'
+                    className='ml-1 underline hover:font-semibold cursor-pointer'
                     onClick={() => setIsModalOpen(true)}
                   >
                     Términos y Condiciones
@@ -186,7 +186,7 @@ export const Password = () => {
           }
           ilustration={registerIlustration}
           imgDesc='Ilustración de inicio de sesión'
-          imgStyle='w-[400px] h-[400px]'
+          imgStyle='forms-ilustration w-[400px] h-[400px]'
         />
         <TermsModal
           isOpen={isModalOpen}

@@ -40,7 +40,7 @@ export const Employer = () => {
               Políticas de privacidad
             </NavLink>
             <p>•</p>
-            <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:underline'>
+            <NavLink to='/terminos-condiciones' className='text-primary-color font-semibold hover:underline'>
               Términos y condiciones
             </NavLink>
           </div>

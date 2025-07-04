@@ -49,7 +49,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
 
   return (
     <motion.div
-      className='max-h-[60vh] overflow-y-auto scrollbar-custom space-y-6 px-10'
+      className='sub-info-container-user max-h-[60vh] overflow-y-auto scrollbar-custom space-y-4 px-10'
       variants={containerVariants}
       initial="hidden"
       animate="visible"

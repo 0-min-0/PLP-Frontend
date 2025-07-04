@@ -67,15 +67,15 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
         variants={backdropVariants}
       >
         <motion.div
-          className='general rounded-xl px-4 py-10 w-full max-w-2xl'
+          className='container-info-user general rounded-xl px-4 py-10 w-full max-w-2xl'
           variants={modalVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
         >
-          <div className='flex justify-between items-center mb-6 ml-10'>
+          <div className='container-title-info-user flex justify-between items-center mb-6 ml-10'>
             <motion.h2 
-              className='text-2xl font-bold text-[color:var(--color-card-text)]'
+              className='info-user-title text-2xl font-bold text-[color:var(--color-card-text)]'
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
@@ -84,11 +84,11 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
             </motion.h2>
             <motion.button
               onClick={onClose}
-              className='text-[color:var(--color-card-text)] hover:bg-gray-100 transition-colors duration-300 cursor-pointer p-2 rounded-md'
+              className='icons hover:bg-gray-100 transition-colors duration-300 cursor-pointer p-2 rounded-md'
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FiX size={24} />
+              <FiX className='icon-close-x' size={24} />
             </motion.button>
           </div>
 
@@ -98,7 +98,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
           />
 
           <motion.div 
-            className="mt-8 mr-12 flex justify-end space-x-4"
+            className="buttons-user-container mt-8 mr-12 flex justify-end space-x-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}

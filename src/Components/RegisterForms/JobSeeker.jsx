@@ -38,7 +38,7 @@ export const JobSeeker = () => {
                     <div className='flex gap-2 links-page'>
                         <NavLink to='/politicas-de-privacidad' className='text-primary-color font-semibold hover:underline'>Políticas de privacidad</NavLink>
                         <p>•</p>
-                        <NavLink to='/terminos-y-condiciones' className='text-primary-color font-semibold hover:underline'>Términos y condiciones</NavLink>
+                        <NavLink to='/terminos-condiciones' className='text-primary-color font-semibold hover:underline'>Términos y condiciones</NavLink>
                     </div>
                 }
             />

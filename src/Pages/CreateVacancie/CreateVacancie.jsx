@@ -11,20 +11,20 @@ export const CreateVacancie = () => {
     const { homeRoute } = useChatIA()
 
     return (
-        <div className='h-full p-6 vacancy-back'>
+        <div className='h-full page p-6 vacancy-back'>
             <Header
                 middleObject={
-                    <h1 className='text-5xl font-[afacadBold] text-[color:var(--color-card-text)]'>
+                    <h1 className='title-page text-5xl font-[afacadBold] text-[color:var(--color-card-text)]'>
                         Crear nueva vacante
                     </h1>
                 }
                 buttons={
                     <NavLink to={homeRoute}>
-                        <HiMiniArrowUturnLeft className='text-[color:var(--color-card-text)] w-8 h-8 ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+                        <HiMiniArrowUturnLeft className='routes-icons text-[color:var(--color-card-text)] w-8 h-8 ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
                     </NavLink>
                 }
             />
-            <div className='flex justify-center items-center mt-6'>
+            <div className='settings flex justify-center items-center mt-6'>
                 <VacancyProvider>
                     <VacancyForm />
                 </VacancyProvider>

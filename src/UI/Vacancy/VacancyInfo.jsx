@@ -25,29 +25,29 @@ export const VacancyInfo = ({ vacancy }) => {
                         <div className='sub-columns-info flex items-start gap-3'>
                             <HiOutlineOfficeBuilding className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                             <div>
-                                <p className='font-semibold text-[color:var(--color-card-text)]'>Empresa/Emprendimiento</p>
-                                <p>{vacancy.company || 'No especificado'}</p>
+                                <p className='text font-semibold text-[color:var(--color-card-text)]'>Empresa/Emprendimiento</p>
+                                <p className='text'>{vacancy.company || 'No especificado'}</p>
                             </div>
                         </div>
                         <div className='sub-columns-info flex items-start gap-3'>
                             <HiOutlineLocationMarker className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                             <div>
-                                <p className='font-semibold text-[color:var(--color-card-text)]'>Ubicación</p>
-                                <p>{vacancy.location}</p>
+                                <p className='text font-semibold text-[color:var(--color-card-text)]'>Ubicación</p>
+                                <p className='text'>{vacancy.location}</p>
                             </div>
                         </div>
                         <div className='sub-columns-info flex items-start gap-3'>
                             <HiOutlineTag className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                             <div>
-                                <p className='font-semibold text-[color:var(--color-card-text)]'>Sector</p>
-                                <p>Tecnología</p>
+                                <p className='text font-semibold text-[color:var(--color-card-text)]'>Sector</p>
+                                <p className='text'>Tecnología</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className='desc-company mb-6'>
                     <h5 className='title-desc-company font-semibold text-lg text-[color:var(--color-card-text)] mb-3'>Descripción de la empresa</h5>
-                    <p className='text-[color:var(--color-card-text)]'>
+                    <p className='text text-[color:var(--color-card-text)]'>
                         {vacancy.companyDescription || 'Somos una empresa de tecnología en busca de problemáticas alrededor para darles soluciones innovadoras y eficientes.'}
                     </p>
                 </div>
@@ -56,58 +56,58 @@ export const VacancyInfo = ({ vacancy }) => {
             <hr className='hr border-t border-gray-200 mb-6' />
             {/* Información de la vacante */}
             <div>
-                <h4 className='vacancy-section-title text-xl font-semibold text-[color:var(--color-card-text)] mb-4'>Detalles de la Vacante</h4>
+                <h4 className='subtitle-section text-xl font-semibold text-[color:var(--color-card-text)] mb-4'>Detalles de la Vacante</h4>
                 <div className='columns-info-2 grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
                     <div className='sub-columns-info flex items-start gap-3'>
                         <HiOutlineBriefcase className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                         <div>
-                            <p className='font-semibold text-[color:var(--color-card-text)]'>Nombre del puesto</p>
-                            <p>{vacancy.title || vacancy.vacancyName}</p>
+                            <p className='text font-semibold text-[color:var(--color-card-text)]'>Nombre del puesto</p>
+                            <p className='text'>{vacancy.title || vacancy.vacancyName}</p>
                         </div>
                     </div>
                     <div className='sub-columns-info flex items-start gap-3'>
                         <HiOutlineUser className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                         <div>
-                            <p className='font-semibold text-[color:var(--color-card-text)]'>Persona de contacto</p>
-                            <p>{vacancy.contactPerson || 'No especificado'}</p>
+                            <p className='text font-semibold text-[color:var(--color-card-text)]'>Persona de contacto</p>
+                            <p className='text'>{vacancy.contactPerson || 'No especificado'}</p>
                         </div>
                     </div>
                     {vacancy.contact.includes('@') ? (
                         <div className='sub-columns-info flex items-start gap-3'>
                             <HiOutlineMail className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                             <div>
-                                <p className='font-semibold text-[color:var(--color-card-text)]'>Correo electrónico</p>
-                                <p>{vacancy.contact}</p>
+                                <p className='textfont-semibold text-[color:var(--color-card-text)]'>Correo electrónico</p>
+                                <p className='text'>{vacancy.contact}</p>
                             </div>
                         </div>
                     ) : (
                         <div className='sub-columns-info flex items-start gap-3'>
                             <HiOutlinePhone className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                             <div>
-                                <p className='font-semibold text-[color:var(--color-card-text)]'>Teléfono</p>
-                                <p>{vacancy.contact}</p>
+                                <p className='textfont-semibold text-[color:var(--color-card-text)]'>Teléfono</p>
+                                <p className='text'>{vacancy.contact}</p>
                             </div>
                         </div>
                     )}
                     <div className='sub-columns-info flex items-start gap-3'>
                         <HiOutlineClock className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                         <div>
-                            <p className='font-semibold text-[color:var(--color-card-text)]'>Disponibilidad</p>
-                            <p>{vacancy.availability}</p>
+                            <p className='text font-semibold text-[color:var(--color-card-text)]'>Disponibilidad</p>
+                            <p className='text'>{vacancy.availability}</p>
                         </div>
                     </div>
                     <div className='sub-columns-info flex items-start gap-3'>
                         <HiOutlineTag className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                         <div>
-                            <p className='font-semibold text-[color:var(--color-card-text)]'>Categoría</p>
-                            <p>{getCategoryLabel(vacancy.category)}</p>
+                            <p className='text font-semibold text-[color:var(--color-card-text)]'>Categoría</p>
+                            <p className='text'>{getCategoryLabel(vacancy.category)}</p>
                         </div>
                     </div>
                     <div className='sub-columns-info flex items-start gap-3'>
                         <HiOutlineCurrencyDollar className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                         <div>
-                            <p className='font-semibold text-[color:var(--color-card-text)]'>Salario estimado</p>
-                            <p>{vacancy.salary || 'A convenir'}</p>
+                            <p className='text font-semibold text-[color:var(--color-card-text)]'>Salario estimado</p>
+                            <p className='text'>{vacancy.salary || 'A convenir'}</p>
                         </div>
                     </div>
                 </div>
@@ -116,10 +116,10 @@ export const VacancyInfo = ({ vacancy }) => {
             <hr className='hr border-t border-gray-200 mb-6' />
             {/* Responsabilidades */}
             <div>
-                <h4 className='vacancy-section-title text-xl font-semibold text-[color:var(--color-card-text)] mb-4'>Responsabilidades</h4>
+                <h4 className='subtitle-section text-xl font-semibold text-[color:var(--color-card-text)] mb-4'>Responsabilidades</h4>
                 <div className='sub-columns-info flex items-start gap-3'>
                     <HiOutlineClipboardList className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
-                    <div className='text-[color:var(--color-card-text)]'>
+                    <div className='text text-[color:var(--color-card-text)]'>
                         {vacancy.responsibilities.split('\n').map((item, i) => (
                             <p key={i} className='mb-2'>{item}</p>
                         ))}

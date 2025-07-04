@@ -44,7 +44,7 @@ export const AlreadyAppliedModal = ({ isOpen, onClose }) => {
                     variants={backdropVariants}
                 >
                     <motion.div
-                        className='general rounded-xl p-8 max-w-md w-full mx-4 relative'
+                        className='modal-auth general rounded-xl p-8 max-w-md w-full mx-4 relative'
                         variants={modalVariants}
                         initial='hidden'
                         animate='visible'
@@ -67,8 +67,8 @@ export const AlreadyAppliedModal = ({ isOpen, onClose }) => {
                                     />
                                 </svg>
                             </div>
-                            <h3 className='text-2xl font-bold text-[color:var(--color-card-text)] mb-2'>Ya estás postulado</h3>
-                            <p className='text-[color:var(--color-card-text)] mb-6'>Tu hoja de vida ya está postulada a esta vacante, no necesitas postularte denuevo.</p>
+                            <h3 className='modal-auth-title text-2xl font-bold text-[color:var(--color-card-text)] mb-2'>Ya estás postulado</h3>
+                            <p className='text -[color:var(--color-card-text)] mb-6'>Tu hoja de vida ya está postulada a esta vacante, no necesitas postularte denuevo.</p>
                             <Button
                                 btnName='Cerrar'
                                 clicked={onClose}

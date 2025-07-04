@@ -3,6 +3,7 @@ import { FiEdit, FiSave, FiX } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Select } from '../../UI/Select'
 import { useSettings } from '../../Context/SettingsContext'
+import { useTheme } from '../../Context/ThemeContext' // Importar el useTheme
 
 const buttonVariants = {
   hidden: { opacity: 0, y: -10 },
@@ -31,15 +32,19 @@ export const Preferences = () => {
     handleSelectChange,
     errors,
     getActiveError
-  } = useSettings()
+  } = useSettings();
+  
+  const { toggleTheme } = useTheme();
 
   const handleSave = () => {
-    const isValid = true 
+    const isValid = true;
     
     if (isValid) {
-      handleSaveWithValidation()
+      // Aplicar el tema seleccionado
+      toggleTheme(formData.theme);
+      handleSaveWithValidation();
     }
-  }
+  };
 
   return (
     <div className='sub-section'>

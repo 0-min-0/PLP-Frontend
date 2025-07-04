@@ -32,26 +32,28 @@ export const AIChatBot = () => {
     <div className={`${styles.container} ${isFullscreen ? styles.fullscreenContainer : styles.normalContainer}`}>
       {/* Header */}
       <div className={`${styles.header} ${isFullscreen ? styles.fullscreenHeader : ''}`}>
-        <div className='w-full flex justify-between'>
-          <div className='flex items-center gap-4'>
-            <FaRobot className='text-2xl text-[#60efdb]' />
-            <h2 className='text-2xl font-semibold'>Asistente de IA</h2>
+        <div className={styles.headerContent}>
+          <div className={styles.headerLeft}>
+            <FaRobot className={styles.botIcon} />
+            <h2 className={styles.headerTitle}>Asistente de IA</h2>
           </div>
-          <div>
+          <div className={styles.headerRight}>
             <NavLink to={homeRoute}>
-              <HiMiniArrowUturnLeft className='w-8 h-8 text-white ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+              <HiMiniArrowUturnLeft className={styles.backIcon} />
             </NavLink>
           </div>
         </div>
       </div>
 
       {/* Contenedor de mensajes */}
-      <div className={`${styles.messagesContainer} scrollbar-custom ${isFullscreen ? styles.fullscreenMessages : ''}`}>
-        <div className='space-y-3'>
+      <div className={`${styles.messagesContainer} ${styles.scrollbarCustom} ${isFullscreen ? styles.fullscreenMessages : ''}`}>
+        <div className={styles.messagesWrapper}>
           {messages.map((message) => (
             <div
               key={message.id}
-              className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'} items-start gap-2`}
+              className={`${styles.messageWrapper} ${
+                message.sender === 'user' ? styles.userMessageWrapper : styles.botMessageWrapper
+              }`}
             >
               {message.sender === 'bot' ? (
                 <motion.div
@@ -60,75 +62,70 @@ export const AIChatBot = () => {
                   variants={botMessageVariants}
                   className={styles.botMessage}
                 >
-                  <p className='whitespace-pre-wrap'>{message.text}</p>
+                  <p>{message.text}</p>
                 </motion.div>
               ) : (
-                <>
+                <div className={styles.messageGroup}>
                   {editingId === message.id ? (
-                    <div className="flex flex-col items-end space-y-2">
+                    <div className={styles.editContainer}>
                       <textarea
                         value={editValue}
                         onChange={(e) => setEditValue(e.target.value)}
-                        placeholder='Escribe tu mensaje...'
-                        className='w-full bg-white px-4 py-3 pr-12 text-lg text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
-                        focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent 
-                        transition-all duration-500 resize-none'
+                        className={styles.editTextarea}
                         rows={3}
                       />
-                      <div className="flex space-x-2">
+                      <div className={styles.editButtons}>
                         <button
                           onClick={() => saveEdit(message.id)}
-                          className="px-3 py-1 bg-[#60efdb] text-[#405e7f] rounded-lg text-sm flex items-center gap-1 cursor-pointer"
+                          className={styles.editConfirmButton}
                         >
                           <FiCheck /> Guardar
                         </button>
                         <button
                           onClick={cancelEdit}
-                          className="px-3 py-1 bg-gray-200 text-[#405e7f] rounded-lg text-sm flex items-center gap-1 cursor-pointer"
+                          className={styles.editCancelButton}
                         >
                           <FiX /> Cancelar
                         </button>
                       </div>
                     </div>
                   ) : (
-                    <div className="flex items-start gap-2 group">
-                      <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity pt-2">
+                    <>
+                      <div className={styles.actionButtons}>
                         <button
                           onClick={() => handleCopy(message.text, message.id)}
-                          className='text-[#405e7f]/70 hover:text-[#405e7f] transition-colors cursor-pointer'
-                          title='Copiar'
+                          className={styles.actionButton}
+                          title="Copiar"
                         >
-                          {copiedId === message.id ? <FiCheck className='text-green-500 w-5 h-5' /> : <FiCopy className='w-5 h-5' />}
+                          {copiedId === message.id ? <FiCheck /> : <FiCopy />}
                         </button>
                         <button
                           onClick={() => startEditing(message.id, message.text)}
-                          className='text-[#405e7f]/70 hover:text-[#405e7f] transition-colors cursor-pointer'
-                          title='Editar'
+                          className={styles.actionButton}
+                          title="Editar"
                         >
-                          <FiEdit2 className='w-5 h-5' />
+                          <FiEdit2 />
                         </button>
                       </div>
                       <div className={styles.userMessage}>
-                        <p className='whitespace-pre-wrap'>{message.text}</p>
+                        <p>{message.text}</p>
                       </div>
-                    </div>
+                      {copiedId === message.id && (
+                        <div className={styles.tooltip}>¡Copiado!</div>
+                      )}
+                    </>
                   )}
-                  {copiedId === message.id && !editingId && (
-                    <div className="absolute -top-8 right-0 bg-[#405e7f] text-white text-xs px-2 py-1 rounded-lg">
-                      ¡Copiado!
-                    </div>
-                  )}
-                </>
+                </div>
               )}
             </div>
           ))}
           {isLoading && (
-            <div className='flex justify-start'>
-              <div className='bg-[#405e7f] text-white rounded-full px-4 py-3'>
-                <div className='flex space-x-2'>
-                  <div className='w-2 h-2 rounded-full bg-white animate-bounce'></div>
-                  <div className='w-2 h-2 rounded-full bg-white animate-bounce' style={{ animationDelay: '0.2s' }}></div>
-                  <div className='w-2 h-2 rounded-full bg-white animate-bounce' style={{ animationDelay: '0.4s' }}></div>
+            <div className={styles.loadingContainer}>
+              <div className={styles.loadingBubble}>
+                <div className={styles.loadingDots}>
+                  <div className={`${styles.loadingDot} ${styles.bounceAnimation}`} />
+                  <div className={`${styles.loadingDot} ${styles.delay200}`} />
+                  <div className={`${styles.loadingDot} ${styles.delay400}`} />
                 </div>
               </div>
             </div>
@@ -137,33 +134,30 @@ export const AIChatBot = () => {
         </div>
       </div>
 
-      {/* Input area */}
+      {/* Área de input */}
       <div className={styles.inputArea}>
-        <div className='flex items-center space-x-2'>
-          <div className='flex-1 relative'>
+        <div className={styles.inputContainer}>
+          <div className={styles.textareaWrapper}>
             <textarea
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyPress}
-              placeholder='Escribe tu mensaje...'
-              className='w-full bg-white px-4 py-3 pr-12 text-lg text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 
-                        focus:outline-none focus:ring-2 focus:ring-[#60efdb] focus:border-transparent 
-                        transition-all duration-500 resize-none'
-              rows='1'
+              className={styles.textarea}
+              placeholder="Escribe tu mensaje..."
+              rows={1}
               disabled={isLoading}
             />
-            <FiMessageSquare className='w-6 h-6 absolute right-3 top-4 text-[#405e7f]/40' />
+            <FiMessageSquare className={styles.textareaIcon} />
           </div>
           <button
             onClick={handleSendMessage}
             disabled={!inputValue.trim() || isLoading}
-            className='bg-[#60efdb] text-[#405e7f] rounded-full p-4 focus:outline-none focus:ring-offset-2 disabled:opacity-50 
-                      disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 cursor-pointer ml-2'
+            className={styles.sendButton}
           >
-            <FiSend className='text-xl' />
+            <FiSend className={styles.sendIcon} />
           </button>
         </div>
-        <p className='text-xs text-[#405e7f]/70 mt-3 text-center'>
+        <p className={styles.footerText}>
           El asistente de IA puede cometer errores. Verifica la información importante.
         </p>
       </div>

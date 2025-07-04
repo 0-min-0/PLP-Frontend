@@ -84,7 +84,7 @@ export const Select = ({
                 ))}
             </div>
 
-            {error && <span className='text-red-500 text-sm mt-1 block'>{error}</span>}
+            {error && <span className='text-red-500 error error-responsive text-sm mt-1 block'>{error}</span>}
         </div>
     )
 }

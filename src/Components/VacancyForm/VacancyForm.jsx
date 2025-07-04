@@ -22,16 +22,16 @@ export const VacancyForm = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className='max-w-5xl rounded-xl px-20 py-12 mx-30 mt-4 mb-8 bg-[#405e7f]'
+      className='vacancy-form max-w-5xl rounded-xl px-20 py-12 mx-30 mt-4 mb-8 bg-[#405e7f]'
     >
       <form onSubmit={handleFormSubmit}>
-        <div className='flex justify-between items-start mb-8'>
+        <div className='container-create-title flex justify-between items-start mb-8'>
           <h2 className='text-white text-xl font-semibold'>
             Crea una nueva vacante, al terminar de llenar todos los campos, haz click en "publicar vacante"
           </h2>
         </div>
         <div>
-          <div className='flex flex-col gap-2'>
+          <div className='form-create-vacancy-1 flex flex-col gap-2'>
             <Input
               labelTitle='Nombre de la vacante'
               labelColor='white'
@@ -90,7 +90,7 @@ export const VacancyForm = () => {
             />
           </div>
 
-          <div className='flex flex-col gap-5 mt-4 mb-8'>
+          <div className='form-create-vacancy-2 flex flex-col gap-5 mt-4 mb-8'>
             <Desc
               nameDesc='Responsabilidades y especificaciones'
               holderDesc='Escribe las responsabilidades que tendrá la persona que ocupe la vacante'

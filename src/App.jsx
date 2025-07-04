@@ -23,7 +23,7 @@ import { VacancyProvider } from './Context/VacancyContext'
 import { PublishedVacancies } from './Pages/Settings/PublishedVacancies'
 import { Help } from './Pages/Settings/Help'
 import { Terms } from './Pages/Settings/Terms'
-import { VerifyAccount } from './Pages/SentEmails/VerifyAccount'
+import { ForgottenPassword } from './Pages/SentEmails/ForgottenPassword'
 import { SettingsProvider } from './Context/SettingsContext'
 import { Postulations } from './Pages/Settings/SettingsJobSeeker/Postulations'
 import { GeneralEmployer } from './Pages/Settings/SettingsEmployer/GeneralEmployer'
@@ -40,8 +40,6 @@ import { AIChatBot } from './Pages/Chat/AIChatBot'
 import { ChatIAProvider } from './Context/ChatIAContext'
 import { UserProvider } from './Context/UserContext'
 import { Jobs } from './Pages/Jobs/Jobs'
-import { VacanciesByCategory } from './Components/CategoriesContainer/VacanciesByCategory'
-import { PeopleByCategory } from './Components/CategoriesContainer/PeopleByCategory'
 import { MixedContent } from './Components/CategoriesContainer/MixedContent'
 import { Categories } from './Layouts/Categories/Categories'
 import { users } from './Utils/users'
@@ -137,7 +135,7 @@ function App() {
                             <Route path='ayuda-soporte' element={<Help embedded />} />
                             <Route path='chat-bot' element={<AIChatBot />} />
                           </Route>
-                          <Route path='/recuperar-contraseña' element={<VerifyAccount />} />
+                          <Route path='/recuperar-contraseña' element={<ForgottenPassword />} />
                           <Route path='/sobre-plp' element={<AboutUs />} />
                           <Route path='/sobre-plp-contratista' element={<AboutUs />} />
                           <Route path='/sobre-plp-contratante' element={<AboutUs />} />
