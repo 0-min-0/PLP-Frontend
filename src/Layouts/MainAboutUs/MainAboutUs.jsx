@@ -53,7 +53,7 @@ export const MainAboutUs = () => {
   const imgStyle = 'about-image w-100 h-100 rounded-xl object-cover cursor-pointer'
 
   return (
-    <div className='about-responsive px-24 py-16'>
+    <div className='about-container about-responsive px-24 py-16'>
       <div className='about-card flex flex-col items-center'>
         <motion.h2
           className='jobs-title about-title'

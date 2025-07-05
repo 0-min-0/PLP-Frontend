@@ -67,6 +67,14 @@ body {
   color: var(--color-card-title-text);
 }
 
+.text-primary-color {
+  color: var(--color-text);
+}
+
+.dark-mode .text-primary-color {
+  color: var(--color-text-primary);
+}
+
 .card-info-text {
   color: var(--color-card-info-text);
 }
@@ -154,7 +162,6 @@ body {
 
 .menu-title {
   color: var(--color-card-text);
-  font-weight: bold;
   font-size: 1rem;
 }
 
@@ -549,7 +556,7 @@ body {
 
 .notification {
   background-color: var(--color-bg-primary);
-  border-color: #f1f1f1;
+  border-color: #eaeaea;
 }
 
 .dark-mode .notification {

@@ -83,7 +83,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
           variants={backdropVariants}
         >
           <motion.div
-            className="modal-auth general rounded-xl p-8 max-w-lg w-full mx-4 relative max-h-[90vh] overflow-y-auto"
+            className="modal-comment general rounded-xl p-8 max-w-lg w-full mx-4 relative max-h-[90vh] overflow-y-auto"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -103,7 +103,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
               Reportar un problema o sugerencia
             </h2>
 
-            <div className="mb-4">
+            <div className="modal-comment-input mb-4">
               <label className="block text-sm font-medium text-[color:var(--color-card-text)] mb-1">
                 Tipo de reporte:
               </label>
@@ -144,7 +144,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
               </div>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <Input
                 labelTitle="Tu email"
                 iType="email"
@@ -156,7 +156,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
 
-            <div className="mb-4">
+            <div className="">
               <Desc
                 nameDesc={reportType === 'suggestion' ? 'Tu sugerencia' : 'Descripción del problema'}
                 value={reportText}
@@ -173,7 +173,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
               />
             </div>
 
-            <div className='flex justify-end space-x-3 mt-6'>
+            <div className='flex justify-end space-x-3 mt-4'>
               <Button
                 btnName="Cancelar"
                 btnStyle="bg-gray-200 text-gray-700 hover:bg-gray-300"

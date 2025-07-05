@@ -38,7 +38,7 @@ export const SearchBar = ({
         {query && (
           <button
             onClick={handleClear}
-            className='absolute right-4 text-gray-400 hover:text-gray-600 cursor-pointer'
+            className='icon-x-search absolute right-4 text-gray-400 hover:text-gray-600 cursor-pointer'
             aria-label='Limpiar búsqueda'
           >
             <XMarkIcon className='icons-search h-5 w-5' />

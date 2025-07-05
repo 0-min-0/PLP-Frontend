@@ -42,7 +42,7 @@ export const Notifications = () => {
         }
         buttons={
           <NavLink to={homeRoute}>
-            <HiMiniArrowUturnLeft className='routes-icons w-8 h-8 text-white ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
+            <HiMiniArrowUturnLeft className='routes-icons w-8 h-8 text-primary-color ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-200 hover:-translate-y-0.5 active:scale-[0.98] ml-6' />
           </NavLink>
         }
       />
@@ -58,7 +58,7 @@ export const Notifications = () => {
                 key={index}
                 onClick={() => handleOpen(index)}
                 className={`notification-card p-4 border-2 rounded-xl cursor-pointer transition-all mr-2 ${readStatus[index]
-                  ? 'notifications'
+                  ? 'notification'
                   : 'unread-notify'
                   }`}
               >

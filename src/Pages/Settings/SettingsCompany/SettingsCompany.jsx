@@ -17,7 +17,7 @@ export const SettingsCompany = () => {
                         />
                     }
                     middleObject={
-                        <h1 className='title-page text-5xl font-[afacadBold] text-[#405e7f]text-primary-color'>
+                        <h1 className='title-page text-5xl font-[afacadBold] text-primary-color'>
                             Configuraciones
                         </h1>
                     }

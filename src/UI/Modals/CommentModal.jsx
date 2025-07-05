@@ -89,7 +89,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
           variants={backdropVariants}
         >
           <motion.div
-            className="modal-auth general rounded-xl p-8 max-w-lg w-full mx-4 relative"
+            className="modal-comment general rounded-xl p-8 max-w-lg w-full mx-4 relative"
             variants={modalVariants}
             initial="hidden"
             animate="visible"
@@ -109,7 +109,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
               Dejar Comentario
             </h2>
 
-            <div className="mb-4">
+            <div className="modal-comment-input mb-4">
               <label className="text block font-medium text-[color:var(--color-card-text)] mb-1">
                 Eres:
               </label>
@@ -139,7 +139,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
               </div>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-2">
               <Input
                 labelTitle={currentConfig.label}
                 iType="text"
@@ -151,7 +151,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
               />
             </div>
 
-            <div className="mb-4">
+            <div className="">
               <Desc
                 nameDesc="Tu comentario"
                 value={commentText}
@@ -162,15 +162,15 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
               />
             </div>
 
-            <div className='flex justify-end space-x-3 mt-6'>
+            <div className='flex justify-end space-x-3 mt-4'>
               <Button
                 btnName="Cancelar"
-                btnStyle="bg-gray-200 text-gray-700 hover:bg-gray-300"
+                btnStyle="bg-gray-200 text-gray-700"
                 clicked={onClose}
               />
               <Button
                 btnName="Guardar Comentario"
-                btnStyle="bg-[#60efdb] text-[#405e7f] hover:bg-[#4fd4c7]"
+                btnStyle="bg-[#60efdb] text-[#405e7f]"
                 clicked={handleSave}
                 disabled={!commentText.trim() || !commenterName.trim()}
               />

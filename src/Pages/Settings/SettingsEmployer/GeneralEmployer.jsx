@@ -102,7 +102,7 @@ export const GeneralEmployer = () => {
             </AnimatePresence>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 space-x-2'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-1 space-x-2 mb-1'>
             {/* Campo Tipo de Documento */}
             <div>
               <Select
@@ -249,6 +249,7 @@ export const GeneralEmployer = () => {
                 nameDesc={fieldLabels.desc || 'Descripción personal'}
                 holderDesc='Escribe una breve descripción sobre ti'
                 name='desc'
+                color='text-white'
                 value={formData.desc || ''}
                 onChange={handleChange}
                 disabled={!isEditing || activeSection !== 'personal'}

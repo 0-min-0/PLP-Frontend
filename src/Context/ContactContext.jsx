@@ -132,7 +132,6 @@ export const ContactProvider = ({ children }) => {
     }
   }
   
-  // Componente reutilizable para los modales
   const Modal = ({ isOpen, onClose, title, message, children }) => (
     <AnimatePresence>
       {isOpen && (
@@ -143,7 +142,7 @@ export const ContactProvider = ({ children }) => {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white rounded-xl p-12 max-w-md w-full mx-4 relative"
+            className="modal-auth general rounded-xl p-12 max-w-md w-full mx-4 relative"
             initial={{ y: -20, opacity: 0, scale: 0.98 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 20, opacity: 0, scale: 0.98 }}
@@ -153,16 +152,16 @@ export const ContactProvider = ({ children }) => {
               onClick={onClose}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
             >
-              <div className='p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
-                <IoClose className='w-6 h-6' />
+              <div className='icons p-1 hover:bg-gray-100 rounded-lg cursor-pointer'>
+                <IoClose className='icon-close-x w-6 h-6' />
               </div>
             </button>
 
-            <h2 className="text-2xl font-bold text-[#405e7f] mb-4">
+            <h2 className="modal-auth-title text-primary-color text-2xl font-bold mb-4">
               {title}
             </h2>
 
-            <p className="mb-6 text-gray-700">
+            <p className="modal-auth-text mb-6">
               {message}
             </p>
 
@@ -196,7 +195,7 @@ export const ContactProvider = ({ children }) => {
       >
         <Button
           btnName='Cerrar'
-          onClick={() => setShowSuccessModal(false)}
+          clicked={() => setShowSuccessModal(false)}
           btnStyle='w-full bg-[#60efdb] text-[#405e7f]'
         />
       </Modal>
@@ -211,13 +210,13 @@ export const ContactProvider = ({ children }) => {
         <div className="flex gap-4">
           <Button
             btnName='Reintentar'
-            onClick={handleSubmit}
+            clicked={handleSubmit}
             btnStyle='flex-1 bg-[#405e7f] text-white'
             disabled={isLoading}
           />
           <Button
             btnName='Cerrar'
-            onClick={() => setShowErrorModal(false)}
+            clicked={() => setShowErrorModal(false)}
             btnStyle='flex-1 bg-[#60efdb] text-[#405e7f]'
           />
         </div>

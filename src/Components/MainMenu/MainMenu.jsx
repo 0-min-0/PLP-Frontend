@@ -64,8 +64,8 @@ export const MainMenu = () => {
         role='menu'
       >
         <ul className='menu-list p-2'>
-          <div className='flex text-left p-3'>
-            <h3 className='mtitle-container menu-title menu-responsive-title'>Menú</h3>
+          <div className='mtitle-container flex text-left'>
+            <h3 className=' menu-title menu-responsive-title'>Menú</h3>
           </div>
           <hr className='border-t border-gray-100' />
           <MenuItem to='/categorias-trabajo'>Categorías de trabajo</MenuItem>
