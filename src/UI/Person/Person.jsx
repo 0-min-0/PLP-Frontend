@@ -37,15 +37,15 @@ export const Person = ({
         <div className='flex-grow'>
           <div className={itemStyle}>
             <h3 className='job-text font-semibold'>Nombre • </h3>
-            <p className='job-text truncate'>{name}</p>
+            <p className='job-text truncate max-w-[100px]'>{name}</p>
           </div>
           <div className={itemStyle}>
             <h3 className='job-text font-semibold'>Ubicación • </h3>
-            <p className='job-text truncate'>{town}</p>
+            <p className='job-text truncate max-w-[100px]'>{town}</p>
           </div>
           <div className={itemStyle}>
             <h3 className='job-text font-semibold'>Categoría •</h3>
-            <p className='job-text truncate'>{category}</p>
+            <p className='job-text truncate max-w-[100px]'>{category}</p>
           </div>
         </div>
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import './Style/index.css'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { MainPage } from './Pages/MainPage/MainPage'
@@ -46,6 +45,7 @@ import { users } from './Utils/users'
 import { NotFound } from './Pages/PageNotFound/NotFound'
 
 function App() {
+
   const location = useLocation()
 
   const bgRoutes = [

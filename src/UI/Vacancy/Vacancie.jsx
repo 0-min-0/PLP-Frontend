@@ -3,6 +3,7 @@ import { IoBriefcaseOutline } from 'react-icons/io5'
 import { Button } from '../button'
 import { VacancyView } from './VacancyView'
 import { useVacancy } from '../../Context/VacancyContext'
+import { getCategoryLabel } from '../../Utils/options'
 
 export const Vacancie = ({
   onShowDetails,
@@ -52,7 +53,7 @@ export const Vacancie = ({
 
           <div className='flex items-start'>
             <h3 className='job-text font-semibold whitespace-nowrap'>Categoría • </h3>
-            <p className='job-text ml-1 line-clamp-1'>{category || 'No especificado'}</p>
+            <p className='job-text ml-1 line-clamp-1'>{getCategoryLabel(vacancy.category)}</p>
           </div>
         </div>
 

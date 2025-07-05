@@ -84,7 +84,7 @@ export const VacancyInfo = ({ vacancy }) => {
                         <div className='sub-columns-info flex items-start gap-3'>
                             <HiOutlinePhone className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
                             <div>
-                                <p className='textfont-semibold text-[color:var(--color-card-text)]'>Teléfono</p>
+                                <p className='text font-semibold text-[color:var(--color-card-text)]'>Teléfono</p>
                                 <p className='text'>{vacancy.contact}</p>
                             </div>
                         </div>

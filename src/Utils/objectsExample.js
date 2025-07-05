@@ -275,7 +275,7 @@ export let peopleExample = [
     personalDescription: 'Desarrollador con 3 años de experiencia en React y TypeScript',
     skills: ['React', 'JavaScript', 'CSS', 'Redux'],
     studies: 'Ingeniería de Sistemas - Universidad Nacional',
-    category: 'Educación y formación',
+    category: 'Tecnología e informática',
     appliedTo: [
       {
         vacancyId: 1,
@@ -325,7 +325,7 @@ export let peopleExample = [
     personalDescription: 'Especialista en diseño de interfaces y experiencia de usuario con enfoque accesible',
     skills: ['Figma', 'Adobe XD', 'Sketch', 'HTML'],
     studies: 'Diseño Gráfico - Universidad de Medellín',
-    category: 'Educación y formación',
+    category: 'Diseño web',
     appliedTo: [
       {
         vacancyId: 2,
@@ -381,7 +381,7 @@ export let peopleExample = [
     personalDescription: 'Experiencia en análisis de grandes volúmenes de datos y visualización con Power BI',
     skills: ['Python', 'SQL', 'Power BI', 'Excel'],
     studies: 'Estadística - Universidad del Valle',
-    category: 'Educación y formación',
+    category: 'Administración y oficina',
     appliedTo: [
       {
         vacancyId: 4,
@@ -431,7 +431,7 @@ export let peopleExample = [
     personalDescription: 'Ingeniera de software enfocada en backend con experiencia en microservicios',
     skills: ['Java', 'Spring Boot', 'Docker', 'Kubernetes'],
     studies: 'Ingeniería de Software - Universidad del Norte',
-    category: 'Educación y formación',
+    category: 'Tecnología e informática',
     appliedTo: [
       {
         vacancyId: 6,
@@ -481,7 +481,7 @@ export let peopleExample = [
     personalDescription: 'Técnico en soporte con habilidades en instalación y mantenimiento de equipos',
     skills: ['Windows', 'Linux', 'Networking', 'Atención al cliente'],
     studies: 'Tecnología en Sistemas - SENA',
-    category: 'Educación y formación',
+    category: 'Tecnología e informática',
     appliedTo: [
       {
         vacancyId: 8,
@@ -531,7 +531,7 @@ export let peopleExample = [
     personalDescription: 'Especialista en SEO, SEM y estrategias de contenido para redes sociales',
     skills: ['SEO', 'Google Ads', 'Meta Ads', 'Canva'],
     studies: 'Comunicación Social - Universidad del Quindío',
-    category: 'Educación y formación',
+    category: 'Marketing y ventas',
     appliedTo: [
       {
         vacancyId: 9,
@@ -770,38 +770,46 @@ export const notifications = [ // Notificaciones
 
 
 
-const syncVacancies = () => {
-  localStorage.setItem('vacancies', JSON.stringify(vacanciesExample))
-}
-
 export const initializeVacancies = () => {
-  const storedVacancies = localStorage.getItem('vacancies')
-  if (!storedVacancies) {
-    syncVacancies()
-  } else {
-    vacanciesExample = JSON.parse(storedVacancies)
-  }
-}
-
-initializeVacancies()
-
-export const getVacancies = () => {
-  if (process.env.NODE_ENV === 'development') {
-    const stored = localStorage.getItem('vacancies')
-    return stored ? JSON.parse(stored) : [...vacanciesExample]
-  }
-
   try {
-    const stored = localStorage.getItem('vacancies')
-    const storedVacancies = stored ? JSON.parse(stored) : []
-    const storedIds = new Set(storedVacancies.map(v => v.id))
-    const uniqueExampleVacancies = vacanciesExample.filter(v => !storedIds.has(v.id))
-    return [...storedVacancies, ...uniqueExampleVacancies]
+    const storedVacancies = localStorage.getItem('vacancies');
+    
+    if (!storedVacancies) {
+      syncVacancies();
+      return vacanciesExample;
+    }
+    
+    return JSON.parse(storedVacancies);
   } catch (error) {
-    console.error('Error al cargar vacantes:', error)
-    return [...vacanciesExample]
+    console.error('Error al inicializar vacantes:', error);
+    syncVacancies(); // Restablece a las vacantes iniciales
+    return vacanciesExample;
   }
-}
+};
+
+// Obtener vacantes optimizado
+export const getVacancies = () => {
+  try {
+    const stored = localStorage.getItem('vacancies');
+    
+    // En desarrollo, puedes forzar la recarga de vacantes iniciales
+    if (process.env.NODE_ENV === 'development' && !stored) {
+      syncVacancies();
+      return [...vacanciesExample];
+    }
+    
+    return stored ? JSON.parse(stored) : [...initialVacancies];
+  } catch (error) {
+    console.error('Error al obtener vacantes:', error);
+    return [...vacanciesExample];
+  }
+};
+
+// Función para resetear a las vacantes iniciales
+export const resetVacancies = () => {
+  syncVacancies();
+  return [...vacanciesExample];
+};
 
 export const addVacancyToExample = (formData) => {
   const currentVacancies = getVacancies()

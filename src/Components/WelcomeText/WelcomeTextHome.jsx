@@ -96,7 +96,7 @@ export const WelcomeTextHome = () => {
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeInRight}
         >
-          <img className='ilustration-main w-115 h-115 m-0 p-0' src={mainIlustration} alt='Ilustracion Principal' />
+          <img className='ilustration-main w-130 h-115 m-0 p-0' src={mainIlustration} alt='Ilustracion Principal' />
         </motion.div>
       </div>
       <InfoContainer />

@@ -49,8 +49,11 @@ const categoryMap = categories.reduce((acc, category) => {
   return acc
 }, {})
 
-export const getCategoryLabel = (categoryValue) => {
-  return categoryMap[categoryValue] || categoryValue
+export const getCategoryLabel = (categoryInput) => {
+  if (categories.some(cat => cat.label === categoryInput)) {
+    return categoryInput
+  }
+  return categoryMap[categoryInput] || categoryInput
 }
 
 export const menuConfig = {
