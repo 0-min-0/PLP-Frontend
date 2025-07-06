@@ -53,7 +53,7 @@ export const Vacancie = ({
 
           <div className='flex items-start'>
             <h3 className='job-text font-semibold whitespace-nowrap'>Categoría • </h3>
-            <p className='job-text ml-1 line-clamp-1'>{getCategoryLabel(vacancy.category)}</p>
+            <p className='job-text ml-1 line-clamp-1'>{category}</p>
           </div>
         </div>
 

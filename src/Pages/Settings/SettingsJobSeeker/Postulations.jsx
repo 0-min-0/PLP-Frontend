@@ -69,7 +69,7 @@ export const Postulations = () => {
                       <h3 className='text font-bold text-lg text-[color:var(--color-card-text)]'>
                         {app.vacancy.title}
                       </h3>
-                      <p className='text-vacancy-applied text-[color:var(--scrollbar-thumb-bg)]'>Estado: {app.status}</p>
+                      <p className='text-vacancy-applied text-[color:var(--scrollbar-thumb-bg)]'>Fecha de aplicación: {app.appliedDate}</p>
                     </div>
 
                     <div className='flex gap-2 ml-2'>

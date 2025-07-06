@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Header } from '../../Components/Header/Header'
 import { WelcomeText } from '../../UI/WelcomeText'
-import registerIlustration from '../../assets/images/register-ilustration.png'
+import contratista from '../../assets/images/contratista.png'
 import { FormsContainer } from '../../UI/FormsContainer'
 import { Button } from '../../UI/button'
 import { Input } from '../../UI/Input'
@@ -194,7 +194,7 @@ export const JobSeeker = () => {
                         Nos alegra tener nuevos usuarios como tú en
                         <br /> nuestro aplicativo, esperamos que tu
                         <br /> experiencia sea agradable en PLP. </p>}
-                    ilustration={registerIlustration}
+                    ilustration={contratista}
                     imgDesc='Ilustración de inicio de sesión'
                     imgStyle='forms-ilustration w-[450px] h-[450px]'
                 />

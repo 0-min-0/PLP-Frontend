@@ -8,7 +8,7 @@ import { optionId } from '../../Utils/options'
 import { Button } from '../../UI/button'
 import { useRegister } from '../../Context/RegisterContext'
 import { WelcomeText } from '../../UI/WelcomeText'
-import registerIlustration from '../../assets/images/register-ilustration.png'
+import contratante from '../../assets/images/contratante.png'
 import { motion } from 'framer-motion'
 
 export const Employer = () => {
@@ -116,7 +116,7 @@ export const Employer = () => {
               <br /> experiencia sea agradable en PLP.
             </p>
           }
-          ilustration={registerIlustration}
+          ilustration={contratante}
           imgDesc='Ilustración de inicio de sesión'
           imgStyle='forms-ilustration w-[400px] h-[400px]'
         />

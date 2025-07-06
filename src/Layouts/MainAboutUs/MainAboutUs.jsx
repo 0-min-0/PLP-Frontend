@@ -1,8 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import job from '../../assets/images/job.png'
-import job2 from '../../assets/images/job-2.png'
-import job3 from '../../assets/images/job-3.png'
+import job from '../../assets/images/job.jpeg'
+import job2 from '../../assets/images/job-2.jpeg'
+import job3 from '../../assets/images/job-3.jpeg'
 import { Button } from '../../UI/button'
 import { NavLink } from 'react-router-dom'
 

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Header } from '../Header/Header'
 import { WelcomeText } from '../../UI/WelcomeText'
 import { PiEyeClosed, PiEye } from 'react-icons/pi'
-import registerIlustration from '../../assets/images/register-ilustration.png'
+import password from '../../assets/images/password.png'
 import { FormsContainer } from '../../UI/FormsContainer'
 import { Input } from '../../UI/Input'
 import { Button } from '../../UI/button'
@@ -184,7 +184,7 @@ export const Password = () => {
               <br /> experiencia sea agradable en PLP.
             </p>
           }
-          ilustration={registerIlustration}
+          ilustration={password}
           imgDesc='Ilustración de inicio de sesión'
           imgStyle='forms-ilustration w-[400px] h-[400px]'
         />

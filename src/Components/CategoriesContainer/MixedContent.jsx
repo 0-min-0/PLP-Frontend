@@ -10,15 +10,13 @@ export const MixedContent = () => {
   const { category } = useParams()
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [selectedItemType, setSelectedItemType] = useState(null)
-  
+
   const categoryObj = category ? categories.find(cat => cat.value === category) : null
-  
+
   let mixedContent = [...vacanciesExample, ...peopleExample]
-  
-  if (category && categoryObj) {
-    mixedContent = mixedContent.filter(item => 
-      item.category === categoryObj.label
-    )
+
+  if (category) {
+    mixedContent = mixedContent.filter(item => item.category === category)
   }
 
   const handleItemClick = (itemType) => {
@@ -31,19 +29,19 @@ export const MixedContent = () => {
       <h2 className='ml-20 text-2xl font-bold text-[color:var(--color-card-text)] mb-6'>
         {category ? `Oportunidades en ${categoryObj?.label}` : 'Oportunidades destacadas'}
       </h2>
-      
+
       {mixedContent.length > 0 ? (
         <div className='p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#60efdb] rounded-xl'>
           {mixedContent.map((item) => (
-            <div key={item.id}>
+            <div key={`${item.type}-${item.id}`}>
               {item.type === 'person' ? (
-                <Person 
-                  {...item} 
+                <Person
+                  {...item}
                   onShowResume={() => handleItemClick('person')}
                 />
               ) : (
-                <Vacancie 
-                  {...item} 
+                <Vacancie
+                  {...item}
                   onShowDetails={() => handleItemClick('vacancy')}
                 />
               )}

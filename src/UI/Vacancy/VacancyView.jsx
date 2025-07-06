@@ -7,8 +7,13 @@ import { SuccessModal } from '../../UI/Modals/SuccessModal'
 import { ErrorModal } from '../../UI/Modals/ErrorModal'
 import { AlreadyAppliedModal } from '../../UI/Modals/AlreadyAppliedModal'
 import { useVacancy } from '../../Context/VacancyContext'
+import { users, vacanciesExampleTest } from '../../Utils/users'
 
-export const VacancyView = ({ vacancy, onClose, isOpen, isApplied, showApplyButton = true }) => {
+export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true }) => {
+
+    const user = users[0]
+    const vacancy = vacanciesExampleTest[0]
+
     const [showSuccessModal, setShowSuccessModal] = useState(false)
     const [showErrorModal, setShowErrorModal] = useState(false)
     const [showAlreadyAppliedModal, setShowAlreadyAppliedModal] = useState(false)
@@ -79,7 +84,7 @@ export const VacancyView = ({ vacancy, onClose, isOpen, isApplied, showApplyButt
                                 </button>
                             </div>
 
-                            <VacancyInfo vacancy={vacancy} />
+                            <VacancyInfo vacancy={vacancy} user={user} />
 
                             {showApplyButton && (
                                 <div className='flex buttons-user-container justify-center mt-6'>

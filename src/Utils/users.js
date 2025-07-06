@@ -67,7 +67,6 @@ export const vacanciesExampleTest = [
         personId: 1,
         personName: 'Juan Pérez',
         appliedDate: '2025-06-10',
-        status: 'En revisión'
       }
     ]
   },
@@ -87,7 +86,6 @@ export const vacanciesExampleTest = [
         personId: 2,
         personName: 'Mariana Gómez',
         appliedDate: '2025-06-11',
-        status: 'Entrevista programada'
       }
     ]
   },
@@ -107,7 +105,6 @@ export const vacanciesExampleTest = [
         personId: 1,
         personName: 'Juan Pérez',
         appliedDate: '2025-06-12',
-        status: 'Entrevista técnica agendada'
       }
     ]
   }

@@ -6,10 +6,11 @@ export let vacanciesExample = [
     contactPerson: 'Ana López',
     contact: 'ana@tech.com',
     location: 'Cra. 14 #18-45, Armenia, Quindío',
-    category: 'Tecnología e informática',
+    category: 'tecnologia',
     availability: 'Full-time',
     responsibilities: 'Desarrollo de interfaces con React',
     salary: '3,000,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 1,
@@ -30,6 +31,7 @@ export let vacanciesExample = [
     availability: 'Part-time',
     responsibilities: 'Diseño de piezas gráficas para campañas digitales',
     salary: '2,000,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 2,
@@ -50,6 +52,7 @@ export let vacanciesExample = [
     availability: 'Full-time',
     responsibilities: 'Desarrollo de interfaces con React y TypeScript',
     salary: '3,500,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 1,
@@ -70,6 +73,7 @@ export let vacanciesExample = [
     availability: 'Medio tiempo',
     responsibilities: 'Análisis de datos con Python y Power BI',
     salary: '4,200,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 3,
@@ -90,6 +94,7 @@ export let vacanciesExample = [
     availability: 'Full-time',
     responsibilities: 'Diseño de interfaces y experiencia de usuario',
     salary: '3,800,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 2,
@@ -110,6 +115,7 @@ export let vacanciesExample = [
     availability: 'Full-time',
     responsibilities: 'Desarrollo de soluciones escalables con Java',
     salary: '4,800,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 4,
@@ -130,6 +136,7 @@ export let vacanciesExample = [
     availability: 'Full-time',
     responsibilities: 'Diseño de arquitecturas de software',
     salary: '6,500,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 4,
@@ -150,6 +157,7 @@ export let vacanciesExample = [
     availability: 'Full-time',
     responsibilities: 'Soporte técnico a usuarios',
     salary: '2,200,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 5,
@@ -170,6 +178,7 @@ export let vacanciesExample = [
     availability: 'Part-time',
     responsibilities: 'Optimización de motores de búsqueda',
     salary: '2,800,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 6,
@@ -190,6 +199,7 @@ export let vacanciesExample = [
     availability: 'Full-time',
     responsibilities: 'Planificación de estrategias digitales',
     salary: '5,500,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 6,
@@ -210,6 +220,7 @@ export let vacanciesExample = [
     availability: 'Full-time',
     responsibilities: 'Gestión contable y financiera',
     salary: '4,000,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 7,
@@ -230,6 +241,7 @@ export let vacanciesExample = [
     availability: 'Part-time',
     responsibilities: 'Enseñanza de inglés a adultos',
     salary: '1,800,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 8,
@@ -250,6 +262,7 @@ export let vacanciesExample = [
     availability: 'Full-time',
     responsibilities: 'Coordinación de programas académicos',
     salary: '3,500,000',
+    type: 'vacancy',
     postulations: [
       {
         personId: 8,

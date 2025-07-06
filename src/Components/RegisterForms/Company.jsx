@@ -5,7 +5,7 @@ import { FormsContainer } from '../../UI/FormsContainer'
 import { Input } from '../../UI/Input'
 import { Button } from '../../UI/button'
 import { WelcomeText } from '../../UI/WelcomeText'
-import registerIlustration from '../../assets/images/register-ilustration.png'
+import empresa from '../../assets/images/empresa.png'
 import { useRegister } from '../../Context/RegisterContext'
 import { motion } from 'framer-motion'
 
@@ -135,7 +135,7 @@ export const Company = () => {
               <br /> experiencia sea agradable en PLP.
             </p>
           }
-          ilustration={registerIlustration}
+          ilustration={empresa}
           imgDesc='Ilustración de inicio de sesión'
           imgStyle='forms-ilustration w-[400px] h-[400px]'
         />

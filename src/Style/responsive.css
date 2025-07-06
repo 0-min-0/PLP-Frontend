@@ -891,7 +891,7 @@
 }
 
 .password-form {
-  margin: 240px 0;
+  margin: 70px 0;
 }
 
 .modal-comment {
@@ -1010,6 +1010,11 @@
 .footer-chat {
   font-size: small;
   margin-top: 15px;
+}
+
+.email-ilustration {
+  width: 280px;
+  height: 280px;
 }
 
 /* --- Responsive breakpoints --- */
@@ -1902,7 +1907,7 @@
   }
 
   .password-form {
-    margin: 140px 0;
+    margin: 0 0 20px 0;
   }
 
   .modal-comment {
@@ -2027,8 +2032,12 @@
     transform: translateX(55px) translateY(-10px);
   }
 
-}
+  .email-ilustration {
+    width: 200px;
+    height: 200px;
+  }
 
+}
 
 /* --- 1024px Responsive Breakpoint --- */
 @media screen and (max-width: 1024px) {
@@ -2887,7 +2896,7 @@
   }
 
   .password-form {
-    margin: 100px 0;
+    margin: 10px 0;
   }
 
   .modal-comment {
@@ -2993,6 +3002,11 @@
 
   .container-chat-icons {
     transform: translateX(45px) translateY(-8px);
+  }
+
+  .email-ilustration {
+    width: 120px;
+    height: 120px;
   }
 }
 
@@ -4011,7 +4025,7 @@
   }
 
   .password-form {
-    margin: 80px 0;
+    margin: 0;
   }
 
   .modal-comment {
