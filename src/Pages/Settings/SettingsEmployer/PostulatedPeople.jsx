@@ -73,8 +73,8 @@ export const PostulatedPeople = () => {
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
                       <h3 className='text font-bold text-lg text-[color:var(--color-card-text)]'>{applicant.name}</h3>
-                      <p className='text text-[color:var(--color-card-text)]'>{applicant.phone}</p>
-                      <p className='text text-[color:var(--color-card-text)]'>{applicant.town}</p>
+                      <p className='comment-rol text-[color:var(--color-card-text)]'>{applicant.phone}</p>
+                      <p className='comment-rol text-[color:var(--color-card-text)]'>{applicant.town}</p>
                       <p className='text-vacancy-applied text-[#60efdb] mt-2 font-medium'>
                         Vacante: {applicant.appliedVacancyTitle}
                       </p>

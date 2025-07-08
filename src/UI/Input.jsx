@@ -47,7 +47,7 @@ export const Input = ({
                 disabled={disabled}
             />
             {error && (
-                <span className={`${errColor} error-responsive error font-semibold text-sm mt-1 block`}>
+                <span className={`${errColor} error-responsive error text-sm mt-1 block`}>
                     {error}
                 </span>
             )}

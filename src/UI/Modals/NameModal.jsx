@@ -113,7 +113,7 @@ export const NameModal = ({
           variants={backdropVariants}
         >
           <motion.div
-            className='modal-auth back-color rounded-xl p-8 max-w-lg w-full mx-4 relative'
+            className='modal-auth general rounded-xl p-8 max-w-lg w-full mx-4 relative'
             variants={modalVariants}
             initial="hidden"
             animate="visible"

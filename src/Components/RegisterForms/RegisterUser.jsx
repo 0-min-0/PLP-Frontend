@@ -20,7 +20,7 @@ export const RegisterUser = () => {
         validateRegisterUserForm
     } = useRegister()
 
-    const errorStyle = 'error error-responsive text-sm mt-1 font-semibold'
+    const errorStyle = 'error error-responsive text-sm mt-1'
 
     const localHandleSubmit = (e) => {
         e.preventDefault()

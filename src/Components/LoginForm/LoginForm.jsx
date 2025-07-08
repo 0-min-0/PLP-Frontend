@@ -8,7 +8,7 @@ import { useRegister } from '../../Context/RegisterContext'
 import { useLogin } from '../../Context/LoginContext'
 
 export const LoginForm = () => {
-    const pStyle = 'error-responsive text-[#60efdb] text-sm mt-1 font-semibold'
+    const pStyle = 'error-responsive text-[#60efdb] text-sm mt-1'
     const { visibility, toggleVisibility } = useRegister()
     const {
         form,

@@ -71,7 +71,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
                 </div>
 
                 <div className='desc-company mb-6'>
-                    <h5 className='title-desc-company font-semibold text-lg text-[color:var(--color-card-text)] mb-3'>Descripción</h5>
+                    <h5 className='text font-semibold text-lg text-[color:var(--color-card-text)] mb-2'>Descripción</h5>
                     <p className='text text-[color:var(--color-card-text)]'>
                         {isEmployer ? user.descEmployer : user.descCompany || 'No especificado'}
                     </p>

@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 
 export const Company = () => {
   const navigate = useNavigate()
-  const errorStyle = 'error-seeker error-responsive text-sm mt-1 font-semibold'
+  const errorStyle = 'error-seeker error-responsive text-sm mt-1'
 
   const {
     form,

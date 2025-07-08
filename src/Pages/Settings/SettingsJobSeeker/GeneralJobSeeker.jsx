@@ -103,7 +103,7 @@ export const GeneralJobSeeker = () => {
             </AnimatePresence>
           </div>
 
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 space-x-2'>
+          <div className='grid grid-cols-1 md:grid-cols-2 space-x-2'>
             {/* Campo Tipo de Documento */}
             <div>
               <Select
@@ -135,7 +135,7 @@ export const GeneralJobSeeker = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('documentNumber') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('documentNumber') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('documentNumber') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -156,7 +156,7 @@ export const GeneralJobSeeker = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('phone') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('phone') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('phone') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -177,7 +177,7 @@ export const GeneralJobSeeker = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('phoneSec') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('phoneSec') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('phoneSec') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -197,7 +197,7 @@ export const GeneralJobSeeker = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('email') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('email') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('email') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -256,7 +256,7 @@ export const GeneralJobSeeker = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('occupation') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('occupation') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('occupation') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -271,12 +271,13 @@ export const GeneralJobSeeker = () => {
                 nameDesc={fieldLabels.desc || 'Descripción personal'}
                 holderDesc='Escribe una breve descripción sobre ti'
                 name='desc'
+                color='text-white'
                 value={formData.desc || ''}
                 onChange={handleChange}
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('desc') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('desc') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 error={getActiveError('desc')}

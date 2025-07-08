@@ -117,7 +117,7 @@ export const Contact = () => {
                                 />
                             </div>
                             {errors.general && (
-                                <div className='error-responsive mb-2 font-semibold error text-sm'>{errors.general}</div>
+                                <div className='error-responsive mb-2 error text-sm'>{errors.general}</div>
                             )}
                             <Button
                                 btnName={isLoading ? 'Enviando...' : 'Enviar'}

@@ -11,7 +11,7 @@ export const CreateVacancie = () => {
     const { homeRoute } = useChatIA()
 
     return (
-        <div className='h-full page p-6 vacancy-back'>
+        <div className='h-full page p-6 back-color'>
             <Header
                 middleObject={
                     <h1 className='title-page text-5xl font-[afacadBold] text-[color:var(--color-card-text)]'>

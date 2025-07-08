@@ -57,7 +57,7 @@ export const WelcomeTextHome = () => {
           }}
         >
           <motion.h1
-            className='main-text text-6xl font-[afacadBold] font-extrabold welcome-title mb-8'
+            className='main-text text-6xl font-[afacadBold] welcome-title mb-8'
             variants={fadeInUp}
           >
             Solo necesitas de tus <br />

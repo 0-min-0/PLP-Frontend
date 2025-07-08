@@ -24,5 +24,5 @@ export const MainLayout = () => {
     >
       <WelcomeTextHome />
     </motion.div>
-  );
-};
+  )
+}

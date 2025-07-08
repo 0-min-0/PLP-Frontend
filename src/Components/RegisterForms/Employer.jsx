@@ -20,7 +20,7 @@ export const Employer = () => {
     handleSubmit
   } = useRegister()
 
-  const errorStyle = 'error error-responsive text-sm mt-1 font-semibold'
+  const errorStyle = 'error error-responsive text-sm mt-1'
 
   const localHandleSubmit = (e) => {
     handleSubmit(e, 'employer')

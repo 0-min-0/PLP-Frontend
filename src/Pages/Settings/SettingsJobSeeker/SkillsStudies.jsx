@@ -77,7 +77,7 @@ export const SkillsStudies = () => {
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
-                ? (getActiveError('skill1') ? 'border-red-500' : 'border-[#60efdb]') 
+                ? (getActiveError('skill1') ? 'border-red-500' : 'select-editing') 
                 : 'border-gray-300'
             }
             focusColor={getActiveError('skill1') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -93,7 +93,7 @@ export const SkillsStudies = () => {
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
-                ? (getActiveError('skill2') ? 'border-red-500' : 'border-[#60efdb]') 
+                ? (getActiveError('skill2') ? 'border-red-500' : 'select-editing') 
                 : 'border-gray-300'
             }
             focusColor={getActiveError('skill2') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -109,7 +109,7 @@ export const SkillsStudies = () => {
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
-                ? (getActiveError('skill3') ? 'border-red-500' : 'border-[#60efdb]') 
+                ? (getActiveError('skill3') ? 'border-red-500' : 'select-editing') 
                 : 'border-gray-300'
             }
             focusColor={getActiveError('skill3') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -124,7 +124,7 @@ export const SkillsStudies = () => {
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
-                ? (getActiveError('skill4') ? 'border-red-500' : 'border-[#60efdb]') 
+                ? (getActiveError('skill4') ? 'border-red-500' : 'select-editing') 
                 : 'border-gray-300'
             }
             focusColor={getActiveError('skill4') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -144,7 +144,7 @@ export const SkillsStudies = () => {
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
-                ? (getActiveError('study1') ? 'border-red-500' : 'border-[#60efdb]') 
+                ? (getActiveError('study1') ? 'border-red-500' : 'select-editing') 
                 : 'border-gray-300'
             }
             focusColor={getActiveError('study1') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -160,7 +160,7 @@ export const SkillsStudies = () => {
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
-                ? (getActiveError('study2') ? 'border-red-500' : 'border-[#60efdb]') 
+                ? (getActiveError('study2') ? 'border-red-500' : 'select-editing') 
                 : 'border-gray-300'
             }
             focusColor={getActiveError('study2') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -176,7 +176,7 @@ export const SkillsStudies = () => {
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
-                ? (getActiveError('study3') ? 'border-red-500' : 'border-[#60efdb]') 
+                ? (getActiveError('study3') ? 'border-red-500' : 'select-editing') 
                 : 'border-gray-300'
             }
             focusColor={getActiveError('study3') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -191,7 +191,7 @@ export const SkillsStudies = () => {
             disabled={!isEditing || activeSection !== 'skillsStudies'}
             borderColor={
               isEditing && activeSection === 'skillsStudies' 
-                ? (getActiveError('study4') ? 'border-red-500' : 'border-[#60efdb]') 
+                ? (getActiveError('study4') ? 'border-red-500' : 'select-editing') 
                 : 'border-gray-300'
             }
             focusColor={getActiveError('study4') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}

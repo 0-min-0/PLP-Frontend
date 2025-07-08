@@ -90,7 +90,7 @@ export const ForgottenPassword = () => {
                 </div>
                 
                 <form onSubmit={handleSubmit} className='flex flex-col items-center mt-6 gap-4'>
-                    <div className='password-form w-full md:w-[40%] flex flex-col md:flex-row items-center text-center my-10 md:my-20'>
+                    <div className='password-form w-full md:w-[45%] flex flex-col md:flex-row items-center text-center my-10 md:my-20'>
                         <div className='w-full md:w-[80%]'>
                             <Input
                                 ref={emailInputRef}

@@ -27,7 +27,7 @@ export const Password = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const termsRef = useRef(null)
 
-  const pStyle = 'error error-responsive text-left text-sm mt- font-semibold'
+  const pStyle = 'error error-responsive text-left text-sm'
 
   const localHandleSubmit = (e) => {
     if (!termsAccepted) {
@@ -68,7 +68,7 @@ export const Password = () => {
           bgColor='register-form'
           title='Registrarse'
           changeForm={
-            <p className='text text-[color:var(--color-card-text)] pt-4'>
+            <p className='text text-[color:var(--color-card-text)] pt-3'>
               ¿Ya estás registrado en nuestra plataforma?{' '}
               <NavLink to='/acceder' className='text-[color:var(--color-card-text)] font-semibold hover:underline hover:text-[#405e7f]/60'>
                 Iniciar sesión
@@ -76,7 +76,7 @@ export const Password = () => {
             </p>
           }
           form={
-            <form onSubmit={localHandleSubmit} className='w-full flex flex-col items-center gap-4 my-4'>
+            <form onSubmit={localHandleSubmit} className='container-employer w-full flex flex-col items-center gap-4 my-4'>
               <p className='text text-[color:var(--color-card-text)] font-semibold text-left'>
                 Al crear tu contraseña debes tomar en cuenta que ésta debe contener al menos un número, una mayúscula y un carácter especial.
               </p>

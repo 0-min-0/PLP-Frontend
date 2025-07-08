@@ -1068,8 +1068,8 @@
   }
 
   .button-responsive {
-    padding: 5px 12px;
-    font-size: x-small;
+    padding: 4px 12px;
+    font-size: small;
   }
 
   .main-text {
@@ -1078,7 +1078,7 @@
   }
 
   .sub-text {
-    font-size: small;
+    font-size: medium;
     margin: 0.4rem 0;
   }
 
@@ -1092,18 +1092,18 @@
   }
 
   .info-container {
-    width: 1000px;
+    width: 95%;
     padding: 1rem;
     gap: 1rem;
   }
 
   .card-info-responsive {
-    padding: 1.2rem 30px;
+    padding: 1rem 25px;
     border-radius: 0.5rem;
   }
 
   .text-info {
-    font-size: small;
+    font-size: medium;
   }
 
   .info-ilustration {
@@ -1112,13 +1112,14 @@
   }
 
   .menu-responsive {
-    width: 10rem;
+    width: 12rem;
     border-radius: 0.4rem;
   }
 
   .menu-responsive-title {
     max-width: 100px;
-    font-size: x-small;
+    font-weight: 600;
+    font-size: medium;
   }
 
   .mtitle-container {
@@ -1132,7 +1133,7 @@
 
   .menu-item-responsive {
     padding: 8px 10px;
-    font-size: x-small;
+    font-size: small;
     border-radius: smaller;
   }
 
@@ -1182,12 +1183,12 @@
   }
 
   .jobs-title {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     margin-bottom: 0.25rem;
   }
 
   .jobs-subtitle {
-    font-size: small;
+    font-size: medium;
   }
 
   .jobs-main-container {
@@ -1196,7 +1197,7 @@
 
   .jobs-subcontainer {
     padding: 14px 24px;
-    font-size: medium;
+    font-size: larger;
   }
 
   .scroll-container {
@@ -1204,19 +1205,19 @@
   }
 
   .job-card {
-    width: 210px;
-    height: 170px;
+    width: 230px;
+    height: 185px;
     border-radius: 0.5rem;
-    padding: 18px 20px;
+    padding: 16px 20px;
   }
 
   .job-card-title {
-    font-size: small;
-    margin-bottom: 0.5rem;
+    font-size: medium;
+    margin-bottom: 0.4rem;
   }
 
   .job-text {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 
   .about-responsive {
@@ -1235,12 +1236,12 @@
   }
 
   .modal-auth-title {
-    font-size: medium;
+    font-size: large;
     margin-bottom: 0.8rem;
   }
 
   .modal-auth-text {
-    font-size: small;
+    font-size: medium;
     margin-bottom: 1rem;
   }
 
@@ -1249,7 +1250,7 @@
   }
 
   .contact-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
     padding: 30px 40px 0px 40px;
   }
@@ -1265,11 +1266,11 @@
   }
 
   .contact-text {
-    font-size: small;
+    font-size: medium;
   }
 
   .comment-container {
-    margin-top: 10px;
+    margin-top: 0px;
   }
 
   .contact-content-1 {
@@ -1278,18 +1279,18 @@
   }
 
   .input {
-    font-size: small;
+    font-size: medium;
     margin-top: 6px;
     border-radius: 0.5rem;
     padding: 5px 10px;
   }
 
   .label-responsive {
-    font-size: small;
+    font-size: medium;
   }
 
   .error-responsive {
-    font-size: x-small;
+    font-size: small;
     margin-top: 3px;
   }
 
@@ -1299,7 +1300,7 @@
 
   .desc {
     height: 80px;
-    font-size: small;
+    font-size: medium;
     margin-top: 6px;
     border-radius: 0.5rem;
     padding: 5px 10px;
@@ -1319,7 +1320,7 @@
   }
 
   .footer-section-responsive {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .footer-title-responsive {
@@ -1332,7 +1333,7 @@
   }
 
   .footer-link-responsive {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .footer-icons-responsive {
@@ -1346,7 +1347,7 @@
   }
 
   .footer-email-responsive {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .footer-divider-responsive {
@@ -1392,16 +1393,16 @@
   }
 
   .login-form-google-btn {
-    width: 10rem;
-    padding: 0.4rem 0.8rem;
+    width: 11rem;
+    padding: 0.3rem 0.8rem;
     margin: 0.8rem 0;
-    font-size: x-small;
+    font-size: small;
   }
 
   .login-form-register-text,
   .login-form-register-link,
   .login-form-forgot-password {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
 
   .login-form-actions {
@@ -1411,12 +1412,12 @@
 
   .login-form-submit-btn {
     width: 70%;
-    padding: 0.4rem 0rem;
-    font-size: x-small;
+    padding: 0.2rem 0rem;
+    font-size: small;
   }
 
   .forms-container {
-    padding: 25px;
+    padding: 18px 25px;
     border-radius: 0.5rem;
   }
 
@@ -1429,16 +1430,16 @@
   }
 
   .links-page {
-    font-size: x-small;
+    font-size: small;
   }
 
   .container-forms {
-    margin-top: 32px;
+    margin-top: 22px;
     gap: 60px;
   }
 
   .paragraph-page {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .forms-ilustration {
@@ -1451,7 +1452,7 @@
   }
 
   .forms-section {
-    margin-top: 8px;
+    margin-top: 5px;
   }
 
   .select-size {
@@ -1461,23 +1462,23 @@
   }
 
   .select-item {
-    font-size: small;
+    font-size: medium;
     border-radius: 0.5rem;
     padding: 5px 10px;
   }
 
   .card-user-responsive {
-    padding: 14px;
+    padding: 13px;
     margin-bottom: 8px;
     border-radius: 0.5rem;
   }
 
   .text-card {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
   .text-rol {
-    font-size: x-small;
+    font-size: small;
   }
 
   .logo-user {
@@ -1491,7 +1492,7 @@
   }
 
   .container-user-type {
-    margin: 18px 0;
+    margin: 0px 0 18px 0;
     gap: 10px;
   }
 
@@ -1504,11 +1505,11 @@
   }
 
   .text {
-    font-size: small;
+    font-size: medium;
   }
 
   .title {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     margin-bottom: 4px;
   }
 
@@ -1535,7 +1536,7 @@
   }
 
   .title-categories {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin: 0 44px 14px 44px;
   }
 
@@ -1555,7 +1556,7 @@
   .right-items {
     padding: 8px 20px;
     margin: 0 8px;
-    font-size: smaller;
+    font-size: medium;
     border-radius: 0.4rem;
   }
 
@@ -1598,11 +1599,11 @@
   }
 
   .role-user {
-    font-size: smaller;
+    font-size: 1rem;
   }
 
   .user-name {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 
   .divider {
@@ -1611,23 +1612,24 @@
 
   .info-title {
     font-size: 1.3rem;
-    margin: 14px 0 10px 0;
+    margin: 10px 0 6px 0;
   }
 
   .general-container {
     height: 270px;
     max-height: 260px;
-    margin: 16px 0;
+    margin: 10px 0;
   }
 
   .general-employer-container {
-    height: 245px;
-    max-height: 260px;
-    margin-top: 24px;
+    height: 280px;
+    max-height: 280px;
+    margin-top: 14px;
   }
 
   .sub-info-text {
-    font-size: smaller;
+    font-size: 1rem;
+    margin-bottom: 10px;
   }
 
   .container-info {
@@ -1636,7 +1638,7 @@
   }
 
   .button-set {
-    font-size: smaller;
+    font-size: 0.9rem;
     padding: 2px 8px;
     gap: 2px;
   }
@@ -1672,24 +1674,24 @@
 
   .card-postulated {
     height: 7.2rem;
-    padding: 15px;
+    padding: 12px;
     border-radius: 0.6rem;
   }
 
   .card-postulation {
-    height: 4.6rem;
-    padding: 15px;
+    height: 4.4rem;
+    padding: 10px 15px;
     border-radius: 0.6rem;
   }
 
   .card-published {
-    height: 6rem;
-    padding: 15px;
+    height: 6.5rem;
+    padding: 12px;
     border-radius: 0.6rem;
   }
 
   .text-vacancy-applied {
-    font-size: x-small;
+    font-size: small;
     margin-top: 4px;
   }
 
@@ -1705,11 +1707,11 @@
   }
 
   .comment-name {
-    font-size: small;
+    font-size: medium;
   }
 
   .comment-rol {
-    font-size: x-small;
+    font-size: small;
   }
 
   .comment-content {
@@ -1721,7 +1723,7 @@
   }
 
   .comment-date {
-    font-size: x-small;
+    font-size: small;
     margin-bottom: 4px;
   }
 
@@ -1734,7 +1736,7 @@
   /* Vacancy - Person modales */
 
   .container-info-user {
-    max-width: 460px;
+    max-width: 480px;
     max-height: 90vh;
     padding: 16px;
     border-radius: 0.6rem;
@@ -1764,7 +1766,7 @@
   }
 
   .subtitle-section {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-bottom: 4px;
   }
 
@@ -1786,7 +1788,6 @@
   }
 
   .title-desc-company {
-    font-size: small;
     margin-bottom: 4px;
   }
 
@@ -1811,7 +1812,7 @@
   .skill-space {
     padding: 3px 8px;
     border-radius: 3rem;
-    font-size: x-small;
+    font-size: small;
   }
 
   .main-comment-container {
@@ -1828,7 +1829,7 @@
   }
 
   .comment-title {
-    font-size: small;
+    font-size: medium;
     margin-bottom: 2px;
   }
 
@@ -2130,8 +2131,8 @@
   }
 
   .menu-responsive {
-    width: 8rem;
-    border-radius: 0.3rem;
+    width: 9rem;
+    border-radius: 0.4rem;
   }
 
   .menu-responsive-title {
@@ -2140,7 +2141,7 @@
   }
 
   .mtitle-container {
-    padding: 0.4rem;
+    padding: 0.2rem;
   }
 
   .menu-list {
@@ -2216,13 +2217,14 @@
   }
 
   .scroll-container {
+    gap: 4px;
     padding: 0 16px 16px 16px;
   }
 
   .job-card {
-    width: 180px;
+    width: 200px;
     height: 150px;
-    border-radius: 0.4rem;
+    border-radius: 0.5rem;
     padding: 16px 18px;
   }
 
@@ -2471,9 +2473,15 @@
   }
 
   .select-size {
-    padding: 3px;
-    height: 80px;
+    font-size: x-small;
+    margin-top: 4px;
     border-radius: 0.4rem;
+    padding: 4px 8px;
+  }
+
+  .open-icon {
+    width: 10px;
+    height: 10px;
   }
 
   .select-item {
@@ -2684,7 +2692,7 @@
   }
 
   .card-postulated {
-    height: 6rem;
+    height: 5.3rem;
     padding: 12px;
     border-radius: 0.5rem;
   }
@@ -2836,6 +2844,13 @@
     max-width: 500px;
     padding: 20px 32px;
     margin: 16px 80px 28px 80px;
+  }
+
+  .container-create {
+    max-width: 55%;
+    padding: 18px 40px;
+    margin: 8px 120px 32px 120px;
+    border-radius: 0.6rem;
   }
 
   .container-create-title {
@@ -3010,33 +3025,30 @@
   }
 }
 
-/* --- 768px Responsive Breakpoint --- */
-@media screen and (max-width: 768px) {
-
+/* --- 920px Responsive Breakpoint --- */
+@media screen and (max-width: 920px) {
   .main-layout-responsive {
-    width: 92%;
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.8rem;
+    width: 84%;
+    margin-top: 0.6rem;
+    margin-bottom: 2rem;
+    padding: 0.6rem 1rem;
   }
 
   .logo-plp {
-    width: 36px;
-    height: 42px;
-    /* Consider replacing with icon font at this size */
+    width: 38px;
+    height: 46px;
   }
 
   .icons-search {
-    width: 8px;
-    height: 8px;
-    top: -2px;
-    left: -10px;
-    /* Position adjustments for smaller search field */
+    width: 9px;
+    height: 9px;
+    top: -3px;
+    left: -9px;
   }
 
   .icons-responsive {
-    width: 12px;
-    height: 12px;
+    width: 13px;
+    height: 13px;
   }
 
   .icon-menu {
@@ -3045,9 +3057,7 @@
   }
 
   .buttons-responsive {
-    gap: 0px;
-    /* Stack buttons vertically if needed */
-    flex-direction: column;
+    gap: 2px;
   }
 
   .main-responsive {
@@ -3055,357 +3065,197 @@
   }
 
   .search-responsive {
-    width: 100%;
-    max-width: 480px;
-    padding: 2px 8px 2px 16px;
-    font-size: xx-small;
-    /* Full width search on mobile */
+    width: 580px;
+    padding: 2px 10px 2px 18px;
   }
 
   .button-responsive {
     padding: 3px 8px;
-    font-size: xx-small;
-    /* Smaller but still tappable */
-    min-width: 60px;
-  }
-
-  .main-text {
-    font-size: 1.6rem;
-    margin-bottom: 0.4rem;
-    /* Larger text reduction for mobile */
-  }
-
-  .sub-text {
-    font-size: xx-small;
-    margin: 0.2rem 0;
-    line-height: 1.3;
   }
 
   .space-welcome-text {
-    gap: 40px;
-    flex-direction: column;
-    /* Stack vertically on mobile */
+    gap: 30px;
   }
 
   .ilustration-main {
-    width: 200px;
-    height: 200px;
-    /* Consider hiding this image on mobile if not essential */
-    display: none;
+    width: 300px;
+    height: 240px;
   }
 
   .info-container {
-    width: 100%;
+    width: 760px;
     padding: 0.6rem;
     gap: 0.6rem;
-    flex-direction: column;
-    /* Stack info cards vertically */
   }
 
   .card-info-responsive {
-    padding: 0.8rem 16px;
+    padding: 0.8rem 20px;
     border-radius: 0.3rem;
-    width: 100%;
-    /* Full width cards */
-    margin-bottom: 0.5rem;
-  }
-
-  .text-info {
-    font-size: xx-small;
-    line-height: 1.4;
   }
 
   .info-ilustration {
-    width: 36px;
-    height: 36px;
-    /* Smaller decorative icons */
+    width: 44px;
+    height: 44px;
   }
 
   .menu-responsive {
-    width: 100%;
-    /* Full width menu on mobile */
-    border-radius: 0;
-    /* Remove rounded corners */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    /* Mobile-style bottom menu */
-    z-index: 1000;
+    width: 8.5rem;
+    border-radius: 0.3rem;
   }
 
   .menu-responsive-title {
-    max-width: 100%;
-    font-size: xx-small;
-    display: none;
-    /* Hide titles in mobile menu */
+    max-width: 70px;
   }
 
   .mtitle-container {
-    padding: 0.3rem;
+    padding: 0.2rem;
   }
 
   .menu-list {
-    padding: 2px;
-    display: flex;
-    /* Horizontal menu for mobile */
-    justify-content: space-around;
+    padding: 3px;
   }
 
   .menu-item-responsive {
-    padding: 4px 6px;
-    font-size: xx-small;
-    border-radius: x-small;
-    flex: 1;
-    text-align: center;
-    /* Centered menu items */
+    padding: 5px 7px;
+    border-radius: xx-small;
   }
 
   .theme-modal-responsive {
-    width: 90%;
-    /* Nearly full width modal */
-    padding: 0.6rem;
+    width: 180px;
+    padding: 0.7rem;
     border-radius: 0.4rem;
-    max-width: 280px;
   }
 
   .icons-close {
     padding: 1px;
-    top: 4px;
-    right: 4px;
+    top: 7px;
+    right: 7px;
   }
 
   .icon-close-x {
-    width: 10px;
-    height: 10px;
-  }
-
-  .theme-modal-text {
-    font-size: xx-small;
-  }
-
-  .theme-modal-subtext {
-    font-size: xx-small;
-    display: none;
-    /* Hide secondary text on mobile */
+    width: 11px;
+    height: 11px;
   }
 
   .swicth {
-    width: 24px;
-    height: 12px;
+    width: 26px;
+    height: 13px;
   }
 
   .switch-circle {
-    width: 8px;
-    height: 8px;
-    transform: translateX(-10px);
+    width: 9px;
+    height: 9px;
+    transform: translateX(-9px);
   }
 
   .jobs-main {
-    padding: 8px 6px;
+    padding: 10px 8px;
   }
 
   .text-jobs {
-    margin: 12px 16px 8px 16px;
-  }
-
-  .jobs-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.1rem;
-  }
-
-  .jobs-subtitle {
-    font-size: xx-small;
-    display: none;
-    /* Hide subtitle on mobile */
+    margin: 14px 20px 10px 20px;
   }
 
   .jobs-main-container {
-    margin: 0 16px;
+    margin: 0 20px;
   }
 
   .jobs-subcontainer {
-    padding: 8px 12px;
-    font-size: xx-small;
-    flex-direction: column;
-    /* Stack job filters vertically */
+    padding: 10px 16px;
   }
 
   .scroll-container {
-    padding: 0 12px 12px 12px;
-    overflow-x: auto;
-    /* Horizontal scrolling for job cards */
-    white-space: nowrap;
+    padding: 0 14px 14px 14px;
   }
 
   .job-card {
-    width: 150px;
-    height: 120px;
-    border-radius: 0.3rem;
-    padding: 12px 14px;
-    display: inline-block;
-    /* Inline cards for horizontal scroll */
-    white-space: normal;
-    margin-right: 8px;
-  }
-
-  .job-card-title {
-    font-size: xx-small;
-    margin-bottom: 0.2rem;
-  }
-
-  .job-text {
-    font-size: 0.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    /* Limit text lines */
+    width: 180px;
+    height: 140px;
+    border-radius: 0.5rem;
+    padding: 14px 16px;
   }
 
   .about-responsive {
-    padding: 24px 24px;
-    flex-direction: column;
-    /* Stack about section vertically */
+    padding: 32px 32px;
   }
 
   .about-image {
-    width: 180px;
-    height: 180px;
-    display: none;
-    /* Hide about image on mobile */
+    width: 220px;
+    height: 220px;
   }
 
   .modal-auth {
-    width: 90%;
-    max-width: 240px;
-    padding: 0.8rem;
-    border-radius: 0.3rem;
-  }
-
-  .modal-auth-title {
-    font-size: xx-small;
-    margin-bottom: 0.4rem;
-  }
-
-  .modal-auth-text {
-    font-size: xx-small;
-    margin-bottom: 0.6rem;
-    display: none;
-    /* Hide auth modal text on mobile */
+    width: 260px;
+    padding: 1rem;
+    border-radius: 0.35rem;
   }
 
   .space-buttons {
-    gap: 4px;
-    flex-direction: column;
-    /* Stack auth buttons vertically */
+    gap: 5px;
   }
 
   .contact-title {
-    font-size: 1.1rem;
-    margin-bottom: 0.6rem;
-    padding: 24px 24px 0px 24px;
+    padding: 20px 28px 0px 28px;
   }
 
   .contact-content {
-    padding: 12px 24px 20px 24px;
-    gap: 16px;
-    flex-direction: column;
-    /* Stack contact form vertically */
+    padding: 10px 100px 20px 50px;
+    gap: 20px;
   }
 
   .contact-ilustration {
-    width: 200px;
-    height: auto;
-    display: none;
-    /* Hide contact illustration */
-  }
-
-  .contact-text {
-    font-size: xx-small;
-  }
-
-  .comment-container {
-    margin-top: 6px;
+    width: 280px;
   }
 
   .contact-content-1 {
-    gap: 4px;
-    margin-bottom: 2px;
+    gap: 6px;
   }
 
   .input {
-    font-size: xx-small;
-    margin-top: 2px;
-    border-radius: 0.3rem;
-    padding: 3px 6px;
-  }
-
-  .label-responsive {
-    font-size: xx-small;
+    margin-top: 3px;
+    border-radius: 0.35rem;
+    padding: 3px 7px;
   }
 
   .error-responsive {
-    font-size: xx-small;
     margin-top: 1px;
   }
 
   .contact-content-2 {
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
 
   .desc {
-    height: 40px;
-    font-size: xx-small;
-    margin-top: 2px;
-    border-radius: 0.3rem;
-    padding: 3px 6px;
+    height: 50px;
+    margin-top: 3px;
+    border-radius: 0.35rem;
+    padding: 3px 7px;
   }
 
   .send-contact-button {
     margin-top: 0px;
-    width: 100%;
-    /* Full width button */
   }
 
   .footer-responsive {
     padding: 0.8rem 0.4rem;
-    text-align: center;
-    /* Centered footer content */
   }
 
   .footer-grid-responsive {
-    max-width: 90%;
+    max-width: 85%;
     gap: 0.6rem;
-    grid-template-columns: 1fr;
-    /* Single column footer */
-  }
-
-  .footer-section-responsive {
-    font-size: 0.6rem;
-    margin-bottom: 0.8rem;
   }
 
   .footer-title-responsive {
-    font-size: 0.6rem;
     margin-bottom: 0.4rem;
   }
 
   .footer-links-responsive {
     gap: 0rem;
-    flex-direction: column;
-    /* Stack footer links */
-  }
-
-  .footer-link-responsive {
-    font-size: 0.5rem;
-    padding: 2px 0;
   }
 
   .footer-icons-responsive {
     gap: 0rem;
     margin-bottom: 0.4rem;
-    justify-content: center;
-    /* Center social icons */
   }
 
   .footer-icon-responsive {
@@ -3413,21 +3263,14 @@
     height: 0.8rem;
   }
 
-  .footer-email-responsive {
-    font-size: 0.5rem;
-  }
-
   .footer-divider-responsive {
-    max-width: 90%;
+    max-width: 85%;
     margin-top: 0.6rem;
-    padding-top: 0.4rem;
-    font-size: 0.6rem;
+    padding-top: 0.5rem;
   }
 
   .login-form-container {
-    width: 90%;
-    /* Nearly full width form */
-    max-width: 300px;
+    width: 45%;
   }
 
   .login-form-icon {
@@ -3436,396 +3279,272 @@
   }
 
   .login-form-icon-size {
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 0.9rem;
+    height: 0.9rem;
   }
 
   .login-form-eye-icon {
-    right: 0.4rem;
+    right: 0.5rem;
     bottom: 0.1rem;
   }
 
   .login-form-eye-icon-size {
-    width: 0.8rem;
-    height: 1rem;
+    width: 0.9rem;
+    height: 1.1rem;
   }
 
   .login-form-input-padding {
-    padding-left: 1.8rem;
-    padding-right: 0.4rem;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
+    padding-left: 2rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 
   .login-form-input-container {
-    margin-top: 4px;
+    margin-top: 5px;
   }
 
   .login-form-google-btn {
-    width: 100%;
-    /* Full width button */
-    padding: 0.2rem 0.4rem;
-    margin: 0.4rem 0;
-    font-size: xx-small;
-  }
-
-  .login-form-register-text,
-  .login-form-register-link,
-  .login-form-forgot-password {
-    font-size: 0.5rem;
+    width: 7rem;
+    padding: 0.25rem 0.5rem;
+    margin: 0.5rem 0;
   }
 
   .login-form-actions {
     margin-top: 10px;
-    gap: 4px;
-    flex-direction: column;
-    /* Stack login actions */
+    gap: 5px;
   }
 
   .login-form-submit-btn {
-    width: 100%;
-    padding: 0.2rem 0;
-    font-size: xx-small;
+    width: 85%;
+    padding: 0.25rem 0rem;
   }
 
   .forms-container {
-    padding: 16px;
-    border-radius: 0.3rem;
-    width: 90%;
-    /* Nearly full width */
+    padding: 18px;
+    border-radius: 0.35rem;
   }
 
   .page {
-    padding: 8px;
-  }
-
-  .title-page {
-    font-size: 1.4rem;
-    text-align: center;
-    /* Centered title */
-  }
-
-  .links-page {
-    font-size: xx-small;
-    flex-direction: column;
-    /* Stack links vertically */
-    align-items: center;
+    padding: 10px;
   }
 
   .container-forms {
     margin-top: 24px;
-    gap: 30px;
-    flex-direction: column;
-    /* Stack form sections */
-  }
-
-  .paragraph-page {
-    font-size: 0.9rem;
-    text-align: center;
+    gap: 45px;
   }
 
   .forms-ilustration {
-    width: 180px;
-    height: 180px;
-    display: none;
-    /* Hide form illustration */
+    width: 240px;
+    height: 240px;
   }
 
   .register {
-    height: 180px;
+    height: 220px;
   }
 
   .form-section {
-    margin-top: 4px;
+    margin-top: 5px;
   }
 
   .select-size {
     padding: 2px;
-    height: 60px;
-    border-radius: 0.3rem;
+    height: 70px;
+    border-radius: 0.35rem;
   }
 
   .select-item {
-    font-size: xx-small;
-    border-radius: 0.3rem;
-    padding: 2px 4px;
+    border-radius: 0.35rem;
+    padding: 3px 7px;
   }
 
   .card-user-responsive {
-    padding: 8px;
-    margin-bottom: 4px;
-    border-radius: 0.3rem;
-    width: 100%;
-    /* Full width cards */
-  }
-
-  .text-card {
-    font-size: 0.5rem;
-  }
-
-  .text-rol {
-    font-size: xx-small;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 0.35rem;
   }
 
   .logo-user {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
   }
 
   .logo-user-2 {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
   }
 
   .container-user-type {
-    margin: 12px 0;
+    margin: 14px 0;
     gap: 6px;
-    flex-direction: column;
-    /* Stack user type options */
   }
 
   .button-employer {
-    margin: 0 40px 16px 40px;
-    width: calc(100% - 80px);
-    /* Responsive width */
-  }
-
-  .container-employer {
-    margin: 0;
-    width: 100%;
-  }
-
-  .text {
-    font-size: xx-small;
-  }
-
-  .title {
-    font-size: 1.2rem;
-    margin-bottom: 2px;
-    text-align: center;
+    margin: 0 80px 16px 80px;
   }
 
   .container-text {
-    margin: 12px 16px 10px 16px;
+    margin: 12px 20px 10px 20px;
   }
 
   .routes-icons {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 
   .container-routes {
-    gap: 8px;
-    flex-wrap: wrap;
-    /* Wrap route items */
-    justify-content: center;
+    gap: 10px;
   }
 
   .avatar-menu {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
   }
 
   .container-categories {
-    padding: 0 4px 14px 4px;
+    padding: 0 5px 16px 5px;
   }
 
   .title-categories {
-    font-size: 1rem;
-    margin: 0 24px 10px 24px;
-    text-align: center;
+    margin: 0 32px 10px 32px;
   }
 
   .container-categories-jobs {
-    padding: 12px;
-    margin: 0 16px;
-    gap: 8px;
-    flex-direction: column;
-    /* Stack category items */
+    padding: 14px;
+    margin: 0 28px;
+    gap: 10px;
   }
 
   .right-menu {
-    width: 100%;
-    height: auto;
-    /* Auto height for mobile */
-    padding: 0.1rem 0;
-    border-radius: 0;
-    /* Remove rounded corners */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    /* Mobile-style bottom menu */
-    z-index: 1000;
+    width: 90%;
+    height: 360px;
+    padding: 0.15rem 0;
+    border-radius: 0.45rem;
   }
 
   .right-items {
-    padding: 4px 12px;
-    margin: 0 4px;
-    font-size: xx-small;
-    border-radius: 0.2rem;
-    flex: 1;
-    text-align: center;
+    padding: 5px 14px;
+    margin: 0 5px;
+    border-radius: 0.25rem;
   }
 
   .settings {
     width: 100%;
-    gap: 16px;
-    margin: 12px 0 0 0;
-    flex-direction: column;
-    /* Stack settings sections */
+    gap: 18px;
+    margin: 16px 60px 0 30px;
   }
 
   .sub-settings {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 0.3rem;
+    width: 90%;
+    padding: 14px 24px;
+    border-radius: 0.45rem;
   }
 
   .avatar-edit {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
   }
 
   .edit-icon {
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
   }
 
   .avatar-selector {
-    width: 150px;
-    padding: 8px;
-    margin-top: 2px;
-    border-radius: 0.3rem;
+    width: 160px;
+    padding: 10px;
+    margin-top: 3px;
+    border-radius: 0.35rem;
   }
 
   .avatar-space {
-    gap: 2px;
-    flex-wrap: wrap;
-    /* Wrap avatar options */
-    justify-content: center;
+    gap: 3px;
   }
 
   .avatar-img {
-    width: 32px;
-    height: 32px;
-  }
-
-  .role-user {
-    font-size: xx-small;
-    text-align: center;
-  }
-
-  .user-name {
-    font-size: 1rem;
-    text-align: center;
+    width: 34px;
+    height: 34px;
   }
 
   .divider {
-    margin-top: 8px;
+    margin-top: 10px;
   }
 
   .info-title {
-    font-size: 1rem;
     margin: 10px 0 6px 0;
-    text-align: center;
   }
 
   .general-container {
-    height: 180px;
-    max-height: 180px;
-    margin: 8px 0;
+    height: 200px;
+    max-height: 200px;
+    margin: 10px 0;
   }
 
   .general-employer-container {
-    height: 160px;
-    max-height: 180px;
-    margin-top: 16px;
-  }
-
-  .sub-info-text {
-    font-size: xx-small;
-    text-align: center;
+    height: 180px;
+    max-height: 200px;
+    margin-top: 18px;
   }
 
   .container-info {
-    padding-right: 4px;
+    padding-right: 6px;
   }
 
   .button-set {
-    font-size: xx-small;
-    padding: 1px 4px;
+    padding: 0px 5px;
     gap: 0px;
   }
 
   .sub-section {
-    padding: 0.6rem 0;
-  }
-
-  .title-section {
-    font-size: 0.8rem;
+    padding: 0.7rem 0;
   }
 
   .success-message {
-    top: 80px;
-    right: 50%;
-    transform: translateX(50%);
-    /* Center horizontally */
-    width: 80%;
-    font-size: xx-small;
-    padding: 0.3rem 0.5rem;
-    border-radius: 0.1rem;
+    top: 90px;
+    right: 320px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    border-radius: 0.15rem;
   }
 
   .postulated-container {
-    height: auto;
-    /* Auto height for mobile */
-    grid-template-columns: 1fr;
-    /* Single column layout */
+    height: 11.5rem;
     gap: 0.8rem;
-    max-height: none;
-    padding-right: 0;
-    margin-bottom: 1rem;
+    max-height: 320px;
+    padding-right: 0.5rem;
   }
 
   .card-postulated {
-    height: auto;
-    /* Auto height for content */
+    height: 5.5rem;
     padding: 10px;
-    margin-bottom: 0.5rem;
+    border-radius: 0.45rem;
   }
 
   .card-postulation {
-    height: auto;
+    height: 3.5rem;
     padding: 10px;
-    margin-bottom: 0.5rem;
+    border-radius: 0.45rem;
   }
 
   .card-published {
-    height: auto;
+    height: 4.5rem;
     padding: 10px;
-    margin-bottom: 0.5rem;
+    border-radius: 0.45rem;
   }
 
   .text-vacancy-applied {
-    font-size: xx-small;
     margin-top: 1px;
   }
 
   .comments-container {
-    max-height: 240px;
+    max-height: 280px;
   }
 
   .comment-card {
     padding: 10px;
     margin-bottom: 10px;
-  }
-
-  .comment-name {
-    font-size: xx-small;
-  }
-
-  .comment-rol {
-    font-size: xx-small;
   }
 
   .comment-content {
@@ -3837,22 +3556,19 @@
   }
 
   .comment-date {
-    font-size: xx-small;
     margin-bottom: 1px;
   }
 
   .comment-modal {
-    width: 90%;
-    max-width: 300px;
-    padding: 12px;
+    width: 360px;
+    padding: 16px;
+    border-radius: 0.45rem;
   }
 
   /* Vacancy - Person modales */
   .container-info-user {
-    max-width: 90%;
+    max-width: 340px;
     padding: 10px;
-    margin: 0 auto;
-    /* Centered modal */
   }
 
   .container-title-info-user {
@@ -3860,46 +3576,36 @@
   }
 
   .info-user-title {
-    font-size: 1rem;
-    margin-left: 0;
-    text-align: center;
+    margin-left: 10px;
   }
 
   .buttons-user-container {
-    margin-top: 8px;
-    flex-direction: column;
-    /* Stack buttons */
-    gap: 4px;
+    margin-top: 10px;
   }
 
   .sub-info-container-user {
-    padding: 0 12px;
-    max-height: 50vh;
+    padding: 0 20px;
   }
 
   .company-info {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .subtitle-section {
-    font-size: 0.7rem;
-    margin-bottom: 0px;
-    text-align: center;
+    margin-bottom: 1px;
   }
 
   .columns-info {
     gap: 6px;
-    flex-direction: column;
-    /* Stack columns */
   }
 
   .sub-columns-info {
-    gap: 4px;
+    gap: 5px;
   }
 
   .ilustration-icons {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
   }
 
   .desc-company {
@@ -3907,8 +3613,7 @@
   }
 
   .title-desc-company {
-    font-size: xx-small;
-    margin-bottom: 0px;
+    margin-bottom: 1px;
   }
 
   .hr {
@@ -3916,26 +3621,20 @@
   }
 
   .vacancy-section-title {
-    font-size: 0.8rem;
     margin-bottom: 6px;
-    text-align: center;
   }
 
   .columns-info-2 {
-    margin-bottom: 8px;
-    gap: 4px;
-    flex-direction: column;
+    margin-bottom: 10px;
+    gap: 5px;
   }
 
   .skills {
     gap: 1px;
-    justify-content: center;
-    /* Center skills */
   }
 
   .skill-space {
-    padding: 1px 4px;
-    font-size: xx-small;
+    padding: 1px 5px;
   }
 
   .main-comment-container {
@@ -3943,20 +3642,21 @@
   }
 
   .comment-container {
-    border-radius: 0.2rem;
     padding: 8px;
   }
 
+  .sub-comment-container {
+    margin-bottom: 2px;
+  }
+
   .comment-title {
-    font-size: xx-small;
     margin-bottom: 0px;
   }
 
   .vacancy-form {
-    max-width: 90%;
-    padding: 16px 24px;
-    margin: 12px auto 24px auto;
-    /* Centered form */
+    max-width: 450px;
+    padding: 16px 28px;
+    margin: 16px 60px 24px 60px;
   }
 
   .container-create-title {
@@ -3965,149 +3665,120 @@
 
   .form-create-vacancy-1 {
     gap: 1px;
-    flex-direction: column;
-    /* Stack form fields */
   }
 
   .form-create-vacancy-2 {
-    gap: 2px;
+    gap: 3px;
     margin: 0 0 12px 0;
-    flex-direction: column;
   }
 
   .notifications-container {
-    width: 100%;
+    width: 90%;
     padding: 10px;
   }
 
   .text-notifications {
     margin-bottom: 8px;
-    font-size: 0.8rem;
-    text-align: center;
   }
 
   .sub-container-notifications {
-    gap: 8px;
-    flex-direction: column;
-    /* Stack notification sections */
+    gap: 10px;
   }
 
   .notifications-list {
-    height: 300px;
+    height: 320px;
   }
 
   .notification-card {
     padding: 6px;
-    margin-right: 2px;
+    margin-right: 3px;
   }
 
   .notify-date {
-    font-size: xx-small;
+    margin-top: 0px;
   }
 
   .notify-content {
-    min-height: 240px;
-    padding: 16px;
+    padding: 14px;
   }
 
   .text-notify-title {
-    font-size: xx-small;
-    max-width: 100%;
+    max-width: 70%;
   }
 
   .container-help-terms {
-    max-height: 300px;
+    max-height: 320px;
   }
 
   .sub-help-terms {
-    max-width: 100%;
-    padding: 12px;
+    max-width: 700px;
   }
 
   .password-form {
-    margin: 0;
+    margin: 8px 0;
   }
 
   .modal-comment {
-    width: 90%;
-    max-width: 260px;
-    padding: 0.8rem;
+    width: 280px;
+    padding: 1rem;
   }
 
   .modal-comment-input {
-    margin-bottom: 0px;
-  }
-
-  .aboutus-container {
-    margin-top: 0;
-    padding: 12px;
+    margin-bottom: 1px;
   }
 
   .terms-modal {
-    width: 98%;
-    max-height: 80vh;
+    width: 100%;
   }
 
   .fullscreen-chat {
-    width: 100%;
-    height: 70vh;
-    margin-top: 40px;
+    width: 85%;
+    height: 65vh;
   }
 
   .medium-chat {
-    max-height: 300px;
+    max-height: 320px;
   }
 
   .header-chat {
-    padding: 4px 6px;
-    gap: 2px;
-  }
-
-  .text-header-chat {
-    font-size: 0.8rem;
+    padding: 5px 7px;
+    gap: 3px;
   }
 
   .chat-container {
-    margin: 4px 0;
-    padding: 8px;
+    margin: 5px 0;
+    padding: 10px;
   }
 
   .message-bot {
-    max-width: 12rem;
-    padding: 3px 4px;
-  }
-
-  .message-text {
-    font-size: xx-small;
+    max-width: 14rem;
+    padding: 3px 5px;
   }
 
   .message-user {
-    max-width: 12rem;
+    max-width: 14rem;
   }
 
   .edit-messages {
-    padding: 3px 4px;
-    font-size: xx-small;
-    min-height: 1.5rem;
+    padding: 3px 5px;
+    min-height: 1.8rem;
   }
 
   .save-cancel-edit {
-    padding: 1px 4px;
-    font-size: xx-small;
+    padding: 0px 5px;
   }
 
   .chat-icons {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
   }
 
   .copied {
-    font-size: xx-small;
-    padding: 1px 3px;
+    padding: 0px 3px;
   }
 
   .loading {
-    padding: 3px 4px;
+    padding: 3px 5px;
   }
 
   .circle {
@@ -4116,24 +3787,27 @@
   }
 
   .message-input-container {
-    padding: 4px;
+    padding: 5px;
   }
 
   .textarea-message {
-    padding: 4px 6px;
-    font-size: xx-small;
+    padding: 5px 7px;
   }
 
   .send-button {
-    padding: 6px;
+    padding: 7px;
   }
 
   .footer-chat {
-    font-size: xx-small;
-    margin-top: 4px;
+    margin-top: 5px;
   }
 
   .container-chat-icons {
-    transform: translateX(35px) translateY(-6px);
+    transform: translateX(40px) translateY(-6px);
+  }
+
+  .email-ilustration {
+    width: 100px;
+    height: 100px;
   }
 }

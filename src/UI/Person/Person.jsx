@@ -52,7 +52,7 @@ export const Person = ({
         <Button
           btnName='Ver hoja de vida'
           btnType='button'
-          btnStyle='bg-[#405e7f] text-white font-semibold w-full mt-2 card-button'
+          btnStyle='bg-[#405e7f] text-white font-semibold w-full mt-1 card-button'
           clicked={handleClick}
         />
       </div>

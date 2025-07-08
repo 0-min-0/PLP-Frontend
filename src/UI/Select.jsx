@@ -64,12 +64,12 @@ export const Select = ({
 
     return (
         <div className='relative w-full' ref={ref}>
-            {label && <label className='label-responsive mb-3 block font-semibold text-[color:var(--color-card-text)]'>{label}</label>}
+            {label && <label className='label-responsive mb-1 block font-semibold text-[color:var(--color-card-text)]'>{label}</label>}
             {desc && <p className='mb-1 text-sm text-gray-500'>{desc}</p>}
 
             <div className={containerClasses} onClick={handleClick}>
                 <span>{displayText}</span>
-                <HiChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                <HiChevronDown className={`open-icon w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
             </div>
 
             <div className={optionsClasses}>

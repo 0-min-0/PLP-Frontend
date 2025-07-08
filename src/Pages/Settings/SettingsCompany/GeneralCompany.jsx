@@ -138,7 +138,7 @@ export const GeneralCompany = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('nit') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('nit') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('nit') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -159,7 +159,7 @@ export const GeneralCompany = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('phone') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('phone') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('phone') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -180,7 +180,7 @@ export const GeneralCompany = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('phoneSec') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('phoneSec') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('phoneSec') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -200,7 +200,7 @@ export const GeneralCompany = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('email') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('email') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('email') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -219,7 +219,7 @@ export const GeneralCompany = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('town') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('town') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('town') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -238,7 +238,7 @@ export const GeneralCompany = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('category') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('category') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('category') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -259,7 +259,7 @@ export const GeneralCompany = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('webSite') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('webSite') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 focusColor={getActiveError('webSite') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
@@ -279,7 +279,7 @@ export const GeneralCompany = () => {
                 disabled={!isEditing || activeSection !== 'personal'}
                 borderColor={
                   isEditing && activeSection === 'personal'
-                    ? (getActiveError('desc') ? 'border-red-500' : 'border-[#60efdb]')
+                    ? (getActiveError('desc') ? 'border-red-500' : 'select-editing')
                     : 'border-gray-300'
                 }
                 error={getActiveError('desc')}

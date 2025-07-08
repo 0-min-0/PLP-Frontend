@@ -90,7 +90,7 @@ export const JobsContainer = ({
           <div
             ref={containerRef}
             onScroll={checkScrollPosition}
-            className='scroll-container flex overflow-x-auto scroll-smooth space-x-6 px-10 pb-10 scrollbar-hide scrollbar-custom'
+            className='scroll-container flex overflow-x-auto scroll-smooth gap-6 px-10 pb-10 scrollbar-hide scrollbar-custom'
           >
             {mixedItems.map((item, index) => (
               <div key={`${item.type}-${item.data.id || index}`} className='flex-shrink-0 px-2'>

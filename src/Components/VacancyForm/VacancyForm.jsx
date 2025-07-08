@@ -22,7 +22,7 @@ export const VacancyForm = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
       transition={{ duration: 0.4, ease: 'easeOut' }}
-      className='vacancy-form max-w-5xl rounded-xl px-20 py-12 mx-30 mt-4 mb-8 bg-[#405e7f]'
+      className='login-form-dark max-w-5xl container-create rounded-xl px-20 py-12 mx-30 mt-4 mb-8 bg-[#405e7f]'
     >
       <form onSubmit={handleFormSubmit}>
         <div className='container-create-title flex justify-between items-start mb-8'>

@@ -62,11 +62,11 @@ export const PublishedVacancies = () => {
                       <h3 className='text font-bold text-lg text-[color:var(--color-card-text)]'>
                         {vacancy.vacancyName || vacancy.title}
                       </h3>
-                      <p className='text-vacancy-applied text-[color:var(--color-card-text)] mt-1'>
+                      <p className='comment-rol text-vacancy-applied text-[color:var(--color-card-text)] mt-1'>
                         <span className='font-semibold text-[color:var(--color-card-text)]'>Contacto  •</span> {vacancy.contactPerson}
                       </p>
-                      <p className='text-vacancy-applied text-[color:var(--color-card-text)]'>
-                        <span className='font-semibold text-[color:var(--color-card-text)]'>Teléfono/Email  •</span> {vacancy.contact}
+                      <p className='comment-rol text-vacancy-applied text-[color:var(--color-card-text)]'>
+                        <span className=' font-semibold text-[color:var(--color-card-text)]'>Teléfono/Email  •</span> {vacancy.contact}
                       </p>
                     </div>
                     <div className="flex ml-4">

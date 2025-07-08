@@ -43,10 +43,10 @@ export const Desc = ({
                 </span>
             </div>
             {error && (
-                <p className={`${errColor} error-responsive error text-sm mt-1 font-semibold`}>{error}</p>
+                <p className={`${errColor} error-responsive error text-sm mt-1`}>{error}</p>
             )}
             {value && value.length === maxLength && !error && (
-                <p className={`${errColor} error-responsive error text-sm mt-1 font-semibold`}>ⓘ Límite alcanzado</p>
+                <p className={`${errColor} error-responsive error text-sm mt-1`}>ⓘ Límite alcanzado</p>
             )}
         </div>
     )

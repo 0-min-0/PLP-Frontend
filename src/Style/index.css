@@ -286,7 +286,7 @@ body {
 .dark-mode .desc-dark {
   background-color: #405e7f;
   color: white;
-  border: 1px solid #60efdb;
+  border: 1px solid #405e7f;
 }
 
 .dark-mode .desc-dark::placeholder,
@@ -309,7 +309,7 @@ body {
 /* Estilos base (modo claro) */
 .select-container-dark {
   background-color: var(--color-bg-primary, #ffffff);
-  border: 1px solid var(--color-border, #405e7f3a);
+  border: 1px solid var(#405e7f69);
   color: var(--color-text, #405e7f);
   transition: all 0.3s ease;
 }
@@ -343,7 +343,7 @@ body {
 /* Estilos para modo oscuro */
 .dark-mode .select-container-dark {
   background-color: var(--color-dark-bg-primary, #405e7f);
-  border-color: var(--color-dark-border, #60efdb);
+  border-color: var(--color-dark-secundary);
   color: var(--color-dark-text, #60efdb);
 }
 
@@ -375,7 +375,7 @@ body {
 }
 
 .dark-mode .login-container {
-  background-color: #254160;
+  background-color: #405e7f;
 }
 
 /* Fondo y texto del LoginForm */
@@ -387,6 +387,10 @@ body {
 .login-form-dark {
   background-color: #405e7f;
   color: white;
+}
+
+.dark-mode .login-form-dark {
+  background-color: #254160;
 }
 
 .login-title {
@@ -471,8 +475,8 @@ body {
 }
 
 .card-selected {
-  background-color: var(--color-dark-secundary);
-  color: var(--color-text-primary);
+  background-color: #405e7f;
+  color: white;
 }
 
 .dark-mode .card-selected {
