@@ -7,6 +7,8 @@ export default defineConfig({
   plugins: [react()],
   css: {
     postcss: {
+      transformer: 'postcss',
+      devSourcemap: true,
       plugins: [
         postcssTailwind({
           darkMode: ['class', '.dark-mode'], // permite que Tailwind use `.dark-mode`
@@ -20,9 +22,10 @@ export default defineConfig({
     },
   },
   build: {
-    rollupOptions: {
-      external: ['@rollup/rollup-linux-x64-gnu']
-    },
+    target: 'esnext',
+    commonjsOptions: {
+      transformMixedEsModules: true
+    }
   },
   optimizeDeps: {
     exclude: ['lightningcss']
