@@ -37,11 +37,11 @@ export const PeopleByCategory = () => {
         Object.entries(peopleByCategory).map(([category, people]) => (
           <div key={category} className="space-y-4">
             {!category && (
-              <h3 className='text-xl font-semibold text-[color:var(--color-card-text)] border-b-2 border-[#60efdb] pb-2'>
+              <h3 className='text-xl font-semibold text-[color:var(--color-card-text)] border-b-2 border-[#90d7db] pb-2'>
                 {category}
               </h3>
             )}
-            <div className='container-categories-jobs p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#60efdb] rounded-xl'>
+            <div className='container-categories-jobs p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#90d7db] rounded-xl'>
               {people.map((person) => (
                 <Person key={person.id} {...person} />
               ))}

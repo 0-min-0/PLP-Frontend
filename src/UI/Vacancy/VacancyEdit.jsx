@@ -63,7 +63,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           iValue={editedVacancy?.vacancyName || ''}
           iChange={handleEditChange}
           iHolder='Nombre de la vacante'
-          borderColor={isEditing ? (errors.vacancyName ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.vacancyName ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.vacancyName ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
           disabled={!isEditing}
           error={errors.vacancyName}
@@ -79,7 +79,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           iValue={editedVacancy?.company || ''}
           iChange={handleEditChange}
           iHolder='Empresa'
-          borderColor={isEditing ? (errors.company ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.company ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.company ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
           disabled={!isEditing}
           error={errors.company}
@@ -95,7 +95,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           iValue={editedVacancy?.contactPerson || ''}
           iChange={handleEditChange}
           iHolder='Persona de contacto'
-          borderColor={isEditing ? (errors.contactPerson ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.contactPerson ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.contactPerson ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]'}
           disabled={!isEditing}
           error={errors.contactPerson}
@@ -111,7 +111,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           iValue={editedVacancy?.contact || ''}
           iChange={handleEditChange}
           iHolder='Teléfono/Email'
-          borderColor={isEditing ? (errors.contact ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.contact ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.contact ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
           disabled={!isEditing}
           error={errors.contact}
@@ -127,7 +127,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           iValue={editedVacancy?.location || ''}
           iChange={handleEditChange}
           iHolder='Ubicación'
-          borderColor={isEditing ? (errors.location ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.location ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.location ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
           disabled={!isEditing}
           error={errors.location}
@@ -147,7 +147,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
             }
           })}
           height='h-32'
-          borderColor={isEditing ? (errors.responsibilities ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.responsibilities ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.responsibilities ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
           disabled={!isEditing}
           error={errors.responsibilities}
@@ -164,7 +164,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           error={errors.category}
           errColor='text-red-400'
           disabled={!isEditing}
-          borderColor={isEditing ? (errors.category ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.category ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.category ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
         />
       </motion.div>
@@ -178,7 +178,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           iValue={editedVacancy?.availability || ''}
           iChange={handleEditChange}
           iHolder='Disponibilidad'
-          borderColor={isEditing ? (errors.availability ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.availability ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.availability ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
           disabled={!isEditing}
           error={errors.availability}
@@ -194,7 +194,7 @@ export const VacancyEdit = ({ editedVacancy, isEditing }) => {
           iValue={editedVacancy?.salary || ''}
           iChange={handleEditChange}
           iHolder='Salario estimado'
-          borderColor={isEditing ? (errors.salary ? 'border-red-500' : 'border-[#60efdb]') : 'border-gray-300'}
+          borderColor={isEditing ? (errors.salary ? 'border-red-500' : 'border-[#90d7db]') : 'border-gray-300'}
           focusColor={errors.salary ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
           disabled={!isEditing}
           error={errors.salary}

@@ -4,7 +4,7 @@ import Avatar2 from '../assets/icons/icon2.png'
 import Avatar3 from '../assets/icons/icon3.png'
 import Avatar4 from '../assets/icons/icon4.png'
 import Avatar5 from '../assets/icons/icon5.png'
-import Avatar6 from '../assets/icons/icon5.png'
+import Avatar6 from '../assets/icons/icon6.png'
 
 
 const UserContext = createContext()

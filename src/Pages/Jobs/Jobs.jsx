@@ -20,7 +20,7 @@ export const Jobs = () => {
     }
   }
 
-  const baseItemStyle = `button-responsive font-semibold text-lg px-4 py-2 my-1 mx-1 rounded-full whitespace-nowrap bg-[#60efdb] text-[#405e7f] hover:shadow-sm
+  const baseItemStyle = `button-responsive font-semibold text-lg px-4 py-2 my-1 mx-1 rounded-full whitespace-nowrap bg-[#90d7db] text-[#405e7f] hover:shadow-sm
                          ease-[cubic-bezier(0.4, 0, 0.2, 1)] transform duration-300 hover:-translate-y-0.5 active:scale-[0.98]`
 
   const getNavLinkStyle = ({ isActive }) =>

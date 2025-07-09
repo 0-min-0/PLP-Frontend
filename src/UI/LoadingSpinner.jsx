@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const LoadingSpinner = ({ size = 'medium', color = 'text-[#60efdb]' }) => {
+export const LoadingSpinner = ({ size = 'medium', color = 'text-[#90d7db]' }) => {
   const sizes = {
     small: 'h-5 w-5',
     medium: 'h-8 w-8',

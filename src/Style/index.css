@@ -13,15 +13,15 @@
   --color-modal-bg: #ffffff;
   --color-modal-text: #4a5568;
   --color-gray-text: #4b5563;
-  --color-welcome-bg: #dcfff6;
+  --color-welcome-bg: #d0f1f4;
   --color-welcome-title: #254160;
   --color-welcome-text: #405e7f;
   --color-card-title-text: #405e7f;
   --color-card-info-text: #4b5563;
   /* Colores para scrollbar si los manejas con variables */
   --scrollbar-track-bg: #f1f1f1;
-  --scrollbar-thumb-bg: #60efdb;
-  --scrollbar-thumb-hover-bg: #5ae4d4;
+  --scrollbar-thumb-bg: #90d7db;
+  --scrollbar-thumb-hover-bg: #70dce1;
 
   @apply transition-colors duration-300;
   /* Transición general */
@@ -35,7 +35,7 @@
   --color-dark-other: #4b6582;
   --color-card-bg: #254160;
   --color-card-text: #ffffff;
-  --color-button-bg: #60efdb;
+  --color-button-bg: #90d7db;
   --color-button-text: #405e7f;
   --color-modal-bg: #405e7f;
   --color-modal-text: #ffffff;
@@ -46,7 +46,7 @@
   --color-card-title-text: #ffffff;
   --color-card-info-text: #f1f1f1;
   --scrollbar-track-bg: #70879f;
-  --scrollbar-thumb-bg: #60efdb;
+  --scrollbar-thumb-bg: #90d7db;
   --scrollbar-thumb-hover-bg: #5ae4d4;
 }
 
@@ -190,7 +190,7 @@ body {
 .vacancy-card {
   background-color: var(--color-card-bg);
   color: var(--color-card-text);
-  border: 1px solid #60efdb;
+  border: 1px solid #90d7db;
 }
 
 .dark-mode .vacancy-card {
@@ -206,7 +206,7 @@ body {
 .person-card {
   background-color: var(--color-card-bg);
   color: var(--color-card-text);
-  border: 1px solid #60efdb;
+  border: 1px solid #90d7db;
 }
 
 .dark-mode .person-card {
@@ -225,13 +225,13 @@ body {
 }
 
 .dark-mode .card-button {
-  background-color: #60efdb;
+  background-color: #90d7db;
   color: #405e7f;
 }
 
 /* About us en la pagina principal */
 .about-container {
-  background-color: #dcfff6;
+  background-color: #d0f1f4;
 }
 
 .dark-mode .about-container {
@@ -291,11 +291,11 @@ body {
 
 .dark-mode .desc-dark::placeholder,
 .dark-mode .input-dark::placeholder {
-  color: #60efdb;
+  color: #90d7db;
 }
 
 .dark-mode .desc-counter {
-  color: #60efdb;
+  color: #90d7db;
 }
 
 .input-label {
@@ -315,7 +315,7 @@ body {
 }
 
 .select-editing {
-  border-color: #60efdb !important;
+  border-color: #90d7db !important;
 }
 
 .select-options {
@@ -344,7 +344,7 @@ body {
 .dark-mode .select-container-dark {
   background-color: var(--color-dark-bg-primary, #405e7f);
   border-color: var(--color-dark-secundary);
-  color: var(--color-dark-text, #60efdb);
+  color: var(--color-dark-text, #90d7db);
 }
 
 .dark-mode .select-options {
@@ -357,7 +357,7 @@ body {
 }
 
 .dark-mode .select-option-dark {
-  color: var(--color-dark-text, #60efdb);
+  color: var(--color-dark-text, #90d7db);
 }
 
 .dark-mode .select-option-dark:hover {
@@ -365,7 +365,7 @@ body {
 }
 
 .dark-mode .select-icon-dark {
-  color: var(--color-dark-text, #60efdb);
+  color: var(--color-dark-text, #90d7db);
 }
 
 /* Fondo del contenedor externo de Login */
@@ -456,7 +456,7 @@ body {
 }
 
 .error-seeker {
-  color: #60efdb;
+  color: #90d7db;
 }
 
 .dark-mode .error-seeker {
@@ -490,7 +490,7 @@ body {
 }
 
 .dark-mode .terms-acept {
-  accent-color: #60efdb;
+  accent-color: #90d7db;
 }
 
 .aboutus {
@@ -592,8 +592,8 @@ body {
 }
 
 .dark-mode .postulation {
-  background-color: #60efdc6c;
-  color: #60efdb;
+  background-color: #90d7db81;
+  color: #90d7db;
 }
 
 .vacancy-back {
@@ -610,7 +610,7 @@ body {
 }
 
 .dark-mode .icons {
-  color: #60efdb;
+  color: #90d7db;
   background-color: #254160;
 }
 
@@ -620,7 +620,7 @@ body {
 }
 
 .dark-mode .icons:hover {
-  color: #60efdb;
+  color: #90d7db;
   background-color: var(--color-dark-secundary);
 }
 

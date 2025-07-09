@@ -107,7 +107,7 @@ export const VacancyDetail = ({ vacancy, onClose }) => {
               btnName={isEditing ? 'Guardar cambios' : 'Editar vacante'}
               btnType="button"
               btnStyle={`px-6 py-2 rounded-full ${isEditing
-                  ? 'bg-[#60efdb] text-[#405e7f]'
+                  ? 'bg-[#90d7db] text-[#405e7f]'
                   : 'bg-[#405e7f] text-white'
                 } font-semibold`}
               clicked={isEditing ? () => handleSaveVacancy(onClose) : () => setIsEditing(true)}

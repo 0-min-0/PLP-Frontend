@@ -16,7 +16,7 @@ export const AccountButtons = () => {
             <NavLink to='/crear-cuenta'>
                 <Button
                     btnType='button'
-                    btnStyle='bg-[#60efdb] text-[#405e7f] font-bold px-4 py-2 rounded-full cursor-pointer'
+                    btnStyle='bg-[#90d7db] text-[#405e7f] font-bold px-4 py-2 rounded-full cursor-pointer'
                     btnId='btnCreateAccount'
                     btnName='Crear cuenta'
                 />

@@ -111,7 +111,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
                 <label className="inline-flex items-center">
                   <input
                     type="radio"
-                    className="form-radio text-[#60efdb]"
+                    className="form-radio text-[#90d7db]"
                     name="reportType"
                     value="technical"
                     checked={reportType === 'technical'}
@@ -122,7 +122,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
                 <label className="inline-flex items-center">
                   <input
                     type="radio"
-                    className="form-radio text-[#60efdb]"
+                    className="form-radio text-[#90d7db]"
                     name="reportType"
                     value="suggestion"
                     checked={reportType === 'suggestion'}
@@ -133,7 +133,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
                 <label className="inline-flex items-center">
                   <input
                     type="radio"
-                    className="form-radio text-[#60efdb]"
+                    className="form-radio text-[#90d7db]"
                     name="reportType"
                     value="other"
                     checked={reportType === 'other'}
@@ -181,7 +181,7 @@ export const ReportModal = ({ isOpen, onClose, onSubmit }) => {
               />
               <Button
                 btnName={isSubmitting ? "Enviando..." : "Enviar Reporte"}
-                btnStyle="bg-[#60efdb] text-[#405e7f] hover:bg-[#4fd4c7]"
+                btnStyle="bg-[#90d7db] text-[#405e7f] hover:bg-[#4fd4c7]"
                 clicked={handleSubmit}
                 disabled={!reportText.trim() || !email.trim() || isSubmitting}
               />

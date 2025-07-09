@@ -42,7 +42,7 @@ export const VacancyForm = () => {
               iValue={vacancy.vacancyName || ''}
               iChange={handleChange}
               error={errors.vacancyName}
-              errColor='text-[#60efdb]'
+              errColor='text-[#90d7db]'
             />
             <Input
               labelTitle='Persona de contacto'
@@ -53,7 +53,7 @@ export const VacancyForm = () => {
               iValue={vacancy.contactPerson || ''}
               iChange={handleChange}
               error={errors.contactPerson}
-              errColor='text-[#60efdb]'
+              errColor='text-[#90d7db]'
             />
             <Input
               labelTitle='Contacto'
@@ -64,7 +64,7 @@ export const VacancyForm = () => {
               iValue={vacancy.contact || ''}
               iChange={handleChange}
               error={errors.contact}
-              errColor='text-[#60efdb]'
+              errColor='text-[#90d7db]'
             />
             <Input
               labelTitle='Ubicación'
@@ -75,7 +75,7 @@ export const VacancyForm = () => {
               iValue={vacancy.location || ''}
               iChange={handleChange}
               error={errors.location}
-              errColor='text-[#60efdb]'
+              errColor='text-[#90d7db]'
             />
             <Input
               labelTitle='Disponibilidad requerida'
@@ -86,7 +86,7 @@ export const VacancyForm = () => {
               iValue={vacancy.availability || ''}
               iChange={handleChange}
               error={errors.availability}
-              errColor='text-[#60efdb]'
+              errColor='text-[#90d7db]'
             />
           </div>
 
@@ -100,7 +100,7 @@ export const VacancyForm = () => {
               error={errors.responsibilities}
               height='h-30'
               color='text-white'
-              errColor='text-[#60efdb]'
+              errColor='text-[#90d7db]'
             />
             <Select
               label='Categoria'
@@ -110,7 +110,7 @@ export const VacancyForm = () => {
               onChange={(value) => handleSelectChange('category', value)}
               options={categories}
               error={errors.category}
-              errColor='text-[#60efdb]'
+              errColor='text-[#90d7db]'
             />
             <Input
               labelTitle='Salario estimado'
@@ -121,14 +121,14 @@ export const VacancyForm = () => {
               iValue={vacancy.salary || ''}
               iChange={handleChange}
               error={errors.salary}
-              errColor='text-[#60efdb]'
+              errColor='text-[#90d7db]'
             />
           </div>
 
           <Button
             btnName='Publicar vacante'
             btnType='submit'
-            btnStyle='w-[25%] bg-[#60efdb] text-[#405e7f] font-semibold text-lg rounded-full transition-all duration-300'
+            btnStyle='w-[25%] bg-[#90d7db] text-[#405e7f] font-semibold text-lg rounded-full transition-all duration-300'
           />
         </div>
       </form>

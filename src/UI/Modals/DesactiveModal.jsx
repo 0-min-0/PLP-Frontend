@@ -164,7 +164,7 @@ export const DeactivateConfirmModal = ({
                                 error={error}
                                 errColor="text-red-400"
                                 borderColor={error ? 'border-red-400' : 'border-[#405e7f]/50'}
-                                focusColor="focus:ring-[#60efdb]"
+                                focusColor="focus:ring-[#90d7db]"
                             />
 
                             <div className='flex flex-col space-y-4 mt-6'>
@@ -272,7 +272,7 @@ export const ActivateConfirmModal = ({
                                 error={error}
                                 errColor="text-red-400"
                                 borderColor={error ? 'border-red-400' : 'border-[#405e7f]/50'}
-                                focusColor="focus:ring-[#60efdb]"
+                                focusColor="focus:ring-[#90d7db]"
                             />
 
                             <div className='flex flex-col space-y-4 mt-6'>

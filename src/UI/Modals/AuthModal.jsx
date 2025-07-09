@@ -86,7 +86,7 @@ export const AuthModal = ({
                             <NavLink to='/acceder'>
                                 <Button
                                     btnName='Iniciar sesión'
-                                    btnStyle='w-full bg-[#60efdb] text-[#405e7f]'
+                                    btnStyle='w-full bg-[#90d7db] text-[#405e7f]'
                                 />
                             </NavLink>
                              <NavLink to='/crear-cuenta'>

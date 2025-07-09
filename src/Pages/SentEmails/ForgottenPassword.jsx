@@ -106,7 +106,7 @@ export const ForgottenPassword = () => {
                         <Button
                             type="submit"
                             btnName={isLoading ? <LoadingSpinner size="small" /> : 'Recibir correo'}
-                            btnStyle={`ml-0 md:ml-4 mt-4 md:mt-0 text-[#405e7f] bg-[#60efdb] px-6 py-2 ${isSubmitted ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#4fd1c5]'}`}
+                            btnStyle={`ml-0 md:ml-4 mt-4 md:mt-0 text-[#405e7f] bg-[#90d7db] px-6 py-2 ${isSubmitted ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#4fd1c5]'}`}
                             disabled={isSubmitted || isLoading}
                         />
                     </div>
@@ -145,7 +145,7 @@ export const ForgottenPassword = () => {
                             <Button
                                 btnName={isLoading ? <LoadingSpinner size="small" /> : "Reenviar correo"}
                                 onClick={handleResendEmail}
-                                btnStyle="text-[#405e7f] bg-[#60efdb] px-6 py-2 hover:bg-[#4fd1c5]"
+                                btnStyle="text-[#405e7f] bg-[#90d7db] px-6 py-2 hover:bg-[#4fd1c5]"
                                 disabled={!formData.email || isSubmitted || isLoading}
                             />
                         )}

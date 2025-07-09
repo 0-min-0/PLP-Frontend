@@ -8,7 +8,7 @@ import { useRegister } from '../../Context/RegisterContext'
 import { useLogin } from '../../Context/LoginContext'
 
 export const LoginForm = () => {
-    const pStyle = 'error-responsive text-[#60efdb] text-sm mt-1'
+    const pStyle = 'error-responsive text-[#90d7db] text-sm mt-1'
     const { visibility, toggleVisibility } = useRegister()
     const {
         form,
@@ -39,7 +39,7 @@ export const LoginForm = () => {
                             <p>¿Aún no tienes una cuenta?</p>
                             <NavLink
                                 to='/crear-cuenta'
-                                className='text-white font-semibold hover:text-[#60efdb] hover:underline ml-2 login-form-register-link' >
+                                className='text-white font-semibold hover:text-[#90d7db] hover:underline ml-2 login-form-register-link' >
                                 Únete ahora
                             </NavLink>
                         </div>
@@ -52,7 +52,7 @@ export const LoginForm = () => {
                                 {errorForm.loginError.includes('inexistente') && (
                                     <NavLink
                                         to='/crear-cuenta'
-                                        className='text-[#60efdb] text-sm font-semibold underline hover:text-white mt-1 login-form-register-link'
+                                        className='text-[#90d7db] text-sm font-semibold underline hover:text-white mt-1 login-form-register-link'
                                     >
                                         Regístrate aquí
                                     </NavLink>
@@ -109,13 +109,13 @@ export const LoginForm = () => {
                         <div className='flex flex-col items-center gap-4 mt-6 login-form-actions'>
                             <NavLink
                                 to='/recuperar-contraseña'
-                                className='hover:text-[#60efdb] hover:underline login-form-forgot-password'>
+                                className='hover:text-[#90d7db] hover:underline login-form-forgot-password'>
                                 ¿Has olvidado tu contraseña?
                             </NavLink>
 
                             <Button
                                 btnType='submit'
-                                btnStyle={`bg-[#60efdb] text-[#405e7f] font-bold px-4 py-2 rounded-full cursor-pointer w-full login-form-submit-btn ${isSubmitting ? 'opacity-70' : ''}`}
+                                btnStyle={`bg-[#90d7db] text-[#405e7f] font-bold px-4 py-2 rounded-full cursor-pointer w-full login-form-submit-btn ${isSubmitting ? 'opacity-70' : ''}`}
                                 btnId='btnLogin'
                                 btnName={isSubmitting ? 'Verificando...' : 'Acceder'}
                                 disabled={isSubmitting}

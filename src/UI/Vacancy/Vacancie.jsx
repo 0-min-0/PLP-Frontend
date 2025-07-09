@@ -31,7 +31,7 @@ export const Vacancie = ({
   return (
     <>
       <div className='job-card rounded-xl px-8 py-6 w-75 h-60 flex flex-col border
-                      bg-white text-[#405e7f] border-[#60efdb]
+                      bg-white text-[#405e7f] border-[#90d7db]
                       vacancy-card'>
         <div className='flex justify-between items-start mb-1'>
           <h2 className='job-card-title font-semibold text-lg leading-tight truncate max-h-[3.6rem]'>

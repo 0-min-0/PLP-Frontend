@@ -33,7 +33,7 @@ export const SearchBar = ({
             }
           }}
           className='search search-responsive w-350 pl-12 pr-10 py-2.5 rounded-full bg-white border border-gray-300 focus:outline-none focus:ring-2 
-                  focus:ring-[#60efdb] focus:border-transparent transition-all duration-300 input-no-clear'
+                  focus:ring-[#90d7db] focus:border-transparent transition-all duration-300 input-no-clear'
         />
         {query && (
           <button

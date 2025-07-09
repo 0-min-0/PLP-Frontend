@@ -120,7 +120,7 @@ export const MainAboutUs = () => {
             <Button
               btnName='Leer más'
               btnType='submit'
-              btnStyle='w-[30%] text-lg text-[#405e7f] bg-[#60efdb]'
+              btnStyle='w-[30%] text-lg text-[#405e7f] bg-[#90d7db]'
             />
           </NavLink>
         </div>

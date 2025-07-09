@@ -31,7 +31,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
 
                     <div className='columns-info grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <div className='sub-columns-info flex items-start gap-3'>
-                            <HiOutlineIdentification className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                            <HiOutlineIdentification className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                             <div>
                                 <p className='text font-semibold text-[color:var(--color-card-text)]'>
                                     {isEmployer ? 'Nombre' : 'Empresa'}
@@ -41,7 +41,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
                         </div>
 
                         <div className='sub-columns-info flex items-start gap-3'>
-                            <HiOutlineLocationMarker className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                            <HiOutlineLocationMarker className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                             <div>
                                 <p className='text font-semibold text-[color:var(--color-card-text)]'>Ubicación</p>
                                 <p className='text'>{isEmployer ? user.townEmployer : user.townCompany}</p>
@@ -50,7 +50,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
 
                         {isCompany && (
                             <div className='sub-columns-info flex items-start gap-3'>
-                                <HiOutlineTag className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                                <HiOutlineTag className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                                 <div>
                                     <p className='text font-semibold text-[color:var(--color-card-text)]'>Categoría</p>
                                     <p className='text'>{user.category || 'No especificado'}</p>
@@ -60,7 +60,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
 
                         {isCompany && (
                             <div className='sub-columns-info flex items-start gap-3'>
-                                <HiOutlineGlobeAlt className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                                <HiOutlineGlobeAlt className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                                 <div>
                                     <p className='text font-semibold text-[color:var(--color-card-text)]'>Sitio web</p>
                                     <p className='text'>{user.webSite || 'No especificado'}</p>
@@ -85,7 +85,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
                 <h4 className='subtitle-section text-xl font-semibold text-[color:var(--color-card-text)] mb-4'>Detalles de la Vacante</h4>
                 <div className='columns-info-2 grid grid-cols-1 md:grid-cols-2 gap-4 mb-6'>
                     <div className='sub-columns-info flex items-start gap-3'>
-                        <HiOutlineBriefcase className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                        <HiOutlineBriefcase className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                         <div>
                             <p className='text font-semibold text-[color:var(--color-card-text)]'>Nombre del puesto</p>
                             <p className='text'>{vacancy.title || vacancy.vacancyName}</p>
@@ -93,7 +93,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
                     </div>
 
                     <div className='sub-columns-info flex items-start gap-3'>
-                        <HiOutlineUser className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                        <HiOutlineUser className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                         <div>
                             <p className='text font-semibold text-[color:var(--color-card-text)]'>Persona de contacto</p>
                             <p className='text'>{vacancy.contactPerson || 'No especificado'}</p>
@@ -102,7 +102,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
 
                     {vacancy.contact.includes('@') ? (
                         <div className='sub-columns-info flex items-start gap-3'>
-                            <HiOutlineMail className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                            <HiOutlineMail className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                             <div>
                                 <p className='text font-semibold text-[color:var(--color-card-text)]'>Correo electrónico</p>
                                 <p className='text'>{vacancy.contact}</p>
@@ -110,7 +110,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
                         </div>
                     ) : (
                         <div className='sub-columns-info flex items-start gap-3'>
-                            <HiOutlinePhone className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                            <HiOutlinePhone className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                             <div>
                                 <p className='text font-semibold text-[color:var(--color-card-text)]'>Teléfono</p>
                                 <p className='text'>{vacancy.contact}</p>
@@ -119,7 +119,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
                     )}
 
                     <div className='sub-columns-info flex items-start gap-3'>
-                        <HiOutlineClock className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                        <HiOutlineClock className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                         <div>
                             <p className='text font-semibold text-[color:var(--color-card-text)]'>Disponibilidad</p>
                             <p className='text'>{vacancy.availability}</p>
@@ -127,7 +127,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
                     </div>
 
                     <div className='sub-columns-info flex items-start gap-3'>
-                        <HiOutlineTag className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                        <HiOutlineTag className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                         <div>
                             <p className='text font-semibold text-[color:var(--color-card-text)]'>Categoría</p>
                             <p className='text'>{getCategoryLabel(vacancy.category)}</p>
@@ -135,7 +135,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
                     </div>
 
                     <div className='sub-columns-info flex items-start gap-3'>
-                        <HiOutlineCurrencyDollar className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                        <HiOutlineCurrencyDollar className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                         <div>
                             <p className='text font-semibold text-[color:var(--color-card-text)]'>Salario estimado</p>
                             <p className='text'>{vacancy.salary || 'A convenir'}</p>
@@ -150,7 +150,7 @@ export const VacancyInfo = ({ vacancy, user }) => {
             <div>
                 <h4 className='subtitle-section text-xl font-semibold text-[color:var(--color-card-text)] mb-4'>Responsabilidades</h4>
                 <div className='sub-columns-info flex items-start gap-3'>
-                    <HiOutlineClipboardList className='ilustration-icons w-5 h-5 text-[#60efdb] mt-1' />
+                    <HiOutlineClipboardList className='ilustration-icons w-5 h-5 text-[#90d7db] mt-1' />
                     <div className='text text-[color:var(--color-card-text)]'>
                         {vacancy.responsibilities.split('\n').map((item, i) => (
                             <p key={i} className='mb-2'>{item}</p>
@@ -162,6 +162,3 @@ export const VacancyInfo = ({ vacancy, user }) => {
     )
 }
 
-// ==============================
-// EJEMPLOS DE USUARIO Y VACANTE
-// ==============================

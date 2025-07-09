@@ -54,7 +54,7 @@ export const PublishedVacancies = () => {
               {vacancies.map((vacancy) => (
                 <div
                   key={vacancy.id}
-                  className='card-published h-38 border-2 border-[#60efdb] rounded-xl p-6'
+                  className='card-published h-38 border-2 border-[#90d7db] rounded-xl p-6'
                   onClick={() => setSelectedVacancy(vacancy)}
                 >
                   <div className='flex justify-between items-start'>
@@ -74,7 +74,7 @@ export const PublishedVacancies = () => {
                         title='Editar vacante'
                         className='text-[color:var(--color-card-text)] cursor-pointer p-2
                                 transition-all duration-300
-                                hover:bg-[#60efdb]/20 rounded-full'
+                                hover:bg-[#90d7db]/20 rounded-full'
                         onClick={(e) => {
                           e.stopPropagation()
                           setSelectedVacancy(vacancy)
@@ -87,7 +87,7 @@ export const PublishedVacancies = () => {
                         title='Eliminar vacante'
                         className='text-[color:var(--color-card-text)] cursor-pointer p-2
                                 transition-all duration-300
-                                hover:bg-[#60efdb]/20 rounded-full'
+                                hover:bg-[#90d7db]/20 rounded-full'
                         onClick={(e) => {
                           e.stopPropagation()
                           if (window.confirm('¿Estás seguro de eliminar esta vacante?')) {

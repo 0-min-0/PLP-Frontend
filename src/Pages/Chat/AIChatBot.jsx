@@ -41,7 +41,7 @@ export const AIChatBot = () => {
           </div>
           <div>
             <NavLink to={homeRoute}>
-              <HiMiniArrowUturnLeft className="routes-icons text-2xl hover:text-[#60efdb] transition-colors" />
+              <HiMiniArrowUturnLeft className="routes-icons text-2xl hover:text-[#90d7db] transition-colors" />
             </NavLink>
           </div>
         </div>
@@ -75,13 +75,13 @@ export const AIChatBot = () => {
                       <textarea
                         value={editValue}
                         onChange={(e) => setEditValue(e.target.value)}
-                        className="edit-messages w-full bg-white px-4 py-3 text-lg text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 outline-none resize-none min-h-[5rem] focus:border-transparent focus:ring-2 focus:ring-[#60efdb] transition-all"
+                        className="edit-messages w-full bg-white px-4 py-3 text-lg text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 outline-none resize-none min-h-[5rem] focus:border-transparent focus:ring-2 focus:ring-[#90d7db] transition-all"
                         rows={3}
                       />
                       <div className="flex gap-2">
                         <button
                           onClick={() => saveEdit(message.id)}
-                          className="save-cancel-edit bg-[#60efdb] text-[#405e7f] rounded-md px-3 py-1 text-sm border-none outline-none cursor-pointer flex items-center gap-1"
+                          className="save-cancel-edit bg-[#90d7db] text-[#405e7f] rounded-md px-3 py-1 text-sm border-none outline-none cursor-pointer flex items-center gap-1"
                         >
                           <FiCheck className='chat-icons w-4 h-4' /> Guardar
                         </button>
@@ -111,7 +111,7 @@ export const AIChatBot = () => {
                           <FiEdit2 className='chat-icons w-4 h-4' />
                         </button>
                       </div>
-                      <div className="message-bot max-w-[24rem] rounded-xl px-4 py-3 bg-[#60efdb] text-[#405e7f] break-words whitespace-pre-wrap">
+                      <div className="message-bot max-w-[24rem] rounded-xl px-4 py-3 bg-[#90d7db] text-[#405e7f] break-words whitespace-pre-wrap">
                         <p className='message-text text-lg'>{message.text}</p>
                       </div>
                       {copiedId === message.id && (
@@ -148,7 +148,7 @@ export const AIChatBot = () => {
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyPress}
-              className="textarea-message w-full bg-white px-4 py-3 text-lg text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 outline-none resize-none transition-all focus:border-transparent focus:ring-2 focus:ring-[#60efdb] disabled:opacity-50"
+              className="textarea-message w-full bg-white px-4 py-3 text-lg text-[#405e7f]/90 rounded-xl border border-[#405e7f]/50 outline-none resize-none transition-all focus:border-transparent focus:ring-2 focus:ring-[#90d7db] disabled:opacity-50"
               placeholder="Escribe tu mensaje..."
               rows={1}
               disabled={isLoading}
@@ -157,7 +157,7 @@ export const AIChatBot = () => {
           <button
             onClick={handleSendMessage}
             disabled={!inputValue.trim() || isLoading}
-            className={`send-button bg-[#60efdb] text-[#405e7f] rounded-full p-4 border-none outline-none cursor-pointer flex items-center justify-center transition-all origin-center ${!inputValue.trim() || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
+            className={`send-button bg-[#90d7db] text-[#405e7f] rounded-full p-4 border-none outline-none cursor-pointer flex items-center justify-center transition-all origin-center ${!inputValue.trim() || isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'
               }`}
           >
             <FiSend className="text-xl" />

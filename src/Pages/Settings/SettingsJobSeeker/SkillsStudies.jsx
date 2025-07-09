@@ -41,13 +41,13 @@ export const SkillsStudies = () => {
             >
               <button 
                 onClick={handleSaveWithValidation}
-                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#90d7db]/20 cursor-pointer'
               >
                 <FiSave className='edit-icon w-5 h-5' /> Guardar
               </button>
               <button 
                 onClick={handleCancel}
-                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#90d7db]/20 cursor-pointer'
               >
                 <FiX className='edit-icon w-5 h-5' /> Cancelar
               </button>
@@ -56,7 +56,7 @@ export const SkillsStudies = () => {
             <button 
               key='edit'
               onClick={() => handleEdit('skillsStudies')}
-              className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+              className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#90d7db]/20 cursor-pointer'
             >
               <FiEdit className='edit-icon w-5 h-5' /> Editar habilidades y estudios
             </button>

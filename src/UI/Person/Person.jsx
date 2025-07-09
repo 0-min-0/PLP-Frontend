@@ -28,7 +28,7 @@ export const Person = ({
   return (
     <>
       <div className='job-card rounded-xl px-8 py-6 w-75 h-60 flex flex-col border
-                      bg-white text-[#405e7f] border-[#60efdb]
+                      bg-white text-[#405e7f] border-[#90d7db]
                       person-card'>
         <div className='flex justify-between items-center'>
           <h2 className='job-card-title mb-2 font-semibold text-lg truncate max-w-[220px]'>{occupation}</h2>

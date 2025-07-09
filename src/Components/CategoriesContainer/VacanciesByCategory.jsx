@@ -34,7 +34,7 @@ export const VacanciesByCategory = () => {
       {Object.entries(vacanciesByCategory).length > 0 ? (
         Object.entries(vacanciesByCategory).map(([category, vacancies]) => (
           <div key={category} className='space-y-4'>
-            <div className='container-categories-jobs p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#60efdb] rounded-xl'>
+            <div className='container-categories-jobs p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#90d7db] rounded-xl'>
               {vacancies.map((vacancy) => (
                 <Vacancie key={vacancy.id} {...vacancy} />
               ))}

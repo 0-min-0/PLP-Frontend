@@ -63,13 +63,13 @@ export const Security = () => {
             >
               <button
                 onClick={handleSavePassword}
-                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#90d7db]/20 cursor-pointer'
               >
                 <FiSave className='edit-icon w-5 h-5' /> Guardar
               </button>
               <button
                 onClick={handleCancelPasswoord}
-                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+                className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#90d7db]/20 cursor-pointer'
               >
                 <FiX className='edit-icon w-5 h-5' /> Cancelar
               </button>
@@ -78,7 +78,7 @@ export const Security = () => {
             <button
               key='edit-security'
               onClick={() => handleEdit('security')}
-              className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#60efdb]/20 cursor-pointer'
+              className='button-set flex text-lg items-center py-1 px-2 rounded-xl gap-1 text-[color:var(--color-card-text)] hover:bg-[#90d7db]/20 cursor-pointer'
             >
               <FiEdit className='edit-icon w-5 h-5' /> Cambiar contraseña
             </button>
@@ -104,7 +104,7 @@ export const Security = () => {
                 iChange={handlePasswordChangeWithValidation}
                 labelTitle='Contraseña actual'
                 iHolder='Ingrese su contraseña actual'
-                borderColor={passwordErrors.currentPassword ? 'border-red-500' : 'border-[#60efdb]'}
+                borderColor={passwordErrors.currentPassword ? 'border-red-500' : 'border-[#90d7db]'}
                 focusColor={passwordErrors.currentPassword ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
               />
               <button
@@ -128,7 +128,7 @@ export const Security = () => {
                 iChange={handlePasswordChangeWithValidation}
                 labelTitle='Nueva contraseña'
                 iHolder='Ingrese su nueva contraseña'
-                borderColor={getCombinedPasswordError('newPassword') ? 'border-red-500' : 'border-[#60efdb]'}
+                borderColor={getCombinedPasswordError('newPassword') ? 'border-red-500' : 'border-[#90d7db]'}
                 focusColor={getCombinedPasswordError('newPassword') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
               />
               <button
@@ -152,7 +152,7 @@ export const Security = () => {
                 iChange={handlePasswordChangeWithValidation}
                 labelTitle='Confirmar nueva contraseña'
                 iHolder='Confirme su nueva contraseña'
-                borderColor={getCombinedPasswordError('confirmPassword') ? 'border-red-500' : 'border-[#60efdb]'}
+                borderColor={getCombinedPasswordError('confirmPassword') ? 'border-red-500' : 'border-[#90d7db]'}
                 focusColor={getCombinedPasswordError('confirmPassword') ? 'focus:ring-red-500' : 'focus:ring-[#405e7f]/50'}
               />
               <button

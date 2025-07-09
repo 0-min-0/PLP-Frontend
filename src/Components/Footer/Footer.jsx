@@ -20,7 +20,7 @@ const iconAnimation = {
   hover: {
     y: -3,
     scale: 1.1,
-    color: "#60efdb",
+    color: "#90d7db",
     transition: {
       duration: 0.2,
       ease: "easeOut"
@@ -85,7 +85,7 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               href="https://wa.me/123456789"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#60efdb] transition duration-200"
+              className="hover:text-[#90d7db] transition duration-200"
               aria-label="WhatsApp"
               variants={iconAnimation}
               whileHover="hover"
@@ -96,7 +96,7 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               href="https://discord.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#60efdb] transition duration-200"
+              className="hover:text-[#90d7db] transition duration-200"
               aria-label="Discord"
               variants={iconAnimation}
               whileHover="hover"
@@ -107,7 +107,7 @@ export const Footer = ({ bgColor = 'bg-[#405e7f]', textColor = 'text-white' }) =
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[#60efdb] transition duration-200"
+              className="hover:text-[#90d7db] transition duration-200"
               aria-label="LinkedIn"
               variants={iconAnimation}
               whileHover="hover"

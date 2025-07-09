@@ -196,7 +196,7 @@ export const ContactProvider = ({ children }) => {
         <Button
           btnName='Cerrar'
           clicked={() => setShowSuccessModal(false)}
-          btnStyle='w-full bg-[#60efdb] text-[#405e7f]'
+          btnStyle='w-full bg-[#90d7db] text-[#405e7f]'
         />
       </Modal>
       
@@ -217,7 +217,7 @@ export const ContactProvider = ({ children }) => {
           <Button
             btnName='Cerrar'
             clicked={() => setShowErrorModal(false)}
-            btnStyle='flex-1 bg-[#60efdb] text-[#405e7f]'
+            btnStyle='flex-1 bg-[#90d7db] text-[#405e7f]'
           />
         </div>
       </Modal>

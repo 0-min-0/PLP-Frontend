@@ -47,7 +47,7 @@ export const Comments = () => {
             {comments.map((comment, index) => (
               <motion.div
                 key={index}
-                className='comment-card border-2 mb-4 border-[#60efdb] rounded-xl p-6 cursor-pointer'
+                className='comment-card border-2 mb-4 border-[#90d7db] rounded-xl p-6 cursor-pointer'
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
@@ -74,7 +74,7 @@ export const Comments = () => {
                             e.stopPropagation()
                             toggleExpand(index)
                           }}
-                          className='text text-[#60efdb] hover:text-[#405e7f] text-md mt-1 flex items-center font-semibold cursor-pointer'
+                          className='text text-[#90d7db] hover:text-[#405e7f] text-md mt-1 flex items-center font-semibold cursor-pointer'
                         >
                           {expandedComments[index] ? 'Ver menos' : 'Ver más'}
                           <FiChevronDown className={`ml-1 transition-transform ${expandedComments[index] ? 'rotate-180' : ''}`} />

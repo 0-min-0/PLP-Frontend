@@ -10,7 +10,7 @@ export const Desc = ({
     error,
     height = 'h-25',
     borderColor = 'border-[#405e7f]/50',
-    focusColor = 'focus:ring-[#60efdb]',
+    focusColor = 'focus:ring-[#90d7db]',
     disabled = false,
     color = 'text-[#405e7f]',
     errColor = 'text-red-400'

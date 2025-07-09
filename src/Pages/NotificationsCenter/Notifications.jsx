@@ -69,7 +69,7 @@ export const Notifications = () => {
                   {readStatus[index] ? (
                     <LuMailOpen className='w-6 h-6 notify-icon' />
                   ) : (
-                    <LuMail className='w-6 h-6 text-[#60efdb]' />
+                    <LuMail className='w-6 h-6 text-[#90d7db]' />
                   )}
                 </div>
                 <p className='notify-date text-[color:var(--color-card-text)] text-sm mt-1'>

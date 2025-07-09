@@ -51,9 +51,9 @@ export const AlreadyAppliedModal = ({ isOpen, onClose }) => {
                         exit='exit'
                     >
                         <div className='text-center'>
-                            <div className='w-16 h-16 bg-[#60efdb]/20 rounded-full flex items-center justify-center mx-auto mb-4'>
+                            <div className='w-16 h-16 bg-[#90d7db]/20 rounded-full flex items-center justify-center mx-auto mb-4'>
                                 <svg
-                                    className='w-10 h-10 text-[#60efdb]'
+                                    className='w-10 h-10 text-[#90d7db]'
                                     fill='none'
                                     stroke='currentColor'
                                     viewBox='0 0 24 24'
@@ -72,7 +72,7 @@ export const AlreadyAppliedModal = ({ isOpen, onClose }) => {
                             <Button
                                 btnName='Cerrar'
                                 clicked={onClose}
-                                btnStyle='w-full bg-[#60efdb] text-[#405e7f]'
+                                btnStyle='w-full bg-[#90d7db] text-[#405e7f]'
                             />
                         </div>
                     </motion.div>

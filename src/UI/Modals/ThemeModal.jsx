@@ -52,11 +52,11 @@ export const ThemeModal = ({ isOpen, onClose }) => {
                       className={({ active, checked }) =>
                         `${
                           active || checked
-                            ? 'ring-2 ring-[#60efdb] ring-opacity-60'
+                            ? 'ring-2 ring-[#90d7db] ring-opacity-60'
                             : ''
                         }
                         ${
-                          checked ? 'bg-[#60efdb]/10 text-[#60efdb]' : 'bg-white/5'
+                          checked ? 'bg-[#90d7db]/10 text-[#90d7db]' : 'bg-white/5'
                         }
                         relative rounded-lg px-5 py-3 cursor-pointer flex focus:outline-none transition-all`
                       }
@@ -69,7 +69,7 @@ export const ThemeModal = ({ isOpen, onClose }) => {
                                 <RadioGroup.Label
                                   as="p"
                                   className={`font-medium ${
-                                    checked ? 'text-[#60efdb]' : 'text-[color:var(--color-card-text)]'
+                                    checked ? 'text-[#90d7db]' : 'text-[color:var(--color-card-text)]'
                                   }`}
                                 >
                                   {option.name}
@@ -77,7 +77,7 @@ export const ThemeModal = ({ isOpen, onClose }) => {
                               </div>
                             </div>
                             {checked && (
-                              <div className="flex-shrink-0 text-[#60efdb]">
+                              <div className="flex-shrink-0 text-[#90d7db]">
                                 <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                                   <path
                                     fillRule="evenodd"
@@ -103,7 +103,7 @@ export const ThemeModal = ({ isOpen, onClose }) => {
                 checked={isDarkMode}
                 onChange={toggleDarkMode}
                 className={`relative inline-flex switch h-6 w-11 items-center rounded-full transition-colors duration-300 cursor-pointer
-                ${isDarkMode ? 'bg-[#60efdb]' : 'bg-gray-300'}`}
+                ${isDarkMode ? 'bg-[#90d7db]' : 'bg-gray-300'}`}
               >
                 <span
                   className={`inline-block switch-circle h-4 w-4 transform rounded-full bg-white transition-transform duration-300

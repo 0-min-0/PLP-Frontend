@@ -175,7 +175,7 @@ export const PersonView = ({ person, isOpen, onClose, showCommentButton = false 
                   <Button
                     btnName='Dejar comentario'
                     btnType='button'
-                    btnStyle='bg-[#60efdb] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full'
+                    btnStyle='bg-[#90d7db] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full'
                     clicked={handleOpenCommentModal}
                     aria-label="Dejar comentario sobre este profesional"
                   />

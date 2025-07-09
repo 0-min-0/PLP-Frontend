@@ -119,7 +119,7 @@ export const Company = () => {
                 </div>
                 <Button
                   btnType='submit'
-                  btnStyle='button-employer w-[25%] bg-[#60efdb] text-[#405e7f] font-bold mb- mx-50 hover:bg-[#4fd4c1]'
+                  btnStyle='button-employer w-[25%] bg-[#90d7db] text-[#405e7f] font-bold mb- mx-50 hover:bg-[#4fd4c1]'
                   btnName='Continuar'
                 />
               </form>

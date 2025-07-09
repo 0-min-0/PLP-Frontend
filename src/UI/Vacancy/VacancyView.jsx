@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '../button'
 import { FiX, FiCheck } from 'react-icons/fi'
@@ -9,7 +9,7 @@ import { AlreadyAppliedModal } from '../../UI/Modals/AlreadyAppliedModal'
 import { useVacancy } from '../../Context/VacancyContext'
 import { users, vacanciesExampleTest } from '../../Utils/users'
 
-export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true }) => {
+export const VacancyView = ({ onClose, isOpen, isApplied = false, showApplyButton = true }) => {
 
     const user = users[0]
     const vacancy = vacanciesExampleTest[0]
@@ -18,12 +18,19 @@ export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true
     const [showErrorModal, setShowErrorModal] = useState(false)
     const [showAlreadyAppliedModal, setShowAlreadyAppliedModal] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+
+    const [applied, setApplied] = useState(isApplied)
+
     const { handleApplyToVacancy } = useVacancy()
+
+    useEffect(() => {
+        setApplied(isApplied)
+    }, [isApplied])
 
     if (!isOpen || !vacancy) return null
 
     const handleApply = async () => {
-        if (isApplied) {
+        if (applied) {
             setShowAlreadyAppliedModal(true)
             return
         }
@@ -32,6 +39,7 @@ export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true
         try {
             await handleApplyToVacancy(vacancy)
             setShowSuccessModal(true)
+            setApplied(true)  
         } catch (error) {
             console.error('Error applying:', error)
             setShowErrorModal(true)
@@ -90,7 +98,7 @@ export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true
                                 <div className='flex buttons-user-container justify-center mt-6'>
                                     <Button
                                         btnName={
-                                            isApplied ? (
+                                            applied ? (
                                                 <span className="flex items-center">
                                                     <FiCheck className="mr-2" />
                                                     Postulación enviada
@@ -100,7 +108,7 @@ export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true
                                             )
                                         }
                                         btnType='button'
-                                        btnStyle={`${isApplied ? 'postulation' : 'bg-[#60efdb] text-[#405e7f]'} text-lg font-semibold px-8 py-2 rounded-full`}
+                                        btnStyle={`${applied ? 'postulation' : 'bg-[#90d7db] text-[#405e7f]'} text-lg font-semibold px-8 py-2 rounded-full`}
                                         clicked={handleApply}
                                         disabled={isLoading}
                                     />
@@ -111,7 +119,6 @@ export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true
                 )}
             </AnimatePresence>
 
-            {/* Modales */}
             <SuccessModal
                 isOpen={showSuccessModal}
                 onClose={() => setShowSuccessModal(false)}
@@ -121,7 +128,7 @@ export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true
                 <Button
                     btnName='Cerrar'
                     clicked={() => setShowSuccessModal(false)}
-                    btnStyle='w-full bg-[#60efdb] text-[#405e7f]'
+                    btnStyle='w-full bg-[#90d7db] text-[#405e7f]'
                 />
             </SuccessModal>
 
@@ -141,7 +148,7 @@ export const VacancyView = ({ onClose, isOpen, isApplied, showApplyButton = true
                     <Button
                         btnName='Cerrar'
                         clicked={() => setShowErrorModal(false)}
-                        btnStyle='flex-1 bg-[#60efdb] text-[#405e7f]'
+                        btnStyle='flex-1 bg-[#90d7db] text-[#405e7f]'
                     />
                 </div>
             </ErrorModal>

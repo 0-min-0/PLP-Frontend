@@ -154,7 +154,7 @@ export const SearchBarProvider = ({
     const parts = text.split(new RegExp(`(${query})`, 'gi'))
     return parts.map((part, i) =>
       part.toLowerCase() === query.toLowerCase() ? (
-        <span key={i} className="font-bold text-[#60efdb]">
+        <span key={i} className="font-bold text-[#90d7db]">
           {part}
         </span>
       ) : (

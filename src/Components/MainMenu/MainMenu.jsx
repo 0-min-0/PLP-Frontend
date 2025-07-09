@@ -3,12 +3,17 @@ import { HiOutlineX, HiOutlineMenu } from 'react-icons/hi'
 import { MenuItem } from '../../UI/MenuItem'
 import { useMenu } from '../../Context/MenuContext'
 import { ThemeModal } from '../../UI/Modals/ThemeModal'
+import { useTheme } from '../../Context/ThemeContext' // Asegúrate de tener este hook
 
 export const MainMenu = () => {
   const { isOpen, setIsOpen } = useMenu()
+  const { isDarkMode } = useTheme() // Trae el estado del tema
   const menuRef = useRef(null)
   const [showThemeModal, setShowThemeModal] = useState(false)
 
+  const currentTheme = isDarkMode ? 'Oscuro' : 'Claro'
+
+  // Cerrar el menú si se hace clic fuera
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -17,11 +22,10 @@ export const MainMenu = () => {
     }
 
     document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [setIsOpen])
 
+  // Cerrar el menú con Esc
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
@@ -30,10 +34,8 @@ export const MainMenu = () => {
     }
 
     document.addEventListener('keydown', handleEscape)
-    return () => {
-      document.removeEventListener('keydown', handleEscape)
-    }
-  }, [])
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [setIsOpen])
 
   return (
     <div className='relative' ref={menuRef}>
@@ -49,7 +51,7 @@ export const MainMenu = () => {
         )}
       </button>
 
-      {/* Fondo oscuro semitransparente cuando el menú está abierto */}
+      {/* Fondo oscuro al abrir el menú */}
       {isOpen && (
         <div
           className='fixed inset-0 z-40 menu-overlay'
@@ -57,20 +59,25 @@ export const MainMenu = () => {
         />
       )}
 
-      {/* Menú desplegable */}
+      {/* Menú */}
       <div
-        className={`menu-responsive menu-bg absolute z-50 right-0 mt-2 w-56 origin-top-right rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${isOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
-          }`}
+        className={`menu-responsive menu-bg absolute z-50 right-0 mt-2 w-56 origin-top-right rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${
+          isOpen
+            ? 'opacity-100 scale-100 translate-y-0'
+            : 'opacity-0 scale-95 -translate-y-2 pointer-events-none'
+        }`}
         role='menu'
       >
         <ul className='menu-list p-2'>
           <div className='mtitle-container flex text-left'>
-            <h3 className=' menu-title menu-responsive-title'>Menú</h3>
+            <h3 className='menu-title menu-responsive-title'>Menú</h3>
           </div>
           <hr className='border-t border-gray-100' />
           <MenuItem to='/categorias-trabajo'>Categorías de trabajo</MenuItem>
           <MenuItem to='/sobre-plp'>Sobre PLP</MenuItem>
-          <MenuItem click={() => setShowThemeModal(true)}>Tema (Predeterminado)</MenuItem>
+          <MenuItem click={() => setShowThemeModal(true)}>
+            Tema ({currentTheme})
+          </MenuItem>
           <MenuItem to='/chat-bot-ayuda'>Chat IA (Soporte)</MenuItem>
         </ul>
       </div>

@@ -3,7 +3,7 @@ import { FiEdit, FiTrash2 } from 'react-icons/fi'
 
 export const VacancyCard = ({ title, category, phone }) => {
   return (
-    <div className='bg-white py-4 px-6 rounded-xl border border-[#60efdb]'>
+    <div className='bg-white py-4 px-6 rounded-xl border border-[#90d7db]'>
       <div className='flex justify-between items-start'>
         <div>
           <h3 className='font-bold text-lg text-[#405e7f]'>{title}</h3>

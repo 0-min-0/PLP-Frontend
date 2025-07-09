@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { FiFileText, FiX } from 'react-icons/fi'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Avatar } from '../../../Components/Avatar/Avatar'
-import { SearchBar } from '../../../UI/SearchBar'
 import { PersonView } from '../../../UI/Person/PersonView'
 import { RejectionModal } from '../../../UI/Modals/RejectionModal'
 import { peopleExample } from '../../../Utils/objectsExample'
@@ -20,20 +19,18 @@ export const PostulatedPeople = () => {
 
   const handleContactPerson = () => {}
 
-  // Inicializamos postulaciones desde los datos base
   useEffect(() => {
     const initialApplications = peopleExample.flatMap(person =>
       (person.appliedTo || []).map(post => ({
         ...person,
         appliedVacancyTitle: post.vacancyTitle,
         appliedStatus: post.status,
-        applicationId: `${person.id}-${post.vacancyTitle}` // ID único por persona + vacante
+        applicationId: `${person.id}-${post.vacancyTitle}`
       }))
     )
     setApplications(initialApplications)
   }, [])
 
-  // Rechazar y eliminar visualmente la postulación
   const handleRejectPerson = (applicationId) => {
     setApplications(prev =>
       prev.filter(app => app.applicationId !== applicationId)
@@ -68,15 +65,15 @@ export const PostulatedPeople = () => {
               {applications.map((applicant) => (
                 <div
                   key={applicant.applicationId}
-                  className='card-postulated h-42 border-2 border-[#60efdb] rounded-xl p-6'
+                  className='card-postulated h-42 border-2 border-[#90d7db] rounded-xl p-6'
                 >
                   <div className='flex justify-between items-start'>
                     <div className='w-full'>
                       <h3 className='text font-bold text-lg text-[color:var(--color-card-text)]'>{applicant.name}</h3>
                       <p className='comment-rol text-[color:var(--color-card-text)]'>{applicant.phone}</p>
                       <p className='comment-rol text-[color:var(--color-card-text)]'>{applicant.town}</p>
-                      <p className='text-vacancy-applied text-[#60efdb] mt-2 font-medium'>
-                        Vacante: {applicant.appliedVacancyTitle}
+                      <p className='text-vacancy-applied text-[#90d7db] mt-2 font-medium'>
+                        Postulandose a: {applicant.appliedVacancyTitle}
                       </p>
                     </div>
 
@@ -86,14 +83,14 @@ export const PostulatedPeople = () => {
                           e.stopPropagation()
                           setSelectedPerson(applicant)
                         }}
-                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#90d7db]/20 rounded-full cursor-pointer'
                         title='Ver hoja de vida'
                       >
                         <FiFileText className='icon-close-x w-5 h-5' />
                       </button>
                       <button
                         onClick={(e) => handleSafeReject(applicant.applicationId, e)}
-                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#90d7db]/20 rounded-full cursor-pointer'
                         title='Rechazar'
                       >
                         <FiX className='icon-close-x w-5 h-5' />

@@ -59,7 +59,7 @@ export const DisableAccount = ({ userRol = "usuario" }) => {
             <Button
                 btnName={buttonText}
                 btnType='button'
-                btnStyle={isAccountActive ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-[#60efdb] hover:bg-[#] text-[#405e7f]'}
+                btnStyle={isAccountActive ? 'bg-red-500 hover:bg-red-600 text-white' : 'bg-[#90d7db] hover:bg-[#] text-[#405e7f]'}
                 clicked={handleOpenModal}
             />
 

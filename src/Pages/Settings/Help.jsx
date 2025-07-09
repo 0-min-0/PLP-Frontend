@@ -71,19 +71,19 @@ export const Help = ({ embedded = false }) => {
           <ul>
             <li>
               <p className="font-medium">¿Cómo creo un perfil en PLP?</p>
-              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
+              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
                 Ve a <NavLink to='/crear-cuenta' className={styles.helpLink}>Registro</NavLink>, completa tus datos personales, experiencia laboral y habilidades. Sube un currículum opcional para destacarte.
               </p>
             </li>
             <li>
               <p className="font-medium">¿Puedo usar PLP sin título profesional?</p>
-              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
+              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
                 Sí, PLP está diseñada para valorar habilidades y experiencia práctica. Asegúrate de detallar tu trayectoria en el perfil.
               </p>
             </li>
             <li>
               <p className="font-medium">¿Cómo aplico a una vacante?</p>
-              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
+              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
                 Haz clic en "Aplicar" en la oferta de empleo y sigue las instrucciones. Recibirás confirmación por email.
               </p>
             </li>
@@ -93,19 +93,19 @@ export const Help = ({ embedded = false }) => {
           <ul>
             <li>
               <p className="font-medium">¿Cómo publico una vacante?</p>
-              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
+              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
                 Registra tu empresa, verifica tus datos y haz clic en "Publicar vacante". Revisaremos tu anuncio antes de activarlo.
               </p>
             </li>
             <li>
               <p className="font-medium">¿Qué tipo de candidatos encontraré en PLP?</p>
-              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
+              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
                 Profesionales con experiencia demostrable, pero sin título formal. Ideal para roles que priorizan competencias técnicas.
               </p>
             </li>
             <li>
               <p className="font-medium">¿Hay costos por usar PLP?</p>
-              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
+              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
                 No, PLP es una plataforma completamente gratuita para cualquier tipo de usuario.
               </p>
             </li>
@@ -149,7 +149,7 @@ export const Help = ({ embedded = false }) => {
           <ul className={styles.helpList}>
             <li>
               <p className="font-medium">La app/web no carga</p>
-              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
+              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
                 Revisa tu conexión a internet o actualiza tu navegador/app. Si persiste, repórtalo
                 <button onClick={handleOpenReportModal} className={`${styles.helpLink} ml-1`}>
                   aquí
@@ -158,7 +158,7 @@ export const Help = ({ embedded = false }) => {
             </li>
             <li>
               <p className="font-medium">No recibo emails de PLP</p>
-              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#60efdb]">
+              <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
                 Verifica tu carpeta de spam o añade contacto@plp.com a tus contactos.
               </p>
             </li>

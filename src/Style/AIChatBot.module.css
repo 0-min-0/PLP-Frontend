@@ -92,7 +92,7 @@
   max-width: 24rem;
   border-radius: 1rem;
   padding: 0.75rem 1rem;
-  background-color: #60efdb;
+  background-color: #90d7db;
   color: #405e7f;
   word-wrap: break-word;
   white-space: pre-wrap;
@@ -131,7 +131,7 @@
 
 .textarea:focus {
   border-color: transparent;
-  box-shadow: 0 0 0 2px #60efdb;
+  box-shadow: 0 0 0 2px #90d7db;
 }
 
 .textareaIcon {
@@ -144,7 +144,7 @@
 }
 
 .sendButton {
-  background-color: #60efdb;
+  background-color: #90d7db;
   color: #405e7f;
   border-radius: 9999px;
   padding: 1rem;
@@ -264,7 +264,7 @@
 
 .editTextarea:focus {
   border-color: transparent;
-  box-shadow: 0 0 0 2px #60efdb;
+  box-shadow: 0 0 0 2px #90d7db;
 }
 
 .editButtons {
@@ -273,7 +273,7 @@
 }
 
 .editConfirmButton {
-  background-color: #60efdb;
+  background-color: #90d7db;
   color: #405e7f;
   border-radius: 0.5rem;
   padding: 0.25rem 0.75rem;
@@ -418,7 +418,7 @@
 }
 
 .helpLink {
-  color: #60efdb;
+  color: #90d7db;
   text-decoration: none;
 }
 

@@ -3,6 +3,7 @@ import { HiOutlineX } from 'react-icons/hi'
 import { FiLogOut } from 'react-icons/fi'
 import { MenuItem } from '../../UI/MenuItem'
 import { useMenu } from '../../Context/MenuContext'
+import { useTheme } from '../../Context/ThemeContext'
 import { useUser } from '../../Context/UserContext'
 import { LogoutModal } from '../../UI/Modals/LogoutModal'
 import { ThemeModal } from '../../UI/Modals/ThemeModal'
@@ -13,11 +14,12 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuIt
   const location = useLocation()
   const { isOpen, setIsOpen } = useMenu()
   const { user } = useUser()
+  const { isDarkMode, toggleTheme } = useTheme()
+
   const menuRef = useRef(null)
 
   const [showLogoutModal, setShowLogoutModal] = useState(false)
   const [showThemeModal, setShowThemeModal] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(false)
 
   const getRoleFromPath = () => {
     const path = location.pathname
@@ -26,6 +28,8 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuIt
     if (path.includes('/configuraciones-contratante')) return 'Contratante'
     return ''
   }
+
+  const themeLabel = `Tema (${isDarkMode ? 'Oscuro' : 'Claro'})`
 
   const currentRoleName = getRoleFromPath()
 
@@ -63,7 +67,7 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuIt
     { to: settingsRoute, label: 'Configuraciones' },
     { to: categoriesRoute, label: 'Categorías de trabajo' },
     { to: aboutRoute, label: 'Sobre PLP' },
-    { to: '/tema', label: 'Tema (Predeterminado)', onClick: () => setShowThemeModal(true) },
+    { to: '/tema', label: themeLabel, onClick: () => setShowThemeModal(true) }, // 👈 solo cambió esto
     { to: '/ayuda-soporte', label: 'Ayuda' }
   ]
 
@@ -71,18 +75,18 @@ export const ProfileMenu = ({ settingsRoute, categoriesRoute, aboutRoute, menuIt
     <div className='relative' ref={menuRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className='flex items-center gap-2 rounded-full hover:bg-[#60efdb] transition duration-300 ease-in-out cursor-pointer'
+        className='flex items-center gap-2 rounded-full hover:bg-[#90d7db] transition duration-300 ease-in-out cursor-pointer'
         aria-label='Toggle profile menu'
       >
         <img
           src={user.avatar}
           alt='avatar'
-          className='avatar-menu w-14 h-14 rounded-full border-6 border-double border-[#60efdb]'
+          className='avatar-menu w-14 h-14 rounded-full border-6 border-double border-[#90d7db]'
         />
       </button>
 
       {isOpen && (
-        <div className='fixed inset-0 bg-gray-800/30 z-40' onClick={() => setIsOpen(false)} />
+        <div className='fixed inset-0 bg-gray-800/50 z-40' onClick={() => setIsOpen(false)} />
       )}
 
       <div

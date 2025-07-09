@@ -157,7 +157,7 @@ export const NameModal = ({
               />
               <Button
                 btnName="Guardar"
-                btnStyle="bg-[#60efdb] text-[#405e7f] hover:bg-[#4fd4c7]"
+                btnStyle="bg-[#90d7db] text-[#405e7f] hover:bg-[#4fd4c7]"
                 clicked={handleSave}
               />
             </div>

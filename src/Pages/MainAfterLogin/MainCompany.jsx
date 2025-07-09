@@ -60,8 +60,8 @@ export const MainCompany = () => {
               <HiOutlineInbox className='routes-icons w-8 h-8 text-[color:var(--color-card-text)] hover:-translate-y-0.5 active:scale-[0.98] transition-transform duration-200' />
               {hasNotifications && (
                 <>
-                  <span className="absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full animate-ping border-2 border-white" />
-                  <span className="absolute top-0 left-0 w-3 h-3 bg-[#60efdb] rounded-full border-2 border-white" />
+                  <span className="absolute top-0 left-0 w-3 h-3 bg-[#90d7db] rounded-full animate-ping border-2 border-white" />
+                  <span className="absolute top-0 left-0 w-3 h-3 bg-[#90d7db] rounded-full border-2 border-white" />
                 </>
               )}
             </NavLink>

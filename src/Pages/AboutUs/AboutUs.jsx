@@ -56,7 +56,7 @@ export const AboutUs = () => {
             className="w-full max-h-80 object-contain order-2 lg:order-1"
           />
           <div className="space-y-4 order-1 lg:order-2">
-            <h2 className="text-2xl font-semibold text-[#60efdb] mb-2">¿Qué hacemos?</h2>
+            <h2 className="text-2xl font-semibold text-[#90d7db] mb-2">¿Qué hacemos?</h2>
             <p>PLP ofrece un espacio accesible e inclusivo donde las personas pueden crear un perfil profesional, compartir su experiencia, demostrar sus habilidades y aspirar a oportunidades laborales sin que un título universitario sea un requisito excluyente.</p>
             <ul className="list-disc pl-6 space-y-1 text-sm">
               <li>Permite que personas sin título profesional se den a conocer profesionalmente.</li>
@@ -70,7 +70,7 @@ export const AboutUs = () => {
 
         <section className="grid lg:grid-cols-2 gap-10 mb-12 items-center">
           <div className="space-y-4">
-            <h2 className="text-2xl font-semibold text-[#60efdb] mb-2">Nuestra visión</h2>
+            <h2 className="text-2xl font-semibold text-[#90d7db] mb-2">Nuestra visión</h2>
             <p>Soñamos con un mundo laboral donde todas las personas tengan las mismas oportunidades, independientemente de su historial académico.</p>
             <p>Queremos ser una plataforma que empodere a las personas, que derribe estigmas y que inspire a las organizaciones a mirar más allá del papel.</p>
             <p>Porque creemos que el valor de una persona no se mide por un título, sino por su historia, su talento y su impacto.</p>
@@ -89,7 +89,7 @@ export const AboutUs = () => {
             className="w-full max-h-80 object-contain order-2 lg:order-1"
           />
           <div className="space-y-4 order-1 lg:order-2">
-            <h2 className="text-2xl font-semibold text-[#60efdb] mb-2">Nuestra misión</h2>
+            <h2 className="text-2xl font-semibold text-[#90d7db] mb-2">Nuestra misión</h2>
             <ul className="list-disc pl-6 space-y-1 text-sm">
               <li>Reconocer y visibilizar el talento no tradicional.</li>
               <li>Conectar a personas sin título con oportunidades reales de crecimiento.</li>
@@ -99,7 +99,7 @@ export const AboutUs = () => {
           </div>
         </section>
 
-        <section className="text text-center bg-[#60efdb] rounded-2xl p-8 text-[#405e7f]">
+        <section className="text text-center bg-[#90d7db] rounded-2xl p-8 text-[#405e7f]">
           <h2 className="text-2xl font-bold mb-4">Únete al cambio</h2>
           <p className="max-w-3xl mx-auto mb-4">
             En PLP, no solo ofrecemos una plataforma, sino una comunidad comprometida con la transformación social y laboral. Ya seas un trabajador en busca de oportunidades o una empresa en búsqueda de talento genuino, aquí tienes un lugar.

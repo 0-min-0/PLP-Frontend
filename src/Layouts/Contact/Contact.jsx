@@ -122,7 +122,7 @@ export const Contact = () => {
                             <Button
                                 btnName={isLoading ? 'Enviando...' : 'Enviar'}
                                 btnType='submit'
-                                btnStyle='send-contact-button w-full mt-4 text-[#405e7f] bg-[#60efdb]'
+                                btnStyle='send-contact-button w-full mt-4 text-[#405e7f] bg-[#90d7db]'
                                 disabled={isLoading}
                             />
                         </form>

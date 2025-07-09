@@ -31,7 +31,7 @@ export const MixedContent = () => {
       </h2>
 
       {mixedContent.length > 0 ? (
-        <div className='p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#60efdb] rounded-xl'>
+        <div className='p-10 mx-16 flex flex-wrap gap-6 border-2 border-[#90d7db] rounded-xl'>
           {mixedContent.map((item) => (
             <div key={`${item.type}-${item.id}`}>
               {item.type === 'person' ? (

@@ -36,7 +36,7 @@ export const CardContainer = ({
   };
 
   return (
-    <div className={`jobs-main-container mx-10 relative border-2 border-[#60efdb] ${getRoundedClass()}`}>
+    <div className={`jobs-main-container mx-10 relative border-2 border-[#90d7db] ${getRoundedClass()}`}>
       <h2 className='jobs-subcontainer text-2xl px-12 py-5 font-semibold text-[color:var(--color-card-text)]'>{title}</h2>
       <div className='relative group'>
         <button

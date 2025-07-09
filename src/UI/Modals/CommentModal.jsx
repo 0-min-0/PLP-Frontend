@@ -117,7 +117,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
                 <label className="inline-flex items-center">
                   <input
                     type="radio"
-                    className="form-radio text-[#60efdb]"
+                    className="form-radio text-[#90d7db]"
                     name="role"
                     value="contratante"
                     checked={role === 'contratante'}
@@ -128,7 +128,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
                 <label className="inline-flex items-center">
                   <input
                     type="radio"
-                    className="form-radio text-[#60efdb]"
+                    className="form-radio text-[#90d7db]"
                     name="role"
                     value="empresa"
                     checked={role === 'empresa'}
@@ -170,7 +170,7 @@ export const CommentModal = ({ isOpen, onClose, onSave, currentRole }) => {
               />
               <Button
                 btnName="Guardar Comentario"
-                btnStyle="bg-[#60efdb] text-[#405e7f]"
+                btnStyle="bg-[#90d7db] text-[#405e7f]"
                 clicked={handleSave}
                 disabled={!commentText.trim() || !commenterName.trim()}
               />

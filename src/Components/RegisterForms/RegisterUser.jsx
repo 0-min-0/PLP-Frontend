@@ -45,7 +45,7 @@ export const RegisterUser = () => {
                         />
                         <p className='login-form-register-text text-[color:var(--color-card-text)] pt-4'>
                             ¿Ya estás registrado en nuestra plataforma?{' '}
-                            <NavLink to='/acceder' className='font-semibold hover:underline hover:text-[#60efdb]'>
+                            <NavLink to='/acceder' className='font-semibold hover:underline hover:text-[#90d7db]'>
                                 Iniciar sesión
                             </NavLink>
                         </p>

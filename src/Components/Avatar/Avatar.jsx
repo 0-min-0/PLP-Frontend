@@ -68,12 +68,12 @@ export const Avatar = () => {
           <img
             src={user.avatar}
             alt='avatar'
-            className='avatar-edit w-24 h-24 border-double border-8 border-[#60efdb] rounded-full 
+            className='avatar-edit w-24 h-24 border-double border-8 border-[#90d7db] rounded-full 
                      transition-all duration-300 group-hover:brightness-95'
           />
           <button
             onClick={() => setAvatarSelector(!avatarSelector)}
-            className='absolute -bottom-1 -right-2 bg-[#60efdb] p-2 rounded-full
+            className='absolute -bottom-1 -right-2 bg-[#90d7db] p-2 rounded-full
                       transition-all duration-300 hover:-translate-y-0.5 
                       hover:shadow-md active:scale-[0.98] cursor-pointer'
             title='Cambiar avatar'
@@ -120,7 +120,7 @@ export const Avatar = () => {
                       whileTap={{ scale: 0.95 }}
                       className={`avatar-option p-1 rounded-lg transition-all duration-200 flex justify-center cursor-pointer
                                 ${user.avatar === avatar
-                          ? 'bg-[#60efdb]/20 border-2 border-[#60efdb]'
+                          ? 'bg-[#90d7db]/20 border-2 border-[#90d7db]'
                           : 'hover:bg-gray-100'}`}
                       onClick={() => {
                         handleAvatarChange(avatar)
@@ -149,7 +149,7 @@ export const Avatar = () => {
           </h2>
           <button
             onClick={() => setIsEditingName(true)}
-            className='ml-2 p-2 rounded-full hover:bg-[#60efdb]/20 transition-colors duration-300 cursor-pointer'
+            className='ml-2 p-2 rounded-full hover:bg-[#90d7db]/20 transition-colors duration-300 cursor-pointer'
             title='Editar nombre'
           >
             <FiEdit className='edit-icon w-4.5 h-4.5 text-[color:var(--color-card-text)]' />

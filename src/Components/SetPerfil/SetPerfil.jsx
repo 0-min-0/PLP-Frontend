@@ -5,7 +5,7 @@ import { Button } from '../../UI/button'
 export const SetPerfil = () => {
     return (
         <div className='w-full'>
-            <div className='border border-[#60efdb] py-6 px-8 mr-10 rounded-xl mt-'>
+            <div className='border border-[#90d7db] py-6 px-8 mr-10 rounded-xl mt-'>
                 <div className='flex'>
                     <div>
                         <h2 className='text-xl text-[#405e7f] font-semibold mb-2'>Completa tu perfil</h2>
@@ -23,7 +23,7 @@ export const SetPerfil = () => {
                     <Button
                         btnName='Completar'
                         btnType='button'
-                        btnStyle='bg-[#60efdb] text-[#405e7f] font-semibold w-full mt-2'
+                        btnStyle='bg-[#90d7db] text-[#405e7f] font-semibold w-full mt-2'
                     />
                     <Button
                         btnName='Más tarde'

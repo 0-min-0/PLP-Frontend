@@ -61,7 +61,7 @@ export const Postulations = () => {
               {applications.map(app => (
                 <div
                   key={app.applicationId}
-                  className='card-postulation h-26 border-2 border-[#60efdb] rounded-xl p-6'
+                  className='card-postulation h-26 border-2 border-[#90d7db] rounded-xl p-6'
                   whileHover={{ y: -2 }}
                 >
                   <div className='flex justify-between items-start'>
@@ -75,7 +75,7 @@ export const Postulations = () => {
                     <div className='flex gap-2 ml-2'>
                       <button
                         onClick={() => setVacancyToView(app.vacancy)}
-                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#90d7db]/20 rounded-full cursor-pointer'
                         title='Ver detalles'
                       >
                         <FiEye className='icon-close-x w-6 h-6' />
@@ -86,7 +86,7 @@ export const Postulations = () => {
                           setVacancyToCancel(app.applicationId)
                           setIsCancelModalOpen(true)
                         }}
-                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#60efdb]/20 rounded-full cursor-pointer'
+                        className='text-[color:var(--color-card-text)] p-2 hover:bg-[#90d7db]/20 rounded-full cursor-pointer'
                         title='Retirar postulación'
                       >
                         <FiTrash2 className='icon-close-x w-5 h-5' />
