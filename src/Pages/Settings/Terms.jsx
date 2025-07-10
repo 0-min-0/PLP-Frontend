@@ -69,11 +69,11 @@ export const Terms = ({ embedded = false }) => {
           >
             <h2 className="text-xl font-semibold mb-4">2. Definiciones</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li><strong>Plataforma:</strong> Sitio web, aplicación móvil y servicios asociados ofrecidos por PLP.</li>
-              <li><strong>Usuario:</strong> Persona natural o jurídica que utiliza la Plataforma (incluye candidatos, empleadores y visitantes).</li>
+              <li><strong>Plataforma:</strong> Sitio web y servicios asociados ofrecidos por PLP.</li>
+              <li><strong>Usuario:</strong> Persona natural o jurídica que utiliza la Plataforma (incluye contratistas, contratantes y empresas).</li>
               <li><strong>Candidato:</strong> Usuario que busca oportunidades laborales y publica su perfil en PLP.</li>
-              <li><strong>Empleador:</strong> Empresa, reclutador o emprendedor que publica vacantes o busca talento en PLP.</li>
-              <li><strong>Contenido:</strong> Información, textos, imágenes, datos de perfil, ofertas de trabajo y cualquier material compartido en la Plataforma.</li>
+              <li><strong>Empleador:</strong> Empresa o contratante que publica vacantes o busca talento en PLP.</li>
+              <li><strong>Contenido:</strong> Información, textos, datos de perfil, ofertas de trabajo y cualquier material compartido en la Plataforma.</li>
             </ul>
           </motion.section>
 
@@ -128,8 +128,8 @@ export const Terms = ({ embedded = false }) => {
 
             <h3 className="font-semibold mb-2">4.1. Creación de Perfil</h3>
             <ul className="list-disc pl-6 space-y-2 mb-4">
-              <li>Los <strong>Candidatos</strong> deben registrarse con datos personales (nombre, experiencia, habilidades, etc.).</li>
-              <li>Los <strong>Empleadores</strong> deben verificar su identidad y datos empresariales (ej.: RFC, nombre de la empresa).</li>
+              <li>Los <strong>Contratistas y contratantes</strong> deben registrarse con datos personales (nombre, contacto, ubicacion, etc.).</li>
+              <li>Los <strong>Empleadores</strong> deben verificar su identidad y datos empresariales (ej.: NIT, nombre de la empresa).</li>
             </ul>
 
             <h3 className="font-semibold mb-2">4.2. Seguridad de la Cuenta</h3>
@@ -187,7 +187,7 @@ export const Terms = ({ embedded = false }) => {
             <h3 className="font-semibold mb-2">6.2. Contenido Generado por Usuarios</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Los <strong>Candidatos</strong> otorgan a PLP una licencia no exclusiva para mostrar su perfil a empleadores.</li>
-              <li>Los <strong>Empleadores</strong> garantizan que las vacantes publicadas son reales y cumplen con las leyes laborales.</li>
+              <li>Los <strong>Empleadores y Contratantes</strong> garantizan que las vacantes publicadas son reales y cumplen con las leyes laborales.</li>
             </ul>
           </motion.section>
 
@@ -211,14 +211,14 @@ export const Terms = ({ embedded = false }) => {
               <li>PLP es un <strong>intermediario</strong> y no garantiza la obtención de empleo o la veracidad absoluta de los perfiles.</li>
               <li>No nos hacemos responsables por:
                 <ul className="list-[circle] pl-6 mt-2 space-y-1">
-                  <li>Conflictos entre Candidatos y Empleadores.</li>
+                  <li>Conflictos entre Contratistas y Contratantes/Empresas.</li>
                   <li>Pérdidas económicas o daños indirectos derivados del uso.</li>
                 </ul>
               </li>
             </ul>
 
             <h3 className="font-semibold mb-2">7.2. Enlaces a Terceros</h3>
-            <p>Si la Plataforma incluye enlaces a sitios externos, PLP no controla ni respalda su contenido.</p>
+            <p>Si la Plataforma incluye enlaces a sitios externos (a excepción de las redes y correos de la plataforma), PLP no controla ni respalda su contenido.</p>
           </motion.section>
 
           <motion.div
@@ -257,19 +257,6 @@ export const Terms = ({ embedded = false }) => {
             transition={{ duration: 0.3 }}
           />
 
-          <motion.section
-            className="mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.1, duration: 0.4 }}
-          >
-            <h2 className="text-xl font-semibold mb-4">9. Ley Aplicable y Resolución de Conflictos</h2>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Estos Términos se rigen por las leyes de <strong>[País/Estado, ej.: México]</strong> y cualquier disputa se resolverá en los tribunales de <strong>[Ciudad, ej.: Ciudad de México]</strong>.</li>
-              <li>Se fomenta la resolución amistosa de conflictos antes de acudir a vías legales.</li>
-            </ul>
-          </motion.section>
-
           <motion.div
             className="h-px bg-gray-300 my-6"
             initial={{ scaleX: 0 }}
@@ -283,11 +270,11 @@ export const Terms = ({ embedded = false }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.4 }}
           >
-            <h2 className="text-xl font-semibold mb-4">10. Contacto</h2>
+            <h2 className="text-xl font-semibold mb-4">9. Contacto</h2>
             <p>Para preguntas o reclamos:</p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
               <li><strong>Email:</strong> legal@plp.com</li>
-              <li><strong>Dirección:</strong> [Dirección física de la empresa, si aplica]</li>
+              <li><strong>Contacto:</strong>300 000 0000</li>
             </ul>
           </motion.section>
 
@@ -297,29 +284,6 @@ export const Terms = ({ embedded = false }) => {
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.3 }}
           />
-
-          <motion.section
-            className="terms-section p-4 rounded-lg"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.3, duration: 0.4 }}
-          >
-            <h3 className="font-semibold mb-3">Notas Clave</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start">
-                <span className="mr-2">🔹</span>
-                <span><strong>Adaptaciones Legales:</strong> Este documento debe revisarse con un abogado para cumplir con regulaciones locales (ej.: Ley Federal del Trabajo en México, GDPR en Europa).</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">🔹</span>
-                <span><strong>Políticas Adicionales:</strong> Asegúrate de tener enlazadas la <strong>Política de Privacidad</strong> y, si aplica, <strong>Términos de Pago</strong> (para suscripciones premium).</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">🔹</span>
-                <span><strong>Claridad:</strong> Evita lenguaje ambiguo para reducir riesgos legales.</span>
-              </li>
-            </ul>
-          </motion.section>
         </div>
       </motion.div>
     </div>

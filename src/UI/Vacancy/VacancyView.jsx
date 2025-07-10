@@ -104,7 +104,7 @@ export const VacancyView = ({ onClose, isOpen, isApplied = false, showApplyButto
                                                     Postulación enviada
                                                 </span>
                                             ) : (
-                                                'Postular hoja de vida'
+                                                'Postularse'
                                             )
                                         }
                                         btnType='button'

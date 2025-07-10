@@ -231,7 +231,7 @@ export const GeneralCompany = () => {
             {/* Campo Categoría */}
             <div className=''>
               <Select
-                label={fieldLabels.category || 'Sector'}
+                label={'Sector'}
                 value={formData.category || ''}
                 onChange={(value) => handleSelectChange('category', value)}
                 options={categories}

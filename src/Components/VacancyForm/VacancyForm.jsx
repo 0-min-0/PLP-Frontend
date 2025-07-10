@@ -104,7 +104,6 @@ export const VacancyForm = () => {
             />
             <Select
               label='Categoria'
-              color='text-white'
               name='category'
               value={vacancy.category || ''}
               onChange={(value) => handleSelectChange('category', value)}

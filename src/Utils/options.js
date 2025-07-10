@@ -27,7 +27,7 @@ export const optionId = [  //Opciones de tipo de documento
 
 export const categories = [  //Categorias de trabajo
   { value: 'administracion', label: 'Administración y oficina' },
-  { value: 'arte', label: 'Arte y decoración' },
+  { value: 'arte', label: 'Arte y cultura' },
   { value: 'cocina', label: 'Cocina y Gastronomía' },
   { value: 'ciencia', label: 'Ciencia e investigación' },
   { value: 'diseno_web', label: 'Diseño web' },
@@ -38,6 +38,7 @@ export const categories = [  //Categorias de trabajo
   { value: 'logistica', label: 'Logística y transporte' },
   { value: 'medio_ambiente', label: 'Medio ambiente y agricultura' },
   { value: 'marketing', label: 'Marketing y ventas' },
+  { value: 'mantenimiento', label: 'Mantenimiento y soporte' },
   { value: 'moda', label: 'Moda y estilismo' },
   { value: 'servicios', label: 'Servicios y atención al público' },
   { value: 'tecnologia', label: 'Tecnología e informática' },

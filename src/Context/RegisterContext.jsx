@@ -114,11 +114,6 @@ export const RegisterProvider = ({ children }) => {
 
     const calculatedDigit = 11 - (sum % 11)
     const finalDigit = calculatedDigit === 10 ? 'k' : calculatedDigit === 11 ? 0 : calculatedDigit
-
-    if (String(finalDigit).toLowerCase() !== String(lastDigit).toLowerCase()) {
-      return 'ⓘ NIT inválido (dígito verificador incorrecto)'
-    }
-
     return ''
   }
 

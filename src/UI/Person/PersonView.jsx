@@ -165,11 +165,11 @@ export const PersonView = ({ person, isOpen, onClose, showCommentButton = false 
 
               <div className='buttons-user-container flex justify-center gap-4 mt-6'>
                 <Button
-                  btnName='Descargar CV'
+                  btnName='Descargar datos'
                   btnType='button'
                   btnStyle='download-cv border border-[#405e7f] text-[#405e7f] text-lg font-medium px-6 py-2 rounded-full'
                   clicked={handleDownloadPDF}
-                  aria-label="Descargar currículum en PDF"
+                  aria-label="Descargar datos en PDF"
                 />
                 {showCommentButton && (
                   <Button
@@ -177,7 +177,7 @@ export const PersonView = ({ person, isOpen, onClose, showCommentButton = false 
                     btnType='button'
                     btnStyle='bg-[#90d7db] text-[#405e7f] text-lg font-semibold px-6 py-2 rounded-full'
                     clicked={handleOpenCommentModal}
-                    aria-label="Dejar comentario sobre este profesional"
+                    aria-label="Dejar comentario sobre este contratista"
                   />
                 )}
               </div>

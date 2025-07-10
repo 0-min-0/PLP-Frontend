@@ -72,7 +72,7 @@ export const Help = ({ embedded = false }) => {
             <li>
               <p className="font-medium">¿Cómo creo un perfil en PLP?</p>
               <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
-                Ve a <NavLink to='/crear-cuenta' className={styles.helpLink}>Registro</NavLink>, completa tus datos personales, experiencia laboral y habilidades. Sube un currículum opcional para destacarte.
+                Ve a <NavLink to='/crear-cuenta' className={styles.helpLink}>Registro</NavLink>, completa tus datos personales, selecciona un rol y llena la información solicitada, al final se te pedirá crear tu contraseña y podrás terminar tu registro. Con esto tu perfil ya estará creado
               </p>
             </li>
             <li>
@@ -84,7 +84,7 @@ export const Help = ({ embedded = false }) => {
             <li>
               <p className="font-medium">¿Cómo aplico a una vacante?</p>
               <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
-                Haz clic en "Aplicar" en la oferta de empleo y sigue las instrucciones. Recibirás confirmación por email.
+                En la página de inicio haz click en "Ver detalles" de la vacante de tu interés, podrás ver la información de la vacante y abajo habrá un botón con el nombre de "Postularse", haz click allí y ya estarás postulado.
               </p>
             </li>
           </ul>
@@ -94,13 +94,13 @@ export const Help = ({ embedded = false }) => {
             <li>
               <p className="font-medium">¿Cómo publico una vacante?</p>
               <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
-                Registra tu empresa, verifica tus datos y haz clic en "Publicar vacante". Revisaremos tu anuncio antes de activarlo.
+                En tu inicio en la parte superior, haz click en el icono de portafolio, llena los datos correctamente y haz click en "Publicar vacante". Tu vacante ya será visible para todos los contratistas.
               </p>
             </li>
             <li>
-              <p className="font-medium">¿Qué tipo de candidatos encontraré en PLP?</p>
+              <p className="font-medium">¿Qué tipo de contratistas encontraré en PLP?</p>
               <p className="ml-4 mt-1 pl-2 border-l-2 border-[#90d7db]">
-                Profesionales con experiencia demostrable, pero sin título formal. Ideal para roles que priorizan competencias técnicas.
+                Personas con talento, habilidades y experiencias no calificadas. Como también personas con estudios básicos, mas no titulados.
               </p>
             </li>
             <li>
@@ -118,20 +118,6 @@ export const Help = ({ embedded = false }) => {
           transition={{ duration: 0.3 }}
         />
 
-        <motion.section
-          className={styles.helpSection}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.4 }}
-        >
-          <h2>2. Guías y Tutoriales</h2>
-          <ul className={styles.helpList}>
-            <li><a href="#" className={styles.helpLink}>Video tutorial: Cómo optimizar tu perfil para empleadores</a></li>
-            <li><a href="#" className={styles.helpLink}>Guía PDF: Mejores prácticas para publicar vacantes</a></li>
-            <li><a href="#" className={styles.helpLink}>Webinar: Cómo destacar habilidades sin título profesional</a></li>
-          </ul>
-        </motion.section>
-
         <motion.div
           className={styles.helpDivider}
           initial={{ scaleX: 0 }}
@@ -145,7 +131,7 @@ export const Help = ({ embedded = false }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.4 }}
         >
-          <h2>3. Problemas Técnicos</h2>
+          <h2>2. Problemas Técnicos</h2>
           <ul className={styles.helpList}>
             <li>
               <p className="font-medium">La app/web no carga</p>
@@ -178,19 +164,15 @@ export const Help = ({ embedded = false }) => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.4 }}
         >
-          <h2>4. Contacto Directo</h2>
+          <h2>3. Contacto Directo</h2>
           <ul className={styles.helpContactList}>
             <li className={styles.helpContactItem}>
               <span className={styles.helpContactLabel}>Email:</span>
-              <span>soporte@plp.com <span className="text-sm text-gray-600">(Respuesta en ≤ 24 horas)</span></span>
+              <span>soporte@plp.com</span>
             </li>
             <li className={styles.helpContactItem}>
               <span className={styles.helpContactLabel}>Teléfono:</span>
-              <span>[+XX XXX XXX XXXX] <span className="text-sm text-gray-600">(Lunes a Viernes, 9:00 a 18:00 hrs)</span></span>
-            </li>
-            <li className={styles.helpContactItem}>
-              <span className={styles.helpContactLabel}>Chat en vivo:</span>
-              <span>Disponible en la app/web (icono de burbuja en esquina inferior derecha)</span>
+              <span>300 000 0000</span>
             </li>
           </ul>
         </motion.section>

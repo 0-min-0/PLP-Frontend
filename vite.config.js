@@ -11,7 +11,7 @@ export default defineConfig({
       devSourcemap: true,
       plugins: [
         postcssTailwind({
-          darkMode: ['class', '.dark-mode'], // permite que Tailwind use `.dark-mode`
+          darkMode: ['class', '.dark-mode'],
           content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
           theme: {
             extend: {},

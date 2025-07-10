@@ -2038,6 +2038,13 @@
     height: 200px;
   }
 
+  .container-create {
+    max-width: 55%;
+    padding: 18px 40px;
+    margin: 8px 120px 32px 120px;
+    border-radius: 0.6rem;
+  }
+
 }
 
 /* --- 1024px Responsive Breakpoint --- */
