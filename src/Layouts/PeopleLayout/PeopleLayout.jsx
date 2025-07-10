@@ -37,7 +37,7 @@ export const PeopleLayout = ({
   const [layoutTitle, layoutDescription] = useMemo(() => [
     searchQuery
       ? `Resultados para "${searchQuery}"`
-      : `¡Hola, ${user.name}! Mira las hojas de vida publicadas más recientemente.`,
+      : `¡Bienvenido, ${user.name}!`,
     searchQuery
       ? `${filteredData.length} ${filteredData.length === 1 ? 'persona encontrada' : 'personas encontradas'}`
       : "Descubre personas a quienes darles una oportunidad laboral y puedan suplir tus necesidades."
